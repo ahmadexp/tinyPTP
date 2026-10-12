@@ -1,7 +1,8 @@
 #include <SPI.h>
 #include <Usb.h>
 
-// Descriptor-only bring-up for one TimeStick directly attached to a MAX3421E.
+// USB bring-up for one TimeStick directly attached to a MAX3421E.
+// Descriptors on boot; optional ASIX control reads with serial command 'v'.
 // This is not an Ethernet driver or a PTP implementation.
 USB Usb;
 bool reported = false;
@@ -16,6 +17,31 @@ void hexByte(uint8_t value) {
 void hexWord(uint16_t value) {
   hexByte(value >> 8);
   hexByte(value & 0xff);
+}
+
+#include "AsixControlProbe.h"
+#include "HardwareInit.h"
+#include "EthernetProbe.h"
+
+// Read-only fallback for the standard UNO shield wiring (chip select D10).
+// A failed oscillator check can also mean the controller is not reachable.
+uint8_t slowRegisterRead(uint8_t reg, uint32_t hz) {
+  SPI.beginTransaction(SPISettings(hz, MSBFIRST, SPI_MODE0));
+  digitalWrite(10, LOW);
+  SPI.transfer(reg);
+  const uint8_t value = SPI.transfer(0);
+  digitalWrite(10, HIGH);
+  SPI.endTransaction();
+  return value;
+}
+
+void reportHostRegisters(uint32_t hz) {
+  Serial.print(F("SPI Hz=")); Serial.print(hz);
+  Serial.print(F(" REVISION=")); hexByte(slowRegisterRead(rREVISION, hz));
+  Serial.print(F(" USBIRQ=")); hexByte(slowRegisterRead(rUSBIRQ, hz));
+  Serial.print(F(" USBCTL=")); hexByte(slowRegisterRead(rUSBCTL, hz));
+  Serial.print(F(" PINCTL=")); hexByte(slowRegisterRead(rPINCTL, hz));
+  Serial.println();
 }
 
 // Keep only the first nine bytes of each descriptor. Configuration trees may
@@ -122,8 +148,18 @@ void setup() {
   pinMode(4, OUTPUT);
   digitalWrite(4, HIGH);
   Serial.println(F("TimeStick USB descriptor probe"));
-  hostReady = Usb.Init() != -1;
-  if (!hostReady) Serial.println(F("MAX3421E oscillator failed: check shield/power/SPI"));
+  const int8_t initResult = Usb.Init();
+  hostReady = initResult == 0;
+  Serial.print(F("MAX3421E init result=")); Serial.println(initResult);
+  Serial.print(F("MAX3421E revision=0x")); hexByte(Usb.regRd(rREVISION));
+  Serial.println();
+  if (!hostReady) {
+    Serial.println(F("MAX3421E initialization failed: check shield/power/SPI"));
+    reportHostRegisters(125000UL);
+    reportHostRegisters(1000000UL);
+    reportHostRegisters(8000000UL);
+    Serial.println(F("Expected revision: 01, 12, or 13. Repeated 00/FF suggests no SPI response."));
+  }
 }
 
 void loop() {
@@ -134,11 +170,22 @@ void loop() {
     Serial.print(F("USB state=0x")); hexByte(state); Serial.println();
     lastState = state;
   }
-  if (state != USB_STATE_RUNNING) { reported = false; return; }
+  if (state != USB_STATE_RUNNING) {
+    reported = false; hardwareReady = false; ethernetReady = false;
+    verifiedAsixAddress = 0; return;
+  }
   if (!reported) {
     Usb.ForEachUsbDevice(reportDevice);
-    Serial.println(F("Probe finished. Send r to repeat; USB polling continues."));
+    Serial.println(F("Commands: r descriptors; v reads; i PHY/clock; e Ethernet init; t echo test."));
     reported = true;
   }
-  if (Serial.available() && Serial.read() == 'r') reported = false;
+  if (Serial.available()) {
+    const char command = Serial.read();
+    if (command == 'r') reported = false;
+    if (command == 'v' || command == 'i') ethernetReady = false;
+    if (command == 'v') Usb.ForEachUsbDevice(reportAsixControls);
+    if (command == 'i') Usb.ForEachUsbDevice(initializeAsixHardware);
+    if (command == 'e') Usb.ForEachUsbDevice(initializeEthernetProbe);
+    if (command == 't') runEthernetProbe();
+  }
 }

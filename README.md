@@ -2,10 +2,22 @@
 
 Bring-up work for two classic Arduino UNO R3 boards, each using a MAX3421E USB
 Host Shield and a TimeStick v2, with an Ethernet cable between the TimeSticks.
-TimeStick v2 is the target; the UNO R3 and MAX3421E remain assumed models.
+TimeStick v2 is the target. The first test host identifies the Arduino as an
+UNO R3; the shield model and its MAX3421E wiring still need confirmation.
 
-**Status: feasibility assessment and USB descriptor probe. There is no working
-Ethernet driver or PTP synchronization firmware in this repository yet.**
+**Status: hardware bring-up and bounded Ethernet diagnostics. There is no
+PTP synchronization firmware in this repository yet.**
+
+The [first hardware tests](docs/bringup-2026-10-12.md) now pass shield
+initialization, TimeStick full-speed USB enumeration, vendor configuration
+selection, chip/MAC reads, and hardware-clock register reads. The chip identifies
+as AX88279 revision `0x01`; endpoint `0x84` is present. The replacement stick
+(MAC `9C:69:D3:2B:A1:2F`, firmware `1.3.16.7`) now has a running hardware clock
+and a confirmed 1 Gb/s full-duplex Ethernet link. Clock access initially stalls
+on this stick until native-mode/PHY setup and link establishment complete.
+Ten of ten 60-byte test frames completed a verified round trip through the
+UNO, shield, TimeStick, and PTPBox. Timestamp delivery and PTP synchronization
+remain unverified.
 
 ## Feasibility
 
@@ -120,11 +132,24 @@ the two AVR timers.
 ## First hardware check
 
 The sketch at `examples/TimeStickProbe/TimeStickProbe.ino` reads USB device and
-configuration descriptors. It prints VID/PID, device revision, interface class,
+configuration descriptors at startup. It prints VID/PID, device revision, interface class,
 alternate settings, endpoint addresses/types/sizes, and advertised power. It
 streams descriptors instead of storing the full configuration tree. It uses
-ordinary USB enumeration and descriptor requests; it does not enable Ethernet,
-configure the precision clock, or write firmware/EEPROM.
+ordinary USB enumeration and descriptor requests by default. Optional serial
+command `v` selects the observed ASIX vendor configuration 1, reads chip and MAC
+registers and firmware version, and reads three clock samples if chip code 7 is confirmed. Read
+lengths and USB status are checked. This does not initialize Ethernet, start or
+adjust the precision clock, or write firmware/EEPROM. Configuration 1 remains
+selected until reset or reconfiguration. The clock values are diagnostic only.
+
+Command `i` applies volatile PHY and clock initialization, waits for link,
+checks PTP register readback, and checks clock progression. Command `e` also
+sets up the MAC and USB bulk endpoints for a 1 Gb/s full-duplex link. Command
+`t` sends ten experimental EtherType `0x88B5` frames and checks matching echoes
+from `tools/link_peer.py` running on the attached Linux NIC. Receive storage is
+192 bytes; oversized and multi-frame aggregates are drained and discarded.
+This is a limited transport test, not a general Ethernet receive driver.
+No command programs the TimeStick's flash, EEPROM, or eFuse.
 
 1. Install **USB Host Shield Library 2.0** by the USB Host Shield team in Arduino
    Library Manager. Select **Arduino Uno** with the AVR core.
@@ -134,13 +159,15 @@ configure the precision clock, or write firmware/EEPROM.
 3. Upload the sketch and open Serial Monitor at **115200 baud**. Reset the UNO
    if the initial output was missed.
 4. Save the entire output for both sticks along with their PCB revision/chip
-   markings and shield model. Send `r` to repeat descriptor reads.
+   markings and shield model. Send `r` to repeat descriptor reads. Send `v` for
+   the optional vendor configuration and control-read test.
 
 The probe assumes the library's standard MAX3421E SPI wiring and a directly
 connected device. No USB hub driver is instantiated. D4 is held high to deselect
 the SD socket on common shields. `USB_STATE_RUNNING` in this probe only means
 the generic host enumeration path finished, not that an Ethernet interface is
-configured. Descriptor success does not prove full-speed PTP timestamp support.
+configured. Descriptor success and clock reads do not prove packet timestamp
+delivery or a running, disciplined clock.
 
 Optional CLI build after installing the AVR core and library:
 
@@ -155,7 +182,9 @@ Build verification on 2026-10-08: Arduino AVR core 1.8.8, USB Host Shield Librar
 were Intel-only and could not run on this host, so the check used a temporary
 native compiler and locally built Arduino ctags. The Arduino installation was
 not modified. Exact sizes may differ with the standard Arduino compiler.
-Stack usage and operation with physical hardware have not been verified.
+That was the original descriptor-only build. Current hardware results and
+standard Arduino compiler sizes are recorded in the bring-up report. Runtime
+stack headroom has not yet been measured.
 
 ## Source references
 

@@ -2,8 +2,8 @@
 #include <Usb.h>
 
 // USB bring-up for one TimeStick directly attached to a MAX3421E.
-// Descriptors on boot; optional ASIX control reads with serial command 'v'.
-// This is not an Ethernet driver or a PTP implementation.
+// Descriptors on boot; optional Ethernet and fixed-peer PTP diagnostics.
+// This is an experimental bounded client, not a general-purpose PTP stack.
 USB Usb;
 bool reported = false;
 bool hostReady = false;
@@ -22,6 +22,7 @@ void hexWord(uint16_t value) {
 #include "AsixControlProbe.h"
 #include "HardwareInit.h"
 #include "EthernetProbe.h"
+#include "PtpClient.h"
 
 // Read-only fallback for the standard UNO shield wiring (chip select D10).
 // A failed oscillator check can also mean the controller is not reachable.
@@ -172,20 +173,28 @@ void loop() {
   }
   if (state != USB_STATE_RUNNING) {
     reported = false; hardwareReady = false; ethernetReady = false;
+    ptpRunning = false; clearPtpExchange();
     verifiedAsixAddress = 0; return;
   }
   if (!reported) {
     Usb.ForEachUsbDevice(reportDevice);
-    Serial.println(F("Commands: r descriptors; v reads; i PHY/clock; e Ethernet init; t echo test."));
+    Serial.println(F("Commands: r descriptors; v reads; i PHY/clock; e Ethernet; t echo; p PTP observe; s PTP servo; x stop."));
     reported = true;
   }
   if (Serial.available()) {
     const char command = Serial.read();
+    if (command == 'e' || command == 'i' || command == 'v' || command == 't' || command == 'x') {
+      ptpRunning = false; clearPtpExchange();
+    }
     if (command == 'r') reported = false;
     if (command == 'v' || command == 'i') ethernetReady = false;
     if (command == 'v') Usb.ForEachUsbDevice(reportAsixControls);
     if (command == 'i') Usb.ForEachUsbDevice(initializeAsixHardware);
     if (command == 'e') Usb.ForEachUsbDevice(initializeEthernetProbe);
     if (command == 't') runEthernetProbe();
+    if (command == 'p') startPtpClient(false);
+    if (command == 's') startPtpClient(true);
+    if (command == 'x') ptpSetFrequency(0);
   }
+  pollPtpClient();
 }

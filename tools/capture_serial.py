@@ -18,10 +18,12 @@ def main():
     parser.add_argument("--seconds", type=float, default=30)
     parser.add_argument("--reset", action="store_true", help="Pulse DTR to reset the UNO")
     parser.add_argument("--command", default="", help="ASCII command to send after opening")
+    parser.add_argument("--end-command", default="", help="ASCII command sent before closing, e.g. x to stop PTP")
     args = parser.parse_args()
     if args.seconds <= 0:
         parser.error("--seconds must be positive")
     command = args.command.encode("ascii")
+    end_command = args.end_command.encode("ascii")
     # Exclusive creation protects earlier evidence from accidental overwrites.
     with args.output.open("x", encoding="utf-8") as log:
         header = (
@@ -49,6 +51,11 @@ def main():
                     log.write(text)
                     log.flush()
                     print(text, end="", flush=True)
+            if end_command:
+                uart.write(end_command)
+                uart.flush()
+                # Allow a short command such as x to finish before DTR drops.
+                time.sleep(0.3)
 
 
 if __name__ == "__main__":

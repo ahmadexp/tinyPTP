@@ -5,8 +5,8 @@ Host Shield and a TimeStick v2, with an Ethernet cable between the TimeSticks.
 TimeStick v2 is the target. The first test host identifies the Arduino as an
 UNO R3; the shield model and its MAX3421E wiring still need confirmation.
 
-**Status: hardware bring-up and bounded Ethernet diagnostics. There is no
-PTP synchronization firmware in this repository yet.**
+**Status: experimental fixed-peer PTP client on the UNO, tested against
+PTPBox using hardware timestamps. This is not a general-purpose PTP stack.**
 
 The [first hardware tests](docs/bringup-2026-10-12.md) now pass shield
 initialization, TimeStick full-speed USB enumeration, vendor configuration
@@ -16,13 +16,48 @@ as AX88279 revision `0x01`; endpoint `0x84` is present. The replacement stick
 and a confirmed 1 Gb/s full-duplex Ethernet link. Clock access initially stalls
 on this stick until native-mode/PHY setup and link establishment complete.
 Ten of ten 60-byte test frames completed a verified round trip through the
-UNO, shield, TimeStick, and PTPBox. Timestamp delivery and PTP synchronization
-remain unverified.
+UNO, shield, TimeStick, and PTPBox. The fixed-peer client now exchanges Sync,
+Follow_Up, Delay_Req, and Delay_Resp with Linux `ptp4l`, using hardware RX/TX
+timestamps. See the [PTP test report](docs/ptp-test-2026-10-12.md).
+
+## Running the PTP experiment
+
+On PTPBox, start the dedicated, time-limited master in one terminal:
+
+```sh
+sudo /home/user/tinyPTP/tools/run_ptp_master.sh 180
+```
+
+Then run the UNO client in another terminal, using a fresh log filename:
+
+```sh
+python3 /home/user/tinyPTP/tools/capture_serial.py \
+  /dev/ttyACM0 /home/user/tinyPTP/test-results/ptp-new.log \
+  --reset --command es --seconds 160 --end-command x
+```
+
+`e` initializes Ethernet; `s` starts the fixed-peer servo. Use `ep` instead to
+observe exchanges without disciplining the clock. `x` stops the client and
+restores nominal clock frequency. Opening serial resets the UNO, so keep
+initialization and PTP in the same session.
+
+The test uses L2 PTPv2, domain 42, two-step Sync, E2E delay, and a 1 Hz master.
+The master is pinned to clock identity `0c9d92.fffe.c58332`, port 1. The supplied
+host configuration uses only `enp179s0f1` and `free_running 1`; the UNO adjusts
+the TimeStick. Existing host PTP services and the host system clock are not
+reconfigured. This experiment establishes relative synchronization to the NIC,
+not independently verified UTC accuracy.
+
+Current limitations: AX88279 only, 1 Gb/s full duplex, one outstanding exchange,
+no BMCA or master failover, a bounded 256-byte aggregate buffer, and a 32-bit
+seconds epoch ending in 2106. Oversized aggregates are drained and discarded.
+No profile compliance, calibrated PHY asymmetry, or PPS accuracy is claimed.
+The original stick identifies as AX88279A and needs a different driver path.
 
 ## Feasibility
 
-The architecture is plausible, but operation on this exact hardware combination
-has not been demonstrated here. ASIX documents USB full-speed support for both
+The AX88279-based test unit now demonstrates this architecture with a Linux
+PTP peer. Two-UNO operation and the AX88279A variant remain untested. ASIX documents USB full-speed support for both
 the AX88179B and AX88279. This matches the MAX3421E's 12 Mbit/s host capability.
 An Ethernet PHY operating at 100 Mbit/s or faster does not require the USB host
 to sustain that rate for a sparse PTP exchange.
@@ -147,9 +182,10 @@ checks PTP register readback, and checks clock progression. Command `e` also
 sets up the MAC and USB bulk endpoints for a 1 Gb/s full-duplex link. Command
 `t` sends ten experimental EtherType `0x88B5` frames and checks matching echoes
 from `tools/link_peer.py` running on the attached Linux NIC. Receive storage is
-192 bytes; oversized and multi-frame aggregates are drained and discarded.
-This is a limited transport test, not a general Ethernet receive driver.
-No command programs the TimeStick's flash, EEPROM, or eFuse.
+256 bytes; oversized and multi-frame aggregates are drained and discarded.
+This echo command is a limited transport test, not a general Ethernet receive driver.
+The PTP path additionally parses bounded multi-frame aggregates and hardware
+timestamps. No command programs the TimeStick's flash, EEPROM, or eFuse.
 
 1. Install **USB Host Shield Library 2.0** by the USB Host Shield team in Arduino
    Library Manager. Select **Arduino Uno** with the AVR core.

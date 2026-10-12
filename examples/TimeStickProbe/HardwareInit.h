@@ -101,11 +101,22 @@ void initializeAsixHardware(UsbDevice *device) {
   }
   Serial.println(linked ? F("Ethernet PHY link UP") : F("Ethernet PHY link timeout"));
   if (!linked) return;
+  // The PHY can report link before firmware has completed its link-change
+  // setup. PBus reads can temporarily return DEADBEEF during that transition.
+  delay(500);
 
   // Retry after native-mode and PHY setup. Chip code alone does not establish
   // support for the PTP USB requests, so do not write PTP registers on failure.
   uint8_t clock[10];
-  if (!asixRead(address, 0x13, 2, 0x1014, sizeof(clock), clock)) {
+  bool clockAccessible = false;
+  for (uint8_t attempt = 0; attempt < 10; ++attempt) {
+    if (asixRead(address, 0x13, 2, 0x1014, sizeof(clock), clock) &&
+        readLe32(clock) < 1000000000UL) {
+      clockAccessible = true; break;
+    }
+    delay(100);
+  }
+  if (!clockAccessible) {
     Serial.println(F("PTP initialization skipped: clock request failed after PHY setup"));
     return;
   }

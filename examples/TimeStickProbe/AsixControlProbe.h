@@ -52,7 +52,8 @@ void reportAsixControls(UsbDevice *device) {
   delay(100);
   uint8_t chip;
   if (!asixRead(address, 0x01, 0x0005, 1, 1, &chip)) return;
-  const uint8_t code = (chip & 0x70) >> 4;
+  // Current ASIX drivers use all four high bits: 7 is AX88279, 15 is AX88279A.
+  const uint8_t code = (chip & 0xf0) >> 4;
   Serial.print(F("ASIX chip status=0x")); hexByte(chip);
   Serial.print(F(" chip code=")); Serial.println(code);
   uint8_t revision;

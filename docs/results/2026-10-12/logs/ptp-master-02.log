@@ -1,0 +1,26 @@
+ptp4l[416907.103]: port 1 (enp179s0f1): INITIALIZING to MASTER on INIT_COMPLETE
+ptp4l[416907.103]: port 0 (/run/timemaster/ptp4l.tinyptp.socket): INITIALIZING to LISTENING on INIT_COMPLETE
+ptp4l[416907.103]: port 0 (/run/timemaster/ptp4lro.tinyptp.socket): INITIALIZING to LISTENING on INIT_COMPLETE
+ptp4l[416951.106]: port 1 (enp179s0f1): link down
+ptp4l[416951.106]: port 1 (enp179s0f1): MASTER to FAULTY on FAULT_DETECTED (FT_UNSPECIFIED)
+ptp4l[416951.115]: selected local clock 0c9d92.fffe.c58332 as best master
+ptp4l[416963.975]: port 1 (enp179s0f1): link up
+ptp4l[416963.993]: port 1 (enp179s0f1): FAULTY to MASTER on INIT_COMPLETE
+ptp4l[417010.313]: port 1 (enp179s0f1): link down
+ptp4l[417010.313]: port 1 (enp179s0f1): MASTER to FAULTY on FAULT_DETECTED (FT_UNSPECIFIED)
+ptp4l[417026.400]: port 1 (enp179s0f1): link up
+ptp4l[417026.410]: port 1 (enp179s0f1): FAULTY to MASTER on INIT_COMPLETE
+ptp4l[417060.010]: port 1 (enp179s0f1): link down
+ptp4l[417060.010]: port 1 (enp179s0f1): MASTER to FAULTY on FAULT_DETECTED (FT_UNSPECIFIED)
+ptp4l[417076.097]: port 1 (enp179s0f1): link up
+ptp4l[417076.104]: port 1 (enp179s0f1): FAULTY to MASTER on INIT_COMPLETE
+ptp4l[417110.719]: port 1 (enp179s0f1): link down
+ptp4l[417110.719]: port 1 (enp179s0f1): MASTER to FAULTY on FAULT_DETECTED (FT_UNSPECIFIED)
+ptp4l[417126.754]: port 1 (enp179s0f1): link up
+ptp4l[417126.772]: port 1 (enp179s0f1): FAULTY to MASTER on INIT_COMPLETE
+ptp4l[417155.144]: port 1 (enp179s0f1): link down
+ptp4l[417155.144]: port 1 (enp179s0f1): MASTER to FAULTY on FAULT_DETECTED (FT_UNSPECIFIED)
+ptp4l[417171.171]: port 1 (enp179s0f1): link up
+ptp4l[417171.185]: port 1 (enp179s0f1): FAULTY to MASTER on INIT_COMPLETE
+ptp4l[417204.412]: port 1 (enp179s0f1): link down
+ptp4l[417204.412]: port 1 (enp179s0f1): MASTER to FAULTY on FAULT_DETECTED (FT_UNSPECIFIED)

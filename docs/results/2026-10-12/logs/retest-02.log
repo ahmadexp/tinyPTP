@@ -1,0 +1,10 @@
+UTC: 2026-10-12T17:56:09.277882+00:00
+Port: /dev/ttyACM0; baud: 115200; reset: True
+TimeStick USB descriptor probe
+MAX3421E init result=-1
+MAX3421E revision=0x00
+MAX3421E initialization failed: check shield/power/SPI
+SPI Hz=125000 REVISION=00 USBIRQ=00 USBCTL=00 PINCTL=00
+SPI Hz=1000000 REVISION=00 USBIRQ=00 USBCTL=00 PINCTL=00
+SPI Hz=8000000 REVISION=00 USBIRQ=00 USBCTL=00 PINCTL=00
+Expected revision: 01, 12, or 13. Repeated 00/FF suggests no SPI response.

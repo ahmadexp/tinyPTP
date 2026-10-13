@@ -1,0 +1,12 @@
+Listening on enp179s0f1, MAC 0c:9d:92:c5:83:32
+RX valid seq=0 source=9c:69:d3:2b:a1:2f; echo bytes=60
+RX valid seq=1 source=9c:69:d3:2b:a1:2f; echo bytes=60
+RX valid seq=2 source=9c:69:d3:2b:a1:2f; echo bytes=60
+RX valid seq=3 source=9c:69:d3:2b:a1:2f; echo bytes=60
+RX valid seq=4 source=9c:69:d3:2b:a1:2f; echo bytes=60
+RX valid seq=5 source=9c:69:d3:2b:a1:2f; echo bytes=60
+RX valid seq=6 source=9c:69:d3:2b:a1:2f; echo bytes=60
+RX valid seq=7 source=9c:69:d3:2b:a1:2f; echo bytes=60
+RX valid seq=8 source=9c:69:d3:2b:a1:2f; echo bytes=60
+RX valid seq=9 source=9c:69:d3:2b:a1:2f; echo bytes=60
+Unique valid frames=10/10

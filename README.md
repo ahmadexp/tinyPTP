@@ -1,24 +1,45 @@
 # tinyPTP
 
-Bring-up work for two classic Arduino UNO R3 boards, each using a MAX3421E USB
-Host Shield and a TimeStick v2, with an Ethernet cable between the TimeSticks.
-TimeStick v2 is the target. The first test host identifies the Arduino as an
-UNO R3; the shield model and its MAX3421E wiring still need confirmation.
+Experimental hardware-timestamped PTP on a classic Arduino UNO R3 with a
+MAX3421E USB Host Shield and an AX88279-based TimeStick. The UNO runs the PTP
+client and integer clock servo; the TimeStick timestamps Ethernet packets and
+maintains the hardware clock.
 
-**Status: experimental fixed-peer PTP client on the UNO, tested against
-PTPBox using hardware timestamps. This is not a general-purpose PTP stack.**
+**Working: one UNO and TimeStick synchronized to a Linux Ethernet port.**
+The original goal of two UNOs connected through two TimeSticks remains the next
+stage. There is no UNO master implementation yet, and this is not a complete
+PTP stack or a flexPTP port.
 
-The [first hardware tests](docs/bringup-2026-10-12.md) now pass shield
-initialization, TimeStick full-speed USB enumeration, vendor configuration
-selection, chip/MAC reads, and hardware-clock register reads. The chip identifies
-as AX88279 revision `0x01`; endpoint `0x84` is present. The replacement stick
-(MAC `9C:69:D3:2B:A1:2F`, firmware `1.3.16.7`) now has a running hardware clock
-and a confirmed 1 Gb/s full-duplex Ethernet link. Clock access initially stalls
-on this stick until native-mode/PHY setup and link establishment complete.
-Ten of ten 60-byte test frames completed a verified round trip through the
-UNO, shield, TimeStick, and PTPBox. The fixed-peer client now exchanges Sync,
-Follow_Up, Delay_Req, and Delay_Resp with Linux `ptp4l`, using hardware RX/TX
-timestamps. See the [PTP test report](docs/ptp-test-2026-10-12.md).
+## Measured results, 2026-10-12
+
+| Test | Result |
+| --- | --- |
+| MAX3421E and USB | Revision `0x13`, full-speed 12 Mb/s enumeration |
+| Ethernet | 1 Gb/s full duplex, 10/10 verified frame round trips |
+| Hardware-timestamped PTP | 131 complete exchanges in the principal capture |
+| Final 40 samples | Mean -6.375 ns, RMS 13.125 ns, range -29 to +22 ns |
+| Mean path delay, same window | 1106.625 ns |
+| Exchange timeouts / rejected paths | 0 / 0 |
+| Final firmware | 23470 bytes flash, 917 bytes static SRAM |
+
+These offsets are internal PTP estimates after acquisition, not independently
+measured PPS or UTC accuracy. Maximum stack use has not been measured.
+
+- [Hardware bring-up history](docs/bringup-2026-10-12.md): power, enumeration,
+  original/replacement identification, clock initialization, and Ethernet tests.
+- [PTP experiment report](docs/ptp-test-2026-10-12.md): timestamps, acquisition,
+  servo results, restart validation, and limitations.
+- [Evidence archive](docs/results/2026-10-12/README.md): 30 original diagnostic
+  logs, per-sample CSVs, JSON summaries, and checksums.
+- [Setup and implementation guide](docs/setup-and-design.md): wiring topology,
+  build/upload commands, serial controls, servo behavior, and next steps.
+
+Two units were tested. Both report USB `0B95:1790`, but the original is
+**AX88279A** (`bcdDevice 0500`, chip code 15) and is not supported by the current
+driver. The replacement is **AX88279 revision 1**, firmware `1.3.16.7`,
+MAC `9C:69:D3:2B:A1:2F` (`bcdDevice 0400`, chip code 7); this is the working unit.
+The requested target was TimeStick v2, but the replacement's exact PCB revision
+is unconfirmed. VID/PID and USB device revision alone do not identify the PCB.
 
 ## Running the PTP experiment
 
@@ -62,10 +83,10 @@ the AX88179B and AX88279. This matches the MAX3421E's 12 Mbit/s host capability.
 An Ethernet PHY operating at 100 Mbit/s or faster does not require the USB host
 to sustain that rate for a sparse PTP exchange.
 
-The UNO would run the protocol state machine and clock servo. The TimeStick
-would maintain the precision hardware clock, timestamp Ethernet ingress and
-egress, and generate PPS. USB delivery latency does not become the packet
-timestamp error when timestamps are captured at the Ethernet interface. It
+The UNO runs the protocol state machine and clock servo. The TimeStick
+maintains the precision hardware clock and timestamps Ethernet ingress and
+egress. PPS routing and output measurement remain untested. USB delivery
+latency does not become the packet timestamp error when timestamps are captured at the Ethernet interface. It
 still affects update delay, buffering, and the ability to service timestamp
 queues before overflow. Never substitute `micros()` or USB completion times for
 hardware packet timestamps.
@@ -74,9 +95,9 @@ The target is TimeStick v2, with the AX88279 driver path as the starting point:
 the TimeStick2 directory contains AX88279 firmware and its manufacturing archive
 contains a `06_TIME_STICK_279` bill of materials. The top-level TimeStick README
 describes AX88179B and should not be treated as the v2 programming reference.
-Firmware, silicon revision, and the full-speed USB interface layout still need
-verification on the actual sticks. VID/PID alone may not distinguish all ASIX
-revisions.
+Firmware, silicon revision, and full-speed descriptors for the tested units
+are recorded in the bring-up report. Additional sticks must be identified
+individually; VID/PID alone does not distinguish these ASIX revisions.
 
 ## Why flexPTP cannot be used unchanged
 
@@ -92,21 +113,21 @@ floating-point behavior, and measuring the complete linked image. Its stock
 memory layout is unsuitable; this is not proof that a carefully reduced fork
 could never fit. No full flexPTP AVR build has been attempted here.
 
-For the first experiment, a smaller fixed-role implementation is the recommended
-engineering direction. Use flexPTP as a reference or evaluate a reduced fork
-after the USB driver proves viable.
+The working experiment uses a smaller fixed-role implementation in
+`examples/TimeStickProbe/PtpClient.h`. A reduced flexPTP port remains an optional
+future direction, not a dependency of the current firmware.
 
-## Proposed first PTP experiment
+## Implemented PTP exchange
 
-- One fixed master and one fixed slave, domain 0, direct cable, unique identities.
+- Linux fixed master and UNO fixed client, domain 42, direct cable, unique identities.
 - IEEE 1588v2 over Ethernet, EtherType `0x88F7`, multicast `01:1B:19:00:00:00`.
 - End-to-end delay measurement, two-step Sync, initially one exchange per second.
-- Sync, Follow_Up, Delay_Req and Delay_Resp, plus appropriate Announce messages.
+- Sync, Follow_Up, Delay_Req and Delay_Resp; Linux emits Announce, with no client BMCA.
 - Static allocation, one outstanding exchange, bounded retries and timeouts.
 - Integer timestamp calculations and a bounded fixed-point frequency servo.
-- Discipline the slave TimeStick clock and compare the two PPS outputs.
+- Discipline the client TimeStick clock; independent PPS comparison remains future work.
 
-This intentionally limited experiment would not be a complete general-purpose
+This intentionally limited experiment is not a complete general-purpose
 PTP implementation: no BMCA, P2P/gPTP, management, arbitrary TLVs, or profile
 interoperability claim in the first version. Raw Ethernet avoids needing IP,
 UDP, DHCP, or ARP on the UNO.
@@ -126,38 +147,22 @@ and bounded signed differences; do not flatten the entire 48-bit seconds field
 into signed 64-bit nanoseconds. Absolute UTC needs an external reference; two
 free-running sticks alone can establish relative synchronization.
 
-## The main implementation work
+## Remaining work
 
-1. Enumerate at USB full speed and identify interfaces, alternate settings,
-   endpoint types and packet sizes. Verify power and stable attachment.
-2. Implement the correct ASIX initialization and Ethernet TX/RX transport.
-   Generic CDC Ethernet connectivity does not establish hardware timestamp
-   support. The supplied Linux driver is the protocol reference, not code that
-   can simply be compiled on AVR.
-3. Read, set, and adjust the TimeStick hardware clock; verify PPS operation.
-4. Extract RX timestamps and correlate asynchronous TX timestamps with packets.
-   The supplied driver has different timestamp paths for different chips,
-   including control-transfer and endpoint-based mechanisms.
-5. Bound USB aggregation and memory use. Read USB packets incrementally, drain
-   discarded data, and handle metadata even when it arrives after frame data.
-   A small PTP frame buffer alone does not solve ASIX receive aggregation.
-6. Add the PTP exchange and servo, then measure PPS offset, jitter, drift,
-   packet loss recovery, and reconnect behavior on the actual pair.
+1. Implement the fixed master role on a second UNO and verify two-stick operation.
+2. Add a separate AX88279A register and timestamp path for the original unit.
+3. Route and independently compare PPS outputs; assess PHY/link asymmetry.
+4. Measure runtime stack high-water use, long-duration stability, and recovery
+   from dropped packets, cable changes, USB disconnects, and power cycles.
+5. Test background traffic and aggregation pressure before broader deployment.
 
-For AX88279 specifically, `ax88279_submit_ts()` reads transmit timestamp reports
-from bulk IN endpoint 4. The report is 131 bytes: two banks of five 13-byte
-records and a final bank selector. At full speed this must be assembled across
-USB packets, with the selector interpreted only after the report is complete.
-The device descriptors and selected USB mode must expose the corresponding
-endpoint before using this path. The driver also supplies a full-speed bulk-IN
-configuration in `AX88279_BULKIN_SIZE`; this is useful evidence of a full-speed
-transport path, but does not by itself verify timestamp delivery on the shield.
-
-Do not allocate a normal 1536-byte Ethernet receive buffer on the UNO. Start
-with a small bounded PTP frame buffer, USB packet scratch space, and minimal
-state, then verify the entire application's SRAM with a linker map and runtime
-stack high-water measurement. Reserve stack headroom. No final application
-memory budget or synchronization accuracy has been measured yet.
+The AX88279 endpoint `0x84` timestamp report is 131 bytes, assembled from
+64/64/3-byte USB packets. The current driver has verified this path on the
+replacement unit. RX aggregation uses a bounded 256-byte buffer and drains
+oversized aggregates. A normal 1536-byte Ethernet buffer would leave too
+little room in the UNO's 2048-byte SRAM for USB state, protocol state, and stack.
+The final build leaves 1131 bytes beyond static allocation; that is available
+space, not a measured runtime stack margin.
 
 If the UNO's own code needs aligned events, additionally bring a suitably
 conditioned TimeStick PPS signal into a timer input and map the AVR timer to
@@ -219,7 +224,7 @@ were Intel-only and could not run on this host, so the check used a temporary
 native compiler and locally built Arduino ctags. The Arduino installation was
 not modified. Exact sizes may differ with the standard Arduino compiler.
 That was the original descriptor-only build. Current hardware results and
-standard Arduino compiler sizes are recorded in the bring-up report. Runtime
+standard Arduino compiler sizes are recorded in the PTP test report. Runtime
 stack headroom has not yet been measured.
 
 ## Source references

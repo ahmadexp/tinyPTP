@@ -1,0 +1,94 @@
+UTC: 2026-10-12T18:27:24.406766+00:00
+Port: /dev/ttyACM0; baud: 115200; reset: True
+TimeStick USB descriptor probe
+MAX3421E init result=0
+MAX3421E revision=0x13
+USB state=0x20
+USB state=0x40
+USB state=0x50
+USB state=0x51
+USB state=0x90
+Device address=1
+FULL speed (12 Mbit/s host)
+VID:PID=0B95:1790 bcdDevice=0x0400 EP0=64
+Configuration index=0
+  descriptor type=0x02 length=9 config=1 interfaces=1 power_mA=450
+  descriptor type=0x04 length=9 interface=0 alternate=0 endpoints=5 class/subclass/protocol=FF/FF/00
+  descriptor type=0x05 length=7 address=0x81 attributes=0x03 maxPacket=8 interval=160
+  descriptor type=0x05 length=7 address=0x82 attributes=0x02 maxPacket=64 interval=0
+  descriptor type=0x05 length=7 address=0x03 attributes=0x02 maxPacket=64 interval=0
+  descriptor type=0x05 length=7 address=0x84 attributes=0x02 maxPacket=64 interval=0
+  descriptor type=0x05 length=7 address=0x05 attributes=0x02 maxPacket=64 interval=0
+Configuration index=1
+  descriptor type=0x02 length=9 config=2 interfaces=2 power_mA=450
+  descriptor type=0x04 length=9 interface=0 alternate=0 endpoints=1 class/subclass/protocol=02/0D/00
+  descriptor type=0x24 length=5
+  descriptor type=0x24 length=5
+  descriptor type=0x24 length=13
+  descriptor type=0x24 length=6
+  descriptor type=0x05 length=7 address=0x81 attributes=0x03 maxPacket=16 interval=160
+  descriptor type=0x04 length=9 interface=1 alternate=0 endpoints=0 class/subclass/protocol=0A/00/01
+  descriptor type=0x04 length=9 interface=1 alternate=1 endpoints=2 class/subclass/protocol=0A/00/01
+  descriptor type=0x05 length=7 address=0x82 attributes=0x02 maxPacket=64 interval=0
+  descriptor type=0x05 length=7 address=0x03 attributes=0x02 maxPacket=64 interval=0
+Configuration index=2
+  descriptor type=0x02 length=9 config=3 interfaces=2 power_mA=450
+  descriptor type=0x04 length=9 interface=0 alternate=0 endpoints=1 class/subclass/protocol=02/06/00
+  descriptor type=0x24 length=5
+  descriptor type=0x24 length=5
+  descriptor type=0x24 length=13
+  descriptor type=0x05 length=7 address=0x81 attributes=0x03 maxPacket=16 interval=160
+  descriptor type=0x04 length=9 interface=1 alternate=0 endpoints=0 class/subclass/protocol=0A/00/00
+  descriptor type=0x04 length=9 interface=1 alternate=1 endpoints=2 class/subclass/protocol=0A/00/00
+  descriptor type=0x05 length=7 address=0x82 attributes=0x02 maxPacket=64 interval=0
+  descriptor type=0x05 length=7 address=0x03 attributes=0x02 maxPacket=64 interval=0
+Commands: r descriptors; v reads; i PHY/clock; e Ethernet; t echo; p PTP observe; s PTP servo; x stop.
+SET_CONFIGURATION(1) error=0x00
+ASIX chip status=0x74 chip code=7
+ASIX silicon revision=0x01
+ASIX firmware=1.3.16.7
+ASIX MAC=9C:69:D3:2B:A1:2F
+ASIX read request=0x13 error=0x05 received=0
+AX88279 volatile initialization
+PHY power=0x02
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x616D
+Ethernet PHY link UP
+PBUS write 0012:0000 bytes=01 00 08 41 
+PBUS write 0012:1040 bytes=00 65 CD 1D 
+PBUS write 0012:1000 bytes=5F 00 00 00 
+PBUS write 0012:1030 bytes=CC CC CC CC 
+PBUS write 0012:1034 bytes=0A 00 00 00 
+PBUS write 0013:3004 bytes=00 00 00 00 
+PBUS write 0013:3004 bytes=00 01 3F 00 
+PTP register 0000=41080001
+PTP register 1000=5F
+PTP register 1030=CCCCCCCC
+PTP register 1034=A
+Initialized clock sec(hex)=000000000000 ns=11675030
+Initialized clock sec(hex)=000000000001 ns=16692480
+Initialized clock sec(hex)=000000000002 ns=18802400
+Initialized clock sec(hex)=000000000003 ns=20897230
+Clock progression PASS (rate accuracy unmeasured)
+Link interrupt=A1 60 08 00 00 00 00 00 
+Link interrupt=A1 73 09 00 6D 61 01 DD 
+Ethernet probe ready; t sends 10 echo-test frames
+PBUS write 0013:1008 bytes=22 06 07 00 
+PBUS write 0012:2000 bytes=F1 7F 01 00 
+PBUS write 0012:3000 bytes=F1 7F 01 08 
+PBUS write 0012:1038 bytes=00 00 00 00 
+PBUS write 0012:103C bytes=00 00 00 00 
+PBUS write 0012:1030 bytes=CC CC CC CC 
+PTP timestamp test RUN domain=42 servo=off
+PTP stats samples=0 timeouts=0 no_rx_timestamp=0 discarded=0
+PTP TX reports=0 packets=0 pending_bytes=0
+PTP exchange timeout follow=1 tx=0 response=1
+PTP exchange timeout follow=1 tx=0 response=1
+PTP exchange timeout follow=1 tx=0 response=1
+PTP stats samples=0 timeouts=3 no_rx_timestamp=0 discarded=2
+PTP TX reports=0 packets=0 pending_bytes=0
+PTP exchange timeout follow=1 tx=0 response=1
+PTP exchange timeout follow=1 tx=0 response=1
+PTP exchange timeout follow=1 tx=0 response=1

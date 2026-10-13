@@ -1,0 +1,3 @@
+ptp4l[417650.173]: port 1 (enp179s0f1): INITIALIZING to MASTER on INIT_COMPLETE
+ptp4l[417650.173]: port 0 (/run/timemaster/ptp4l.tinyptp.socket): INITIALIZING to LISTENING on INIT_COMPLETE
+ptp4l[417650.173]: port 0 (/run/timemaster/ptp4lro.tinyptp.socket): INITIALIZING to LISTENING on INIT_COMPLETE

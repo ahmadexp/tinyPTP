@@ -1,0 +1,4 @@
+UTC: 2026-10-12T17:51:49.867801+00:00
+Port: /dev/ttyACM0; baud: 115200; reset: True
+TimeStick USB descriptor probe
+MAX3421E oscillator failed: check shield/power/SPI

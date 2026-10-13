@@ -1,0 +1,6 @@
+UTC: 2026-10-12T18:04:43.153635+00:00
+Port: /dev/ttyACM0; baud: 115200; reset: True
+TimeStick USB descriptor probe
+MAX3421E init result=0
+MAX3421E revision=0x13
+USB state=0x12

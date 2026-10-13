@@ -1,0 +1,295 @@
+UTC: 2026-10-12T18:37:02.230738+00:00
+Port: /dev/ttyACM0; baud: 115200; reset: True
+TimeStick USB descriptor probe
+MAX3421E init result=0
+MAX3421E revision=0x13
+USB state=0x20
+USB state=0x40
+USB state=0x50
+USB state=0x51
+USB state=0x90
+Device address=1
+FULL speed (12 Mbit/s host)
+VID:PID=0B95:1790 bcdDevice=0x0400 EP0=64
+Configuration index=0
+  descriptor type=0x02 length=9 config=1 interfaces=1 power_mA=450
+  descriptor type=0x04 length=9 interface=0 alternate=0 endpoints=5 class/subclass/protocol=FF/FF/00
+  descriptor type=0x05 length=7 address=0x81 attributes=0x03 maxPacket=8 interval=160
+  descriptor type=0x05 length=7 address=0x82 attributes=0x02 maxPacket=64 interval=0
+  descriptor type=0x05 length=7 address=0x03 attributes=0x02 maxPacket=64 interval=0
+  descriptor type=0x05 length=7 address=0x84 attributes=0x02 maxPacket=64 interval=0
+  descriptor type=0x05 length=7 address=0x05 attributes=0x02 maxPacket=64 interval=0
+Configuration index=1
+  descriptor type=0x02 length=9 config=2 interfaces=2 power_mA=450
+  descriptor type=0x04 length=9 interface=0 alternate=0 endpoints=1 class/subclass/protocol=02/0D/00
+  descriptor type=0x24 length=5
+  descriptor type=0x24 length=5
+  descriptor type=0x24 length=13
+  descriptor type=0x24 length=6
+  descriptor type=0x05 length=7 address=0x81 attributes=0x03 maxPacket=16 interval=160
+  descriptor type=0x04 length=9 interface=1 alternate=0 endpoints=0 class/subclass/protocol=0A/00/01
+  descriptor type=0x04 length=9 interface=1 alternate=1 endpoints=2 class/subclass/protocol=0A/00/01
+  descriptor type=0x05 length=7 address=0x82 attributes=0x02 maxPacket=64 interval=0
+  descriptor type=0x05 length=7 address=0x03 attributes=0x02 maxPacket=64 interval=0
+Configuration index=2
+  descriptor type=0x02 length=9 config=3 interfaces=2 power_mA=450
+  descriptor type=0x04 length=9 interface=0 alternate=0 endpoints=1 class/subclass/protocol=02/06/00
+  descriptor type=0x24 length=5
+  descriptor type=0x24 length=5
+  descriptor type=0x24 length=13
+  descriptor type=0x05 length=7 address=0x81 attributes=0x03 maxPacket=16 interval=160
+  descriptor type=0x04 length=9 interface=1 alternate=0 endpoints=0 class/subclass/protocol=0A/00/00
+  descriptor type=0x04 length=9 interface=1 alternate=1 endpoints=2 class/subclass/protocol=0A/00/00
+  descriptor type=0x05 length=7 address=0x82 attributes=0x02 maxPacket=64 interval=0
+  descriptor type=0x05 length=7 address=0x03 attributes=0x02 maxPacket=64 interval=0
+Commands: r descriptors; v reads; i PHY/clock; e Ethernet; t echo; p PTP observe; s PTP servo; x stop.
+SET_CONFIGURATION(1) error=0x00
+ASIX chip status=0x74 chip code=7
+ASIX silicon revision=0x01
+ASIX firmware=1.3.16.7
+ASIX MAC=9C:69:D3:2B:A1:2F
+ASIX read request=0x13 error=0x05 received=0
+AX88279 volatile initialization
+PHY power=0x02
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x616D
+Ethernet PHY link UP
+PBUS write 0012:0000 bytes=01 00 08 41 
+PBUS write 0012:1040 bytes=00 65 CD 1D 
+PBUS write 0012:1000 bytes=5F 00 00 00 
+PBUS write 0012:1030 bytes=CC CC CC CC 
+PBUS write 0012:1034 bytes=0A 00 00 00 
+PBUS write 0013:3004 bytes=00 00 00 00 
+PBUS write 0013:3004 bytes=00 01 3F 00 
+PTP register 0000=41080001
+PTP register 1000=5F
+PTP register 1030=CCCCCCCC
+PTP register 1034=A
+Initialized clock sec(hex)=000000000000 ns=11857480
+Initialized clock sec(hex)=000000000001 ns=16867150
+Initialized clock sec(hex)=000000000002 ns=18988850
+Initialized clock sec(hex)=000000000003 ns=21200400
+Clock progression PASS (rate accuracy unmeasured)
+Link interrupt=A1 60 08 00 00 00 00 00 
+Link interrupt=A1 73 09 00 6D 61 01 DD 
+Ethernet probe ready; t sends 10 echo-test frames
+PBUS write 0012:0000 bytes=01 00 08 41 
+PBUS write 0012:1040 bytes=00 65 CD 1D 
+PBUS write 0012:1000 bytes=5F 00 00 00 
+PBUS write 0012:1030 bytes=CC CC CC CC 
+PBUS write 0012:1034 bytes=0A 00 00 00 
+PBUS write 0013:1008 bytes=22 06 07 00 
+PBUS write 0012:2000 bytes=F1 7F 01 00 
+PBUS write 0012:3000 bytes=F1 7F 01 08 
+PBUS write 0012:1038 bytes=00 00 00 00 
+PBUS write 0012:103C bytes=00 00 00 00 
+PBUS write 0013:3004 bytes=00 01 3F 00 
+Initialized clock sec(hex)=000000000000 ns=9770360
+Initialized clock sec(hex)=000000000001 ns=14121030
+Initialized clock sec(hex)=000000000002 ns=16360070
+Initialized clock sec(hex)=000000000003 ns=18540950
+Clock progression PASS (rate accuracy unmeasured)
+PBUS write 0012:1030 bytes=CC CC CC CC 
+PTP fixed client RUN domain=42 servo=on
+PTP stats samples=0 timeouts=0 no_rx_timestamp=0 discarded=0
+PTP TX reports=0 packets=0 pending_bytes=0
+TX timestamp report bytes=131
+18 01 00 26 1D A7 10 03 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 
+PTP sample=1 seq=1 offset_ns=-1791830211385384823 path_ns=971 freq_ppb=0 servo=on
+PBUS write 0012:1030 bytes=CC CC CC CC 
+PTP coarse clock step; acquiring residual offset
+TX timestamp report bytes=131
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 18 02 00 57 04 99 27 C7 28 CD 6A 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 02 
+PTP sample=2 seq=2 offset_ns=-788686 path_ns=957 freq_ppb=0 servo=on
+PBUS write 0012:1030 bytes=DA 8A E3 CC 
+TX timestamp report bytes=131
+18 03 00 99 46 A1 27 C8 28 CD 6A 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 
+PTP sample=3 seq=3 offset_ns=-250494 path_ns=475 freq_ppb=433777 servo=on
+PBUS write 0012:1030 bytes=33 17 D6 CC 
+PTP sample=4 seq=4 offset_ns=61264 path_ns=640 freq_ppb=177205 servo=on
+PBUS write 0012:1030 bytes=EB C1 CD CC 
+PTP sample=5 seq=5 offset_ns=203865 path_ns=959 freq_ppb=18263 servo=on
+PBUS write 0012:1030 bytes=24 7C C9 CC 
+PTP sample=6 seq=6 offset_ns=264408 path_ns=1017 freq_ppb=-63230 servo=on
+PBUS write 0012:1030 bytes=67 34 C7 CC 
+PTP sample=7 seq=7 offset_ns=281166 path_ns=1095 freq_ppb=-106722 servo=on
+PBUS write 0012:1030 bytes=42 07 C6 CC 
+PTP sample=8 seq=8 offset_ns=275320 path_ns=1109 freq_ppb=-129159 servo=on
+PBUS write 0012:1030 bytes=B9 75 C5 CC 
+PTP sample=9 seq=9 offset_ns=258520 path_ns=1131 freq_ppb=-140002 servo=on
+PBUS write 0012:1030 bytes=FA 38 C5 CC 
+PTP sample=10 seq=10 offset_ns=237142 path_ns=1146 freq_ppb=-144528 servo=on
+PBUS write 0012:1030 bytes=4D 29 C5 CC 
+PTP stats samples=10 timeouts=0 no_rx_timestamp=0 discarded=2
+PTP TX reports=10 packets=30 pending_bytes=0
+PTP sample=11 seq=11 offset_ns=214584 path_ns=1130 freq_ppb=-145696 servo=on
+PBUS write 0012:1030 bytes=AF 30 C5 CC 
+PTP sample=12 seq=12 offset_ns=192547 path_ns=1136 freq_ppb=-145146 servo=on
+PBUS write 0012:1030 bytes=5E 43 C5 CC 
+PTP sample=13 seq=13 offset_ns=171901 path_ns=1132 freq_ppb=-143754 servo=on
+PBUS write 0012:1030 bytes=8F 5A C5 CC 
+PTP sample=14 seq=14 offset_ns=152970 path_ns=1126 freq_ppb=-142026 servo=on
+PBUS write 0012:1030 bytes=F2 72 C5 CC 
+PTP sample=15 seq=15 offset_ns=135867 path_ns=1126 freq_ppb=-140209 servo=on
+PBUS write 0012:1030 bytes=8E 8A C5 CC 
+PTP sample=16 seq=16 offset_ns=120488 path_ns=1132 freq_ppb=-138450 servo=on
+PBUS write 0012:1030 bytes=E7 A0 C5 CC 
+PTP sample=17 seq=17 offset_ns=106821 path_ns=1110 freq_ppb=-136785 servo=on
+PBUS write 0012:1030 bytes=F1 B4 C5 CC 
+PTP sample=18 seq=18 offset_ns=94599 path_ns=1135 freq_ppb=-135292 servo=on
+PBUS write 0012:1030 bytes=7D C7 C5 CC 
+PTP sample=19 seq=19 offset_ns=83779 path_ns=1125 freq_ppb=-133910 servo=on
+PBUS write 0012:1030 bytes=E4 D7 C5 CC 
+PTP sample=20 seq=20 offset_ns=74194 path_ns=1110 freq_ppb=-132688 servo=on
+PBUS write 0012:1030 bytes=6D E6 C5 CC 
+PTP stats samples=20 timeouts=0 no_rx_timestamp=0 discarded=2
+PTP TX reports=20 packets=60 pending_bytes=0
+PTP sample=21 seq=21 offset_ns=65672 path_ns=1118 freq_ppb=-131605 servo=on
+PBUS write 0012:1030 bytes=8E F3 C5 CC 
+PTP sample=22 seq=22 offset_ns=58131 path_ns=1125 freq_ppb=-130627 servo=on
+PBUS write 0012:1030 bytes=2A FF C5 CC 
+PTP sample=23 seq=23 offset_ns=51456 path_ns=1115 freq_ppb=-129762 servo=on
+PBUS write 0012:1030 bytes=6E 09 C6 CC 
+PTP sample=24 seq=24 offset_ns=45552 path_ns=1116 freq_ppb=-128997 servo=on
+PBUS write 0012:1030 bytes=7D 12 C6 CC 
+PTP sample=25 seq=25 offset_ns=40321 path_ns=1107 freq_ppb=-128322 servo=on
+PBUS write 0012:1030 bytes=8B 1A C6 CC 
+PTP sample=26 seq=26 offset_ns=35687 path_ns=1106 freq_ppb=-127722 servo=on
+PBUS write 0012:1030 bytes=B2 21 C6 CC 
+PTP sample=27 seq=27 offset_ns=31583 path_ns=1107 freq_ppb=-127189 servo=on
+PBUS write 0012:1030 bytes=0C 28 C6 CC 
+PTP sample=28 seq=28 offset_ns=27948 path_ns=1107 freq_ppb=-126716 servo=on
+PBUS write 0012:1030 bytes=AF 2D C6 CC 
+PTP sample=29 seq=29 offset_ns=24739 path_ns=1110 freq_ppb=-126296 servo=on
+PBUS write 0012:1030 bytes=A3 32 C6 CC 
+PTP sample=30 seq=30 offset_ns=21896 path_ns=1102 freq_ppb=-125927 servo=on
+PBUS write 0012:1030 bytes=06 37 C6 CC 
+PTP stats samples=30 timeouts=0 no_rx_timestamp=0 discarded=3
+PTP TX reports=30 packets=90 pending_bytes=0
+PTP sample=31 seq=31 offset_ns=19371 path_ns=1105 freq_ppb=-125600 servo=on
+PBUS write 0012:1030 bytes=FC 3A C6 CC 
+PTP sample=32 seq=32 offset_ns=17156 path_ns=1102 freq_ppb=-125305 servo=on
+PBUS write 0012:1030 bytes=57 3E C6 CC 
+PTP sample=33 seq=33 offset_ns=15174 path_ns=1120 freq_ppb=-125055 servo=on
+PBUS write 0012:1030 bytes=77 41 C6 CC 
+PTP sample=34 seq=34 offset_ns=13425 path_ns=1116 freq_ppb=-124822 servo=on
+PBUS write 0012:1030 bytes=34 44 C6 CC 
+PTP sample=35 seq=35 offset_ns=11888 path_ns=1102 freq_ppb=-124618 servo=on
+PBUS write 0012:1030 bytes=8A 46 C6 CC 
+PTP sample=36 seq=36 offset_ns=10507 path_ns=1113 freq_ppb=-124444 servo=on
+PBUS write 0012:1030 bytes=C5 48 C6 CC 
+PTP sample=37 seq=37 offset_ns=9305 path_ns=1111 freq_ppb=-124278 servo=on
+PBUS write 0012:1030 bytes=98 4A C6 CC 
+PTP sample=38 seq=38 offset_ns=8246 path_ns=1110 freq_ppb=-124142 servo=on
+PBUS write 0012:1030 bytes=2A 4C C6 CC 
+PTP sample=39 seq=39 offset_ns=7294 path_ns=1105 freq_ppb=-124025 servo=on
+PBUS write 0012:1030 bytes=AB 4D C6 CC 
+PTP sample=40 seq=40 offset_ns=6453 path_ns=1102 freq_ppb=-123913 servo=on
+PBUS write 0012:1030 bytes=FF 4E C6 CC 
+PTP stats samples=40 timeouts=0 no_rx_timestamp=0 discarded=4
+PTP TX reports=40 packets=120 pending_bytes=0
+PTP sample=41 seq=41 offset_ns=5710 path_ns=1116 freq_ppb=-123814 servo=on
+PBUS write 0012:1030 bytes=26 50 C6 CC 
+PTP sample=42 seq=42 offset_ns=5046 path_ns=1110 freq_ppb=-123728 servo=on
+PBUS write 0012:1030 bytes=39 51 C6 CC 
+PTP sample=43 seq=43 offset_ns=4471 path_ns=1115 freq_ppb=-123648 servo=on
+PBUS write 0012:1030 bytes=19 52 C6 CC 
+PTP sample=44 seq=44 offset_ns=3959 path_ns=1105 freq_ppb=-123583 servo=on
+PBUS write 0012:1030 bytes=E3 52 C6 CC 
+PTP sample=45 seq=45 offset_ns=3503 path_ns=1117 freq_ppb=-123524 servo=on
+PBUS write 0012:1030 bytes=99 53 C6 CC 
+PTP sample=46 seq=46 offset_ns=3102 path_ns=1116 freq_ppb=-123471 servo=on
+PBUS write 0012:1030 bytes=34 54 C6 CC 
+PTP sample=47 seq=47 offset_ns=2735 path_ns=1114 freq_ppb=-123426 servo=on
+PBUS write 0012:1030 bytes=D9 54 C6 CC 
+PTP sample=48 seq=48 offset_ns=2431 path_ns=1105 freq_ppb=-123378 servo=on
+PBUS write 0012:1030 bytes=43 55 C6 CC 
+PTP sample=49 seq=49 offset_ns=2142 path_ns=1103 freq_ppb=-123347 servo=on
+PBUS write 0012:1030 bytes=C3 55 C6 CC 
+PTP sample=50 seq=50 offset_ns=1898 path_ns=1102 freq_ppb=-123310 servo=on
+PBUS write 0012:1030 bytes=23 56 C6 CC 
+PTP stats samples=50 timeouts=0 no_rx_timestamp=0 discarded=6
+PTP TX reports=50 packets=150 pending_bytes=0
+PTP sample=51 seq=51 offset_ns=1675 path_ns=1111 freq_ppb=-123282 servo=on
+PBUS write 0012:1030 bytes=86 56 C6 CC 
+PTP sample=52 seq=52 offset_ns=1488 path_ns=1102 freq_ppb=-123253 servo=on
+PBUS write 0012:1030 bytes=C8 56 C6 CC 
+PTP sample=53 seq=53 offset_ns=1311 path_ns=1105 freq_ppb=-123234 servo=on
+PBUS write 0012:1030 bytes=1A 57 C6 CC 
+PTP sample=54 seq=54 offset_ns=1166 path_ns=1100 freq_ppb=-123210 servo=on
+PBUS write 0012:1030 bytes=4A 57 C6 CC 
+PTP sample=55 seq=55 offset_ns=1027 path_ns=1113 freq_ppb=-123196 servo=on
+PBUS write 0012:1030 bytes=8C 57 C6 CC 
+PTP sample=56 seq=56 offset_ns=913 path_ns=1112 freq_ppb=-123177 servo=on
+PBUS write 0012:1030 bytes=B5 57 C6 CC 
+PTP sample=57 seq=57 offset_ns=801 path_ns=1107 freq_ppb=-123165 servo=on
+PBUS write 0012:1030 bytes=EC 57 C6 CC 
+PTP sample=58 seq=58 offset_ns=707 path_ns=1111 freq_ppb=-123149 servo=on
+PBUS write 0012:1030 bytes=15 58 C6 CC 
+PTP sample=59 seq=59 offset_ns=626 path_ns=1110 freq_ppb=-123137 servo=on
+PBUS write 0012:1030 bytes=34 58 C6 CC 
+PTP sample=60 seq=60 offset_ns=555 path_ns=1114 freq_ppb=-123128 servo=on
+PBUS write 0012:1030 bytes=53 58 C6 CC 
+PTP stats samples=60 timeouts=0 no_rx_timestamp=0 discarded=7
+PTP TX reports=60 packets=180 pending_bytes=0
+PTP sample=61 seq=61 offset_ns=501 path_ns=1097 freq_ppb=-123119 servo=on
+PBUS write 0012:1030 bytes=5A 58 C6 CC 
+PTP sample=62 seq=62 offset_ns=440 path_ns=1109 freq_ppb=-123117 servo=on
+PBUS write 0012:1030 bytes=75 58 C6 CC 
+PTP sample=63 seq=63 offset_ns=378 path_ns=1107 freq_ppb=-123109 servo=on
+PBUS write 0012:1030 bytes=A2 58 C6 CC 
+PTP sample=64 seq=64 offset_ns=330 path_ns=1116 freq_ppb=-123096 servo=on
+PBUS write 0012:1030 bytes=BD 58 C6 CC 
+PTP sample=65 seq=65 offset_ns=295 path_ns=1104 freq_ppb=-123088 servo=on
+PBUS write 0012:1030 bytes=CB 58 C6 CC 
+PTP sample=66 seq=66 offset_ns=262 path_ns=1113 freq_ppb=-123084 servo=on
+PBUS write 0012:1030 bytes=D5 58 C6 CC 
+PTP sample=67 seq=67 offset_ns=237 path_ns=1111 freq_ppb=-123081 servo=on
+PBUS write 0012:1030 bytes=DC 58 C6 CC 
+PTP sample=68 seq=68 offset_ns=204 path_ns=1110 freq_ppb=-123079 servo=on
+PBUS write 0012:1030 bytes=F1 58 C6 CC 
+PTP sample=69 seq=69 offset_ns=184 path_ns=1110 freq_ppb=-123073 servo=on
+PBUS write 0012:1030 bytes=F4 58 C6 CC 
+PTP sample=70 seq=70 offset_ns=159 path_ns=1100 freq_ppb=-123072 servo=on
+PBUS write 0012:1030 bytes=09 59 C6 CC 
+PTP stats samples=70 timeouts=0 no_rx_timestamp=0 discarded=7
+PTP TX reports=70 packets=210 pending_bytes=0
+PTP sample=71 seq=71 offset_ns=132 path_ns=1111 freq_ppb=-123066 servo=on
+PBUS write 0012:1030 bytes=21 59 C6 CC 
+PTP sample=72 seq=72 offset_ns=116 path_ns=1107 freq_ppb=-123059 servo=on
+PBUS write 0012:1030 bytes=2B 59 C6 CC 
+PTP sample=73 seq=73 offset_ns=107 path_ns=1116 freq_ppb=-123056 servo=on
+PBUS write 0012:1030 bytes=2B 59 C6 CC 
+PTP sample=74 seq=74 offset_ns=96 path_ns=1107 freq_ppb=-123056 servo=on
+PBUS write 0012:1030 bytes=2F 59 C6 CC 
+PTP sample=75 seq=75 offset_ns=101 path_ns=1097 freq_ppb=-123055 servo=on
+PBUS write 0012:1030 bytes=17 59 C6 CC 
+PTP sample=76 seq=76 offset_ns=63 path_ns=1107 freq_ppb=-123062 servo=on
+PBUS write 0012:1030 bytes=4E 59 C6 CC 
+PTP sample=77 seq=77 offset_ns=59 path_ns=1110 freq_ppb=-123046 servo=on
+PBUS write 0012:1030 bytes=4E 59 C6 CC 
+PTP sample=78 seq=78 offset_ns=54 path_ns=1105 freq_ppb=-123046 servo=on
+PBUS write 0012:1030 bytes=4E 59 C6 CC 
+PTP sample=79 seq=79 offset_ns=56 path_ns=1110 freq_ppb=-123046 servo=on
+PBUS write 0012:1030 bytes=43 59 C6 CC 
+PTP sample=80 seq=80 offset_ns=45 path_ns=1106 freq_ppb=-123049 servo=on
+PBUS write 0012:1030 bytes=51 59 C6 CC 
+PTP stats samples=80 timeouts=0 no_rx_timestamp=0 discarded=8
+PTP TX reports=80 packets=240 pending_bytes=0
+PTP sample=81 seq=81 offset_ns=47 path_ns=1101 freq_ppb=-123045 servo=on
+PBUS write 0012:1030 bytes=47 59 C6 CC 
+PTP sample=82 seq=82 offset_ns=41 path_ns=1100 freq_ppb=-123048 servo=on
+PBUS write 0012:1030 bytes=4A 59 C6 CC 
+PTP sample=83 seq=83 offset_ns=32 path_ns=1108 freq_ppb=-123047 servo=on
+PBUS write 0012:1030 bytes=55 59 C6 CC 
+PTP sample=84 seq=84 offset_ns=25 path_ns=1101 freq_ppb=-123044 servo=on
+PBUS write 0012:1030 bytes=5F 59 C6 CC 
+PTP sample=85 seq=85 offset_ns=13 path_ns=1112 freq_ppb=-123041 servo=on
+PBUS write 0012:1030 bytes=73 59 C6 CC 
+PTP sample=86 seq=86 offset_ns=24 path_ns=1110 freq_ppb=-123035 servo=on
+PBUS write 0012:1030 bytes=5B 59 C6 CC 

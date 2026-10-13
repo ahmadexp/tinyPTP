@@ -19,6 +19,31 @@ flags are clear. This is a free-running arbitrary timescale, not a UTC source.
 There is no BMCA election or automatic selection among multiple grandmasters;
 the follower binds to the first valid two-step Sync source on this direct link.
 
+## Grandmaster serial monitor
+
+Open the grandmaster UNO, USB serial ending `E071`, at **115200 baud, 8N1**.
+It reports its clock identity, the transition to MASTER, and `assuming the
+grandmaster role`. When it receives the first valid Delay_Req it reports the
+follower's clock identity. Every second it prints a status line such as:
+
+```text
+tinyptp[21.813]: port 1: MASTER sync 10 delay_resp 10 freq +0 timeouts 0 missing_rx 0 discarded 0
+```
+
+- `sync`: cumulative completed Sync/Follow_Up pairs, with a matching hardware
+  TX timestamp. A send failure or missing TX timestamp does not increment it.
+- `delay_resp`: cumulative Delay_Resp packets sent for the bound follower.
+  An increasing count shows requests are arriving; it does not prove follower lock.
+- `freq`: applied hardware-clock frequency correction in ppb. It is `+0` for
+  this free-running grandmaster, which has no external reference.
+- `timeouts`, `missing_rx`, `discarded`: cumulative error counters since the
+  role started. A Sync TX timestamp timeout also produces a timestamped event.
+
+This uses the same `tinyptp[uptime]:` prefix as the follower. Offset and path
+estimates are computed and displayed by the follower; the grandmaster has no
+upstream master to measure them against. These are ptp4l-style messages from
+this project's firmware, not LinuxPTP running on AVR.
+
 ## Follower serial monitor
 
 Open the follower port at **115200 baud, 8 data bits, no parity, 1 stop bit**,
@@ -97,7 +122,9 @@ correct board using `arduino-cli upload --input-dir ...`, as in the existing
 paths are listed in the [two-UNO guide](two-uno-setup.md).
 
 With AVR core 1.8.8 and USB Host Shield Library 2.0 version 1.7.0, the installed
-grandmaster image uses **28012 bytes flash**; the follower uses **28008 bytes**.
+grandmaster image uses **28528 bytes flash**; the installed follower from the
+PPS-fix build uses **28008 bytes**. Rebuilding the follower with the latest
+shared source uses **28524 bytes**.
 Both use **995 bytes static SRAM**, leaving **1053 bytes** beyond static allocation.
 Maximum runtime stack usage is unmeasured.
 
@@ -117,7 +144,8 @@ range -125 to +45 ns, and mean path delay 733.25 ns. These estimates are not
 an independent PPS accuracy measurement.
 
 The initial standalone validation above preceded the PPS output-gate fix.
-The installed firmware now includes that fix. Its HEX hashes are:
+The PPS-fix firmware used for that test had these HEX hashes. The grandmaster
+was subsequently updated for one-second status output, as recorded below:
 
 ```text
 grandmaster 3d6215e635ad3feb88a3dbc518ebfee3bbf03103a61b335857ae6099ada31297
@@ -154,8 +182,9 @@ The `q` serial command repeats those readbacks without changing registers.
 The post-fix 180-second test completed 166 exchanges with no timeouts; the
 last 60 internal offsets had RMS 25.76 ns and range -20 to +45 ns.
 An enabled readback confirms configuration, not the waveform at a connector.
-An oscilloscope or time-interval counter is still required to verify physical
-output and compare the two PPS edges. The follower PPS is not suppressed
+The user subsequently confirmed that PPS works on both TimeSticks. A
+quantitative oscilloscope or time-interval-counter comparison of the two PPS
+edges is still pending. The follower PPS is not suppressed
 while acquiring or after PTP loss; use serial state and error counters to
 determine whether its hardware clock is currently being disciplined.
 
@@ -174,3 +203,12 @@ c++ -std=c++11 -Wall -Wextra -Werror -fsanitize=address,undefined \
 /tmp/tinyptp-protocol-modern
 python3 tests/test_summarize_ptp.py
 ```
+
+## Grandmaster logging update, 2026-10-13
+
+The grandmaster was updated to the one-second status format documented above.
+Its installed HEX SHA-256 is
+`93d38313c683fd9fae9aefb4f0e1c2043097f5706cb7f92a928fa5617a2c12b0`.
+The follower retains the PPS-fix image listed earlier. A concurrent 100-second
+capture checks master reporting cadence and continuing follower exchanges;
+[raw logs and validation](results/2026-10-13/master-serial/README.md) are archived.

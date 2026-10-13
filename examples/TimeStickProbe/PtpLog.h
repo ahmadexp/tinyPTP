@@ -32,3 +32,13 @@ void ptpLogSample(int64_t offset, int64_t path, int32_t frequency,
   Serial.print(F(" sample ")); Serial.print(sample);
   Serial.print(F(" seq ")); Serial.println(sequence);
 }
+
+void ptpLogMaster(uint32_t syncs, uint32_t responses, int32_t frequency,
+                  uint32_t timeouts, uint32_t missingRx, uint32_t discarded) {
+  ptpLogPrefix(); Serial.print(F("port 1: MASTER sync ")); Serial.print(syncs);
+  Serial.print(F(" delay_resp ")); Serial.print(responses);
+  Serial.print(F(" freq ")); if (frequency >= 0) Serial.print('+'); Serial.print(frequency);
+  Serial.print(F(" timeouts ")); Serial.print(timeouts);
+  Serial.print(F(" missing_rx ")); Serial.print(missingRx);
+  Serial.print(F(" discarded ")); Serial.println(discarded);
+}

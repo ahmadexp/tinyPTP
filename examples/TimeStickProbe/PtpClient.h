@@ -157,6 +157,8 @@ void handleMasterDelayRequest(const uint8_t *h, uint16_t size, const uint8_t *st
   if (ptpCorrection(h + 8) != 0) return;
   if (!masterFollowerBound) {
     memcpy(selectedFollower, h + 20, 10); masterFollowerBound = true;
+    ptpLogPrefix(); Serial.print(F("port 1: received Delay_Req from follower "));
+    ptpLogIdentity(selectedFollower); Serial.println();
   }
   if (!sendPtpMessage(9, ptpBe16(h + 30), &received, h + 20)) {
     ptpRunning = false; return;
@@ -317,7 +319,10 @@ void startPtpClient(bool discipline, bool masterRole = false, bool learnMaster =
   ptpLogPrefix();
   if (masterRole) Serial.println(F("port 1: INITIALIZING to MASTER on FIXED_ROLE"));
   else Serial.println(F("port 1: INITIALIZING to LISTENING on FIXED_ROLE"));
-  if (masterRole) { ptpLogPrefix(); Serial.println(F("grandmaster: free-running oscillator, UTC not valid")); }
+  if (masterRole) {
+    ptpLogPrefix(); Serial.println(F("port 1: assuming the grandmaster role"));
+    ptpLogPrefix(); Serial.println(F("grandmaster: free-running oscillator, UTC not valid"));
+  }
 
 }
 void pollPtpMasterSchedule() {
@@ -327,7 +332,7 @@ void pollPtpMasterSchedule() {
   }
   if (masterSyncPending && uint32_t(millis() - masterSyncStarted) > 2500) {
     masterSyncPending = false; ++ptpTimeouts;
-    Serial.println(F("PTP Sync TX timestamp timeout"));
+    ptpLogPrefix(); Serial.println(F("port 1: Sync TX timestamp timeout"));
   }
   if (!masterSyncPending && uint32_t(millis() - masterLastSync) >= 1000) {
     masterLastSync = masterSyncStarted = millis();
@@ -381,14 +386,20 @@ void pollPtpClient() {
     clearPtpExchange(); lastCompletedExchange = millis();
   }
   static uint32_t lastReport = 0;
-  if (uint32_t(millis() - lastReport) > 10000) {
+  const uint16_t reportInterval = TINYPTP_PTP4L_LOG && ptpMasterRole ? 1000 : 10000;
+  if (uint32_t(millis() - lastReport) >= reportInterval) {
     lastReport = millis();
 #if TINYPTP_PTP4L_LOG
-    ptpLogPrefix(); Serial.print(ptpMasterRole ? F("MASTER") : F("FOLLOWER"));
-    Serial.print(F(" samples ")); Serial.print(ptpSamples);
-    Serial.print(F(" timeouts ")); Serial.print(ptpTimeouts);
-    Serial.print(F(" missing_rx ")); Serial.print(ptpRxMissing);
-    Serial.print(F(" discarded ")); Serial.println(ptpRxDiscard);
+    if (ptpMasterRole) {
+      ptpLogMaster(ptpSamples, masterResponses, frequencyPpb,
+                   ptpTimeouts, ptpRxMissing, ptpRxDiscard);
+    } else {
+      ptpLogPrefix(); Serial.print(F("FOLLOWER"));
+      Serial.print(F(" samples ")); Serial.print(ptpSamples);
+      Serial.print(F(" timeouts ")); Serial.print(ptpTimeouts);
+      Serial.print(F(" missing_rx ")); Serial.print(ptpRxMissing);
+      Serial.print(F(" discarded ")); Serial.println(ptpRxDiscard);
+    }
 #else
     if (ptpMasterRole) {
       Serial.print(F("PTP master Delay_Resp sent=")); Serial.println(masterResponses);

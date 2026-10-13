@@ -23,4 +23,10 @@ int main() {
   assert(Serial.output.str()=="-9223372036854775808");
   Serial.output.str(""); const uint8_t identity[8]={0x9c,0x69,0xd3,0xff,0xfe,0x2b,0xa1,0x8d};
   ptpLogIdentity(identity); assert(Serial.output.str()=="9c69d3.fffe.2ba18d");
+  Serial.output.str(""); nowMs = 12000;
+  ptpLogMaster(17, 16, 0, 0, 0, 0);
+  assert(Serial.output.str()=="tinyptp[12.000]: port 1: MASTER sync 17 delay_resp 16 freq +0 timeouts 0 missing_rx 0 discarded 0\n");
+  Serial.output.str("");
+  ptpLogMaster(4294967295UL, 123, -50, 4, 5, 6);
+  assert(Serial.output.str()=="tinyptp[12.000]: port 1: MASTER sync 4294967295 delay_resp 123 freq -50 timeouts 4 missing_rx 5 discarded 6\n");
 }

@@ -11,7 +11,9 @@ running master/follower PTP over a direct Ethernet cable.**
 **Standalone firmware is installed:** the first UNO automatically starts as
 grandmaster and the second as follower. Open the follower's serial monitor at
 **115200 baud, 8N1** for ptp4l-style offset, frequency, and path-delay output.
-No host launcher or startup commands are needed. See the
+The grandmaster also prints ptp4l-style role messages and one-second Sync and
+Delay_Resp counters at 115200 baud. No host launcher or startup commands are
+needed. See the
 [standalone build and serial guide](docs/standalone-roles.md).
 
 The [2026-10-13 pair report](docs/two-uno-test-2026-10-13.md) records both devices,
@@ -107,7 +109,8 @@ to sustain that rate for a sparse PTP exchange.
 The UNO runs the protocol state machine and clock servo. The TimeStick
 maintains the precision hardware clock and timestamps Ethernet ingress and
 egress. The standalone firmware now enables and checks the PPS output gate;
-independent waveform and edge-offset measurements remain pending. USB delivery
+the user confirmed PPS output on both units. Quantitative waveform and
+edge-offset measurements remain pending. USB delivery
 latency does not become the packet timestamp error when timestamps are captured at the Ethernet interface. It
 still affects update delay, buffering, and the ability to service timestamp
 queues before overflow. Never substitute `micros()` or USB completion times for

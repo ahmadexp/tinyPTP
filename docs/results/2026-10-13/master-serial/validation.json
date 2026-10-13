@@ -1,0 +1,28 @@
+{
+  "master_status_lines": 87,
+  "report_interval_min_ms": 1000,
+  "report_interval_max_ms": 1000,
+  "final_master_syncs": 86,
+  "final_master_delay_responses": 86,
+  "final_master_frequency_ppb": 0,
+  "final_master_timeouts": 0,
+  "final_master_missing_rx": 0,
+  "final_master_discarded": 0,
+  "follower": {
+    "samples": 86,
+    "tail_samples": 30,
+    "tail_first_sample": 57,
+    "offset_mean_ns": 243.16666666666666,
+    "offset_rms_ns": 319.3208939817959,
+    "offset_min_ns": 35,
+    "offset_max_ns": 780,
+    "offset_max_abs_ns": 780,
+    "path_mean_ns": 734.1666666666666,
+    "path_min_ns": 730,
+    "path_max_ns": 740,
+    "last_freq_ppb": -10696,
+    "coarse_steps": 0,
+    "exchange_timeouts": 0,
+    "rejected_paths": 0
+  }
+}

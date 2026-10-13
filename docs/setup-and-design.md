@@ -150,9 +150,9 @@ These are explicit experimental constraints, not general IEEE 1588 compliance.
 
 ## Next experiments
 
-The next two-UNO step requires a master role, including hardware-timestamped
-Sync/Follow_Up and Delay_Resp generation; copying the client sketch to both
-UNOs will not create a master. Identify the second stick before selecting its
+The new selectable master and direct-follower roles are described in the
+[two-UNO procedure](two-uno-setup.md). The first direct pair experiment is recorded in the
+[two-UNO hardware report](two-uno-test-2026-10-13.md); both boards require explicit role selection after initialization. Identify the second stick before selecting its
 driver. The original AX88279A requires separate support. Independent PPS
 comparison, calibrated link asymmetry, stack high-water measurement, sustained
 traffic, and disconnect/reconnect testing remain outstanding.

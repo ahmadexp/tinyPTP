@@ -1,0 +1,17 @@
+{
+  "samples": 228,
+  "tail_samples": 60,
+  "tail_first_sample": 169,
+  "offset_mean_ns": 25.666666666666668,
+  "offset_rms_ns": 67.30527468185537,
+  "offset_min_ns": -85,
+  "offset_max_ns": 150,
+  "offset_max_abs_ns": 150,
+  "path_mean_ns": 735.5,
+  "path_min_ns": 730,
+  "path_max_ns": 740,
+  "last_freq_ppb": -10165,
+  "coarse_steps": 0,
+  "exchange_timeouts": 0,
+  "rejected_paths": 0
+}

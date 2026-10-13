@@ -2,13 +2,29 @@
 
 Experimental hardware-timestamped PTP on a classic Arduino UNO R3 with a
 MAX3421E USB Host Shield and an AX88279-based TimeStick. The UNO runs the PTP
-client and integer clock servo; the TimeStick timestamps Ethernet packets and
+role and follower clock servo; the TimeStick timestamps Ethernet packets and
 maintains the hardware clock.
 
-**Working: one UNO and TimeStick synchronized to a Linux Ethernet port.**
-The original goal of two UNOs connected through two TimeSticks remains the next
-stage. There is no UNO master implementation yet, and this is not a complete
-PTP stack or a flexPTP port.
+**Working: two UNOs, each with a USB Host Shield and AX88279 TimeStick,
+running master/follower PTP over a direct Ethernet cable.**
+
+The [2026-10-13 pair report](docs/two-uno-test-2026-10-13.md) records both devices,
+the 1 Gb/s negotiation fix, and the hardware experiment. Use the
+[two-UNO procedure](docs/two-uno-setup.md) for this topology. The earlier
+UNO-to-Linux experiment is retained below. This is an experimental fixed-role
+implementation, not a complete PTP stack or a flexPTP port.
+
+## Two-UNO results, 2026-10-13
+
+The direct pair completed **228 exchanges** in a 240-second run. Over its
+last 60 samples, estimated offset RMS was **67.3 ns**, with a range of
+**-85 to +150 ns** and mean path delay **735.5 ns**. No exchange timeouts or
+rejected path measurements were reported. These are internal PTP estimates,
+not independent PPS or UTC measurements.
+
+The combined-role image uses **25408 bytes flash and 960 bytes static SRAM**.
+A paired serial launcher keeps both sessions open and supports clean stop and
+retry. Raw evidence and reproduction details are linked in the pair report.
 
 ## Measured results, 2026-10-12
 
@@ -41,7 +57,7 @@ MAC `9C:69:D3:2B:A1:2F` (`bcdDevice 0400`, chip code 7); this is the working uni
 The requested target was TimeStick v2, but the replacement's exact PCB revision
 is unconfirmed. VID/PID and USB device revision alone do not identify the PCB.
 
-## Running the PTP experiment
+## Running against the Linux PTPBox master
 
 On PTPBox, start the dedicated, time-limited master in one terminal:
 
@@ -77,8 +93,8 @@ The original stick identifies as AX88279A and needs a different driver path.
 
 ## Feasibility
 
-The AX88279-based test unit now demonstrates this architecture with a Linux
-PTP peer. Two-UNO operation and the AX88279A variant remain untested. ASIX documents USB full-speed support for both
+The AX88279-based units demonstrate this architecture with both a Linux
+PTP peer and another UNO. The AX88279A variant remains unsupported. ASIX documents USB full-speed support for both
 the AX88179B and AX88279. This matches the MAX3421E's 12 Mbit/s host capability.
 An Ethernet PHY operating at 100 Mbit/s or faster does not require the USB host
 to sustain that rate for a sparse PTP exchange.
@@ -149,7 +165,7 @@ free-running sticks alone can establish relative synchronization.
 
 ## Remaining work
 
-1. Implement the fixed master role on a second UNO and verify two-stick operation.
+1. Characterize longer two-UNO runs, repeated startup, and recovery behavior.
 2. Add a separate AX88279A register and timestamp path for the original unit.
 3. Route and independently compare PPS outputs; assess PHY/link asymmetry.
 4. Measure runtime stack high-water use, long-duration stability, and recovery

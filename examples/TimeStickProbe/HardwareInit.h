@@ -38,6 +38,17 @@ bool phyRead(uint8_t address, uint8_t reg, uint16_t &word) {
   return true;
 }
 
+void reportPhyRegisters() {
+  if (!verifiedAsixAddress) { Serial.println(F("Run v first")); return; }
+  const uint8_t regs[] = {0, 1, 4, 5, 9, 10, 17};
+  for (uint8_t i = 0; i < sizeof(regs); ++i) {
+    uint16_t value;
+    if (!phyRead(verifiedAsixAddress, regs[i], value)) return;
+    Serial.print(F("PHY reg=")); Serial.print(regs[i]);
+    Serial.print(F(" value=0x")); hexWord(value); Serial.println();
+  }
+}
+
 bool pbusWrite(uint8_t address, uint16_t bank, uint16_t reg, uint32_t word) {
   return asixWrite(address, 0x11, reg, bank, 4, word);
 }
@@ -86,8 +97,20 @@ void initializeAsixHardware(UsbDevice *device) {
   // Match AX88279 autonegotiation setup from the vendor driver's hw_init.
   uint16_t adv, gigabit;
   if (!phyRead(address, 4, adv) || !phyRead(address, 9, gigabit)) return;
-  if (!asixWrite(address, 0x02, 3, 4, 2, (adv & ~uint16_t(0x0060)) | 0x1000) ||
-      !asixWrite(address, 0x02, 3, 9, 2, gigabit | 0x0800) ||
+  Serial.print(F("PHY initial advertisement=0x")); hexWord(adv);
+  Serial.print(F(" gigabit_control=0x")); hexWord(gigabit); Serial.println();
+  // Both AX88279s can advertise 2.5G. This driver implements only 1000/full,
+  // so constrain advertisement instead of rejecting a faster negotiated link.
+  // ASIX Clause 45 request 0x27; AN MMD 7 register 32, IEEE 2.5G advertisement bit.
+  uint8_t multigigData[2];
+  if (!asixRead(address, 0x27, 7, 32, 2, multigigData)) return;
+  uint16_t multigig = uint16_t(multigigData[0]) | (uint16_t(multigigData[1]) << 8);
+  Serial.print(F("PHY AN 2.5G advertisement=0x")); hexWord(multigig); Serial.println();
+  if (!asixWrite(address, 0x27, 7, 32, 2, multigig & ~uint16_t(0x0080)) ||
+      !asixRead(address, 0x27, 7, 32, 2, multigigData)) return;
+  if (multigigData[0] & 0x80) { Serial.println(F("PHY 2.5G disable failed")); return; }
+  if (!asixWrite(address, 0x02, 3, 4, 2, (adv & ~uint16_t(0x01e0)) | 0x1000) ||
+      !asixWrite(address, 0x02, 3, 9, 2, (gigabit & ~uint16_t(0x0100)) | 0x0a00) ||
       !asixWrite(address, 0x02, 3, 0, 2, 0x1200)) return;
 
   bool linked = false;
@@ -100,7 +123,7 @@ void initializeAsixHardware(UsbDevice *device) {
     delay(1000);
   }
   Serial.println(linked ? F("Ethernet PHY link UP") : F("Ethernet PHY link timeout"));
-  if (!linked) return;
+  if (!linked) { reportPhyRegisters(); return; }
   // The PHY can report link before firmware has completed its link-change
   // setup. PBus reads can temporarily return DEADBEEF during that transition.
   delay(500);

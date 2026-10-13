@@ -1,0 +1,173 @@
+UTC: 2026-10-13T22:00:20.452363+00:00
+Role: master; port: /dev/serial/by-id/usb-Arduino__www.arduino.cc__0043_1453230343235190E071-if00; baud: 115200
+TimeStick USB descriptor probe
+MAX3421E init result=0
+MAX3421E revision=0x13
+USB state=0x20
+USB state=0x40
+USB state=0x50
+USB state=0x51
+USB state=0x90
+Device address=1
+FULL speed (12 Mbit/s host)
+VID:PID=0B95:1790 bcdDevice=0x0400 EP0=64
+Configuration index=0
+  descriptor type=0x02 length=9 config=1 interfaces=1 power_mA=450
+  descriptor type=0x04 length=9 interface=0 alternate=0 endpoints=5 class/subclass/protocol=FF/FF/00
+  descriptor type=0x05 length=7 address=0x81 attributes=0x03 maxPacket=8 interval=160
+  descriptor type=0x05 length=7 address=0x82 attributes=0x02 maxPacket=64 interval=0
+  descriptor type=0x05 length=7 address=0x03 attributes=0x02 maxPacket=64 interval=0
+  descriptor type=0x05 length=7 address=0x84 attributes=0x02 maxPacket=64 interval=0
+  descriptor type=0x05 length=7 address=0x05 attributes=0x02 maxPacket=64 interval=0
+Configuration index=1
+  descriptor type=0x02 length=9 config=2 interfaces=2 power_mA=450
+  descriptor type=0x04 length=9 interface=0 alternate=0 endpoints=1 class/subclass/protocol=02/0D/00
+  descriptor type=0x24 length=5
+  descriptor type=0x24 length=5
+  descriptor type=0x24 length=13
+  descriptor type=0x24 length=6
+  descriptor type=0x05 length=7 address=0x81 attributes=0x03 maxPacket=16 interval=160
+  descriptor type=0x04 length=9 interface=1 alternate=0 endpoints=0 class/subclass/protocol=0A/00/01
+  descriptor type=0x04 length=9 interface=1 alternate=1 endpoints=2 class/subclass/protocol=0A/00/01
+  descriptor type=0x05 length=7 address=0x82 attributes=0x02 maxPacket=64 interval=0
+  descriptor type=0x05 length=7 address=0x03 attributes=0x02 maxPacket=64 interval=0
+Configuration index=2
+  descriptor type=0x02 length=9 config=3 interfaces=2 power_mA=450
+  descriptor type=0x04 length=9 interface=0 alternate=0 endpoints=1 class/subclass/protocol=02/06/00
+  descriptor type=0x24 length=5
+  descriptor type=0x24 length=5
+  descriptor type=0x24 length=13
+  descriptor type=0x05 length=7 address=0x81 attributes=0x03 maxPacket=16 interval=160
+  descriptor type=0x04 length=9 interface=1 alternate=0 endpoints=0 class/subclass/protocol=0A/00/00
+  descriptor type=0x04 length=9 interface=1 alternate=1 endpoints=2 class/subclass/protocol=0A/00/00
+  descriptor type=0x05 length=7 address=0x82 attributes=0x02 maxPacket=64 interval=0
+  descriptor type=0x05 length=7 address=0x03 attributes=0x02 maxPacket=64 interval=0
+Commands: r descriptors; v reads; i PHY/clock; e Ethernet; t echo; p PTP observe; s PTP servo; m master; f follower; l PHY; x stop.
+SET_CONFIGURATION(1) error=0x00
+ASIX chip status=0x74 chip code=7
+ASIX silicon revision=0x01
+ASIX firmware=1.3.16.7
+ASIX MAC=9C:69:D3:2B:A1:8D
+ASIX read request=0x13 error=0x05 received=0
+AX88279 volatile initialization
+PHY power=0x02
+PHY initial advertisement=0x1D81 gigabit_control=0x0200
+PHY AN 2.5G advertisement=0x0081
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x616D
+Ethernet PHY link UP
+PBUS write 0012:0000 bytes=01 00 08 41 
+PBUS write 0012:1040 bytes=00 65 CD 1D 
+PBUS write 0012:1000 bytes=5F 00 00 00 
+PBUS write 0012:1030 bytes=CC CC CC CC 
+PBUS write 0012:1034 bytes=0A 00 00 00 
+PBUS write 0013:3004 bytes=00 00 00 00 
+PBUS write 0013:3004 bytes=00 01 3F 00 
+PTP register 0000=41080001
+PTP register 1000=5F
+PTP register 1030=CCCCCCCC
+PTP register 1034=A
+Initialized clock sec(hex)=000000000000 ns=11692670
+Initialized clock sec(hex)=000000000001 ns=16699450
+Initialized clock sec(hex)=000000000002 ns=18812550
+Initialized clock sec(hex)=000000000003 ns=20895030
+Clock progression PASS (rate accuracy unmeasured)
+Link interrupt=A1 60 08 00 00 00 00 00 
+Link interrupt=A1 73 09 00 6D 61 01 DC 
+Ethernet probe ready; t sends 10 echo-test frames
+PBUS write 0012:0000 bytes=01 00 08 41 
+PBUS write 0012:1040 bytes=00 65 CD 1D 
+PBUS write 0012:1000 bytes=5F 00 00 00 
+PBUS write 0012:1030 bytes=CC CC CC CC 
+PBUS write 0012:1034 bytes=0A 00 00 00 
+PBUS write 0013:1008 bytes=22 06 07 00 
+PBUS write 0012:2000 bytes=F1 7F 01 00 
+PBUS write 0012:3000 bytes=F1 7F 01 08 
+PBUS write 0012:1038 bytes=00 00 00 00 
+PBUS write 0012:103C bytes=00 00 00 00 
+PBUS write 0013:3004 bytes=00 01 3F 00 
+Initialized clock sec(hex)=000000000000 ns=9618780
+Initialized clock sec(hex)=000000000001 ns=14092620
+Initialized clock sec(hex)=000000000002 ns=16294410
+Initialized clock sec(hex)=000000000003 ns=18409110
+Clock progression PASS (rate accuracy unmeasured)
+PBUS write 0012:1030 bytes=CC CC CC CC 
+PTP fixed master RUN domain=42 two-step 1Hz
+PTP master Delay_Resp sent=0
+PTP stats samples=0 timeouts=0 no_rx_timestamp=0 discarded=0
+PTP TX reports=0 packets=0 pending_bytes=0
+TX timestamp report bytes=131
+08 01 00 44 42 A0 01 04 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 
+TX timestamp report bytes=131
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 08 02 00 F6 33 AC 01 05 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 02 
+TX timestamp report bytes=131
+08 03 00 A4 63 AB 01 06 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 
+PTP master Delay_Resp sent=9
+PTP stats samples=10 timeouts=0 no_rx_timestamp=0 discarded=0
+PTP TX reports=10 packets=30 pending_bytes=0
+PTP master Delay_Resp sent=20
+PTP stats samples=20 timeouts=0 no_rx_timestamp=0 discarded=0
+PTP TX reports=20 packets=60 pending_bytes=0
+PTP master Delay_Resp sent=30
+PTP stats samples=30 timeouts=0 no_rx_timestamp=0 discarded=0
+PTP TX reports=30 packets=90 pending_bytes=0
+PTP master Delay_Resp sent=40
+PTP stats samples=40 timeouts=0 no_rx_timestamp=0 discarded=0
+PTP TX reports=40 packets=120 pending_bytes=0
+PTP master Delay_Resp sent=50
+PTP stats samples=50 timeouts=0 no_rx_timestamp=0 discarded=0
+PTP TX reports=50 packets=150 pending_bytes=0
+PTP master Delay_Resp sent=60
+PTP stats samples=60 timeouts=0 no_rx_timestamp=0 discarded=0
+PTP TX reports=60 packets=180 pending_bytes=0
+PTP master Delay_Resp sent=70
+PTP stats samples=70 timeouts=0 no_rx_timestamp=0 discarded=0
+PTP TX reports=70 packets=210 pending_bytes=0
+PTP master Delay_Resp sent=80
+PTP stats samples=80 timeouts=0 no_rx_timestamp=0 discarded=0
+PTP TX reports=80 packets=240 pending_bytes=0
+PTP master Delay_Resp sent=90
+PTP stats samples=90 timeouts=0 no_rx_timestamp=0 discarded=0
+PTP TX reports=90 packets=270 pending_bytes=0
+PTP master Delay_Resp sent=100
+PTP stats samples=100 timeouts=0 no_rx_timestamp=0 discarded=0
+PTP TX reports=100 packets=300 pending_bytes=0
+PTP master Delay_Resp sent=110
+PTP stats samples=110 timeouts=0 no_rx_timestamp=0 discarded=0
+PTP TX reports=110 packets=330 pending_bytes=0
+PTP master Delay_Resp sent=120
+PTP stats samples=120 timeouts=0 no_rx_timestamp=0 discarded=0
+PTP TX reports=120 packets=360 pending_bytes=0
+PTP master Delay_Resp sent=130
+PTP stats samples=130 timeouts=0 no_rx_timestamp=0 discarded=0
+PTP TX reports=130 packets=390 pending_bytes=0
+PTP master Delay_Resp sent=140
+PTP stats samples=140 timeouts=0 no_rx_timestamp=0 discarded=0
+PTP TX reports=140 packets=420 pending_bytes=0
+PTP master Delay_Resp sent=150
+PTP stats samples=150 timeouts=0 no_rx_timestamp=0 discarded=0
+PTP TX reports=150 packets=450 pending_bytes=0
+PTP master Delay_Resp sent=160
+PTP stats samples=160 timeouts=0 no_rx_timestamp=0 discarded=0
+PTP TX reports=160 packets=480 pending_bytes=0
+PTP master Delay_Resp sent=170
+PTP stats samples=170 timeouts=0 no_rx_timestamp=0 discarded=0
+PTP TX reports=170 packets=510 pending_bytes=0
+PTP master Delay_Resp sent=180
+PTP stats samples=180 timeouts=0 no_rx_timestamp=0 discarded=0
+PTP TX reports=180 packets=540 pending_bytes=0
+PTP master Delay_Resp sent=190
+PTP stats samples=190 timeouts=0 no_rx_timestamp=0 discarded=0
+PTP TX reports=190 packets=570 pending_bytes=0
+PTP master Delay_Resp sent=200
+PTP stats samples=200 timeouts=0 no_rx_timestamp=0 discarded=0
+PTP TX reports=200 packets=600 pending_bytes=0
+PTP master Delay_Resp sent=210
+PTP stats samples=210 timeouts=0 no_rx_timestamp=0 discarded=0
+PTP TX reports=210 packets=630 pending_bytes=0
+PTP master Delay_Resp sent=220
+PTP stats samples=220 timeouts=0 no_rx_timestamp=0 discarded=0
+PTP TX reports=220 packets=660 pending_bytes=0
+PBUS write 0012:1030 bytes=CC CC CC CC 

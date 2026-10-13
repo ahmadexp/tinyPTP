@@ -178,7 +178,7 @@ void loop() {
   }
   if (!reported) {
     Usb.ForEachUsbDevice(reportDevice);
-    Serial.println(F("Commands: r descriptors; v reads; i PHY/clock; e Ethernet; t echo; p PTP observe; s PTP servo; x stop."));
+    Serial.println(F("Commands: r descriptors; v reads; i PHY/clock; e Ethernet; t echo; p PTP observe; s PTP servo; m master; f follower; l PHY; x stop."));
     reported = true;
   }
   if (Serial.available()) {
@@ -187,6 +187,7 @@ void loop() {
       ptpRunning = false; clearPtpExchange();
     }
     if (command == 'r') reported = false;
+    if (command == 'l') reportPhyRegisters();
     if (command == 'v' || command == 'i') ethernetReady = false;
     if (command == 'v') Usb.ForEachUsbDevice(reportAsixControls);
     if (command == 'i') Usb.ForEachUsbDevice(initializeAsixHardware);
@@ -194,6 +195,8 @@ void loop() {
     if (command == 't') runEthernetProbe();
     if (command == 'p') startPtpClient(false);
     if (command == 's') startPtpClient(true);
+    if (command == 'm') startPtpClient(false, true);
+    if (command == 'f') startPtpClient(true, false, true);
     if (command == 'x') ptpSetFrequency(0);
   }
   pollPtpClient();

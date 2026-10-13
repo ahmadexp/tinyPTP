@@ -1,0 +1,51 @@
+UTC: 2026-10-13T21:55:53.750388+00:00
+Port: /dev/ttyACM0; baud: 115200; reset: True
+TimeStick USB descriptor probe
+MAX3421E init result=0
+MAX3421E revision=0x13
+USB state=0x20
+USB state=0x40
+USB state=0x50
+USB state=0x51
+USB state=0x90
+Device address=1
+FULL speed (12 Mbit/s host)
+VID:PID=0B95:1790 bcdDevice=0x0400 EP0=64
+Configuration index=0
+  descriptor type=0x02 length=9 config=1 interfaces=1 power_mA=450
+  descriptor type=0x04 length=9 interface=0 alternate=0 endpoints=5 class/subclass/protocol=FF/FF/00
+  descriptor type=0x05 length=7 address=0x81 attributes=0x03 maxPacket=8 interval=160
+  descriptor type=0x05 length=7 address=0x82 attributes=0x02 maxPacket=64 interval=0
+  descriptor type=0x05 length=7 address=0x03 attributes=0x02 maxPacket=64 interval=0
+  descriptor type=0x05 length=7 address=0x84 attributes=0x02 maxPacket=64 interval=0
+  descriptor type=0x05 length=7 address=0x05 attributes=0x02 maxPacket=64 interval=0
+Configuration index=1
+  descriptor type=0x02 length=9 config=2 interfaces=2 power_mA=450
+  descriptor type=0x04 length=9 interface=0 alternate=0 endpoints=1 class/subclass/protocol=02/0D/00
+  descriptor type=0x24 length=5
+  descriptor type=0x24 length=5
+  descriptor type=0x24 length=13
+  descriptor type=0x24 length=6
+  descriptor type=0x05 length=7 address=0x81 attributes=0x03 maxPacket=16 interval=160
+  descriptor type=0x04 length=9 interface=1 alternate=0 endpoints=0 class/subclass/protocol=0A/00/01
+  descriptor type=0x04 length=9 interface=1 alternate=1 endpoints=2 class/subclass/protocol=0A/00/01
+  descriptor type=0x05 length=7 address=0x82 attributes=0x02 maxPacket=64 interval=0
+  descriptor type=0x05 length=7 address=0x03 attributes=0x02 maxPacket=64 interval=0
+Configuration index=2
+  descriptor type=0x02 length=9 config=3 interfaces=2 power_mA=450
+  descriptor type=0x04 length=9 interface=0 alternate=0 endpoints=1 class/subclass/protocol=02/06/00
+  descriptor type=0x24 length=5
+  descriptor type=0x24 length=5
+  descriptor type=0x24 length=13
+  descriptor type=0x05 length=7 address=0x81 attributes=0x03 maxPacket=16 interval=160
+  descriptor type=0x04 length=9 interface=1 alternate=0 endpoints=0 class/subclass/protocol=0A/00/00
+  descriptor type=0x04 length=9 interface=1 alternate=1 endpoints=2 class/subclass/protocol=0A/00/00
+  descriptor type=0x05 length=7 address=0x82 attributes=0x02 maxPacket=64 interval=0
+  descriptor type=0x05 length=7 address=0x03 attributes=0x02 maxPacket=64 interval=0
+Commands: r descriptors; v reads; i PHY/clock; e Ethernet; t echo; p PTP observe; s PTP servo; x stop.
+SET_CONFIGURATION(1) error=0x00
+ASIX chip status=0x74 chip code=7
+ASIX silicon revision=0x01
+ASIX firmware=1.3.16.7
+ASIX MAC=9C:69:D3:2B:A1:8D
+ASIX read request=0x13 error=0x05 received=0

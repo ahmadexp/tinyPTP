@@ -27,9 +27,10 @@ bool macWrite(uint8_t,uint8_t,uint32_t) {return true;}
 bool reportClockProgress(uint8_t) {return true;}
 struct UsbStub {
   std::vector<uint8_t> sent;
+  uint8_t outError = 0;
   std::vector<std::vector<uint8_t>> queued;
   uint8_t ctrlReq(uint8_t,uint8_t,uint8_t,uint8_t,uint8_t,uint8_t,uint16_t,uint16_t,uint16_t,uint8_t*,void*) {return 0;}
-  uint8_t outTransfer(uint8_t,uint8_t,uint16_t n,uint8_t *p) {sent.assign(p,p+n);return 0;}
+  uint8_t outTransfer(uint8_t,uint8_t,uint16_t n,uint8_t *p) {sent.assign(p,p+n);return outError;}
   uint8_t inTransfer(uint8_t,uint8_t,uint16_t *n,uint8_t *p) {
     if(queued.empty()) return hrNAK;
     assert(queued.front().size()<=*n); *n=queued.front().size();
@@ -74,6 +75,57 @@ int main() {
   memcpy(rxAggregate+72,stamp,10);le32(rxAggregate+88,(64UL<<13)|1);rxUsed=96;
   parsePtpAggregate();assert(haveSync && syncSequence==8);clearPtpExchange();
   le32(rxAggregate+88,(255UL<<13)|1);parsePtpAggregate();assert(!haveSync && ptpRxDiscard);
+  // Direct follower binds only a valid timestamped two-step Sync, then pins it.
+  ptpLearnMaster=true;ptpPeerBound=false;
+  header(frame,8,10,44);handlePtpFrame(frame,60,stamp);assert(!ptpPeerBound);
+  header(frame,0,10,44);handlePtpFrame(frame,60,nullptr);assert(!ptpPeerBound);
+  frame[20]=0;handlePtpFrame(frame,60,stamp);assert(!ptpPeerBound);frame[20]=2;
+  handlePtpFrame(frame,60,stamp);assert(ptpPeerBound && haveSync);
+  assert(!memcmp(selectedMaster,ptpMaster,10));clearPtpExchange();
+  frame[34]^=1;handlePtpFrame(frame,60,stamp);assert(!haveSync);
+  ptpLearnMaster=false;
+
+  // Master sends two-step Sync at 1 Hz, no Follow_Up until matching hardware TX.
+  ptpMasterRole=true;ptpRunning=true;ptpSamples=0;ptpTimeouts=0;
+  nowMs=10000;masterLastSync=nowMs;syncSequence=65535;
+  Usb.sent.clear();pollPtpMasterSchedule();assert(Usb.sent.empty());
+  nowMs+=1000;pollPtpMasterSchedule();assert(masterSyncPending && syncSequence==0);
+  assert(Usb.sent.size()==72 && Usb.sent[22]==0 && Usb.sent[28]==2);
+  assert(ptpBe16(Usb.sent.data()+24)==44 && !memcmp(Usb.sent.data()+42,ptpIdentity,10));
+  assert(readLe32(Usb.sent.data())==(60UL|(60UL<<21)));
+  auto queueReport = [&]() {
+    Usb.queued={{report.begin(),report.begin()+64},{report.begin()+64,report.begin()+128},{report.begin()+128,report.end()}};
+    pollPtpTxTimestamp();pollPtpTxTimestamp();pollPtpTxTimestamp();
+  };
+  report.assign(131,0);report[0]=8;report[1]=1;report[130]=1;
+  le32(report.data()+3,123456789);le32(report.data()+7,1234);
+  queueReport();assert(masterSyncPending && Usb.sent[22]==0); // wrong sequence
+  report[1]=0;report[0]=0x18;queueReport();assert(masterSyncPending); // wrong type
+  report[0]=8;queueReport();assert(!masterSyncPending && ptpSamples==1);
+  assert(Usb.sent[22]==8 && Usb.sent[28]==0 && Usb.sent[54]==2);
+  PtpTime sentTime;assert(ptpWireTime(Usb.sent.data()+56,sentTime));
+  assert(sentTime.sec==1234 && sentTime.ns==123456789);
+
+  // Delay_Resp copies requester and sequence, carrying the hardware RX time.
+  header(frame,1,4321,44);masterResponses=0;masterFollowerBound=false;
+  handlePtpFrame(frame,60,nullptr);assert(!masterFollowerBound && masterResponses==0);
+  handlePtpFrame(frame,60,stamp);assert(masterFollowerBound && masterResponses==1);
+  assert(Usb.sent.size()==80 && Usb.sent[22]==9 && ptpBe16(Usb.sent.data()+24)==54);
+  assert(readLe32(Usb.sent.data())==(68UL|(68UL<<21)));
+  assert(ptpBe16(Usb.sent.data()+52)==4321 && Usb.sent[54]==3);
+  assert(!memcmp(Usb.sent.data()+66,frame+34,10));
+  assert(ptpWireTime(Usb.sent.data()+56,sentTime));
+  assert(sentTime.sec==1700000000 && sentTime.ns==1200);
+  frame[34]^=1;handlePtpFrame(frame,60,stamp);assert(masterResponses==1);frame[34]^=1;
+  frame[29]=1;handlePtpFrame(frame,60,stamp);assert(masterResponses==1);frame[29]=0;
+  // Timeout never fabricates a Follow_Up; retry has a new sequence.
+  nowMs+=1000;pollPtpMasterSchedule();assert(masterSyncPending);
+  nowMs+=2501;pollPtpMasterSchedule();assert(ptpTimeouts==1 && Usb.sent[22]==0 && syncSequence==2);
+  // A failed frame transfer stops the master rather than claiming an exchange.
+  masterSyncPending=false;nowMs+=1000;Usb.outError=1;
+  pollPtpMasterSchedule();assert(!ptpRunning && !masterSyncPending);Usb.outError=0;
+  ptpMasterRole=false;
+
   // Exercise malformed aggregate bounds under ASan/UBSan.
   uint32_t random=17;
   for(unsigned trial=0;trial<20000;++trial) {

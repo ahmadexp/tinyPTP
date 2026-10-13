@@ -10,18 +10,18 @@ bool asixWrite(uint8_t address, uint8_t request, uint16_t value,
   for (uint8_t i = 0; i < sizeof(data); ++i) data[i] = word >> (8 * i);
   if (length > sizeof(data)) return false;
   if (request == 0x11) {
-    Serial.print(F("PBUS write ")); hexWord(index); Serial.print(':'); hexWord(value);
-    Serial.print(F(" bytes="));
-    for (uint8_t i = 0; i < length; ++i) { hexByte(data[i]); Serial.print(' '); }
-    Serial.println();
+    Diag.print(F("PBUS write ")); hexWord(index); Diag.print(':'); hexWord(value);
+    Diag.print(F(" bytes="));
+    for (uint8_t i = 0; i < length; ++i) { hexByte(data[i]); Diag.print(' '); }
+    Diag.println();
   }
   const uint8_t error = Usb.ctrlReq(address, 0, 0x40, request,
       uint8_t(value), uint8_t(value >> 8), index, length, length,
       length ? data : NULL, NULL);
   if (error) {
-    Serial.print(F("ASIX write request=0x")); hexByte(request);
-    Serial.print(F(" value=0x")); hexWord(value);
-    Serial.print(F(" error=0x")); hexByte(error); Serial.println();
+    Diag.print(F("ASIX write request=0x")); hexByte(request);
+    Diag.print(F(" value=0x")); hexWord(value);
+    Diag.print(F(" error=0x")); hexByte(error); Diag.println();
   }
   return error == 0;
 }
@@ -39,13 +39,13 @@ bool phyRead(uint8_t address, uint8_t reg, uint16_t &word) {
 }
 
 void reportPhyRegisters() {
-  if (!verifiedAsixAddress) { Serial.println(F("Run v first")); return; }
+  if (!verifiedAsixAddress) { Diag.println(F("Run v first")); return; }
   const uint8_t regs[] = {0, 1, 4, 5, 9, 10, 17};
   for (uint8_t i = 0; i < sizeof(regs); ++i) {
     uint16_t value;
     if (!phyRead(verifiedAsixAddress, regs[i], value)) return;
-    Serial.print(F("PHY reg=")); Serial.print(regs[i]);
-    Serial.print(F(" value=0x")); hexWord(value); Serial.println();
+    Diag.print(F("PHY reg=")); Diag.print(regs[i]);
+    Diag.print(F(" value=0x")); hexWord(value); Diag.println();
   }
 }
 
@@ -59,9 +59,9 @@ bool reportClockProgress(uint8_t address) {
   for (uint8_t sample = 0; sample < 4; ++sample) {
     uint8_t value[10];
     if (!asixRead(address, 0x13, 2, 0x1014, sizeof(value), value)) return false;
-    Serial.print(F("Initialized clock sec(hex)="));
+    Diag.print(F("Initialized clock sec(hex)="));
     for (int8_t i = 9; i >= 4; --i) hexByte(value[i]);
-    Serial.print(F(" ns=")); Serial.println(readLe32(value));
+    Diag.print(F(" ns=")); Diag.println(readLe32(value));
     if (readLe32(value) >= 1000000000UL) advancing = false;
     if (sample) {
       // Compare little-endian 48-bit seconds before the nanosecond field.
@@ -74,7 +74,7 @@ bool reportClockProgress(uint8_t address) {
     memcpy(previous, value, sizeof(value));
     if (sample < 3) delay(1000);
   }
-  Serial.println(advancing ? F("Clock progression PASS (rate accuracy unmeasured)")
+  Diag.println(advancing ? F("Clock progression PASS (rate accuracy unmeasured)")
                            : F("Clock progression FAIL"));
   return advancing;
 }
@@ -84,7 +84,7 @@ void initializeAsixHardware(UsbDevice *device) {
   reportAsixControls(device);
   const uint8_t address = device->address.devAddress;
   if (!verifiedAsixAddress || verifiedAsixAddress != address) return;
-  Serial.println(F("AX88279 volatile initialization"));
+  Diag.println(F("AX88279 volatile initialization"));
   // Native firmware mode with the timestamp endpoint enabled; reload the saved
   // configuration into volatile registers, then bring the PHY out of power-down.
   if (!asixWrite(address, 0x08, 1, 2, 0, 0) ||
@@ -93,22 +93,22 @@ void initializeAsixHardware(UsbDevice *device) {
   delay(500);
   uint8_t power;
   if (!asixRead(address, 0x31, 0, 0, 1, &power)) return;
-  Serial.print(F("PHY power=0x")); hexByte(power); Serial.println();
+  Diag.print(F("PHY power=0x")); hexByte(power); Diag.println();
   // Match AX88279 autonegotiation setup from the vendor driver's hw_init.
   uint16_t adv, gigabit;
   if (!phyRead(address, 4, adv) || !phyRead(address, 9, gigabit)) return;
-  Serial.print(F("PHY initial advertisement=0x")); hexWord(adv);
-  Serial.print(F(" gigabit_control=0x")); hexWord(gigabit); Serial.println();
+  Diag.print(F("PHY initial advertisement=0x")); hexWord(adv);
+  Diag.print(F(" gigabit_control=0x")); hexWord(gigabit); Diag.println();
   // Both AX88279s can advertise 2.5G. This driver implements only 1000/full,
   // so constrain advertisement instead of rejecting a faster negotiated link.
   // ASIX Clause 45 request 0x27; AN MMD 7 register 32, IEEE 2.5G advertisement bit.
   uint8_t multigigData[2];
   if (!asixRead(address, 0x27, 7, 32, 2, multigigData)) return;
   uint16_t multigig = uint16_t(multigigData[0]) | (uint16_t(multigigData[1]) << 8);
-  Serial.print(F("PHY AN 2.5G advertisement=0x")); hexWord(multigig); Serial.println();
+  Diag.print(F("PHY AN 2.5G advertisement=0x")); hexWord(multigig); Diag.println();
   if (!asixWrite(address, 0x27, 7, 32, 2, multigig & ~uint16_t(0x0080)) ||
       !asixRead(address, 0x27, 7, 32, 2, multigigData)) return;
-  if (multigigData[0] & 0x80) { Serial.println(F("PHY 2.5G disable failed")); return; }
+  if (multigigData[0] & 0x80) { Diag.println(F("PHY 2.5G disable failed")); return; }
   if (!asixWrite(address, 0x02, 3, 4, 2, (adv & ~uint16_t(0x01e0)) | 0x1000) ||
       !asixWrite(address, 0x02, 3, 9, 2, (gigabit & ~uint16_t(0x0100)) | 0x0a00) ||
       !asixWrite(address, 0x02, 3, 0, 2, 0x1200)) return;
@@ -118,11 +118,11 @@ void initializeAsixHardware(UsbDevice *device) {
     uint16_t status;
     // BMSR link status is latched low; read twice for the current state.
     if (!phyRead(address, 1, status) || !phyRead(address, 1, status)) return;
-    Serial.print(F("PHY BMSR=0x")); hexWord(status); Serial.println();
+    Diag.print(F("PHY BMSR=0x")); hexWord(status); Diag.println();
     if (status & 0x0004) { linked = true; break; }
     delay(1000);
   }
-  Serial.println(linked ? F("Ethernet PHY link UP") : F("Ethernet PHY link timeout"));
+  Diag.println(linked ? F("Ethernet PHY link UP") : F("Ethernet PHY link timeout"));
   if (!linked) { reportPhyRegisters(); return; }
   // The PHY can report link before firmware has completed its link-change
   // setup. PBus reads can temporarily return DEADBEEF during that transition.
@@ -140,7 +140,7 @@ void initializeAsixHardware(UsbDevice *device) {
     delay(100);
   }
   if (!clockAccessible) {
-    Serial.println(F("PTP initialization skipped: clock request failed after PHY setup"));
+    Diag.println(F("PTP initialization skipped: clock request failed after PHY setup"));
     return;
   }
   // PTP CPU/report memory and counter setup from the AX88279 driver. Physical
@@ -158,10 +158,10 @@ void initializeAsixHardware(UsbDevice *device) {
   for (uint8_t i = 0; i < 4; ++i) {
     uint8_t data[4];
     if (!asixRead(address, 0x11, regs[i], 0x12, 4, data)) return;
-    Serial.print(F("PTP register ")); hexWord(regs[i]);
-    Serial.print(F("=")); Serial.println(readLe32(data), HEX);
+    Diag.print(F("PTP register ")); hexWord(regs[i]);
+    Diag.print(F("=")); Diag.println(readLe32(data), HEX);
     if (readLe32(data) != expected[i]) matching = false;
   }
-  if (!matching) Serial.println(F("PTP register readback mismatch"));
+  if (!matching) Diag.println(F("PTP register readback mismatch"));
   hardwareReady = reportClockProgress(address) && matching;
 }

@@ -8,10 +8,13 @@
 const uint8_t hrNAK = 4;
 struct SerialStub {
   template<class T> void print(T) {}
+  template<class T> void print(T,int) {}
   template<class T> void println(T) {}
   template<class T> void println(T,int) {}
   void println() {}
 } Serial;
+#define Diag Serial
+bool diagnosticsEnabled = true;
 uint32_t nowMs = 1000;
 uint32_t millis() { return nowMs; }
 void delay(unsigned) {}
@@ -87,7 +90,7 @@ int main() {
 
   // Master sends two-step Sync at 1 Hz, no Follow_Up until matching hardware TX.
   ptpMasterRole=true;ptpRunning=true;ptpSamples=0;ptpTimeouts=0;
-  nowMs=10000;masterLastSync=nowMs;syncSequence=65535;
+  nowMs=10000;masterLastSync=masterLastAnnounce=nowMs;syncSequence=65535;
   Usb.sent.clear();pollPtpMasterSchedule();assert(Usb.sent.empty());
   nowMs+=1000;pollPtpMasterSchedule();assert(masterSyncPending && syncSequence==0);
   assert(Usb.sent.size()==72 && Usb.sent[22]==0 && Usb.sent[28]==2);
@@ -105,6 +108,16 @@ int main() {
   assert(Usb.sent[22]==8 && Usb.sent[28]==0 && Usb.sent[54]==2);
   PtpTime sentTime;assert(ptpWireTime(Usb.sent.data()+56,sentTime));
   assert(sentTime.sec==1234 && sentTime.ns==123456789);
+
+  // Announce advertises this free-running oscillator without false UTC claims.
+  assert(sendPtpMessage(11, 17));
+  assert(Usb.sent.size()==88 && ptpBe16(Usb.sent.data()+24)==64);
+  assert(Usb.sent[22]==11 && Usb.sent[28]==0 && Usb.sent[29]==0);
+  assert(Usb.sent[54]==5 && Usb.sent[55]==1);
+  assert(Usb.sent[69]==128 && Usb.sent[70]==248 && Usb.sent[71]==0xfe);
+  assert(Usb.sent[72]==0xff && Usb.sent[73]==0xff && Usb.sent[74]==128);
+  assert(!memcmp(Usb.sent.data()+75,ptpIdentity,8));
+  assert(Usb.sent[83]==0 && Usb.sent[84]==0 && Usb.sent[85]==0xa0);
 
   // Delay_Resp copies requester and sequence, carrying the hardware RX time.
   header(frame,1,4321,44);masterResponses=0;masterFollowerBound=false;

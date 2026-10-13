@@ -1,5 +1,9 @@
 # Direct two-UNO PTP experiment
 
+**The installed firmware now starts automatically.** Use the
+[standalone role guide](standalone-roles.md) for current operation. The manual
+commands and pair launcher below describe the earlier diagnostic workflow.
+
 Status on 2026-10-13: both UNOs are programmed, both attached TimeSticks are
 supported AX88279 units, and the direct pair exchanges hardware-timestamped
 PTP. The new [hardware report](two-uno-test-2026-10-13.md) records the test and

@@ -8,8 +8,18 @@ import statistics
 
 
 def summarize(text, tail):
-    rows = [tuple(map(int, row)) for row in re.findall(
-        r"PTP sample=(\d+) seq=(\d+) offset_ns=(-?\d+) path_ns=(-?\d+) freq_ppb=(-?\d+) servo=on", text)]
+    rows = []
+    for line in text.splitlines():
+        legacy = re.search(
+            r"PTP sample=(\d+) seq=(\d+) offset_ns=(-?\d+) path_ns=(-?\d+) freq_ppb=(-?\d+) servo=on", line)
+        modern = re.search(
+            r"master offset (-?\d+) s([0-3]) freq ([+-]?\d+) path delay (-?\d+) sample (\d+) seq (\d+)", line)
+        if legacy:
+            rows.append(tuple(map(int, legacy.groups())))
+        elif modern:
+            offset, state, freq, path, sample, seq = map(int, modern.groups())
+            if state != 0:
+                rows.append((sample, seq, offset, path, freq))
     if not rows:
         raise ValueError("No servo samples found")
     selected = rows[-tail:]
@@ -25,7 +35,7 @@ def summarize(text, tail):
         "path_mean_ns": statistics.mean(paths),
         "path_min_ns": min(paths), "path_max_ns": max(paths),
         "last_freq_ppb": rows[-1][4],
-        "coarse_steps": text.count("PTP coarse clock step;"),
+        "coarse_steps": (text.count("PTP coarse clock step;") + text.count("clock stepped; acquiring residual offset")),
         "exchange_timeouts": text.count("PTP exchange timeout"),
         "rejected_paths": text.count("PTP rejected path_ns="),
     }

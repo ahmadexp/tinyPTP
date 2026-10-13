@@ -8,6 +8,12 @@ maintains the hardware clock.
 **Working: two UNOs, each with a USB Host Shield and AX88279 TimeStick,
 running master/follower PTP over a direct Ethernet cable.**
 
+**Standalone firmware is installed:** the first UNO automatically starts as
+grandmaster and the second as follower. Open the follower's serial monitor at
+**115200 baud, 8N1** for ptp4l-style offset, frequency, and path-delay output.
+No host launcher or startup commands are needed. See the
+[standalone build and serial guide](docs/standalone-roles.md).
+
 The [2026-10-13 pair report](docs/two-uno-test-2026-10-13.md) records both devices,
 the 1 Gb/s negotiation fix, and the hardware experiment. Use the
 [two-UNO procedure](docs/two-uno-setup.md) for this topology. The earlier
@@ -22,9 +28,8 @@ last 60 samples, estimated offset RMS was **67.3 ns**, with a range of
 rejected path measurements were reported. These are internal PTP estimates,
 not independent PPS or UTC measurements.
 
-The combined-role image uses **25408 bytes flash and 960 bytes static SRAM**.
-A paired serial launcher keeps both sessions open and supports clean stop and
-retry. Raw evidence and reproduction details are linked in the pair report.
+That earlier interactive image used **25408 bytes flash and 960 bytes static
+SRAM**. The newer standalone builds and serial output are documented above. Raw evidence and reproduction details are linked in the pair report.
 
 ## Measured results, 2026-10-12
 
@@ -101,7 +106,8 @@ to sustain that rate for a sparse PTP exchange.
 
 The UNO runs the protocol state machine and clock servo. The TimeStick
 maintains the precision hardware clock and timestamps Ethernet ingress and
-egress. PPS routing and output measurement remain untested. USB delivery
+egress. The standalone firmware now enables and checks the PPS output gate;
+independent waveform and edge-offset measurements remain pending. USB delivery
 latency does not become the packet timestamp error when timestamps are captured at the Ethernet interface. It
 still affects update delay, buffering, and the ability to service timestamp
 queues before overflow. Never substitute `micros()` or USB completion times for
@@ -167,7 +173,7 @@ free-running sticks alone can establish relative synchronization.
 
 1. Characterize longer two-UNO runs, repeated startup, and recovery behavior.
 2. Add a separate AX88279A register and timestamp path for the original unit.
-3. Route and independently compare PPS outputs; assess PHY/link asymmetry.
+3. Independently compare the enabled PPS outputs; assess PHY/link asymmetry.
 4. Measure runtime stack high-water use, long-duration stability, and recovery
    from dropped packets, cable changes, USB disconnects, and power cycles.
 5. Test background traffic and aggregation pressure before broader deployment.

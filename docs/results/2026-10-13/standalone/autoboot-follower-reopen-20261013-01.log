@@ -1,0 +1,128 @@
+UTC: 2026-10-13T22:30:57.700847+00:00
+Port: /dev/serial/by-id/usb-Arduino__www.arduino.cc__0043_14533303731351B0C090-if00; baud: 115200; reset: True
+tinyptp[0.000]: boot role FOLLOWER
+tinyptp[0.000]: serial 115200 8N1; offset/path ns; frequency ppb
+tinyptp[0.580]: port 1: initializing Ethernet and hardware clock
+tinyptp[11.797]: clock identity 9c69d3.fffe.2ba12f
+tinyptp[11.798]: port 1: INITIALIZING to LISTENING on FIXED_ROLE
+tinyptp[11.802]: FOLLOWER samples 0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[12.082]: selected master 9c69d3.fffe.2ba18d
+tinyptp[12.082]: port 1: LISTENING to SLAVE on MASTER_SELECTED
+tinyptp[12.091]: master offset -718415895 s1 freq +0 path delay 705 sample 1 seq 1
+tinyptp[12.094]: clock stepped; acquiring residual offset
+tinyptp[13.087]: master offset -824900 s2 freq +453695 path delay 725 sample 2 seq 2
+tinyptp[14.088]: master offset -362635 s2 freq +240693 path delay -10 sample 3 seq 3
+tinyptp[15.088]: master offset -110470 s2 freq +120134 path delay 345 sample 4 seq 4
+tinyptp[16.089]: master offset 20695 s2 freq +53518 path delay 530 sample 5 seq 5
+tinyptp[17.089]: master offset 84950 s2 freq +17143 path delay 645 sample 6 seq 6
+tinyptp[18.088]: master offset 112670 s2 freq -2350 path delay 705 sample 7 seq 7
+tinyptp[19.089]: master offset 120820 s2 freq -12466 path delay 735 sample 8 seq 8
+tinyptp[20.089]: master offset 118820 s2 freq -17407 path delay 745 sample 9 seq 9
+tinyptp[21.091]: master offset 111850 s2 freq -19514 path delay 745 sample 10 seq 10
+tinyptp[21.803]: FOLLOWER samples 10 timeouts 0 missing_rx 0 discarded 0
+tinyptp[22.090]: master offset 102765 s2 freq -20109 path delay 760 sample 11 seq 11
+tinyptp[23.092]: master offset 93055 s2 freq -19906 path delay 760 sample 12 seq 12
+tinyptp[24.091]: master offset 83550 s2 freq -19331 path delay 755 sample 13 seq 13
+tinyptp[25.093]: master offset 74605 s2 freq -18588 path delay 750 sample 14 seq 14
+tinyptp[26.092]: master offset 66420 s2 freq -17817 path delay 755 sample 15 seq 15
+tinyptp[27.094]: master offset 58990 s2 freq -17051 path delay 755 sample 16 seq 16
+tinyptp[28.094]: master offset 52330 s2 freq -16337 path delay 745 sample 17 seq 17
+tinyptp[29.094]: master offset 46380 s2 freq -15681 path delay 755 sample 18 seq 18
+tinyptp[30.095]: master offset 41095 s2 freq -15092 path delay 750 sample 19 seq 19
+tinyptp[31.094]: master offset 36405 s2 freq -14567 path delay 750 sample 20 seq 20
+tinyptp[31.804]: FOLLOWER samples 20 timeouts 0 missing_rx 0 discarded 0
+tinyptp[32.096]: master offset 32235 s2 freq -14093 path delay 740 sample 21 seq 21
+tinyptp[33.096]: master offset 28540 s2 freq -13673 path delay 745 sample 22 seq 22
+tinyptp[34.096]: master offset 25260 s2 freq -13296 path delay 745 sample 23 seq 23
+tinyptp[35.096]: master offset 22365 s2 freq -12966 path delay 750 sample 24 seq 24
+tinyptp[36.097]: master offset 19780 s2 freq -12663 path delay 745 sample 25 seq 25
+tinyptp[37.098]: master offset 17510 s2 freq -12403 path delay 745 sample 26 seq 26
+tinyptp[38.097]: master offset 15490 s2 freq -12167 path delay 745 sample 27 seq 27
+tinyptp[39.099]: master offset 13705 s2 freq -11959 path delay 750 sample 28 seq 28
+tinyptp[40.098]: master offset 12130 s2 freq -11778 path delay 745 sample 29 seq 29
+tinyptp[41.100]: master offset 10730 s2 freq -11614 path delay 745 sample 30 seq 30
+tinyptp[41.805]: FOLLOWER samples 30 timeouts 0 missing_rx 0 discarded 0
+tinyptp[42.099]: master offset 9500 s2 freq -11474 path delay 745 sample 31 seq 31
+tinyptp[43.100]: master offset 8400 s2 freq -11344 path delay 745 sample 32 seq 32
+tinyptp[44.101]: master offset 7430 s2 freq -11230 path delay 745 sample 33 seq 33
+tinyptp[45.102]: master offset 6585 s2 freq -11136 path delay 740 sample 34 seq 34
+tinyptp[46.102]: master offset 5820 s2 freq -11045 path delay 745 sample 35 seq 35
+tinyptp[47.102]: master offset 5165 s2 freq -10975 path delay 740 sample 36 seq 36
+tinyptp[48.103]: master offset 4580 s2 freq -10912 path delay 745 sample 37 seq 37
+tinyptp[49.103]: master offset 4060 s2 freq -10855 path delay 745 sample 38 seq 38
+tinyptp[50.104]: master offset 3600 s2 freq -10805 path delay 745 sample 39 seq 39
+tinyptp[51.103]: master offset 3195 s2 freq -10761 path delay 740 sample 40 seq 40
+tinyptp[51.806]: FOLLOWER samples 40 timeouts 0 missing_rx 0 discarded 0
+tinyptp[52.104]: master offset 2820 s2 freq -10715 path delay 745 sample 41 seq 41
+tinyptp[53.105]: master offset 2505 s2 freq -10682 path delay 740 sample 42 seq 42
+tinyptp[54.105]: master offset 2220 s2 freq -10651 path delay 745 sample 43 seq 43
+tinyptp[55.106]: master offset 1970 s2 freq -10624 path delay 735 sample 44 seq 44
+tinyptp[56.105]: master offset 1750 s2 freq -10601 path delay 745 sample 45 seq 45
+tinyptp[57.107]: master offset 1560 s2 freq -10584 path delay 745 sample 46 seq 46
+tinyptp[58.106]: master offset 1395 s2 freq -10570 path delay 740 sample 47 seq 47
+tinyptp[59.108]: master offset 1250 s2 freq -10560 path delay 745 sample 48 seq 48
+tinyptp[60.108]: master offset 1115 s2 freq -10547 path delay 740 sample 49 seq 49
+tinyptp[61.109]: master offset 990 s2 freq -10534 path delay 745 sample 50 seq 50
+tinyptp[61.807]: FOLLOWER samples 50 timeouts 0 missing_rx 0 discarded 0
+tinyptp[62.109]: master offset 865 s2 freq -10514 path delay 740 sample 51 seq 51
+tinyptp[63.110]: master offset 750 s2 freq -10494 path delay 745 sample 52 seq 52
+tinyptp[64.109]: master offset 660 s2 freq -10482 path delay 745 sample 53 seq 53
+tinyptp[65.111]: master offset 570 s2 freq -10465 path delay 745 sample 54 seq 54
+tinyptp[66.110]: master offset 500 s2 freq -10455 path delay 745 sample 55 seq 55
+tinyptp[67.110]: master offset 440 s2 freq -10447 path delay 745 sample 56 seq 56
+tinyptp[68.111]: master offset 375 s3 freq -10432 path delay 740 sample 57 seq 57
+tinyptp[69.112]: master offset 340 s3 freq -10432 path delay 745 sample 58 seq 58
+tinyptp[70.112]: master offset 300 s3 freq -10427 path delay 745 sample 59 seq 59
+tinyptp[71.113]: master offset 265 s3 freq -10422 path delay 740 sample 60 seq 60
+tinyptp[71.808]: FOLLOWER samples 60 timeouts 0 missing_rx 0 discarded 0
+tinyptp[72.113]: master offset 250 s3 freq -10427 path delay 745 sample 61 seq 61
+tinyptp[73.114]: master offset 230 s3 freq -10428 path delay 745 sample 62 seq 62
+tinyptp[74.114]: master offset 205 s3 freq -10425 path delay 740 sample 63 seq 63
+tinyptp[75.115]: master offset 200 s3 freq -10433 path delay 745 sample 64 seq 64
+tinyptp[76.115]: master offset 170 s3 freq -10426 path delay 735 sample 65 seq 65
+tinyptp[77.116]: master offset 150 s3 freq -10423 path delay 735 sample 66 seq 66
+tinyptp[78.116]: master offset 115 s3 freq -10410 path delay 740 sample 67 seq 67
+tinyptp[79.117]: master offset 95 s3 freq -10404 path delay 740 sample 68 seq 68
+tinyptp[80.117]: master offset 70 s3 freq -10395 path delay 745 sample 69 seq 69
+tinyptp[81.117]: master offset 55 s3 freq -10389 path delay 740 sample 70 seq 70
+tinyptp[81.809]: FOLLOWER samples 70 timeouts 0 missing_rx 0 discarded 0
+tinyptp[82.118]: master offset 70 s3 freq -10400 path delay 735 sample 71 seq 71
+tinyptp[83.118]: master offset 55 s3 freq -10394 path delay 740 sample 72 seq 72
+tinyptp[84.118]: master offset 50 s3 freq -10394 path delay 745 sample 73 seq 73
+tinyptp[85.120]: master offset 55 s3 freq -10398 path delay 740 sample 74 seq 74
+tinyptp[86.119]: master offset 55 s3 freq -10400 path delay 740 sample 75 seq 75
+tinyptp[87.120]: master offset 55 s3 freq -10402 path delay 740 sample 76 seq 76
+tinyptp[88.120]: master offset 55 s3 freq -10404 path delay 740 sample 77 seq 77
+tinyptp[89.121]: master offset 45 s3 freq -10401 path delay 740 sample 78 seq 78
+tinyptp[90.121]: master offset 45 s3 freq -10403 path delay 740 sample 79 seq 79
+tinyptp[91.122]: master offset 35 s3 freq -10399 path delay 740 sample 80 seq 80
+tinyptp[91.810]: FOLLOWER samples 80 timeouts 0 missing_rx 0 discarded 0
+tinyptp[92.123]: master offset 40 s3 freq -10404 path delay 745 sample 81 seq 81
+tinyptp[93.123]: master offset 25 s3 freq -10397 path delay 740 sample 82 seq 82
+tinyptp[94.124]: master offset -5 s3 freq -10383 path delay 740 sample 83 seq 83
+tinyptp[95.124]: master offset -25 s3 freq -10372 path delay 740 sample 84 seq 84
+tinyptp[96.124]: master offset -40 s3 freq -10362 path delay 745 sample 85 seq 85
+tinyptp[97.124]: master offset -45 s3 freq -10358 path delay 740 sample 86 seq 86
+tinyptp[98.125]: master offset -40 s3 freq -10358 path delay 745 sample 87 seq 87
+tinyptp[99.125]: master offset -25 s3 freq -10365 path delay 740 sample 88 seq 88
+tinyptp[100.126]: master offset -30 s3 freq -10361 path delay 745 sample 89 seq 89
+tinyptp[101.127]: master offset -35 s3 freq -10358 path delay 740 sample 90 seq 90
+tinyptp[101.811]: FOLLOWER samples 90 timeouts 0 missing_rx 0 discarded 0
+tinyptp[102.126]: master offset -35 s3 freq -10357 path delay 740 sample 91 seq 91
+tinyptp[103.128]: master offset -15 s3 freq -10367 path delay 740 sample 92 seq 92
+tinyptp[104.127]: master offset -20 s3 freq -10363 path delay 745 sample 93 seq 93
+tinyptp[105.128]: master offset -10 s3 freq -10368 path delay 745 sample 94 seq 94
+tinyptp[106.128]: master offset 0 s3 freq -10373 path delay 745 sample 95 seq 95
+tinyptp[107.129]: master offset 15 s3 freq -10380 path delay 740 sample 96 seq 96
+tinyptp[108.130]: master offset 25 s3 freq -10386 path delay 740 sample 97 seq 97
+tinyptp[109.130]: master offset 15 s3 freq -10381 path delay 740 sample 98 seq 98
+tinyptp[110.131]: master offset 0 s3 freq -10374 path delay 745 sample 99 seq 99
+tinyptp[111.131]: master offset 0 s3 freq -10374 path delay 745 sample 100 seq 100
+tinyptp[111.812]: FOLLOWER samples 100 timeouts 0 missing_rx 0 discarded 0
+tinyptp[112.132]: master offset 5 s3 freq -10376 path delay 740 sample 101 seq 101
+tinyptp[113.131]: master offset 10 s3 freq -10379 path delay 745 sample 102 seq 102
+tinyptp[114.132]: master offset 15 s3 freq -10381 path delay 740 sample 103 seq 103
+tinyptp[115.132]: master offset 10 s3 freq -10379 path delay 735 sample 104 seq 104
+tinyptp[116.133]: master offset 30 s3 freq -10390 path delay 745 sample 105 seq 105
+tinyptp[117.135]: master offset 20 s3 freq -10386 path delay 745 sample 106 seq 106
+tinyptp[118.134]: master offset 25 s3 freq -10389 path delay 740 sample 107 seq 107

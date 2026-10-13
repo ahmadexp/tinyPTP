@@ -1,0 +1,27 @@
+UTC: 2026-10-13T22:35:56.596328+00:00
+Port: /dev/serial/by-id/usb-Arduino__www.arduino.cc__0043_1453230343235190E071-if00; baud: 115200; reset: True
+tinyptp[0.000]: boot role GRANDMASTER
+tinyptp[0.000]: serial 115200 8N1; offset/path ns; frequency ppb
+tinyptp[0.582]: port 1: initializing Ethernet and hardware clock
+tinyptp[11.797]: PPS gate before=0x4000
+tinyptp[11.799]: PPS gate=0x4000 clock=0x5F active_ns=500000000 enabled (register readback)
+tinyptp[11.803]: clock identity 9c69d3.fffe.2ba18d
+tinyptp[11.807]: port 1: INITIALIZING to MASTER on FIXED_ROLE
+tinyptp[11.812]: grandmaster: free-running oscillator, UTC not valid
+tinyptp[11.819]: MASTER samples 0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[21.820]: MASTER samples 10 timeouts 0 missing_rx 0 discarded 0
+tinyptp[31.821]: MASTER samples 20 timeouts 0 missing_rx 0 discarded 0
+tinyptp[41.822]: MASTER samples 30 timeouts 0 missing_rx 0 discarded 0
+tinyptp[51.823]: MASTER samples 40 timeouts 0 missing_rx 0 discarded 0
+tinyptp[61.824]: MASTER samples 50 timeouts 0 missing_rx 0 discarded 0
+tinyptp[71.825]: MASTER samples 60 timeouts 0 missing_rx 0 discarded 0
+tinyptp[81.826]: MASTER samples 70 timeouts 0 missing_rx 0 discarded 0
+tinyptp[91.827]: MASTER samples 80 timeouts 0 missing_rx 0 discarded 0
+tinyptp[101.828]: MASTER samples 90 timeouts 0 missing_rx 0 discarded 0
+tinyptp[111.830]: MASTER samples 100 timeouts 0 missing_rx 0 discarded 0
+tinyptp[121.831]: MASTER samples 110 timeouts 0 missing_rx 0 discarded 0
+tinyptp[131.832]: MASTER samples 120 timeouts 0 missing_rx 0 discarded 0
+tinyptp[141.833]: MASTER samples 130 timeouts 0 missing_rx 0 discarded 0
+tinyptp[151.834]: MASTER samples 140 timeouts 0 missing_rx 0 discarded 0
+tinyptp[161.835]: MASTER samples 150 timeouts 0 missing_rx 0 discarded 0
+tinyptp[171.836]: MASTER samples 160 timeouts 0 missing_rx 0 discarded 0

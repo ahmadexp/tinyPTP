@@ -1,5 +1,7 @@
 #pragma once
 #include "PtpMath.h"
+#include "PtpLog.h"
+#include "PpsOutput.h"
 
 // Fixed peer, L2, domain 42, two-step, E2E. No BMCA or profile claim.
 const uint8_t ptpMaster[10] = {0x0c,0x9d,0x92,0xff,0xfe,0xc5,0x83,0x32,0,1};
@@ -19,14 +21,12 @@ uint8_t tsReport[131];
 uint16_t tsUsed = 0;
 bool tsOverflow = false;
 uint32_t tsPackets = 0, tsReports = 0;
+uint32_t masterLastAnnounce = 0;
+uint16_t announceSequence = 0;
+uint8_t servoStableSamples = 0;
+uint32_t lastCompletedExchange = 0;
+bool followerReceiving = false;
 
-void printSigned64(int64_t v) {
-  char digits[21]; uint8_t n = 0;
-  uint64_t x;
-  if (v < 0) { Serial.print('-'); x = uint64_t(-(v + 1)) + 1; } else x = v;
-  do { digits[n++] = '0' + x % 10; x /= 10; } while (x);
-  while (n) Serial.print(digits[--n]);
-}
 void clearPtpExchange() { haveSync = haveFollow = haveTx = haveResponse = false; }
 bool ptpHardwareTime(const uint8_t *p, PtpTime &t) {
   if (p[8] || p[9]) return false;
@@ -59,22 +59,36 @@ void finishPtpExchange() {
   // Reject impossible or implausible direct-link measurements, including
   // events spanning an unexpected clock step or stale timestamp pairing.
   if (path < -1000 || path > 1000000) {
+    servoStableSamples = 0;
     Serial.print(F("PTP rejected path_ns=")); printSigned64(path); Serial.println(); return;
   }
   ++ptpSamples;
+  lastCompletedExchange = millis(); followerReceiving = true;
+#if !TINYPTP_PTP4L_LOG
   Serial.print(F("PTP sample=")); Serial.print(ptpSamples);
   Serial.print(F(" seq=")); Serial.print(delaySequence);
   Serial.print(F(" offset_ns=")); printSigned64(offset);
   Serial.print(F(" path_ns=")); printSigned64(path);
   Serial.print(F(" freq_ppb=")); Serial.print(frequencyPpb);
   Serial.println(ptpDiscipline ? F(" servo=on") : F(" servo=off"));
-  if (!ptpDiscipline) return;
+#endif
+  if (!ptpDiscipline) {
+#if TINYPTP_PTP4L_LOG
+    ptpLogSample(offset, path, frequencyPpb, 0, ptpSamples, delaySequence);
+#endif
+    return;
+  }
   if (offset > 500000000LL || offset < -500000000LL) {
     if (!ptpSetClock(-offset)) { Serial.println(F("PTP clock step failed")); ptpRunning = false; return; }
-    integralPpb = frequencyPpb = 0;
+    integralPpb = frequencyPpb = 0; servoStableSamples = 0;
     if (!ptpSetFrequency(0)) ptpRunning = false;
     quarantineUntil = millis() + 200;
+#if TINYPTP_PTP4L_LOG
+    ptpLogSample(offset, path, frequencyPpb, 1, ptpSamples, delaySequence);
+    ptpLogPrefix(); Serial.println(F("clock stepped; acquiring residual offset"));
+#else
     Serial.println(F("PTP coarse clock step; acquiring residual offset"));
+#endif
     return;
   }
   // 1 Hz PI servo, ppb equals ns/s. Conditional integration prevents windup.
@@ -86,15 +100,23 @@ void finishPtpExchange() {
   if (control > 500000) control = 500000;
   if (control < -500000) control = -500000;
   frequencyPpb = control;
-  if (!ptpSetFrequency(frequencyPpb)) ptpRunning = false;
+  if (!ptpSetFrequency(frequencyPpb)) {
+    ptpRunning = false; ptpLogPrefix(); Serial.println(F("frequency update failed")); return;
+  }
+  if (offset >= -1000 && offset <= 1000) {
+    if (servoStableSamples < 8) ++servoStableSamples;
+  } else servoStableSamples = 0;
+#if TINYPTP_PTP4L_LOG
+  ptpLogSample(offset, path, frequencyPpb, servoStableSamples >= 8 ? 3 : 2, ptpSamples, delaySequence);
+#endif
 }
-// At most 68 Ethernet bytes, padded to an eight-byte USB boundary after the
+// At most 78 Ethernet bytes, padded to an eight-byte USB boundary after the
 // ASIX header. All transmitted PTP frames have zero correction on this direct link.
 bool sendPtpMessage(uint8_t type, uint16_t seq, const PtpTime *stamp = NULL,
                     const uint8_t *requester = NULL) {
-  uint8_t tx[80] = {};
-  const uint8_t messageLength = type == 9 ? 54 : 44;
-  const uint8_t frameLength = type == 9 ? 68 : 60;
+  uint8_t tx[88] = {};
+  const uint8_t messageLength = type == 11 ? 64 : type == 9 ? 54 : 44;
+  const uint8_t frameLength = type == 11 ? 78 : type == 9 ? 68 : 60;
   const uint32_t header = uint32_t(frameLength) | (uint32_t(frameLength) << 21);
   for (uint8_t i = 0; i < 4; ++i) tx[i] = header >> (8 * i);
   const uint8_t dest[6] = {1,0x1b,0x19,0,0,0};
@@ -105,8 +127,14 @@ bool sendPtpMessage(uint8_t type, uint16_t seq, const PtpTime *stamp = NULL,
   if (type == 0) h[6] = 2; // two-step Sync
   memcpy(h + 20, ptpIdentity, 10);
   h[30] = seq >> 8; h[31] = seq;
-  h[32] = type == 0 ? 0 : type == 1 ? 1 : type == 8 ? 2 : 3;
-  h[33] = type == 1 ? 0x7f : 0; // 1 Hz Sync and Delay_Resp interval
+  h[32] = type == 0 ? 0 : type == 1 ? 1 : type == 8 ? 2 : type == 9 ? 3 : 5;
+  h[33] = type == 11 ? 1 : type == 1 ? 0x7f : 0; // 1 Hz Sync and Delay_Resp interval
+  if (type == 11) {
+    // Free-running oscillator, arbitrary timescale: no UTC-valid/traceability flags.
+    h[47] = 128; h[48] = 248; h[49] = 0xfe;
+    h[50] = h[51] = 0xff; h[52] = 128;
+    memcpy(h + 53, ptpIdentity, 8); h[63] = 0xa0;
+  }
   if (stamp) {
     for (uint8_t i = 0; i < 4; ++i) {
       h[36 + i] = stamp->sec >> (24 - 8 * i);
@@ -149,9 +177,7 @@ void handlePtpFrame(const uint8_t *frame, uint16_t length, const uint8_t *stamp)
         !ptpHardwareTime(stamp, received) || !memcmp(h + 20, ptpIdentity, 10) ||
         ptpCorrection(h + 8) != 0) return;
     memcpy(selectedMaster, h + 20, 10); ptpPeerBound = true;
-    Serial.print(F("PTP bound master="));
-    for (uint8_t i = 0; i < 10; ++i) hexByte(selectedMaster[i]);
-    Serial.println();
+    ptpLogPrefix(); Serial.print(F("selected master ")); ptpLogIdentity(selectedMaster); Serial.println();
   }
   if (memcmp(h + 20, ptpLearnMaster ? selectedMaster : ptpMaster, 10)) return;
   const uint8_t type = h[0] & 0xf;
@@ -161,6 +187,10 @@ void handlePtpFrame(const uint8_t *frame, uint16_t length, const uint8_t *stamp)
   if (type == 0) {
     if (haveSync || !(h[6] & 2)) return; // fixed two-step master
     if (!stamp || !ptpHardwareTime(stamp, t2)) { ++ptpRxMissing; return; }
+    if (!followerReceiving) {
+      ptpLogPrefix(); Serial.println(F("port 1: LISTENING to SLAVE on MASTER_SELECTED"));
+      followerReceiving = true;
+    }
     syncSequence = seq; syncCorrection = correction;
     haveSync = true; exchangeStarted = millis();
   } else if (type == 8 && haveSync && !haveFollow && seq == syncSequence) {
@@ -222,7 +252,7 @@ void pollPtpTxTimestamp() {
   if (!tsOverflow) { memcpy(tsReport + tsUsed, packet, count); tsUsed += count; }
   if (count == 64) return;
   ++tsReports;
-  if (tsReports <= 3) {
+  if (diagnosticsEnabled && tsReports <= 3) {
     Serial.print(F("TX timestamp report bytes=")); Serial.println(tsUsed);
     for (uint8_t i = 0; i < tsUsed; ++i) { hexByte(tsReport[i]); Serial.print(' '); }
     Serial.println();
@@ -253,7 +283,7 @@ void startPtpClient(bool discipline, bool masterRole = false, bool learnMaster =
   ptpRunning = false; clearPtpExchange();
   ptpMasterRole = masterRole; ptpLearnMaster = learnMaster;
   ptpPeerBound = masterFollowerBound = masterSyncPending = false;
-  masterResponses = 0;
+  masterResponses = 0; servoStableSamples = 0; followerReceiving = false;
   uint8_t bfm;
   // MAC configuration invalidates the earlier PTP setup on the tested unit.
   // Restore the complete clock/report setup here, after Ethernet setup.
@@ -272,6 +302,7 @@ void startPtpClient(bool discipline, bool masterRole = false, bool learnMaster =
       !asixWrite(verifiedAsixAddress, 0x15, 6, 0, 1, 0x50) ||
       !pbusWrite(verifiedAsixAddress, 0x13, 0x3004, 0x003f0100UL)) return;
   if (!reportClockProgress(verifiedAsixAddress)) return;
+  if (!enablePpsOutput()) return;
   memcpy(ptpIdentity, probeMac, 3); ptpIdentity[3] = 0xff; ptpIdentity[4] = 0xfe;
   memcpy(ptpIdentity + 5, probeMac + 3, 3); ptpIdentity[8] = 0; ptpIdentity[9] = 1;
   tsUsed = rxUsed = 0; tsOverflow = rxOverflow = false;
@@ -281,12 +312,19 @@ void startPtpClient(bool discipline, bool masterRole = false, bool learnMaster =
   ptpDiscipline = discipline && !masterRole;
   if (!ptpSetFrequency(0)) return;
   ptpRunning = true;
-  masterLastSync = millis();
-  if (masterRole) Serial.println(F("PTP fixed master RUN domain=42 two-step 1Hz"));
-  else if (learnMaster) Serial.println(F("PTP direct follower RUN domain=42 waiting for master"));
-  else Serial.println(discipline ? F("PTP fixed client RUN domain=42 servo=on") : F("PTP timestamp test RUN domain=42 servo=off"));
+  masterLastSync = masterLastAnnounce = lastCompletedExchange = millis();
+  ptpLogPrefix(); Serial.print(F("clock identity ")); ptpLogIdentity(ptpIdentity); Serial.println();
+  ptpLogPrefix();
+  if (masterRole) Serial.println(F("port 1: INITIALIZING to MASTER on FIXED_ROLE"));
+  else Serial.println(F("port 1: INITIALIZING to LISTENING on FIXED_ROLE"));
+  if (masterRole) { ptpLogPrefix(); Serial.println(F("grandmaster: free-running oscillator, UTC not valid")); }
+
 }
 void pollPtpMasterSchedule() {
+  if (uint32_t(millis() - masterLastAnnounce) >= 2000) {
+    masterLastAnnounce = millis();
+    if (!sendPtpMessage(11, ++announceSequence)) { ptpRunning = false; return; }
+  }
   if (masterSyncPending && uint32_t(millis() - masterSyncStarted) > 2500) {
     masterSyncPending = false; ++ptpTimeouts;
     Serial.println(F("PTP Sync TX timestamp timeout"));
@@ -306,9 +344,13 @@ void pollPtpClient() {
     uint8_t data[16]; uint16_t length = sizeof(data);
     uint8_t error = Usb.inTransfer(verifiedAsixAddress, 1, &length, data);
     if (!error && length >= 6) {
-      Serial.print(F("PTP interrupt="));
-      for (uint8_t i = 0; i < length; ++i) { hexByte(data[i]); Serial.print(' '); }
-      Serial.println();
+      if (!(data[2] & 1)) {
+        ptpRunning = ethernetReady = false; clearPtpExchange(); servoStableSamples = 0;
+        ptpLogPrefix(); Serial.println(F("port 1: link down")); return;
+      }
+      Diag.print(F("PTP interrupt="));
+      for (uint8_t i = 0; i < length; ++i) { hexByte(data[i]); Diag.print(' '); }
+      Diag.println();
     }
   }
   pollPtpRx();
@@ -317,7 +359,7 @@ void pollPtpClient() {
   if (!ptpRunning) return;
   if (ptpMasterRole) pollPtpMasterSchedule();
   if (haveSync && uint32_t(millis() - exchangeStarted) > 2500) {
-    ++ptpTimeouts;
+    ++ptpTimeouts; servoStableSamples = 0;
     Serial.print(F("PTP exchange timeout follow=")); Serial.print(haveFollow);
     Serial.print(F(" tx=")); Serial.print(haveTx);
     Serial.print(F(" response=")); Serial.println(haveResponse);
@@ -330,9 +372,24 @@ void pollPtpClient() {
     }
     clearPtpExchange();
   }
+  if (!ptpMasterRole && uint32_t(millis() - lastCompletedExchange) > 5000) {
+    if (followerReceiving) {
+      ptpLogPrefix(); Serial.println(F("port 1: SLAVE to LISTENING on SYNC_TIMEOUT"));
+      followerReceiving = false; servoStableSamples = 0;
+    }
+    // Preserve the selected peer but require fresh timestamps for reacquisition.
+    clearPtpExchange(); lastCompletedExchange = millis();
+  }
   static uint32_t lastReport = 0;
   if (uint32_t(millis() - lastReport) > 10000) {
     lastReport = millis();
+#if TINYPTP_PTP4L_LOG
+    ptpLogPrefix(); Serial.print(ptpMasterRole ? F("MASTER") : F("FOLLOWER"));
+    Serial.print(F(" samples ")); Serial.print(ptpSamples);
+    Serial.print(F(" timeouts ")); Serial.print(ptpTimeouts);
+    Serial.print(F(" missing_rx ")); Serial.print(ptpRxMissing);
+    Serial.print(F(" discarded ")); Serial.println(ptpRxDiscard);
+#else
     if (ptpMasterRole) {
       Serial.print(F("PTP master Delay_Resp sent=")); Serial.println(masterResponses);
     }
@@ -343,5 +400,6 @@ void pollPtpClient() {
     Serial.print(F("PTP TX reports=")); Serial.print(tsReports);
     Serial.print(F(" packets=")); Serial.print(tsPackets);
     Serial.print(F(" pending_bytes=")); Serial.println(tsUsed);
+#endif
   }
 }

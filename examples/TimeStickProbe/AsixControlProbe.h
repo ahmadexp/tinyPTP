@@ -20,9 +20,9 @@ bool asixRead(uint8_t address, uint8_t request, uint16_t value,
   const uint8_t error = Usb.ctrlReq(address, 0, 0xc0, request,
       uint8_t(value), uint8_t(value >> 8), index, length, length, data, &count);
   if (error || count.received != length) {
-    Serial.print(F("ASIX read request=0x")); hexByte(request);
-    Serial.print(F(" error=0x")); hexByte(error);
-    Serial.print(F(" received=")); Serial.println(count.received);
+    Diag.print(F("ASIX read request=0x")); hexByte(request);
+    Diag.print(F(" error=0x")); hexByte(error);
+    Diag.print(F(" received=")); Diag.println(count.received);
     return false;
   }
   return true;
@@ -35,7 +35,7 @@ void reportAsixControls(UsbDevice *device) {
   if (Usb.getDevDescr(address, 0, sizeof(descriptor),
                      reinterpret_cast<uint8_t *>(&descriptor))) return;
   if (descriptor.idVendor != 0x0b95 || descriptor.idProduct != 0x1790) {
-    Serial.println(F("ASIX diagnostic skipped: unsupported VID/PID"));
+    Diag.println(F("ASIX diagnostic skipped: unsupported VID/PID"));
     return;
   }
   // Require the vendor configuration observed on this TimeStick before using it.
@@ -43,22 +43,22 @@ void reportAsixControls(UsbDevice *device) {
   if (Usb.getConfDescr(address, 0, sizeof(config), uint8_t(0), config) ||
       config[0] != 9 || config[1] != 2 || config[5] != 1 ||
       config[9] != 9 || config[10] != 4 || config[14] != 0xff) {
-    Serial.println(F("ASIX diagnostic skipped: unexpected configuration"));
+    Diag.println(F("ASIX diagnostic skipped: unexpected configuration"));
     return;
   }
   const uint8_t error = Usb.setConf(address, 0, 1);
-  Serial.print(F("SET_CONFIGURATION(1) error=0x")); hexByte(error); Serial.println();
+  Diag.print(F("SET_CONFIGURATION(1) error=0x")); hexByte(error); Diag.println();
   if (error) return;
   delay(100);
   uint8_t chip;
   if (!asixRead(address, 0x01, 0x0005, 1, 1, &chip)) return;
   // Current ASIX drivers use all four high bits: 7 is AX88279, 15 is AX88279A.
   const uint8_t code = (chip & 0xf0) >> 4;
-  Serial.print(F("ASIX chip status=0x")); hexByte(chip);
-  Serial.print(F(" chip code=")); Serial.println(code);
+  Diag.print(F("ASIX chip status=0x")); hexByte(chip);
+  Diag.print(F(" chip code=")); Diag.println(code);
   uint8_t revision;
   if (asixRead(address, 0x2a, 0x00fb, 1, 1, &revision)) {
-    Serial.print(F("ASIX silicon revision=0x")); hexByte(revision); Serial.println();
+    Diag.print(F("ASIX silicon revision=0x")); hexByte(revision); Diag.println();
   }
   uint8_t firmware[4];
   bool firmwareRead = true;
@@ -67,24 +67,24 @@ void reportAsixControls(UsbDevice *device) {
                   1, 1, &firmware[i])) { firmwareRead = false; break; }
   }
   if (firmwareRead) {
-    Serial.print(F("ASIX firmware="));
+    Diag.print(F("ASIX firmware="));
     for (uint8_t i = 0; i < 4; ++i) {
-      if (i) Serial.print('.');
-      Serial.print(i == 3 ? firmware[i] & 0x0f : firmware[i]);
+      if (i) Diag.print('.');
+      Diag.print(i == 3 ? firmware[i] & 0x0f : firmware[i]);
     }
-    Serial.println();
+    Diag.println();
   }
   uint8_t mac[6];
   if (asixRead(address, 0x01, 0x0010, 6, 6, mac)) {
-    Serial.print(F("ASIX MAC="));
+    Diag.print(F("ASIX MAC="));
     for (uint8_t i = 0; i < sizeof(mac); ++i) {
-      if (i) Serial.print(':');
+      if (i) Diag.print(':');
       hexByte(mac[i]);
     }
-    Serial.println();
+    Diag.println();
   }
   if (code != 7) {
-    Serial.println(F("AX88279 clock read skipped: chip code is not 7"));
+    Diag.println(F("AX88279 clock read skipped: chip code is not 7"));
     return;
   }
   verifiedAsixAddress = address;
@@ -93,12 +93,12 @@ void reportAsixControls(UsbDevice *device) {
     if (!asixRead(address, 0x13, 0x0002, 0x1014, sizeof(clock), clock)) return;
     const uint32_t ns = uint32_t(clock[0]) | (uint32_t(clock[1]) << 8) |
                         (uint32_t(clock[2]) << 16) | (uint32_t(clock[3]) << 24);
-    Serial.print(F("Clock seconds(hex)="));
+    Diag.print(F("Clock seconds(hex)="));
     for (int8_t i = 9; i >= 4; --i) hexByte(clock[i]);
-    Serial.print(F(" nanoseconds=")); Serial.print(ns);
-    if (ns >= 1000000000UL) Serial.print(F(" INVALID"));
-    Serial.println();
+    Diag.print(F(" nanoseconds=")); Diag.print(ns);
+    if (ns >= 1000000000UL) Diag.print(F(" INVALID"));
+    Diag.println();
     if (sample < 2) delay(1000);
   }
-  Serial.println(F("Clock reads complete; clock has not been initialized or adjusted."));
+  Diag.println(F("Clock reads complete; clock has not been initialized or adjusted."));
 }

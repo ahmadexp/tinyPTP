@@ -33,9 +33,9 @@ void initializeEthernetProbe(UsbDevice *device) {
     uint16_t count = sizeof(status);
     const uint8_t error = Usb.inTransfer(verifiedAsixAddress, 1, &count, status);
     if (!error && count >= 3) {
-      Serial.print(F("Link interrupt="));
-      for (uint8_t i = 0; i < count; ++i) { hexByte(status[i]); Serial.print(' '); }
-      Serial.println();
+      Diag.print(F("Link interrupt="));
+      for (uint8_t i = 0; i < count; ++i) { hexByte(status[i]); Diag.print(' '); }
+      Diag.println();
       if ((status[1] & 7) == 3 && (status[2] & 1)) {
         gigabitFull = true; break;
       }
@@ -48,7 +48,7 @@ void initializeEthernetProbe(UsbDevice *device) {
   // Resolve duplex from the standard MII advertisement registers as the Linux
   // driver does, rather than relying on firmware-specific interrupt bitfields.
   if (!gigabitFull || !(localGigabit & 0x0200) || !(partnerGigabit & 0x0800)) {
-    Serial.println(F("Ethernet probe requires 1000/full link")); return;
+    Diag.println(F("Ethernet probe requires 1000/full link")); return;
   }
   if (!asixRead(verifiedAsixAddress, 1, 0x10, 6, 6, probeMac)) return;
   // Disable offloads and VLAN transformations for the raw-frame diagnostic.
@@ -67,13 +67,13 @@ void initializeEthernetProbe(UsbDevice *device) {
   uint8_t bulk[5] = {7, 0, 0, 3, 0x3f};
   if (Usb.ctrlReq(verifiedAsixAddress, 0, 0x40, 1, 0x2e, 0,
                   5, 5, 5, bulk, NULL)) {
-    Serial.println(F("Bulk-IN setup failed")); return;
+    Diag.println(F("Bulk-IN setup failed")); return;
   }
   if (!macWrite(0x22, 2, 0x0133) || !macWrite(0x0b, 2, 0x01aa) ||
       !macWrite(0xb7, 1, 3)) return;
   rxUsed = 0; rxOverflow = false;
   ethernetReady = true;
-  Serial.println(F("Ethernet probe ready; t sends 10 echo-test frames"));
+  Diag.println(F("Ethernet probe ready; t sends 10 echo-test frames"));
 }
 
 // Only accept a single 60-byte test frame. Larger/multi-frame aggregates are
@@ -101,7 +101,7 @@ bool pollEcho(uint8_t sequence) {
   const uint8_t error = Usb.inTransfer(verifiedAsixAddress, 2, &count, packet);
   if (error == hrNAK) return false;
   if (error) {
-    Serial.print(F("RX USB error=0x")); hexByte(error); Serial.println();
+    Diag.print(F("RX USB error=0x")); hexByte(error); Diag.println();
     ethernetReady = false; return false;
   }
   if (count > sizeof(rxAggregate) - rxUsed) rxOverflow = true;
@@ -109,16 +109,16 @@ bool pollEcho(uint8_t sequence) {
   if (count == 64) return false;
   const bool matched = !rxOverflow && isEchoAggregate(rxUsed, sequence);
   if (!matched && rxUsed) {
-    Serial.print(F("Ignored RX aggregate bytes=")); Serial.print(rxUsed);
-    if (rxOverflow) Serial.print(F("+ (oversize)"));
-    Serial.println();
+    Diag.print(F("Ignored RX aggregate bytes=")); Diag.print(rxUsed);
+    if (rxOverflow) Diag.print(F("+ (oversize)"));
+    Diag.println();
   }
   rxUsed = 0; rxOverflow = false;
   return matched;
 }
 
 void runEthernetProbe() {
-  if (!ethernetReady) { Serial.println(F("Run e to initialize Ethernet first")); return; }
+  if (!ethernetReady) { Diag.println(F("Run e to initialize Ethernet first")); return; }
   uint8_t successes = 0;
   for (uint8_t sequence = 0; sequence < 10 && ethernetReady; ++sequence) {
     uint8_t tx[72] = {};  // 8-byte USB header, 60-byte frame, 4-byte alignment.
@@ -130,8 +130,8 @@ void runEthernetProbe() {
     tx[22] = 0xa1; tx[23] = sequence;
     for (uint8_t i = 16; i < 60; ++i) tx[8 + i] = i ^ sequence ^ 0x5a;
     const uint8_t error = Usb.outTransfer(verifiedAsixAddress, 3, sizeof(tx), tx);
-    Serial.print(F("TX seq=")); Serial.print(sequence);
-    Serial.print(F(" USB status=0x")); hexByte(error); Serial.println();
+    Diag.print(F("TX seq=")); Diag.print(sequence);
+    Diag.print(F(" USB status=0x")); hexByte(error); Diag.println();
     if (error) { ethernetReady = false; break; }
     const uint32_t start = millis();
     bool matched = false;
@@ -139,7 +139,7 @@ void runEthernetProbe() {
       matched = pollEcho(sequence);
     }
     if (matched) ++successes;
-    Serial.println(matched ? F("RX matching echo PASS") : F("RX echo timeout"));
+    Diag.println(matched ? F("RX matching echo PASS") : F("RX echo timeout"));
   }
-  Serial.print(F("Ethernet echo result=")); Serial.print(successes); Serial.println(F("/10"));
+  Diag.print(F("Ethernet echo result=")); Diag.print(successes); Diag.println(F("/10"));
 }

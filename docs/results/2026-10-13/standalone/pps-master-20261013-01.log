@@ -1,0 +1,23 @@
+UTC: 2026-10-13T22:34:36.118290+00:00
+Port: /dev/serial/by-id/usb-Arduino__www.arduino.cc__0043_1453230343235190E071-if00; baud: 115200; reset: True
+tinyptp[0.000]: boot role GRANDMASTER
+tinyptp[0.000]: serial 115200 8N1; offset/path ns; frequency ppb
+tinyptp[0.582]: port 1: initializing Ethernet and hardware clock
+tinyptp[17.119]: initialization failed; retrying in 5 seconds (d for diagnostics)
+tinyptp[22.121]: port 1: initializing Ethernet and hardware clock
+tinyptp[36.259]: initialization failed; retrying in 5 seconds (d for diagnostics)
+tinyptp[41.260]: port 1: initializing Ethernet and hardware clock
+tinyptp[53.416]: PPS gate before=0x0
+tinyptp[53.419]: PPS gate=0x4000 clock=0x5F active_ns=500000000 enabled (register readback)
+tinyptp[53.423]: clock identity 9c69d3.fffe.2ba18d
+tinyptp[53.427]: port 1: INITIALIZING to MASTER on FIXED_ROLE
+tinyptp[53.432]: grandmaster: free-running oscillator, UTC not valid
+tinyptp[53.438]: port 1: link down
+tinyptp[58.438]: port 1: initializing Ethernet and hardware clock
+tinyptp[71.597]: PPS gate before=0x4000
+tinyptp[71.599]: PPS gate=0x4000 clock=0x5F active_ns=500000000 enabled (register readback)
+tinyptp[71.603]: clock identity 9c69d3.fffe.2ba18d
+tinyptp[71.607]: port 1: INITIALIZING to MASTER on FIXED_ROLE
+tinyptp[71.612]: grandmaster: free-running oscillator, UTC not valid
+tinyptp[71.618]: port 1: link down
+tinyptp[76.618]: port 1: initializing Ethernet and hardware clock

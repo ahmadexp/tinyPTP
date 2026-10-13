@@ -11,6 +11,10 @@ remaining measurement limits.
 
 ## Hardware and roles
 
+The README includes [setup photographs](../README.md#the-working-setup), the
+[three marked shield jumpers](../README.md#usb-host-shield-power-jumpers), and
+[captured serial samples from both boards](../README.md#live-serial-output-samples).
+
 Connect each TimeStick to its own UNO's MAX3421E shield. Connect the two
 TimeSticks directly by Ethernet. Both UNO USB-B ports connect to PTPBox for
 power, upload, and serial control. Linux does not participate as a PTP master

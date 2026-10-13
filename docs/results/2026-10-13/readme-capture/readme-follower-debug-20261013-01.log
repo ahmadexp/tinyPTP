@@ -1,0 +1,102 @@
+UTC: 2026-10-13T23:28:04.723363+00:00
+Port: /dev/serial/by-id/usb-Arduino__www.arduino.cc__0043_14533303731351B0C090-if00; baud: 115200; reset: True
+tinyptp[0.000]: boot role FOLLOWER
+tinyptp[0.000]: serial 115200 8N1; offset/path ns; frequency ppb
+tinyptp[0.580]: port 1: initializing Ethernet and hardware clock
+SET_CONFIGURATION(1) error=0x00
+ASIX chip status=0x74 chip code=7
+ASIX silicon revision=0x01
+ASIX firmware=1.3.16.7
+ASIX MAC=9C:69:D3:2B:A1:2F
+ASIX read request=0x13 error=0x05 received=0
+AX88279 volatile initialization
+PHY power=0x02
+PHY initial advertisement=0x1D81 gigabit_control=0x0200
+PHY AN 2.5G advertisement=0x0081
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x616D
+Ethernet PHY link UP
+PTP initialization skipped: clock request failed after PHY setup
+tinyptp[6.621]: initialization failed; retrying in 5 seconds (d for diagnostics)
+tinyptp[11.628]: port 1: initializing Ethernet and hardware clock
+SET_CONFIGURATION(1) error=0x00
+ASIX chip status=0x74 chip code=7
+ASIX silicon revision=0x01
+ASIX firmware=1.3.16.7
+ASIX MAC=9C:69:D3:2B:A1:2F
+Clock seconds(hex)=BEEFDEADBEEF nanoseconds=3735928559 INVALID
+Clock seconds(hex)=BEEFDEADBEEF nanoseconds=3735928559 INVALID
+Clock seconds(hex)=BEEFDEADBEEF nanoseconds=3735928559 INVALID
+Clock reads complete; clock has not been initialized or adjusted.
+AX88279 volatile initialization
+PHY power=0x02
+PHY initial advertisement=0x1C01 gigabit_control=0x0A00
+PHY AN 2.5G advertisement=0x4001
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x616D
+Ethernet PHY link UP
+PTP initialization skipped: clock request failed after PHY setup
+tinyptp[18.781]: initialization failed; retrying in 5 seconds (d for diagnostics)
+tinyptp[23.787]: port 1: initializing Ethernet and hardware clock
+SET_CONFIGURATION(1) error=0x00
+ASIX chip status=0x74 chip code=7
+ASIX silicon revision=0x01
+ASIX firmware=1.3.16.7
+ASIX MAC=9C:69:D3:2B:A1:2F
+Clock seconds(hex)=BEEFDEADBEEF nanoseconds=3735928559 INVALID
+Clock seconds(hex)=BEEFDEADBEEF nanoseconds=3735928559 INVALID
+Clock seconds(hex)=BEEFDEADBEEF nanoseconds=3735928559 INVALID
+Clock reads complete; clock has not been initialized or adjusted.
+AX88279 volatile initialization
+PHY power=0x02
+PHY initial advertisement=0x1C01 gigabit_control=0x0A00
+PHY AN 2.5G advertisement=0x4001
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x616D
+Ethernet PHY link UP
+PTP initialization skipped: clock request failed after PHY setup
+tinyptp[30.940]: initialization failed; retrying in 5 seconds (d for diagnostics)
+tinyptp[35.947]: port 1: initializing Ethernet and hardware clock
+SET_CONFIGURATION(1) error=0x00
+ASIX chip status=0x74 chip code=7
+ASIX silicon revision=0x01
+ASIX firmware=1.3.16.7
+ASIX MAC=9C:69:D3:2B:A1:2F
+Clock seconds(hex)=BEEFDEADBEEF nanoseconds=3735928559 INVALID
+Clock seconds(hex)=BEEFDEADBEEF nanoseconds=3735928559 INVALID
+Clock seconds(hex)=BEEFDEADBEEF nanoseconds=3735928559 INVALID
+Clock reads complete; clock has not been initialized or adjusted.
+AX88279 volatile initialization
+PHY power=0x02
+PHY initial advertisement=0x1C01 gigabit_control=0x0A00
+PHY AN 2.5G advertisement=0x4001
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+Ethernet PHY link timeout
+PHY reg=0 value=0x1040
+PHY reg=1 value=0x6149
+PHY reg=4 value=0x1C01
+PHY reg=5 value=0xDC01
+PHY reg=9 value=0x0A00
+PHY reg=10 value=0x48FF
+PHY reg=17 value=0x6200
+tinyptp[53.618]: initialization failed; retrying in 5 seconds (d for diagnostics)

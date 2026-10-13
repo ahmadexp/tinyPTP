@@ -31,6 +31,9 @@ sockets. There is no USB hub driver. Initial all-zero controller reads cleared
 after power-jumper work; the user reported connecting the 5 V jumper above
 reset. This records the observed repair, not a universal soldering instruction
 for every shield variant. Verify the board's own 3.3 V, 5 V, and VBUS routing.
+The user supplied a [photograph of the three required jumpers on the tested
+VS60 shield](../README.md#usb-host-shield-power-jumpers), including the 5 V
+VBUS selection and two power-header jumpers.
 USB power descriptors (450 mA replacement, 500 mA original) are declarations,
 not measured consumption or evidence that the supply can deliver that current.
 

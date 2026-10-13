@@ -22,6 +22,93 @@ the 1 Gb/s negotiation fix, and the hardware experiment. Use the
 UNO-to-Linux experiment is retained below. This is an experimental fixed-role
 implementation, not a complete PTP stack or a flexPTP port.
 
+## The working setup
+
+![Two Arduino UNOs with USB Host Shields and TimeSticks linked by Ethernet](docs/images/two-uno-timestick-setup.png)
+
+Each UNO runs its own PTP role through a MAX3421E USB Host Shield. The white
+Ethernet cable connects the TimeSticks directly; the USB cables provide UNO
+power and serial access. The host computer only captures these serial logs.
+Identify roles using the UNO USB serial numbers below, rather than the
+handwritten labels or left/right positions in the photographs.
+
+## Live serial output samples
+
+Both ports use **115200 baud, 8N1**, with no flow control. These are actual,
+consecutive lines from the paired 100-second capture on **2026-10-13 at
+22:44 UTC (15:44 Pacific)**, after startup and servo acquisition.
+
+| Role | UNO USB serial suffix | Port during capture | TimeStick clock identity |
+| --- | --- | --- | --- |
+| Grandmaster | `E071` | `/dev/ttyACM0` | `9c69d3.fffe.2ba18d` |
+| Follower | `C090` | `/dev/ttyACM1` | `9c69d3.fffe.2ba12f` |
+
+### Grandmaster
+
+```text
+tinyptp[95.825]: port 1: MASTER sync 84 delay_resp 84 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[96.825]: port 1: MASTER sync 85 delay_resp 85 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[97.825]: port 1: MASTER sync 86 delay_resp 86 freq +0 timeouts 0 missing_rx 0 discarded 0
+```
+
+`sync` counts completed hardware-timestamped Sync/Follow_Up pairs; `delay_resp`
+counts responses sent to the follower. `freq +0` means the grandmaster uses its
+free-running oscillator without an applied frequency correction. Both counts
+advance once per second in this sample.
+
+### Follower
+
+```text
+tinyptp[95.844]: master offset 45 s3 freq -10698 path delay 735 sample 84 seq 84
+tinyptp[96.844]: master offset 45 s3 freq -10700 path delay 735 sample 85 seq 85
+tinyptp[97.844]: master offset 35 s3 freq -10696 path delay 735 sample 86 seq 86
+```
+
+`master offset` is follower minus grandmaster in **nanoseconds**; `freq` is the
+applied correction in **parts per billion**; `path delay` is the estimated mean
+one-way delay in **nanoseconds**. `s3` means the last eight accepted offsets were
+within +/-1000 ns. These are internal PTP estimates, not oscilloscope readings.
+The bracketed time is each UNO's uptime, so it is not a common UTC timestamp.
+
+The run completed **86 follower exchanges with no timeouts**. The grandmaster
+printed **87 status lines at 1000 ms intervals**. Read the
+[full grandmaster log](docs/results/2026-10-13/master-serial/master-log-20261013-01.log),
+[full follower log](docs/results/2026-10-13/master-serial/master-log-follower-20261013-01.log),
+and [validation record](docs/results/2026-10-13/master-serial/README.md).
+The [serial guide](docs/standalone-roles.md) explains startup, states, and controls.
+
+A later capture attempt at 23:26 UTC encountered a hardware-clock USB access
+failure after resetting both UNOs. It produced no PTP samples; see the
+[separate diagnostic record](docs/results/2026-10-13/readme-capture/README.md).
+A power-cycle retry is pending. The excerpts above remain the earlier verified
+run, not output from that failed attempt.
+
+
+## PPS on the oscilloscope
+
+![Both TimeStick PPS outputs connected to the oscilloscope](docs/images/two-timestick-pps-oscilloscope.png)
+
+The supplied photograph shows both PPS rising edges, CH1 in yellow and CH2 in
+cyan, on a displayed 50 ns/div horizontal scale. This confirms visible physical
+outputs. The photograph was taken separately from the serial capture above;
+no cursor measurement, channel-to-role mapping, or cable/channel delay
+calibration was supplied, so it is not used to claim a numerical PPS offset.
+
+## USB Host Shield power jumpers
+
+![Three required solder-jumper positions circled on the tested USB Host Shield VS60](docs/images/usb-host-shield-power-jumpers.png)
+
+For the pictured **USB Host Shield VS60**, the user marked the **three solder
+jumpers that need to be connected** in red: the **5 V VBUS jumper above RESET**
+and the **two power jumpers beside the power header**. The photograph shows
+the working configuration used for this setup. Make solder changes with power
+disconnected and match the pictured board revision and labels; this is not a
+universal jumper layout for every USB Host Shield. The unmarked 3.3 V VBUS
+selection is not one of the three highlighted connections.
+
+See the [hardware power notes](docs/setup-and-design.md#physical-topology)
+and [standalone role guide](docs/standalone-roles.md) for the rest of the setup.
+
 ## Two-UNO results, 2026-10-13
 
 The direct pair completed **228 exchanges** in a 240-second run. Over its

@@ -138,13 +138,27 @@ intrinsic frequency error, including the correction already applied to the
 clock. A separate controller cancels estimated drift and removes phase over
 four seconds. It uses 31,426 flash bytes and 1,017 static SRAM bytes on the UNO.
 
-Numerical, simulation, protocol, and build checks pass. **Hardware performance
-is not yet validated:** the new fixed-PI baseline encountered initialization
-and link failures before the Kalman image was uploaded. Fixed PI is still
-installed. No measured Kalman accuracy claim is made.
+Remote recovery restored PTP without physical intervention, followed by three
+five-minute runs. After the first 120 seconds from each run's first accepted
+sample, the raw follower-offset results were:
+
+| Servo | Offset RMS | Offset range | Samples in window |
+| --- | ---: | ---: | ---: |
+| PI before | 48.30 ns | -90 to +105 ns | 166 |
+| Kalman | 94.99 ns | -180 to +305 ns | 166 |
+| PI after | 110.60 ns | -270 to +220 ns | 166 |
+
+Each run recorded 286 exchanges with zero reported timeouts, missing receive
+timestamps, or discarded exchanges. All measured-window samples were in
+`s3`. Kalman falls between the two PI references; these sequential trials
+show substantial variation and do not establish a Kalman advantage. Fixed PI
+is restored and remains the default. These are internal PTP estimates, not
+independent PPS measurements.
+
+![PI, Kalman, and repeated PI follower measurements](docs/results/2026-10-13/kalman/plots/servo-steady-state.png)
 
 [Model, noise assumptions, simulation results, and build instructions](docs/kalman-servo.md)
-| [Hardware attempt and raw failure logs](docs/results/2026-10-13/kalman/README.md)
+| [Hardware results, recovery record, and raw logs](docs/results/2026-10-13/kalman/README.md)
 
 ## PPS on the oscilloscope
 

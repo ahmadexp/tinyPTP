@@ -1,0 +1,42 @@
+UTC: 2026-10-14T04:27:51.072418+00:00
+est=0x13 error=0x05 received=0
+ASIX read request=0x13 error=0x05 received=0
+request=0x13 error=0x05 received=0
+ASIX read request=0x13 error=0x05 received=0
+ASIX read request=0x13 error=0x05 received=0
+tinyptp[0.000]: boot role GRANDMASTER
+tinyptp[0.000]: serial 115200 8N1; offset/path ns; frequency ppb
+SET_CONFIGURATION(1) error=0x00
+ASIX chip status=0x74 chip code=7
+ASIX silicon revision=0x01
+ASIX firmware=1.3.16.7
+ASIX MAC=9C:69:D3:2B:A1:8D
+ASIX read request=0x13 error=0x05 received=0
+AX88279 volatile initialization
+PHY power=0x02
+PHY initial advertisement=0x1D81 gigabit_control=0x0200
+PHY AN 2.5G advertisement=0x0081
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+Ethernet PHY link timeout
+PHY reg=0 value=0x1040
+PHY reg=1 value=0x6149
+PHY reg=4 value=0x1C01
+PHY reg=5 value=0xDC01
+PHY reg=9 value=0x0A00
+PHY reg=10 value=0x4000
+PHY reg=17 value=0x0000
+Run e first

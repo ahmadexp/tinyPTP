@@ -2,10 +2,14 @@
 
 `SERVO=kalman` (or `TINYPTP_SERVO=3`) builds an experimental Kalman-based
 follower servo. It fits the classic UNO and passes host numerical and protocol
-checks. **Hardware synchronization performance has not been validated yet:**
-the fixed-PI baseline encountered initialization/link failures before the
-Kalman image could be uploaded. See the [experiment record](results/2026-10-13/kalman/README.md).
-Fixed PI remains the default and installed follower image.
+checks. It has also completed a five-minute hardware run after remote recovery
+from the initial link/clock failure. With the provisional settings below, its
+measured raw-offset RMS was 94.99 ns, compared with 48.30 ns for the preceding
+PI run and 110.60 ns for PI repeated afterward. The Kalman result lies
+between the PI references, so this comparison does not establish an advantage.
+See the [experiment record](results/2026-10-13/kalman/README.md) for the
+repeated PI reference, raw logs, and limitations. Fixed PI remains the default
+and has been restored to the follower.
 
 ## What the filter estimates
 
@@ -124,7 +128,9 @@ RMS values**, excluding the initial 201 samples:
 
 The control input sees noisy measurements; the score uses the simulated true
 phase. These are synthetic scenarios with a simple plant and no USB delay,
-not measured TimeStick performance or proof of superiority. A planned
-PI/Kalman/PI hardware comparison must complete after recovery before drawing
-hardware conclusions. Noise parameters should then be evaluated on separate,
-repeated captures rather than tuned to a favorable segment of the test data.
+not measured TimeStick performance or proof of superiority. The hardware
+experiment did not establish this simulated advantage: Kalman raw-offset RMS
+fell between the preceding and following PI references (48.30, 94.99, and
+110.60 ns, in chronological order).
+Noise parameters and the controller time constant need evaluation on separate,
+repeated captures rather than tuning to a favorable segment of the test data.

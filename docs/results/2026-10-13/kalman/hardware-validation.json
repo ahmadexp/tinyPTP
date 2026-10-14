@@ -1,0 +1,122 @@
+{
+  "baseline": {
+    "master": {
+      "source": "kalman-baseline-20261013-02-master.log",
+      "utc_start": "2026-10-14T04:37:33.538529+00:00",
+      "sha256": "37cb266cb297921eaad7f377ac7ecffa3a9448920a8fc520b1ea3346ebeb0ca5",
+      "boot_count": 1,
+      "pps_enabled_readback": true,
+      "accepted_samples": null,
+      "max_counters": {
+        "timeouts": 0,
+        "missing_rx": 0,
+        "discarded": 0
+      },
+      "error_events": {
+        "initialization failed": 0,
+        "link down": 0,
+        "USB disconnected": 0
+      },
+      "last_status": "tinyptp[297.825]: port 1: MASTER sync 286 delay_resp 286 freq +0 timeouts 0 missing_rx 0 discarded 0"
+    },
+    "follower": {
+      "source": "kalman-baseline-20261013-02-follower.log",
+      "utc_start": "2026-10-14T04:37:33.538448+00:00",
+      "sha256": "1fc85233e414f25f0f3297ec79b72379cb42803cfa61e653b48b2562fd0d4288",
+      "boot_count": 1,
+      "pps_enabled_readback": true,
+      "accepted_samples": 286,
+      "max_counters": {
+        "timeouts": 0,
+        "missing_rx": 0,
+        "discarded": 0
+      },
+      "error_events": {
+        "initialization failed": 0,
+        "link down": 0,
+        "USB disconnected": 0
+      },
+      "last_status": "tinyptp[291.817]: FOLLOWER samples 279 timeouts 0 missing_rx 0 discarded 0"
+    }
+  },
+  "kalman": {
+    "master": {
+      "source": "servo-kalman-20261013-01-master.log",
+      "utc_start": "2026-10-14T04:43:12.555738+00:00",
+      "sha256": "2394372c441e1bc71dff49d2119b40bb04027f812598fa18b6c9e07ac84819d1",
+      "boot_count": 1,
+      "pps_enabled_readback": true,
+      "accepted_samples": null,
+      "max_counters": {
+        "timeouts": 0,
+        "missing_rx": 0,
+        "discarded": 0
+      },
+      "error_events": {
+        "initialization failed": 0,
+        "link down": 0,
+        "USB disconnected": 0
+      },
+      "last_status": "tinyptp[297.824]: port 1: MASTER sync 286 delay_resp 286 freq +0 timeouts 0 missing_rx 0 discarded 0"
+    },
+    "follower": {
+      "source": "servo-kalman-20261013-01-follower.log",
+      "utc_start": "2026-10-14T04:43:12.555697+00:00",
+      "sha256": "2e67b03293876fcc5d666a2ed2a20f330a228b394d6d74f906c776dd9dab616c",
+      "boot_count": 1,
+      "pps_enabled_readback": true,
+      "accepted_samples": 286,
+      "max_counters": {
+        "timeouts": 0,
+        "missing_rx": 0,
+        "discarded": 0
+      },
+      "error_events": {
+        "initialization failed": 0,
+        "link down": 0,
+        "USB disconnected": 0
+      },
+      "last_status": "tinyptp[291.821]: FOLLOWER samples 279 timeouts 0 missing_rx 0 discarded 0"
+    }
+  },
+  "after": {
+    "master": {
+      "source": "kalman-restore-pi-20261013-01-master.log",
+      "utc_start": "2026-10-14T04:48:41.214200+00:00",
+      "sha256": "4062e3d6880897d476e050e76699a304d9a4aefd695530518e433a6385d69703",
+      "boot_count": 1,
+      "pps_enabled_readback": true,
+      "accepted_samples": null,
+      "max_counters": {
+        "timeouts": 0,
+        "missing_rx": 0,
+        "discarded": 0
+      },
+      "error_events": {
+        "initialization failed": 0,
+        "link down": 0,
+        "USB disconnected": 0
+      },
+      "last_status": "tinyptp[297.824]: port 1: MASTER sync 286 delay_resp 286 freq +0 timeouts 0 missing_rx 0 discarded 0"
+    },
+    "follower": {
+      "source": "kalman-restore-pi-20261013-01-follower.log",
+      "utc_start": "2026-10-14T04:48:41.214922+00:00",
+      "sha256": "79eb10c2eee00f84919c8c45062a1f992457aabef87bed353784dfe02ac8ed1e",
+      "boot_count": 1,
+      "pps_enabled_readback": true,
+      "accepted_samples": 286,
+      "max_counters": {
+        "timeouts": 0,
+        "missing_rx": 0,
+        "discarded": 0
+      },
+      "error_events": {
+        "initialization failed": 0,
+        "link down": 0,
+        "USB disconnected": 0
+      },
+      "last_status": "tinyptp[291.817]: FOLLOWER samples 279 timeouts 0 missing_rx 0 discarded 0"
+    }
+  }
+}

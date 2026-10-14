@@ -11,7 +11,7 @@
     "defines": "-DTINYPTP_BOOT_ROLE=2 -DTINYPTP_SERVO=3",
     "flash_bytes": 31426,
     "static_sram_bytes": 1017,
-    "uploaded": false
+    "uploaded": true
   },
   "kalman_grandmaster_build": {
     "flash_bytes": 31428,
@@ -22,7 +22,10 @@
   "fixed_pi_rebuild_identical_to_installed": true,
   "unchanged_grandmaster_hex_sha256": "93d38313c683fd9fae9aefb4f0e1c2043097f5706cb7f92a928fa5617a2c12b0",
   "build_toolchain": "AVR core 1.8.8; USB Host Shield Library 2.0 1.7.0",
-  "hardware_comparison": "Blocked by existing PI initialization/link failure; no Kalman upload or measurement",
+  "hardware_comparison": "Completed PI/Kalman/PI, three 300-second captures, 286 accepted exchanges each; see hardware-validation.json and plots/comparison.json",
   "maximum_runtime_stack": "unmeasured",
-  "worst_case_avr_update_time": "unmeasured"
+  "worst_case_avr_update_time": "unmeasured",
+  "remote_recovery": "Temporary PHY and device-reset diagnostic images tested on both UNOs; original images restored before comparison",
+  "installed_follower_after_comparison": "Fixed PI, saved original HEX restored",
+  "hardware_trial_source_commit": "2e2b8df90bebf57b495b7e8d624d35f22bfc50c1"
 }

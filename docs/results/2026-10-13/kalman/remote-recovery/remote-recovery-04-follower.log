@@ -1,0 +1,126 @@
+UTC: 2026-10-14T04:31:57.037004+00:00
+Port: /dev/serial/by-id/usb-Arduino__www.arduino.cc__0043_14533303731351B0C090-if00; baud: 115200; reset: True
+tinyptp[0.000]: boot role FOLLOWER
+tinyptp[0.000]: serial 115200 8N1; offset/path ns; frequency ppb
+tinyptp[0.580]: port 1: initializing Ethernet and hardware clock
+SET_CONFIGURATION(1) error=0x00
+ASIX chip status=0x74 chip code=7
+ASIX silicon revision=0x01
+ASIX firmware=1.3.16.7
+ASIX MAC=9C:69:D3:2B:A1:2F
+ASIX read request=0x13 error=0x05 received=0
+AX88279 volatile initialization
+PHY power=0x02
+Recovery: PHY software reset
+PHY initial advertisement=0x1D01 gigabit_control=0x0200
+PHY AN 2.5G advertisement=0x0081
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+Ethernet PHY link timeout
+PHY reg=0 value=0x1040
+PHY reg=1 value=0x6149
+PHY reg=4 value=0x1D81
+PHY reg=5 value=0xDD81
+PHY reg=9 value=0x0A00
+PHY reg=10 value=0x4800
+PHY reg=17 value=0x0000
+tinyptp[17.243]: initialization failed; retrying in 5 seconds (d for diagnostics)
+tinyptp[22.249]: port 1: initializing Ethernet and hardware clock
+SET_CONFIGURATION(1) error=0x00
+ASIX chip status=0x74 chip code=7
+ASIX silicon revision=0x01
+ASIX firmware=1.3.16.7
+ASIX MAC=9C:69:D3:2B:A1:2F
+ASIX read request=0x13 error=0x05 received=0
+AX88279 volatile initialization
+PHY power=0x02
+Recovery: PHY software reset
+PHY initial advertisement=0x1D01 gigabit_control=0x0200
+PHY AN 2.5G advertisement=0x0081
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+Ethernet PHY link timeout
+PHY reg=0 value=0x1040
+PHY reg=1 value=0x6149
+PHY reg=4 value=0x1D81
+PHY reg=5 value=0x0000
+PHY reg=9 value=0x0A00
+PHY reg=10 value=0x4000
+PHY reg=17 value=0x0000
+tinyptp[38.011]: initialization failed; retrying in 5 seconds (d for diagnostics)
+tinyptp[43.019]: port 1: initializing Ethernet and hardware clock
+SET_CONFIGURATION(1) error=0x00
+ASIX chip status=0x74 chip code=7
+ASIX silicon revision=0x01
+ASIX firmware=1.3.16.7
+ASIX MAC=9C:69:D3:2B:A1:2F
+ASIX read request=0x13 error=0x05 received=0
+AX88279 volatile initialization
+PHY power=0x02
+Recovery: PHY software reset
+PHY initial advertisement=0x1D01 gigabit_control=0x0200
+PHY AN 2.5G advertisement=0x0081
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+Ethernet PHY link timeout
+PHY reg=0 value=0x1040
+PHY reg=1 value=0x6149
+PHY reg=4 value=0x1D81
+PHY reg=5 value=0x0000
+PHY reg=9 value=0x0A00
+PHY reg=10 value=0x4000
+PHY reg=17 value=0x0000
+tinyptp[58.781]: initialization failed; retrying in 5 seconds (d for diagnostics)
+tinyptp[63.788]: port 1: initializing Ethernet and hardware clock
+SET_CONFIGURATION(1) error=0x00
+ASIX chip status=0x74 chip code=7
+ASIX silicon revision=0x01
+ASIX firmware=1.3.16.7
+ASIX MAC=9C:69:D3:2B:A1:2F
+ASIX read request=0x13 error=0x05 received=0
+AX88279 volatile initialization
+PHY power=0x02
+Recovery: PHY software reset
+PHY initial advertisement=0x1D01 gigabit_control=0x0200
+PHY AN 2.5G advertisement=0x0081
+PHY BMSR=0x6149
+P

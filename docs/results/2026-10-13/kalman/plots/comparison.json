@@ -1,0 +1,65 @@
+{
+  "PI": {
+    "source_log": "kalman-baseline-20261013-02-follower.log",
+    "source_sha256": "1fc85233e414f25f0f3297ec79b72379cb42803cfa61e653b48b2562fd0d4288",
+    "total_samples": 286,
+    "cutoff_s": 120.0,
+    "first_s3_elapsed_s": 80.031,
+    "window_samples": 166,
+    "window_span_s": 165.076,
+    "offset_mean_ns": 9.457831325301205,
+    "offset_rms_ns": 48.29627439546375,
+    "offset_stddev_ns": 47.36116074489812,
+    "offset_min_ns": -90,
+    "offset_max_ns": 105,
+    "path_mean_ns": 730.0602409638554,
+    "frequency_min_ppb": -10596,
+    "frequency_max_ppb": -10476,
+    "state_counts": {
+      "3": 166
+    },
+    "sample_number_gaps": 0
+  },
+  "KALMAN": {
+    "source_log": "servo-kalman-20261013-01-follower.log",
+    "source_sha256": "2e67b03293876fcc5d666a2ed2a20f330a228b394d6d74f906c776dd9dab616c",
+    "total_samples": 286,
+    "cutoff_s": 120.0,
+    "first_s3_elapsed_s": 59.025,
+    "window_samples": 166,
+    "window_span_s": 165.075,
+    "offset_mean_ns": -25.210843373493976,
+    "offset_rms_ns": 94.9928659337808,
+    "offset_stddev_ns": 91.586341529239,
+    "offset_min_ns": -180,
+    "offset_max_ns": 305,
+    "path_mean_ns": 735.210843373494,
+    "frequency_min_ppb": -10573,
+    "frequency_max_ppb": -10214,
+    "state_counts": {
+      "3": 166
+    },
+    "sample_number_gaps": 0
+  },
+  "PI_AFTER": {
+    "source_log": "kalman-restore-pi-20261013-01-follower.log",
+    "source_sha256": "79eb10c2eee00f84919c8c45062a1f992457aabef87bed353784dfe02ac8ed1e",
+    "total_samples": 286,
+    "cutoff_s": 120.0,
+    "first_s3_elapsed_s": 73.029,
+    "window_samples": 166,
+    "window_span_s": 165.076,
+    "offset_mean_ns": -35.24096385542169,
+    "offset_rms_ns": 110.59940739290899,
+    "offset_stddev_ns": 104.83464781360938,
+    "offset_min_ns": -270,
+    "offset_max_ns": 220,
+    "path_mean_ns": 736.2650602409639,
+    "frequency_min_ppb": -10270,
+    "frequency_max_ppb": -9944,
+    "state_counts": {
+      "3": 166
+    },
+    "sample_number_gaps": 0
+  }
+}

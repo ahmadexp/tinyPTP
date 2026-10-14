@@ -1,0 +1,208 @@
+UTC: 2026-10-14T04:30:01.105304+00:00
+Port: /dev/serial/by-id/usb-Arduino__www.arduino.cc__0043_14533303731351B0C090-if00; baud: 115200; reset: True
+tinyptp[0.000]: boot role FOLLOWER
+tinyptp[0.000]: serial 115200 8N1; offset/path ns; frequency ppb
+tinyptp[0.580]: port 1: initializing Ethernet and hardware clock
+SET_CONFIGURATION(1) error=0x00
+ASIX chip status=0x74 chip code=7
+ASIX silicon revision=0x01
+ASIX firmware=1.3.16.7
+ASIX MAC=9C:69:D3:2B:A1:2F
+ASIX read request=0x13 error=0x05 received=0
+AX88279 volatile initialization
+PHY power=0x02
+PHY initial advertisement=0x1D81 gigabit_control=0x0200
+PHY AN 2.5G advertisement=0x0081
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x616D
+Ethernet PHY link UP
+PBUS write 0012:0000 bytes=01 00 08 41 
+PBUS write 0012:1040 bytes=00 65 CD 1D 
+PBUS write 0012:1000 bytes=5F 00 00 00 
+PBUS write 0012:1030 bytes=CC CC CC CC 
+PBUS write 0012:1034 bytes=0A 00 00 00 
+PBUS write 0013:3004 bytes=00 00 00 00 
+PBUS write 0013:3004 bytes=00 01 3F 00 
+PTP register 0000=41080001
+PTP register 1000=5F
+PTP register 1030=CCCCCCCC
+PTP register 1034=A
+Initialized clock sec(hex)=000000000000 ns=11922200
+Initialized clock sec(hex)=000000000001 ns=16364440
+Initialized clock sec(hex)=000000000002 ns=18064160
+Initialized clock sec(hex)=000000000003 ns=19742360
+Clock progression PASS (rate accuracy unmeasured)
+Link interrupt=A1 60 08 00 00 00 00 00 
+Link interrupt=A1 73 09 00 6D 61 01 DC 
+Ethernet probe ready; t sends 10 echo-test frames
+PBUS write 0012:0000 bytes=01 00 08 41 
+PBUS write 0012:1040 bytes=00 65 CD 1D 
+PBUS write 0012:1000 bytes=5F 00 00 00 
+PBUS write 0012:1030 bytes=CC CC CC CC 
+PBUS write 0012:1034 bytes=0A 00 00 00 
+PBUS write 0013:1008 bytes=22 06 07 00 
+PBUS write 0012:2000 bytes=F1 7F 01 00 
+PBUS write 0012:3000 bytes=F1 7F 01 08 
+PBUS write 0012:1038 bytes=00 00 00 00 
+PBUS write 0012:103C bytes=00 00 00 00 
+PBUS write 0013:3004 bytes=00 01 3F 00 
+Initialized clock sec(hex)=000000000000 ns=9761230
+Initialized clock sec(hex)=000000000001 ns=13816980
+Initialized clock sec(hex)=000000000002 ns=15510270
+Initialized clock sec(hex)=000000000003 ns=17293100
+Clock progression PASS (rate accuracy unmeasured)
+tinyptp[11.883]: PPS gate before=0x4000
+tinyptp[11.888]: PPS gate=0x4000 clock=0x5F active_ns=500000000 enabled (register readback)
+PBUS write 0012:1030 bytes=CC CC CC CC 
+tinyptp[11.898]: clock identity 9c69d3.fffe.2ba12f
+tinyptp[11.902]: port 1: INITIALIZING to LISTENING on FIXED_ROLE
+tinyptp[11.908]: servo PI kp 1/2 ki 1/20 limit 500000 ppb
+tinyptp[11.913]: FOLLOWER samples 0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[12.873]: port 1: link down
+tinyptp[16.913]: port 1: initializing Ethernet and hardware clock
+SET_CONFIGURATION(1) error=0x00
+ASIX chip status=0x74 chip code=7
+ASIX silicon revision=0x01
+ASIX firmware=1.3.16.7
+ASIX MAC=9C:69:D3:2B:A1:2F
+Clock seconds(hex)=000000000000 nanoseconds=0
+Clock seconds(hex)=000000000000 nanoseconds=0
+Clock seconds(hex)=000000000000 nanoseconds=0
+Clock reads complete; clock has not been initialized or adjusted.
+AX88279 volatile initialization
+PHY power=0x02
+PHY initial advertisement=0x1C01 gigabit_control=0x0A00
+PHY AN 2.5G advertisement=0x4001
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x616D
+Ethernet PHY link UP
+PBUS write 0012:0000 bytes=01 00 08 41 
+PBUS write 0012:1040 bytes=00 65 CD 1D 
+PBUS write 0012:1000 bytes=5F 00 00 00 
+PBUS write 0012:1030 bytes=CC CC CC CC 
+PBUS write 0012:1034 bytes=0A 00 00 00 
+PBUS write 0013:3004 bytes=00 00 00 00 
+PBUS write 0013:3004 bytes=00 01 3F 00 
+PTP register 0000=41080001
+PTP register 1000=5F
+PTP register 1030=CCCCCCCC
+PTP register 1034=A
+Initialized clock sec(hex)=000000000000 ns=11849460
+Initialized clock sec(hex)=000000000001 ns=16447270
+Initialized clock sec(hex)=000000000002 ns=18116150
+Initialized clock sec(hex)=000000000003 ns=19894350
+Clock progression PASS (rate accuracy unmeasured)
+Link interrupt=A1 60 08 00 00 00 00 00 
+Link interrupt=A1 73 09 00 6D 61 01 DC 
+Ethernet probe ready; t sends 10 echo-test frames
+PBUS write 0012:0000 bytes=01 00 08 41 
+PBUS write 0012:1040 bytes=00 65 CD 1D 
+PBUS write 0012:1000 bytes=5F 00 00 00 
+PBUS write 0012:1030 bytes=CC CC CC CC 
+PBUS write 0012:1034 bytes=0A 00 00 00 
+PBUS write 0013:1008 bytes=22 06 07 00 
+PBUS write 0012:2000 bytes=F1 7F 01 00 
+PBUS write 0012:3000 bytes=F1 7F 01 08 
+PBUS write 0012:1038 bytes=00 00 00 00 
+PBUS write 0012:103C bytes=00 00 00 00 
+PBUS write 0013:3004 bytes=00 01 3F 00 
+Initialized clock sec(hex)=000000000000 ns=9609870
+Initialized clock sec(hex)=000000000001 ns=13649610
+Initialized clock sec(hex)=000000000002 ns=15413590
+Initialized clock sec(hex)=000000000003 ns=17253450
+Clock progression PASS (rate accuracy unmeasured)
+tinyptp[33.328]: PPS gate before=0x4000
+tinyptp[33.332]: PPS gate=0x4000 clock=0x5F active_ns=500000000 enabled (register readback)
+PBUS write 0012:1030 bytes=CC CC CC CC 
+tinyptp[33.342]: clock identity 9c69d3.fffe.2ba12f
+tinyptp[33.346]: port 1: INITIALIZING to LISTENING on FIXED_ROLE
+tinyptp[33.352]: servo PI kp 1/2 ki 1/20 limit 500000 ppb
+tinyptp[33.357]: FOLLOWER samples 0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[34.477]: port 1: link down
+tinyptp[38.358]: port 1: initializing Ethernet and hardware clock
+SET_CONFIGURATION(1) error=0x00
+ASIX chip status=0x74 chip code=7
+ASIX silicon revision=0x01
+ASIX firmware=1.3.16.7
+ASIX MAC=9C:69:D3:2B:A1:2F
+Clock seconds(hex)=000000000000 nanoseconds=0
+Clock seconds(hex)=000000000000 nanoseconds=0
+Clock seconds(hex)=000000000000 nanoseconds=0
+Clock reads complete; clock has not been initialized or adjusted.
+AX88279 volatile initialization
+PHY power=0x02
+PHY initial advertisement=0x1C01 gigabit_control=0x1A00
+PHY AN 2.5G advertisement=0xC001
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x616D
+Ethernet PHY link UP
+PBUS write 0012:0000 bytes=01 00 08 41 
+PBUS write 0012:1040 bytes=00 65 CD 1D 
+PBUS write 0012:1000 bytes=5F 00 00 00 
+PBUS write 0012:1030 bytes=CC CC CC CC 
+PBUS write 0012:1034 bytes=0A 00 00 00 
+PBUS write 0013:3004 bytes=00 00 00 00 
+PBUS write 0013:3004 bytes=00 01 3F 00 
+PTP register 0000=41080001
+PTP register 1000=5F
+PTP register 1030=CCCCCCCC
+PTP register 1034=A
+Initialized clock sec(hex)=000000000000 ns=11637620
+ASIX read request=0x13 error=0x05 received=0
+tinyptp[45.535]: initialization failed; retrying in 5 seconds (d for diagnostics)
+tinyptp[50.539]: port 1: initializing Ethernet and hardware clock
+SET_CONFIGURATION(1) error=0x00
+ASIX chip status=0x74 chip code=7
+ASIX silicon revision=0x01
+ASIX firmware=1.3.16.7
+ASIX MAC=9C:69:D3:2B:A1:2F
+Clock seconds(hex)=000000000000 nanoseconds=0
+Clock seconds(hex)=000000000000 nanoseconds=0
+Clock seconds(hex)=000000000000 nanoseconds=0
+Clock reads complete; clock has not been initialized or adjusted.
+AX88279 volatile initialization
+PHY power=0x02
+PHY initial advertisement=0x1C01 gigabit_control=0x1A00
+PHY AN 2.5G advertisement=0xC001
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x616D
+Ethernet PHY link UP
+ASIX read request=0x13 error=0x05 received=0
+ASIX read request=0x13 error=0x05 received=0
+ASIX read request=0x13 error=0x05 received=0
+ASIX read request=0x13 error=0x05 received=0
+ASIX read request=0x13 error=0x05 received=0
+ASIX read request=0x13 error=0x05 received=0
+ASIX read request=0x13 error=0x05 received=0
+ASIX read request=0x13 error=0x05 received=0
+ASIX read request=0x13 error=0x05 received=0
+ASIX read request=0x13 error=0x05 received=0
+PTP initialization skipped: clock request failed after PHY setup
+tinyptp[57.699]: initialization failed; retrying in 5 seconds (d for diagnostics)
+tinyptp[62.706]: port 1: initializing Ethernet and hardware clock
+SET_CONFIGURATION(1) error=0x00
+ASIX chip status=0x74 chip code=7
+ASIX silicon revision=0x01
+ASIX firmware=1.3.16.7
+ASIX MAC=9C:69:D3:2B:A1:2F
+Clock seconds(hex)=000000000000 nanoseconds=0
+Clock seconds(hex)=000000000000 nanoseconds=0
+Clock seconds(hex)=000000000000 nanoseconds=0
+Clock reads complete; clock has not been initialized or adjusted.
+AX88279 volatile initialization
+PHY power=0x02
+PHY initial advertisement=0x1C01 gigabit_control=0x1A00
+PHY AN 2.5G advertisement=0xC001
+PHY BMSR=0x6149

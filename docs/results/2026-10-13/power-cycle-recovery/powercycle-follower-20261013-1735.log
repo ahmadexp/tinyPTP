@@ -1,0 +1,118 @@
+UTC: 2026-10-14T00:32:24.708237+00:00
+Port: /dev/serial/by-id/usb-Arduino__www.arduino.cc__0043_14533303731351B0C090-if00; baud: 115200; reset: False
+tinyptp[0.000]: boot role FOLLOWER
+tinyptp[0.000]: serial 115200 8N1; offset/path ns; frequency ppb
+tinyptp[0.580]: port 1: initializing Ethernet and hardware clock
+SET_CONFIGURATION(1) error=0x00
+ASIX chip status=0x74 chip code=7
+ASIX silicon revision=0x01
+ASIX firmware=1.3.16.7
+ASIX MAC=9C:69:D3:2B:A1:2F
+ASIX read request=0x13 error=0x05 received=0
+AX88279 volatile initialization
+PHY power=0x02
+PHY initial advertisement=0x1D81 gigabit_control=0x0200
+PHY AN 2.5G advertisement=0x0081
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x616D
+Ethernet PHY link UP
+PBUS write 0012:0000 bytes=01 00 08 41 
+PBUS write 0012:1040 bytes=00 65 CD 1D 
+PBUS write 0012:1000 bytes=5F 00 00 00 
+PBUS write 0012:1030 bytes=CC CC CC CC 
+PBUS write 0012:1034 bytes=0A 00 00 00 
+PBUS write 0013:3004 bytes=00 00 00 00 
+PBUS write 0013:3004 bytes=00 01 3F 00 
+PTP register 0000=41080001
+PTP register 1000=5F
+PTP register 1030=CCCCCCCC
+PTP register 1034=A
+Initialized clock sec(hex)=000000000000 ns=11753950
+Initialized clock sec(hex)=000000000001 ns=16322730
+Initialized clock sec(hex)=000000000002 ns=18064430
+Initialized clock sec(hex)=000000000003 ns=19715140
+Clock progression PASS (rate accuracy unmeasured)
+Link interrupt=A1 60 08 00 00 00 00 00 
+Link interrupt=A1 73 09 00 6D 61 01 DC 
+Ethernet probe ready; t sends 10 echo-test frames
+PBUS write 0012:0000 bytes=01 00 08 41 
+PBUS write 0012:1040 bytes=00 65 CD 1D 
+PBUS write 0012:1000 bytes=5F 00 00 00 
+PBUS write 0012:1030 bytes=CC CC CC CC 
+PBUS write 0012:1034 bytes=0A 00 00 00 
+PBUS write 0013:1008 bytes=22 06 07 00 
+PBUS write 0012:2000 bytes=F1 7F 01 00 
+PBUS write 0012:3000 bytes=F1 7F 01 08 
+PBUS write 0012:1038 bytes=00 00 00 00 
+PBUS write 0012:103C bytes=00 00 00 00 
+PBUS write 0013:3004 bytes=00 01 3F 00 
+Initialized clock sec(hex)=000000000000 ns=9536960
+Initialized clock sec(hex)=000000000001 ns=13595650
+Initialized clock sec(hex)=000000000002 ns=15252910
+Initialized clock sec(hex)=000000000003 ns=17043120
+Clock progression PASS (rate accuracy unmeasured)
+tinyptp[11.883]: PPS gate before=0x4000
+tinyptp[11.888]: PPS gate=0x4000 clock=0x5F active_ns=500000000 enabled (register readback)
+PBUS write 0012:1030 bytes=CC CC CC CC 
+tinyptp[11.898]: clock identity 9c69d3.fffe.2ba12f
+tinyptp[11.902]: port 1: INITIALIZING to LISTENING on FIXED_ROLE
+tinyptp[11.909]: FOLLOWER samples 0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[11.916]: PPS gate=0x4000 clock=0x5F active_ns=500000000 enabled (register readback)
+tinyptp[12.907]: selected master 9c69d3.fffe.2ba18d
+tinyptp[12.908]: port 1: LISTENING to SLAVE on MASTER_SELECTED
+TX timestamp report bytes=131
+18 01 00 18 9B A2 04 04 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 
+PBUS write 0012:1030 bytes=EA 95 B2 CC 
+tinyptp[12.976]: master offset 6411525 s2 freq -500000 path delay 565 sample 1 seq 1
+TX timestamp report bytes=131
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 18 02 00 48 90 B4 04 05 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 02 
+PBUS write 0012:1030 bytes=EA 95 B2 CC 
+tinyptp[13.978]: master offset 5947605 s2 freq -500000 path delay 9015 sample 2 seq 2
+TX timestamp report bytes=131
+18 03 00 66 A0 A4 04 06 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 
+PBUS write 0012:1030 bytes=EA 95 B2 CC 
+tinyptp[14.977]: master offset 5458435 s2 freq -500000 path delay 9015 sample 3 seq 3
+PBUS write 0012:1030 bytes=EA 95 B2 CC 
+tinyptp[15.916]: master offset 4975880 s2 freq -500000 path delay 1530 sample 4 seq 4
+PBUS write 0012:1030 bytes=EA 95 B2 CC 
+tinyptp[16.915]: master offset 4486675 s2 freq -500000 path delay 1485 sample 5 seq 5
+PBUS write 0012:1030 bytes=EA 95 B2 CC 
+tinyptp[17.916]: master offset 3996525 s2 freq -500000 path delay 1495 sample 6 seq 6
+PBUS write 0012:1030 bytes=EA 95 B2 CC 
+tinyptp[18.917]: master offset 3506800 s2 freq -500000 path delay 1490 sample 7 seq 7
+PBUS write 0012:1030 bytes=EA 95 B2 CC 
+tinyptp[19.917]: master offset 3017225 s2 freq -500000 path delay 1465 sample 8 seq 8
+PBUS write 0012:1030 bytes=EA 95 B2 CC 
+tinyptp[20.918]: master offset 2527575 s2 freq -500000 path delay 1505 sample 9 seq 9
+tinyptp[21.910]: FOLLOWER samples 9 timeouts 0 missing_rx 0 discarded 0
+PBUS write 0012:1030 bytes=EA 95 B2 CC 
+tinyptp[21.918]: master offset 2037935 s2 freq -500000 path delay 1575 sample 10 seq 10
+PBUS write 0012:1030 bytes=EA 95 B2 CC 
+tinyptp[22.919]: master offset 1548230 s2 freq -500000 path delay 1530 sample 11 seq 11
+PBUS write 0012:1030 bytes=EA 95 B2 CC 
+tinyptp[23.919]: master offset 1058765 s2 freq -500000 path delay 1455 sample 12 seq 12
+PBUS write 0012:1030 bytes=DD 63 BC CC 
+tinyptp[24.920]: master offset 569080 s2 freq -312994 path delay 1440 sample 13 seq 13
+PBUS write 0012:1030 bytes=1A A7 C3 CC 
+tinyptp[25.920]: master offset 265485 s2 freq -174470 path delay 1185 sample 14 seq 14
+PBUS write 0012:1030 bytes=B6 B4 C7 CC 
+tinyptp[26.919]: master offset 100790 s2 freq -97162 path delay 990 sample 15 seq 15
+PBUS write 0012:1030 bytes=0D F4 C9 CC 
+tinyptp[27.921]: master offset 13690 s2 freq -54296 path delay 870 sample 16 seq 16
+PBUS write 0012:1030 bytes=F4 2E CB CC 
+tinyptp[28.920]: master offset -30215 s2 freq -30834 path delay 805 sample 17 seq 17
+PBUS write 0012:1030 bytes=A3 D9 CB CC 
+tinyptp[29.922]: master offset -50590 s2 freq -18117 path delay 770 sample 18 seq 18
+PBUS write 0012:1030 bytes=89 33 CC CC 
+tinyptp[30.921]: master offset -58170 s2 freq -11419 path delay 750 sample 19 seq 19
+tinyptp[31.911]: FOLLOWER samples 19 timeouts 0 missing_rx 0 discarded 0
+PBUS write 0012:1030 bytes=E0 60 CC CC 
+tinyptp[31.923]: master offset -59025 s2 freq -8041 path delay 745 sample 20 seq 20
+PBUS write 0012:1030 bytes=B4 75 CC CC 
+tinyptp[32.922]: master offset -56480 s2 freq -6489 path delay 740 sample 21 seq 21
+PBUS write 0012:1030 bytes=39 7D CC CC 
+tinyptp[33.924]: master offset -52365 s2 freq -5929 path delay 735 sample 22 seq 22
+PBUS write 0012:1030 bytes=DA 7D CC CC 
+tinyptp[34.924]: master offset -47690 s2 freq -5882 path delay 730 sample 23 seq 23

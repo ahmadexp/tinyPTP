@@ -21,8 +21,10 @@ The diagnostics show:
 - Subsequent initialization retries also encounter PHY link timeouts.
 
 A complete power cycle of both UNO/shield/TimeStick assemblies was requested.
-Its outcome is not yet recorded. This is an unresolved restart failure, not
-proof of failed PPS hardware or a defect in the photographed jumper setup.
+A later power cycle at approximately 17:31 Pacific restored clock access and
+PPS; see the [subsequent recovery record](../power-cycle-recovery/README.md).
+The root cause of this restart failure remains unresolved. It is not proof of
+failed PPS hardware or a defect in the photographed jumper setup.
 
 The README's successful grandmaster and follower excerpts are explicitly
 sourced from the earlier [22:44 UTC capture](../master-serial/README.md).

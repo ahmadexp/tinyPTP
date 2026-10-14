@@ -1,0 +1,80 @@
+UTC: 2026-10-14T00:30:18.370704+00:00
+Port: /dev/ttyACM0; baud: 115200; reset: False
+onds (d for diagnostics)
+tinyptp[1883.372]: port 1: initializing Ethernet and hardware clock
+ization failed; retrying in 5 seconds (d for diagnostics)
+tinyptp[1883.372]: port 1: initializing Ethernet and hardware clock
+tinyptp[0.000]: boot role GRANDMASTER
+tinyptp[0.000]: serial 115200 8N1; offset/path ns; frequency ppb
+tinyptp[0.582]: port 1: initializing Ethernet and hardware clock
+SET_CONFIGURATION(1) error=0x00
+ASIX chip status=0x74 chip code=7
+ASIX silicon revision=0x01
+ASIX firmware=1.3.16.7
+ASIX MAC=9C:69:D3:2B:A1:8D
+ASIX read request=0x13 error=0x05 received=0
+AX88279 volatile initialization
+PHY power=0x02
+PHY initial advertisement=0x1D81 gigabit_control=0x0200
+PHY AN 2.5G advertisement=0x0081
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x616D
+Ethernet PHY link UP
+ASIX read request=0x13 error=0x05 received=0
+ASIX read request=0x13 error=0x05 received=0
+ASIX read request=0x13 error=0x05 received=0
+ASIX read request=0x13 error=0x05 received=0
+ASIX read request=0x13 error=0x05 received=0
+ASIX read request=0x13 error=0x05 received=0
+ASIX read request=0x13 error=0x05 received=0
+ASIX read request=0x13 error=0x05 received=0
+ASIX read request=0x13 error=0x05 received=0
+ASIX read request=0x13 error=0x05 received=0
+PTP initialization skipped: clock request failed after PHY setup
+tinyptp[7.636]: initialization failed; retrying in 5 seconds (d for diagnostics)
+ASIX read request=0x11 error=0x05 received=0
+tinyptp[7.648]: PPS register read failed
+tinyptp[12.644]: port 1: initializing Ethernet and hardware clock
+SET_CONFIGURATION(1) error=0x00
+ASIX chip status=0x74 chip code=7
+ASIX silicon revision=0x01
+ASIX firmware=1.3.16.7
+ASIX MAC=9C:69:D3:2B:A1:8D
+ASIX read request=0x13 error=0x05 received=0
+AX88279 volatile initialization
+PHY power=0x02
+PHY initial advertisement=0x1C01 gigabit_control=0x0A00
+PHY AN 2.5G advertisement=0x4001
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x6149
+PHY BMSR=0x616D
+Ethernet PHY link UP
+ASIX read request=0x13 error=0x05 received=0
+ASIX read request=0x13 error=0x05 received=0
+ASIX read request=0x13 error=0x05 received=0
+ASIX read request=0x13 error=0x05 received=0
+ASIX read request=0x13 error=0x05 received=0
+ASIX read request=0x13 error=0x05 received=0
+ASIX read request=0x13 error=0x05 received=0
+ASIX read request=0x13 error=0x05 received=0
+ASIX read request=0x13 error=0x05 received=0
+ASIX read request=0x13 error=0x05 received=0
+PTP initialization skipped: clock request failed after PHY setup
+tinyptp[17.798]: initialization failed; retrying in 5 seconds (d for diagnostics)
+tinyptp[22.805]: port 1: initializing Ethernet and hardware clock
+SET_CONFIGURATION(1) error=0x00
+ASIX chip status=0x74 chip code=7
+ASIX silicon revision=0x01
+ASIX firmware=1.3.16.7
+ASIX MAC=9C:69:D3:2B:A1:8D
+ASIX read request=0x13 error=0x05 received=0
+AX88279 volatile initialization
+PHY power=0x02
+PHY initial advertisement=0x1C01 gigabit_control=0x0A00
+PHY AN 2.5G advertisement=0x4001
+PHY BMSR=0x6149
+PHY BMSR=0x6149

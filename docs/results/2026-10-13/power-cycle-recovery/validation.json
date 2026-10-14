@@ -1,0 +1,35 @@
+{
+  "requested_capture_seconds": 180,
+  "analysis_window": "Last boot marker onward; pre-boot buffered output excluded.",
+  "master_status_lines": 167,
+  "report_interval_min_ms": 1000,
+  "report_interval_max_ms": 1000,
+  "final_master_syncs": 166,
+  "final_master_delay_responses": 166,
+  "final_master_timeouts": 0,
+  "final_master_missing_rx": 0,
+  "final_master_discarded": 0,
+  "pps_enabled_readbacks": {
+    "master": 2,
+    "follower": 2
+  },
+  "follower": {
+    "samples": 166,
+    "tail_samples": 60,
+    "tail_first_sample": 107,
+    "offset_mean_ns": -6,
+    "offset_rms_ns": 10.36822067666386,
+    "offset_min_ns": -25,
+    "offset_max_ns": 10,
+    "offset_max_abs_ns": 25,
+    "path_mean_ns": 739.3333333333334,
+    "path_min_ns": 735,
+    "path_max_ns": 745,
+    "last_freq_ppb": -10701,
+    "coarse_steps": 0,
+    "exchange_timeouts": 0,
+    "rejected_paths": 0
+  },
+  "physical_pps_observation": "Owner reported both pulses visible on oscilloscope.",
+  "measurement_limit": "Offsets are internal PTP estimates, not calibrated PPS or UTC measurements."
+}

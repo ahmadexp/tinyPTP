@@ -80,8 +80,11 @@ The [serial guide](docs/standalone-roles.md) explains startup, states, and contr
 A later capture attempt at 23:26 UTC encountered a hardware-clock USB access
 failure after resetting both UNOs. It produced no PTP samples; see the
 [separate diagnostic record](docs/results/2026-10-13/readme-capture/README.md).
-A power-cycle retry is pending. The excerpts above remain the earlier verified
-run, not output from that failed attempt.
+A later power cycle at approximately 17:31 Pacific restored clock access,
+PTP exchanges, and PPS on both boards. The owner confirmed that both pulses
+were visible again. See the [recovery record](docs/results/2026-10-13/power-cycle-recovery/README.md).
+The underlying restart failure remains unresolved. The excerpts above remain
+the earlier verified run, not output from the failed attempt.
 
 
 ## PPS on the oscilloscope

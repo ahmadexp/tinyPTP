@@ -1,0 +1,70 @@
+{
+  "PI": {
+    "source_log": "autopi-baseline-20261013-01-follower.log",
+    "source_sha256": "fc30602e0b7aac2f411e4d38d30c7149247617423ef3705a04c0b2fff042679b",
+    "total_samples": 286,
+    "cutoff_s": 120.0,
+    "first_s3_elapsed_s": 76.029,
+    "window_samples": 166,
+    "window_span_s": 165.075,
+    "offset_mean_ns": 5.572289156626506,
+    "offset_rms_ns": 12.117646198729783,
+    "offset_stddev_ns": 10.760434143310995,
+    "offset_min_ns": -25,
+    "offset_max_ns": 30,
+    "path_mean_ns": 733.7048192771084,
+    "frequency_min_ppb": -10608,
+    "frequency_max_ppb": -10581,
+    "state_counts": {
+      "3": 166
+    },
+    "sample_number_gaps": 0
+  },
+  "AUTO_PI": {
+    "source_log": "autopi-adaptive-20261013-01-follower.log",
+    "source_sha256": "de9355233342c4cd0df28480dbb3a9cdaf83dd1f04c295126fb17fead55183d3",
+    "total_samples": 286,
+    "cutoff_s": 120.0,
+    "first_s3_elapsed_s": 62.024,
+    "window_samples": 166,
+    "window_span_s": 165.075,
+    "offset_mean_ns": -4.548192771084337,
+    "offset_rms_ns": 22.19505534860661,
+    "offset_stddev_ns": 21.724051750186174,
+    "offset_min_ns": -75,
+    "offset_max_ns": 40,
+    "path_mean_ns": 739.4879518072289,
+    "frequency_min_ppb": -10605,
+    "frequency_max_ppb": -10495,
+    "state_counts": {
+      "3": 166
+    },
+    "sample_number_gaps": 0,
+    "window_gain_mode_counts": {
+      "0": 24,
+      "1": 46,
+      "2": 96
+    }
+  },
+  "PI_AFTER": {
+    "source_log": "autopi-after-20261013-01-follower.log",
+    "source_sha256": "fadae3ab7beb0893ed59d100491561adaa06b3caa3c948e2274a89bba10cca11",
+    "total_samples": 286,
+    "cutoff_s": 120.0,
+    "first_s3_elapsed_s": 74.03,
+    "window_samples": 166,
+    "window_span_s": 165.076,
+    "offset_mean_ns": -12.53012048192771,
+    "offset_rms_ns": 19.8488262528155,
+    "offset_stddev_ns": 15.393894384554985,
+    "offset_min_ns": -60,
+    "offset_max_ns": 10,
+    "path_mean_ns": 737.1686746987951,
+    "frequency_min_ppb": -10626,
+    "frequency_max_ppb": -10539,
+    "state_counts": {
+      "3": 166
+    },
+    "sample_number_gaps": 0
+  }
+}

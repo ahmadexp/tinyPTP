@@ -1,0 +1,68 @@
+{
+  "baseline": {
+    "master": {
+      "utc_start": "2026-10-14T03:20:04.667560+00:00",
+      "boot_count": 1,
+      "pps_enabled_readback": true,
+      "max_timeouts": 0,
+      "max_missing_rx": 0,
+      "max_discarded": 0,
+      "last_status": "tinyptp[297.824]: port 1: MASTER sync 286 delay_resp 286 freq +0 timeouts 0 missing_rx 0 discarded 0",
+      "sha256": "aedcc25aa68b4f5295d82672acb6ace060f3e43f0c7a7c234e9d2dc6a921bbad"
+    },
+    "follower": {
+      "utc_start": "2026-10-14T03:20:04.668044+00:00",
+      "boot_count": 1,
+      "pps_enabled_readback": true,
+      "max_timeouts": 0,
+      "max_missing_rx": 0,
+      "max_discarded": 0,
+      "last_status": "tinyptp[291.819]: FOLLOWER samples 279 timeouts 0 missing_rx 0 discarded 0",
+      "sha256": "fc30602e0b7aac2f411e4d38d30c7149247617423ef3705a04c0b2fff042679b"
+    }
+  },
+  "adaptive": {
+    "master": {
+      "utc_start": "2026-10-14T03:25:48.978258+00:00",
+      "boot_count": 1,
+      "pps_enabled_readback": true,
+      "max_timeouts": 0,
+      "max_missing_rx": 0,
+      "max_discarded": 0,
+      "last_status": "tinyptp[297.825]: port 1: MASTER sync 286 delay_resp 286 freq +0 timeouts 0 missing_rx 0 discarded 0",
+      "sha256": "02e0bc2fba5394fde6f2a52d6075627d18cdbe72fdc53c3666d48c53d9c65807"
+    },
+    "follower": {
+      "utc_start": "2026-10-14T03:25:48.978037+00:00",
+      "boot_count": 1,
+      "pps_enabled_readback": true,
+      "max_timeouts": 0,
+      "max_missing_rx": 0,
+      "max_discarded": 0,
+      "last_status": "tinyptp[291.822]: FOLLOWER samples 279 timeouts 0 missing_rx 0 discarded 0",
+      "sha256": "de9355233342c4cd0df28480dbb3a9cdaf83dd1f04c295126fb17fead55183d3"
+    }
+  },
+  "after": {
+    "master": {
+      "utc_start": "2026-10-14T03:31:52.948301+00:00",
+      "boot_count": 1,
+      "pps_enabled_readback": true,
+      "max_timeouts": 0,
+      "max_missing_rx": 0,
+      "max_discarded": 0,
+      "last_status": "tinyptp[297.824]: port 1: MASTER sync 286 delay_resp 286 freq +0 timeouts 0 missing_rx 0 discarded 0",
+      "sha256": "5dda7bf87d30c840ad93b6a8295c1324569b5609a67d1c986a215ba4b443bcae"
+    },
+    "follower": {
+      "utc_start": "2026-10-14T03:31:52.948949+00:00",
+      "boot_count": 1,
+      "pps_enabled_readback": true,
+      "max_timeouts": 0,
+      "max_missing_rx": 0,
+      "max_discarded": 0,
+      "last_status": "tinyptp[291.817]: FOLLOWER samples 279 timeouts 0 missing_rx 0 discarded 0",
+      "sha256": "fadae3ab7beb0893ed59d100491561adaa06b3caa3c948e2274a89bba10cca11"
+    }
+  }
+}

@@ -6,12 +6,12 @@
 #define TINYPTP_BOOT_ROLE 0
 #endif
 
-// 0: existing PI controller; 1: experimental eight-sample linear regression.
+// 0: fixed PI; 1: eight-sample linear regression; 2: adaptive PI.
 #ifndef TINYPTP_SERVO
 #define TINYPTP_SERVO 0
 #endif
-#if TINYPTP_SERVO < 0 || TINYPTP_SERVO > 1
-#error "TINYPTP_SERVO must be 0 (PI) or 1 (LINREG)"
+#if TINYPTP_SERVO < 0 || TINYPTP_SERVO > 2
+#error "TINYPTP_SERVO must be 0 (PI), 1 (LINREG), or 2 (AUTO_PI)"
 #endif
 #if TINYPTP_BOOT_ROLE < 0 || TINYPTP_BOOT_ROLE > 2
 #error "TINYPTP_BOOT_ROLE must be 0, 1, or 2"

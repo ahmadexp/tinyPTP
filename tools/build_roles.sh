@@ -8,7 +8,8 @@ servo=${SERVO:-pi}
 case "$servo" in
   pi) servo_id=0 ;;
   linreg) servo_id=1 ;;
-  *) echo "SERVO must be pi or linreg" >&2; exit 1 ;;
+  auto_pi) servo_id=2 ;;
+  *) echo "SERVO must be pi, linreg, or auto_pi" >&2; exit 1 ;;
 esac
 set -- "$cli"
 if [ -n "${ARDUINO_CONFIG:-}" ]; then

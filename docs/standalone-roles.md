@@ -72,8 +72,9 @@ tinyptp[seconds.milliseconds]: master offset OFFSET sSTATE freq FREQUENCY path d
 
 The state numbering is inspired by [LinuxPTP's servo states](https://github.com/richardcochran/linuxptp/blob/master/servo.h).
 The default servo is this project's integer PI implementation. An experimental
-integer linear-regression option is also available; see the [servo guide](servos.md).
-Neither controller is a LinuxPTP servo ported to AVR. The full protocol/profile
+integer linear-regression option and adaptive PI are also available; see the
+[servo guide](servos.md).
+These controllers are not LinuxPTP servos ported to AVR. The full protocol/profile
 and independent PPS measurement limitations in the earlier reports still apply.
 
 Status lines show boot role, selected clock identity, port transitions, and
@@ -196,7 +197,7 @@ determine whether its hardware clock is currently being disciplined.
 Run from the repository root on a host with a C++11 compiler and Python 3:
 
 ```sh
-for test in ptp_math ptp_protocol ptp_log pps_output ptp_servo; do
+for test in ptp_math ptp_protocol ptp_log pps_output ptp_servo ptp_auto_pi; do
   c++ -std=c++11 -Wall -Wextra -Werror -fsanitize=address,undefined \
     tests/$test.cpp -o /tmp/tinyptp-$test
   /tmp/tinyptp-$test

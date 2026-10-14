@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Compare two single-boot follower captures at a fixed acquisition cutoff.
+"""Compare single-boot follower captures at a fixed acquisition cutoff.
 
 Requires matplotlib. Keeps every accepted sample, including non-s3 states.
 """
@@ -8,6 +8,7 @@ import csv
 import hashlib
 import json
 import math
+import re
 from pathlib import Path
 import statistics
 
@@ -18,7 +19,9 @@ from matplotlib.ticker import ScalarFormatter
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("pi", type=Path)
-    parser.add_argument("linreg", type=Path)
+    parser.add_argument("candidate", type=Path)
+    parser.add_argument("--candidate-label", choices=["LINREG", "AUTO_PI"], default="LINREG")
+    parser.add_argument("--reference-after", type=Path, help="Optional repeated fixed-PI capture after the candidate")
     parser.add_argument("--output-dir", type=Path, required=True)
     parser.add_argument("--after", type=float, default=120)
     args = parser.parse_args()
@@ -26,7 +29,10 @@ def main():
         parser.error("--after must be nonnegative")
     args.output_dir.mkdir(parents=True, exist_ok=True)
     runs, summary = {}, {}
-    for name, path in [("PI", args.pi), ("LINREG", args.linreg)]:
+    sources = [("PI", args.pi), (args.candidate_label, args.candidate)]
+    if args.reference_after:
+        sources.append(("PI_AFTER", args.reference_after))
+    for name, path in sources:
         if path.read_text().count("tinyptp[0.000]: boot role") != 1:
             parser.error(f"{path}: expected exactly one boot")
         rows = read_samples(path)
@@ -59,19 +65,38 @@ def main():
             writer = csv.DictWriter(f, fieldnames=list(rows[0]), lineterminator="\n")
             writer.writeheader()
             writer.writerows(rows)
+    gain_rows = []
+    if args.candidate_label == "AUTO_PI":
+        first = runs["AUTO_PI"][0][0]["uptime_s"]
+        for t, mode, kp, ki in re.findall(
+                r"tinyptp\[(\d+\.\d+)\]: servo AUTO_PI mode (\d) kp_milli (\d+) ki_milli (\d+)",
+                args.candidate.read_text()):
+            gain_rows.append({"elapsed_s": round(float(t) - first, 3), "mode": int(mode),
+                              "kp": int(kp) / 1000, "ki": int(ki) / 1000})
+        if not gain_rows:
+            parser.error("AUTO_PI capture has no gain telemetry")
+        with (args.output_dir / "auto-pi-gains.csv").open("w", newline="") as f:
+            writer = csv.DictWriter(f, fieldnames=list(gain_rows[0]), lineterminator="\n")
+            writer.writeheader(); writer.writerows(gain_rows)
+        mode_counts = {str(i): 0 for i in range(3)}
+        for row in runs["AUTO_PI"][1]:
+            mode = [g["mode"] for g in gain_rows if g["elapsed_s"] <= row["elapsed_s"]][-1]
+            mode_counts[str(mode)] += 1
+        summary["AUTO_PI"]["window_gain_mode_counts"] = mode_counts
     (args.output_dir / "comparison.json").write_text(json.dumps(summary, indent=2) + "\n")
     plt.rcParams.update({"font.family": "DejaVu Sans", "font.size": 10,
                          "svg.hashsalt": "tinyptp-servo-comparison"})
-    colors = {"PI": "#2563eb", "LINREG": "#c2410c"}
+    colors = {"PI": "#2563eb", args.candidate_label: "#c2410c", "PI_AFTER": "#0f766e"}
     for steady in [False, True]:
-        fig, axes = plt.subplots(3, 1, figsize=(10, 8), sharex=True)
+        fig, axes = plt.subplots(4 if gain_rows else 3, 1, figsize=(10, 10 if gain_rows else 8), sharex=True)
         fig.subplots_adjust(left=0.15, right=0.97, top=0.84, bottom=0.11, hspace=0.28)
-        fig.suptitle("PI and linear-regression follower servos", x=0.15, y=0.97,
+        title = "Fixed and adaptive PI follower servos" if gain_rows else "PI and linear-regression follower servos"
+        fig.suptitle(title, x=0.15, y=0.97,
                      ha="left", fontsize=19, fontweight="bold")
         subtitle = (f"All samples after {args.after:g} s | " + " | ".join(
             f"{name} RMS {summary[name]['offset_rms_ns']:.2f} ns" for name in runs)
             if steady else "Separate runs on the same UNO and TimeStick pair | acquisition included")
-        fig.text(0.15, 0.91, subtitle, fontsize=11)
+        fig.text(0.15, 0.91, subtitle, fontsize=10 if args.reference_after else 11)
         for name, (rows, window) in runs.items():
             data = window if steady else rows
             for ax, key, scale, label in zip(axes,
@@ -84,6 +109,17 @@ def main():
                 ax.yaxis.set_major_formatter(ScalarFormatter(useOffset=False))
         axes[0].legend(loc="best", frameon=False)
         axes[0].axhline(0, color="#64748b", linewidth=0.6, linestyle="--")
+        if gain_rows:
+            start = args.after if steady else 0
+            end = runs["AUTO_PI"][0][-1]["elapsed_s"]
+            carry = [g for g in gain_rows if g["elapsed_s"] <= start][-1]
+            gains = [dict(carry, elapsed_s=start)] + [g for g in gain_rows if start < g["elapsed_s"] <= end]
+            gains.append(dict(gains[-1], elapsed_s=end))
+            axes[3].step([g["elapsed_s"] for g in gains], [g["mode"] for g in gains],
+                         where="post", color=colors["AUTO_PI"], linewidth=1.3)
+            style_axis(axes[3], "Adaptive gain mode")
+            axes[3].set_yticks([0, 1, 2], labels=["Low", "Normal", "Fast"])
+            axes[3].set_ylim(-0.2, 2.2)
         axes[-1].set_xlabel("Elapsed time from each run's first accepted sample (s)")
         fig.text(0.15, 0.025, "Internal PTP estimates. Sequential trials; no smoothing or outlier removal.",
                  fontsize=9, color="#475569")

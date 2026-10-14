@@ -22,8 +22,8 @@ the 1 Gb/s negotiation fix, and the hardware experiment. Use the
 UNO-to-Linux experiment is retained below. This is an experimental fixed-role
 implementation, not a complete PTP stack or a flexPTP port.
 
-The follower supports the original **PI servo** and an experimental
-**integer linear-regression servo** selected at build time. See the
+The follower supports fixed **PI**, experimental **integer linear regression**,
+and experimental **adaptive PI**, selected at build time. See the
 [servo guide](docs/servos.md) for selection, control behavior, and UNO resource use.
 
 ## The working setup
@@ -112,6 +112,24 @@ integer eight-point regression, not LinuxPTP's adaptive implementation.
 
 [Raw logs, acquisition plot, CSV data, and comparison method](docs/results/2026-10-13/servo-comparison/README.md)
 | [Build either servo](docs/servos.md)
+
+## Adaptive PI tuning
+
+`SERVO=auto_pi` enables an experimental PI controller that adjusts its gains
+among Low, Normal, and Fast settings using recent offset measurements. It
+retains fractional integral correction, limits frequency output, and reports
+gain changes over serial. [Gains, thresholds, and build instructions](docs/servos.md#adaptive-pi).
+
+A fixed-PI / adaptive-PI / fixed-PI sequence of five-minute hardware runs gave
+steady-state offset RMS of **12.12 / 22.20 / 19.85 ns**, respectively. Each
+completed 286 exchanges without reported errors and exercised the expected
+controller behavior. **Adaptive PI did not improve RMS in this experiment.**
+It remains experimental; fixed PI is the default and is left running on the
+follower. These are internal PTP estimates, not calibrated PPS measurements.
+
+![Fixed PI and adaptive PI measurements with automatic gain changes](docs/results/2026-10-13/auto-pi/plots/servo-steady-state.png)
+
+[All three runs, gain telemetry, CSV data, and validation](docs/results/2026-10-13/auto-pi/README.md)
 
 ## PPS on the oscilloscope
 

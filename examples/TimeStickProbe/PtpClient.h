@@ -94,10 +94,20 @@ void finishPtpExchange() {
 #endif
     return;
   }
+#if TINYPTP_SERVO == 2
+  const uint8_t previousServoMode = clockServo.mode();
+#endif
   frequencyPpb = clockServo.update(offset, t1.sec * 1000UL + t1.ns / 1000000UL, frequencyPpb);
   if (!ptpSetFrequency(frequencyPpb)) {
     ptpRunning = false; ptpLogPrefix(); Serial.println(F("frequency update failed")); return;
   }
+#if TINYPTP_SERVO == 2
+  if (clockServo.mode() != previousServoMode) {
+    ptpLogPrefix(); Serial.print(F("servo AUTO_PI mode ")); Serial.print(clockServo.mode());
+    Serial.print(F(" kp_milli ")); Serial.print(clockServo.kpMilli());
+    Serial.print(F(" ki_milli ")); Serial.println(clockServo.kiMilli());
+  }
+#endif
   if (offset >= -1000 && offset <= 1000) {
     if (servoStableSamples < 8) ++servoStableSamples;
   } else servoStableSamples = 0;
@@ -319,7 +329,9 @@ void startPtpClient(bool discipline, bool masterRole = false, bool learnMaster =
     ptpLogPrefix(); Serial.println(F("grandmaster: free-running oscillator, UTC not valid"));
   } else if (ptpDiscipline) {
     ptpLogPrefix();
-#if TINYPTP_SERVO == 1
+#if TINYPTP_SERVO == 2
+    Serial.println(F("servo AUTO_PI mode 2 kp_milli 750 ki_milli 125 window 16 limit 500000 ppb"));
+#elif TINYPTP_SERVO == 1
     Serial.println(F("servo LINREG window 8 phase_tau 4s limit 500000 ppb"));
 #else
     Serial.println(F("servo PI kp 1/2 ki 1/20 limit 500000 ppb"));

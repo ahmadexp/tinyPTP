@@ -21,6 +21,72 @@ public:
   }
 };
 
+// Bounded gain scheduling at 1 Hz. Gain units are 1/1000; integral state
+// retains fractional ppb so small residuals do not suffer PI's integer deadband.
+class AutoPiServo {
+  int32_t integralMilli = 0, sum = 0, absoluteSum = 0, previousOffset = 0;
+  uint32_t previousMs = 0;
+  uint8_t level = 2, count = 0, reversals = 0, quietWindows = 0;
+  bool haveTime = false;
+  void clearWindow() { count = reversals = 0; sum = absoluteSum = 0; }
+  static int32_t boundIntegral(int64_t value) {
+    return value > 200000000 ? 200000000 : value < -200000000 ? -200000000 : int32_t(value);
+  }
+public:
+  uint8_t mode() const { return level; }
+  uint16_t kpMilli() const { return level == 0 ? 250 : level == 1 ? 500 : 750; }
+  uint16_t kiMilli() const { return level == 0 ? 16 : level == 1 ? 50 : 125; }
+  void clearHistory() { clearWindow(); quietWindows = 0; haveTime = false; }
+  void reset() { integralMilli = 0; level = 2; clearHistory(); }
+  int32_t update(int64_t offset, uint32_t masterMs, int32_t appliedPpb) {
+    if (offset > 500000000LL || offset < -500000000LL) {
+      reset();
+      return offset > 0 ? -500000 : 500000;
+    }
+    const uint32_t dt = masterMs - previousMs;
+    previousMs = masterMs;
+    if (!haveTime || dt < 500 || dt > 1500) {
+      clearHistory(); haveTime = true;
+      // This gain bank targets 1 Hz, not arbitrary Sync rates. Hold the last
+      // command outside the supported 0.5..1.5-second integration interval,
+      // and reanchor the integral as far as its bound permits.
+      integralMilli = boundIntegral(int64_t(servoLimit(appliedPpb)) * 1000 + offset * kpMilli());
+      return servoLimit(appliedPpb);
+    }
+    const uint16_t oldKp = kpMilli();
+    const int32_t error = int32_t(offset);
+    const int32_t magnitude = error < 0 ? -error : error;
+    if (magnitude > 1000) {
+      level = 2; clearWindow(); quietWindows = 0;
+    } else {
+      if (count && ((error > 0 && previousOffset < 0) || (error < 0 && previousOffset > 0))) ++reversals;
+      previousOffset = error; sum += error; absoluteSum += magnitude;
+      if (++count == 16) {
+        const int32_t bias = sum < 0 ? -sum : sum;
+        if (absoluteSum > 160 && bias * 2 > absoluteSum) {
+          if (level < 2) ++level;
+          quietWindows = 0;
+        } else if (absoluteSum <= 160 || (reversals >= 9 && bias * 4 < absoluteSum)) {
+          // Two qualifying windows before reducing bandwidth; one before
+          // increasing it. No tuning on individual offset spikes.
+          if (++quietWindows >= 2) {
+            if (level) --level;
+            quietWindows = 0;
+          }
+        } else quietWindows = 0;
+        clearWindow();
+      }
+    }
+    // Compensate the proportional gain change to avoid a control jump,
+    // subject to the same bounded integral. The next integration is normal.
+    integralMilli = boundIntegral(int64_t(integralMilli) + offset * (int32_t(kpMilli()) - oldKp));
+    const int32_t proposed = boundIntegral(int64_t(integralMilli) - offset * kiMilli() * dt / 1000);
+    const int64_t controlMilli = int64_t(proposed) - offset * kpMilli();
+    if (controlMilli <= 500000000LL && controlMilli >= -500000000LL) integralMilli = proposed;
+    return servoLimit(controlMilli / 1000);
+  }
+};
+
 // Ordinary least squares on offset minus accumulated frequency correction.
 // x: master timestamp in milliseconds; y: reconstructed free-running phase ns.
 // Recenter x/y at the oldest point for bounded 64-bit integer products.
@@ -79,7 +145,9 @@ public:
   }
 };
 
-#if TINYPTP_SERVO == 1
+#if TINYPTP_SERVO == 2
+typedef AutoPiServo PtpServo;
+#elif TINYPTP_SERVO == 1
 typedef LinregServo PtpServo;
 #else
 typedef PiServo PtpServo;

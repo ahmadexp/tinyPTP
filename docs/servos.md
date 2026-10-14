@@ -21,7 +21,9 @@ Set `ARDUINO_CLI` and `ARDUINO_CONFIG` if the CLI or configuration is outside
 the normal search path. Upload the desired `follower` build directory to the
 follower UNO using the [standalone instructions](standalone-roles.md).
 The grandmaster does not need reflashing to change the follower's servo.
-For Arduino IDE, select `TINYPTP_SERVO` in `BuildConfig.h`: `0` for PI, `1`
+For Arduino IDE, use the ready-made follower examples from the
+[ZIP library](arduino-ide.md), or set `TINYPTP_SERVO` before `#include <TinyPTP.h>`
+in your `.ino`: `0` for PI, `1`
 for linreg, `2` for adaptive PI, `3` for Kalman, or `4` for PLL/FLL, with `TINYPTP_BOOT_ROLE=2` for
 the follower. Selection is at compile time, not a serial command.
 

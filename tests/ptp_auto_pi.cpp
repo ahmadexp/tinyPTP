@@ -2,7 +2,7 @@
 #include <cmath>
 #include <cstdint>
 #include <iostream>
-#include "../examples/TimeStickProbe/PtpServo.h"
+#include "../src/detail/PtpServo.h"
 
 int main() {
   // Closed-loop comparison under quiet drift, a frequency ramp, and noise.

@@ -19,7 +19,7 @@ if [ -n "${ARDUINO_CONFIG:-}" ]; then
 fi
 for role in 1 2; do
   if [ "$role" = 1 ]; then name=grandmaster; else name=follower; fi
-  "$@" compile --fqbn arduino:avr:uno \
+  "$@" compile --fqbn arduino:avr:uno --library "$root" \
     --build-property "compiler.cpp.extra_flags=-DTINYPTP_BOOT_ROLE=$role -DTINYPTP_SERVO=$servo_id" \
     --build-path "$build_dir/$name" "$root/examples/TimeStickProbe"
 done

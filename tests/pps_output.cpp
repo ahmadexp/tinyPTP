@@ -33,7 +33,7 @@ bool pbusWrite(uint8_t address, uint16_t bank, uint16_t reg, uint32_t value) {
   if (writeOk && latchWrite) gate = value;
   return writeOk;
 }
-#include "../examples/TimeStickProbe/PpsOutput.h"
+#include "../src/detail/PpsOutput.h"
 int main() {
   assert(!reportPpsState());
   assert(enablePpsOutput() && gate == 0x12344001 && writes == 1);

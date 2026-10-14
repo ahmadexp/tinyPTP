@@ -1,7 +1,7 @@
 #pragma once
 
 // 0: interactive diagnostic, 1: automatic grandmaster, 2: automatic follower.
-// Set here in the IDE, or override via compiler.cpp.extra_flags in arduino-cli.
+// Select in the .ino before TinyPTP.h, or override via Arduino CLI flags.
 #ifndef TINYPTP_BOOT_ROLE
 #define TINYPTP_BOOT_ROLE 0
 #endif

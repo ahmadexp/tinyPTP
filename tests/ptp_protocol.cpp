@@ -40,7 +40,7 @@ struct UsbStub {
     std::copy(queued.front().begin(),queued.front().end(),p);queued.erase(queued.begin());return 0;
   }
 } Usb;
-#include "../examples/TimeStickProbe/PtpClient.h"
+#include "../src/detail/PtpClient.h"
 void be32(uint8_t *p,uint32_t n) {for(int i=3;i>=0;--i){p[i]=n;n>>=8;}}
 void le32(uint8_t *p,uint32_t n) {for(int i=0;i<4;++i){p[i]=n;n>>=8;}}
 void header(uint8_t *f,uint8_t type,uint16_t seq,uint16_t length) {

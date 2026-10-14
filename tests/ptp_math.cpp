@@ -1,5 +1,5 @@
 #include <cassert>
-#include "../examples/TimeStickProbe/PtpMath.h"
+#include "../src/detail/PtpMath.h"
 int main() {
   PtpTime a{100,999999900}, b{101,100};
   assert(ptpDiff(b,a)==200);

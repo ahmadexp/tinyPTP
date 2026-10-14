@@ -12,7 +12,7 @@ struct SerialSpy {
 } Serial;
 uint32_t nowMs = 1005;
 uint32_t millis() { return nowMs; }
-#include "../examples/TimeStickProbe/PtpLog.h"
+#include "../src/detail/PtpLog.h"
 int main() {
   ptpLogSample(-150, 735, -10500, 3, 7, 9);
   assert(Serial.output.str()=="tinyptp[1.005]: master offset -150 s3 freq -10500 path delay 735 sample 7 seq 9\n");

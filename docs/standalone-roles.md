@@ -72,7 +72,7 @@ tinyptp[seconds.milliseconds]: master offset OFFSET sSTATE freq FREQUENCY path d
 
 The state numbering is inspired by [LinuxPTP's servo states](https://github.com/richardcochran/linuxptp/blob/master/servo.h).
 The default servo is this project's integer PI implementation. An experimental
-integer linear-regression option, adaptive PI, and a Kalman experiment are also
+integer linear-regression option, adaptive PI, Kalman, and PLL/FLL are also
 available; see the
 [servo guide](servos.md).
 These controllers are not LinuxPTP servos ported to AVR. The full protocol/profile
@@ -102,13 +102,13 @@ Normal operation needs none of them.
 
 ## Build and upload
 
-`examples/TimeStickProbe/BuildConfig.h` defines `TINYPTP_BOOT_ROLE`:
+For Arduino IDE, install the [tinyPTP ZIP library](arduino-ide.md), then open
+**File → Examples → tinyPTP → Grandmaster** or **FollowerPI** and upload each
+to its board. Additional follower examples select the experimental servos.
+The `.ino` files set `TINYPTP_BOOT_ROLE` and `TINYPTP_SERVO` before including
+`TinyPTP.h`; no installed library header needs editing. Role values remain
+`0` diagnostic, `1` grandmaster, and `2` follower.
 
-- `0`: original interactive diagnostic, the source default.
-- `1`: automatic grandmaster with ptp4l-style logs.
-- `2`: automatic follower with ptp4l-style logs.
-
-For Arduino IDE, change that value before compiling/uploading each board.
 For Arduino CLI, `tools/build_roles.sh` builds both images with separate compiler
 defines and output directories, without editing source between builds:
 

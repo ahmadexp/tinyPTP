@@ -26,6 +26,26 @@ The follower supports fixed **PI**, experimental **integer linear regression**,
 **adaptive PI**, **Kalman**, and **PLL/FLL** experiments, selected at build time. See the
 [servo guide](docs/servos.md) for selection, control behavior, and UNO resource use.
 
+## Install with Arduino IDE
+
+Download [tinyPTP-0.1.0.zip](https://github.com/ahmadexp/tinyPTP/releases/download/v0.1.0/tinyPTP-0.1.0.zip)
+and use **Sketch → Include Library → Add .ZIP Library**. Install **USB Host
+Shield Library 2.0**, version **1.7.0**, through Library Manager first.
+Select **Arduino Uno** from the **Arduino AVR Boards** package.
+
+Under **File → Examples → tinyPTP**, upload **Grandmaster** to one UNO and
+**FollowerPI** to the other. Connect the TimeSticks by Ethernet and open
+Serial Monitor at **115200 baud**. Both roles start automatically.
+
+Ready-to-upload `.ino` examples are included for **PI**, **linreg**,
+**adaptive PI**, **Kalman**, **PLL/FLL**, and the interactive diagnostic probe.
+No library-header edits or compiler flags are needed. tinyPTP is currently
+installed from ZIP, not Arduino Library Manager.
+
+[Complete IDE installation, example selection, and troubleshooting](docs/arduino-ide.md)
+| [Example sketches](examples)
+| [Installation and seven-example compile validation](docs/results/2026-10-14/arduino-library/README.md)
+
 ## The working setup
 
 ![Two Arduino UNOs with USB Host Shields and TimeSticks linked by Ethernet](docs/images/two-uno-timestick-setup.png)
@@ -412,7 +432,7 @@ memory layout is unsuitable; this is not proof that a carefully reduced fork
 could never fit. No full flexPTP AVR build has been attempted here.
 
 The working experiment uses a smaller fixed-role implementation in
-`examples/TimeStickProbe/PtpClient.h`. A reduced flexPTP port remains an optional
+`src/detail/PtpClient.h`. A reduced flexPTP port remains an optional
 future direction, not a dependency of the current firmware.
 
 ## Implemented PTP exchange
@@ -490,8 +510,9 @@ This echo command is a limited transport test, not a general Ethernet receive dr
 The PTP path additionally parses bounded multi-frame aggregates and hardware
 timestamps. No command programs the TimeStick's flash, EEPROM, or eFuse.
 
-1. Install **USB Host Shield Library 2.0** by the USB Host Shield team in Arduino
-   Library Manager. Select **Arduino Uno** with the AVR core.
+1. Install **tinyPTP** and **USB Host Shield Library 2.0** using the
+   [Arduino IDE guide](docs/arduino-ide.md). Open **File → Examples → tinyPTP →
+   TimeStickProbe**. Select **Arduino Uno** with the AVR core.
 2. Stack the shield, attach one TimeStick directly, and provide a stable supply
    adequate for the UNO, shield, and dongle. Check the shield's VBUS wiring and
    power rating. A USB connector by itself does not guarantee adequate power.
@@ -511,7 +532,7 @@ delivery or a running, disciplined clock.
 Optional CLI build after installing the AVR core and library:
 
 ```
-arduino-cli compile --fqbn arduino:avr:uno examples/TimeStickProbe
+arduino-cli compile --fqbn arduino:avr:uno --library "$PWD" examples/TimeStickProbe
 ```
 
 Build verification on 2026-10-08: Arduino AVR core 1.8.8, USB Host Shield Library

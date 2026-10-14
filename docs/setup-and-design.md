@@ -39,6 +39,8 @@ not measured consumption or evidence that the supply can deliver that current.
 
 ## Toolchain and firmware
 
+For an IDE-first setup, use the [ZIP library and ready-made examples](arduino-ide.md).
+
 The tested host has Arduino CLI 1.5.2-rc.1, AVR core 1.8.8, USB Host Shield
 Library 2.0 version 1.7.0, pyserial, and LinuxPTP `ptp4l` 4.4. The test account
 has `dialout` membership for `/dev/ttyACM0`. Close other serial monitors first.
@@ -50,6 +52,7 @@ From PTPBox, with the repository at `/home/user/tinyPTP`:
 cli=/home/user/.local/share/tinyptp/bin/arduino-cli
 cfg=/home/user/.local/share/tinyptp/arduino-cli.yaml
 "$cli" --config-file "$cfg" compile --fqbn arduino:avr:uno \
+  --library /home/user/tinyPTP \
   --build-path /home/user/tinyPTP/build/TimeStickProbe \
   /home/user/tinyPTP/examples/TimeStickProbe
 "$cli" --config-file "$cfg" upload --fqbn arduino:avr:uno \

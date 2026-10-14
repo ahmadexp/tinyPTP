@@ -28,6 +28,19 @@ The follower supports fixed **PI**, experimental **integer linear regression**,
 
 ## Install with Arduino IDE
 
+**JSON / Boards Manager option:** add this to **Additional Boards Manager URLs**:
+
+```text
+https://raw.githubusercontent.com/ahmadexp/tinyPTP/main/package_tinyptp_index.json
+```
+
+Install **Arduino AVR Boards 1.8.8** and **USB Host Shield Library 2.0 1.7.0**
+first. Then install **tinyPTP UNO** through Boards Manager and select
+**tinyPTP UNO (ATmega328P)** to access the bundled examples.
+[Full JSON installation instructions](docs/arduino-boards-manager.md).
+
+**ZIP-library option:**
+
 Download [tinyPTP-0.1.0.zip](https://github.com/ahmadexp/tinyPTP/releases/download/v0.1.0/tinyPTP-0.1.0.zip)
 and use **Sketch → Include Library → Add .ZIP Library**. Install **USB Host
 Shield Library 2.0**, version **1.7.0**, through Library Manager first.
@@ -39,8 +52,8 @@ Serial Monitor at **115200 baud**. Both roles start automatically.
 
 Ready-to-upload `.ino` examples are included for **PI**, **linreg**,
 **adaptive PI**, **Kalman**, **PLL/FLL**, and the interactive diagnostic probe.
-No library-header edits or compiler flags are needed. tinyPTP is currently
-installed from ZIP, not Arduino Library Manager.
+No library-header edits or compiler flags are needed. tinyPTP is available
+through the custom Boards Manager URL or ZIP, not Arduino Library Manager.
 
 [Complete IDE installation, example selection, and troubleshooting](docs/arduino-ide.md)
 | [Example sketches](examples)

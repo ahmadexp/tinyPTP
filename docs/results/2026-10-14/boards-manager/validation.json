@@ -1,0 +1,44 @@
+{
+  "fqbn": "tinyptp:avr:uno",
+  "core_reference": "arduino:avr@1.8.8",
+  "usb_host_library": "1.7.0",
+  "archive_sha256": "2d6f1d2fab75467c6a7a4024549b46895742c2e9add51cb9c214dfe61498ec0c",
+  "method": "Fresh data and sketchbook directories; index served on loopback with identical archive/checksum; no uploads",
+  "examples": {
+    "FollowerAdaptivePI": {
+      "flash_bytes": 30364,
+      "static_sram_bytes": 1017,
+      "hex_sha256": "11aa245044442689857b96efc81e9411998f3b6020074f0713fd59e127ee7868"
+    },
+    "FollowerKalman": {
+      "flash_bytes": 31426,
+      "static_sram_bytes": 1017,
+      "hex_sha256": "49c42cc64aeb761b4c0186ead82ffdc7b6e0f658318ecba0ad4cc6a5450c6713"
+    },
+    "FollowerLinreg": {
+      "flash_bytes": 31174,
+      "static_sram_bytes": 1105,
+      "hex_sha256": "bf1a0c1ff72fca6c6aafd8e389990e5715f6dfcaf6b2ec50e7fd2bb521afae92"
+    },
+    "FollowerPI": {
+      "flash_bytes": 28556,
+      "static_sram_bytes": 995,
+      "hex_sha256": "facc9dab08bb78738e3c5bfca7672bd7855578b6e000e3a17662ada07bf46900"
+    },
+    "FollowerPllFll": {
+      "flash_bytes": 29674,
+      "static_sram_bytes": 1016,
+      "hex_sha256": "7501985d68be66176ad1daa8ae98bb72a1e1bee1ae98b7abe779eae9a2f2900e"
+    },
+    "Grandmaster": {
+      "flash_bytes": 28558,
+      "static_sram_bytes": 995,
+      "hex_sha256": "97ebd6633104a14bee6fff62aa4bd96b854d2c44e77b575882e9d0153e4269b9"
+    },
+    "TimeStickProbe": {
+      "flash_bytes": 27966,
+      "static_sram_bytes": 995,
+      "hex_sha256": "330c40ed6ee14a03ce56844a3df00a46dd81caf144d3adf0a77b65be958768d9"
+    }
+  }
+}

@@ -8,6 +8,11 @@ The tested shield power jumpers must be connected; see the
 
 ## Install once
 
+Prefer an **Additional Boards Manager URLs** JSON installation? Use the
+[Boards Manager method](https://github.com/ahmadexp/tinyPTP/blob/main/docs/arduino-boards-manager.md)
+to install a tinyPTP UNO profile with the library and examples bundled. The
+steps below describe the alternative ZIP-library installation.
+
 1. In **Boards Manager**, install **Arduino AVR Boards**. The recorded test
    configuration uses version **1.8.8**.
 2. In **Library Manager**, search for **USB Host Shield Library 2.0** and install

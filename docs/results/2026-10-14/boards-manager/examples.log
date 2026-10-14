@@ -1,0 +1,9 @@
+Examples for library [32mtinyPTP (tinyptp:avr@0.1.0)[0m
+  - [2m/home/user/tinyPTP/build/boards-manager-s2k9s2ms/data/packages/tinyptp/hardware/avr/0.1.0/libraries/tinyPTP/examples/[22mFollowerAdaptivePI
+  - [2m/home/user/tinyPTP/build/boards-manager-s2k9s2ms/data/packages/tinyptp/hardware/avr/0.1.0/libraries/tinyPTP/examples/[22mFollowerKalman
+  - [2m/home/user/tinyPTP/build/boards-manager-s2k9s2ms/data/packages/tinyptp/hardware/avr/0.1.0/libraries/tinyPTP/examples/[22mFollowerLinreg
+  - [2m/home/user/tinyPTP/build/boards-manager-s2k9s2ms/data/packages/tinyptp/hardware/avr/0.1.0/libraries/tinyPTP/examples/[22mFollowerPI
+  - [2m/home/user/tinyPTP/build/boards-manager-s2k9s2ms/data/packages/tinyptp/hardware/avr/0.1.0/libraries/tinyPTP/examples/[22mFollowerPllFll
+  - [2m/home/user/tinyPTP/build/boards-manager-s2k9s2ms/data/packages/tinyptp/hardware/avr/0.1.0/libraries/tinyPTP/examples/[22mGrandmaster
+  - [2m/home/user/tinyPTP/build/boards-manager-s2k9s2ms/data/packages/tinyptp/hardware/avr/0.1.0/libraries/tinyPTP/examples/[22mTimeStickProbe
+

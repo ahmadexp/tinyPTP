@@ -1,0 +1,32 @@
+{
+  "packages": [
+    {
+      "name": "tinyptp",
+      "maintainer": "ahmadexp",
+      "email": "ahmadexp@gmail.com",
+      "websiteURL": "https://github.com/ahmadexp/tinyPTP",
+      "platforms": [
+        {
+          "name": "tinyPTP UNO",
+          "architecture": "avr",
+          "version": "0.1.0",
+          "category": "Contributed",
+          "url": "https://github.com/ahmadexp/tinyPTP/releases/download/boards-v0.1.0/tinyPTP-avr-0.1.0.zip",
+          "archiveFileName": "tinyPTP-avr-0.1.0.zip",
+          "checksum": "SHA-256:2d6f1d2fab75467c6a7a4024549b46895742c2e9add51cb9c214dfe61498ec0c",
+          "size": "33559",
+          "boards": [
+            {
+              "name": "tinyPTP UNO (ATmega328P)"
+            }
+          ],
+          "toolsDependencies": [],
+          "help": {
+            "online": "https://github.com/ahmadexp/tinyPTP/blob/main/docs/arduino-boards-manager.md"
+          }
+        }
+      ],
+      "tools": []
+    }
+  ]
+}

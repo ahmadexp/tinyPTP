@@ -42,6 +42,20 @@ int main() {
     s.clearHistory(); assert(s.update(0,ms+3000,applied)==applied);
     s.reset(); assert(s.update(0,0,0)==0);
   }
+  // Hold the last correction through a 30-second measurement outage, then
+  // resume with a changed oscillator drift. The gap must not poison the fit.
+  {
+    PllFllServo f; int64_t phase=0; int32_t command=0; uint32_t ms=0;
+    for (int i=0;i<900;++i) {
+      const int drift=i<400 ? 11000 : 12000;
+      const uint32_t dt=i==400 ? 30000 : 1000;
+      if(i){phase+=int64_t(drift+command)*dt;ms+=dt;}
+      const int32_t prior=command;
+      command=f.update(phase/1000,ms,command);
+      if(i==400)assert(command==prior);
+      if(i>700)assert(std::abs(phase)<30000);
+    }
+  }
   // Arithmetic stress includes boundaries, out-of-range caller input,
   // sub-second intervals and the maximum allowed interval/window length.
   PllFllServo s;

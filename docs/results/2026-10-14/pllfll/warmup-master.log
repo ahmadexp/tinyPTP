@@ -1,0 +1,12 @@
+UTC: 2026-10-14T10:00:17.680973+00:00
+Port: /dev/serial/by-id/usb-Arduino__www.arduino.cc__0043_1453230343235190E071-if00; baud: 115200; reset: True
+tinyptp[0.000]: boot role GRANDMASTER
+tinyptp[0.000]: serial 115200 8N1; offset/path ns; frequency ppb
+tinyptp[0.582]: port 1: initializing Ethernet and hardware clock
+tinyptp[6.619]: initialization failed; retrying in 5 seconds (d for diagnostics)
+tinyptp[11.620]: port 1: initializing Ethernet and hardware clock
+tinyptp[27.258]: initialization failed; retrying in 5 seconds (d for diagnostics)
+tinyptp[32.259]: port 1: initializing Ethernet and hardware clock
+tinyptp[47.896]: initialization failed; retrying in 5 seconds (d for diagnostics)
+tinyptp[52.898]: port 1: initializing Ethernet and hardware clock
+tinyptp[68.537]: initialization failed; retrying in 5 seconds (d for diagnostics)

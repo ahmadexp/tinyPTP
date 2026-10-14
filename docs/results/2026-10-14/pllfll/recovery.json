@@ -1,0 +1,62 @@
+{
+  "warmup-02-follower.log": {
+    "utc_start": "2026-10-14T10:04:42.984632+00:00",
+    "sha256": "a5d5d28d6ed5562081d4d3aabf509c45f8a43255266a25b7689af87ee4d636fc",
+    "boot_count": 1,
+    "accepted_offsets": 286,
+    "initialization_failures": 0,
+    "link_down_events": 0,
+    "clock_stalls": 0,
+    "device_reset_transfer_errors": 0
+  },
+  "warmup-02-master.log": {
+    "utc_start": "2026-10-14T10:04:42.984714+00:00",
+    "sha256": "59405880445832454bf6de31c5990f1dc85f4fc80bf13c7e1abcc7dbc3c2d2ae",
+    "boot_count": 1,
+    "accepted_offsets": 0,
+    "initialization_failures": 0,
+    "link_down_events": 0,
+    "clock_stalls": 0,
+    "device_reset_transfer_errors": 0
+  },
+  "warmup-follower.log": {
+    "utc_start": "2026-10-14T10:00:17.680525+00:00",
+    "sha256": "2d3c10f255451a69576cd0dd70e9ec01b5d8e25f53284693eeda0d4a3a274abf",
+    "boot_count": 1,
+    "accepted_offsets": 0,
+    "initialization_failures": 4,
+    "link_down_events": 0,
+    "clock_stalls": 0,
+    "device_reset_transfer_errors": 0
+  },
+  "warmup-master.log": {
+    "utc_start": "2026-10-14T10:00:17.680973+00:00",
+    "sha256": "f6b0cb79a1ae9241ea8fe9b2c81b920587adc348dfc83ef678f0499920edcec7",
+    "boot_count": 1,
+    "accepted_offsets": 0,
+    "initialization_failures": 4,
+    "link_down_events": 0,
+    "clock_stalls": 0,
+    "device_reset_transfer_errors": 0
+  },
+  "device-reset-follower.log": {
+    "utc_start": "2026-10-14T10:02:06.913378+00:00",
+    "sha256": "3b840e4cde0e67e88a9e8a70f176b9ed2998f30a458519e83e28b4ef3b9d23be",
+    "boot_count": 1,
+    "accepted_offsets": 0,
+    "initialization_failures": 0,
+    "link_down_events": 0,
+    "clock_stalls": 3,
+    "device_reset_transfer_errors": 1
+  },
+  "device-reset-master.log": {
+    "utc_start": "2026-10-14T10:02:06.912947+00:00",
+    "sha256": "e81a45ba981e2e7a97805c585a2dc3e3df1ca4c24355b437d3f4927cb38b4d02",
+    "boot_count": 1,
+    "accepted_offsets": 0,
+    "initialization_failures": 0,
+    "link_down_events": 0,
+    "clock_stalls": 3,
+    "device_reset_transfer_errors": 1
+  }
+}

@@ -1,0 +1,146 @@
+{
+  "started_utc": "2026-10-14T10:04:42.922878+00:00",
+  "runs": [
+    {
+      "name": "warmup-02",
+      "servo": "pi",
+      "capture_seconds": 300,
+      "roles": {
+        "master": {
+          "counters": {
+            "timeouts": 0,
+            "missing_rx": 0,
+            "discarded": 0
+          },
+          "samples": 0
+        },
+        "follower": {
+          "counters": {
+            "timeouts": 0,
+            "missing_rx": 0,
+            "discarded": 0
+          },
+          "samples": 286
+        }
+      }
+    },
+    {
+      "name": "pi-01",
+      "servo": "pi",
+      "capture_seconds": 300,
+      "roles": {
+        "master": {
+          "counters": {
+            "timeouts": 0,
+            "missing_rx": 0,
+            "discarded": 0
+          },
+          "samples": 0
+        },
+        "follower": {
+          "counters": {
+            "timeouts": 0,
+            "missing_rx": 0,
+            "discarded": 0
+          },
+          "samples": 286
+        }
+      }
+    },
+    {
+      "name": "pllfll-01",
+      "servo": "pllfll",
+      "capture_seconds": 300,
+      "roles": {
+        "master": {
+          "counters": {
+            "timeouts": 0,
+            "missing_rx": 0,
+            "discarded": 0
+          },
+          "samples": 0
+        },
+        "follower": {
+          "counters": {
+            "timeouts": 0,
+            "missing_rx": 0,
+            "discarded": 0
+          },
+          "samples": 286
+        }
+      }
+    },
+    {
+      "name": "pi-02",
+      "servo": "pi",
+      "capture_seconds": 300,
+      "roles": {
+        "master": {
+          "counters": {
+            "timeouts": 0,
+            "missing_rx": 0,
+            "discarded": 0
+          },
+          "samples": 0
+        },
+        "follower": {
+          "counters": {
+            "timeouts": 0,
+            "missing_rx": 0,
+            "discarded": 0
+          },
+          "samples": 286
+        }
+      }
+    },
+    {
+      "name": "pllfll-02",
+      "servo": "pllfll",
+      "capture_seconds": 300,
+      "roles": {
+        "master": {
+          "counters": {
+            "timeouts": 0,
+            "missing_rx": 0,
+            "discarded": 0
+          },
+          "samples": 0
+        },
+        "follower": {
+          "counters": {
+            "timeouts": 0,
+            "missing_rx": 0,
+            "discarded": 0
+          },
+          "samples": 286
+        }
+      }
+    },
+    {
+      "name": "pi-03",
+      "servo": "pi",
+      "capture_seconds": 300,
+      "roles": {
+        "master": {
+          "counters": {
+            "timeouts": 0,
+            "missing_rx": 0,
+            "discarded": 0
+          },
+          "samples": 0
+        },
+        "follower": {
+          "counters": {
+            "timeouts": 0,
+            "missing_rx": 0,
+            "discarded": 0
+          },
+          "samples": 286
+        }
+      }
+    }
+  ],
+  "installed_follower": "pi",
+  "complete": true,
+  "ended_utc": "2026-10-14T10:35:22.851476+00:00"
+}

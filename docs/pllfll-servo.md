@@ -64,7 +64,8 @@ fixed-PI rebuild is byte-identical to the previously installed PI image.
 
 `tests/ptp_pllfll.cpp` checks known intrinsic frequency under independently
 changing applied commands, both drift signs, nonuniform intervals, wrap,
-acquisition, phase-step recovery, gaps, integer bounds, and saturation. Host
+acquisition, phase-step recovery, gaps (including a 30-second outage with changed
+drift), integer bounds, and saturation. Host
 address/undefined-behavior sanitizer checks pass, as do the existing tests and
 protocol tests compiled for all five servo selections.
 
@@ -86,3 +87,17 @@ SERVO=pllfll BUILD_DIR="$PWD/build/pllfll" sh tools/build_roles.sh
 ```
 
 Upload the follower using the [standalone procedure](standalone-roles.md).
+
+## Hardware results
+
+The [October 14 repeated comparison](results/2026-10-14/pllfll/README.md)
+completed five 300-second runs after a separate 300-second warm-up. PI / PLL/FLL /
+PI / PLL/FLL / PI measured raw-offset RMS values were **13.38 / 99.36 / 71.79 /
+209.77 / 78.42 ns**, with a common 120-second cutoff. Every run had 286 accepted
+exchanges and zero reported exchange errors; each measured window contained
+166 samples in `s3`.
+
+These PLL/FLL settings did not outperform their adjacent PI references.
+The noise/lag tradeoff warrants further controlled evaluation before changing
+the default. PI was restored. Logs, acquisition and measured-window graphs,
+source/firmware hashes, and the remote recovery record are included.

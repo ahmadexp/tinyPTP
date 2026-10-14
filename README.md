@@ -160,6 +160,36 @@ independent PPS measurements.
 [Model, noise assumptions, simulation results, and build instructions](docs/kalman-servo.md)
 | [Hardware results, recovery record, and raw logs](docs/results/2026-10-13/kalman/README.md)
 
+## Hybrid PLL/FLL experiment
+
+`SERVO=pllfll` adds a fixed-point phase/frequency servo: four-second phase
+correction plus an eight-interval frequency estimate that accounts for the
+commands already applied. It fits the UNO in 29,674 flash bytes and 1,016
+static SRAM bytes. Numerical and protocol checks pass.
+
+After remote recovery and a five-minute warm-up, five alternating five-minute
+runs produced these raw-offset RMS values, using every accepted sample after
+the same 120-second cutoff:
+
+| Run | Offset RMS |
+| --- | ---: |
+| PI 1 | 13.38 ns |
+| PLL/FLL 1 | 99.36 ns |
+| PI 2 | 71.79 ns |
+| PLL/FLL 2 | 209.77 ns |
+| PI 3 | 78.42 ns |
+
+Each run had 286 accepted exchanges, 166 measured-window samples in `s3`,
+and zero reported exchange errors. PLL/FLL had higher RMS than its adjacent
+PI references in both trials. These settings did not improve performance in
+this session; PI is restored and remains the default. Sequential-run variation
+and the absence of an independent PPS measurement limit broader conclusions.
+
+![Five alternating PI and PLL/FLL trials](docs/results/2026-10-14/pllfll/plots/servo-steady-state.png)
+
+[Control law, fixed-point implementation, and tests](docs/pllfll-servo.md)
+| [Results, raw logs, CSV data, and remote recovery](docs/results/2026-10-14/pllfll/README.md)
+
 ## PPS on the oscilloscope
 
 ![Both TimeStick PPS outputs connected to the oscilloscope](docs/images/two-timestick-pps-oscilloscope.png)

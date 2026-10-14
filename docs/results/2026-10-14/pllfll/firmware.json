@@ -1,0 +1,31 @@
+{
+  "source_commit": "f031a2c0ba0a942ba4abb3ec879605545db5972d",
+  "source_sha256": {
+    "BuildConfig.h": "dcb181bde719cabb675d18815f3555e6a0b3e1396ef35e88c445d9775ea30d33",
+    "PtpClient.h": "618e30df61fc9d6a076c6a229a41e8071f8131d2bf5c9dc089913811480ede1d",
+    "PtpServo.h": "b4cd0ce6bc1e28cdc497198e10f0b51868fe89e159a702a5fd4aecb54246ac3a",
+    "PllFllServo.h": "7d15a9e1e1b9e446addfcc4134128fdafbf9ef859cece9365f02f1c1495f733e"
+  },
+  "pllfll_follower": {
+    "hex_sha256": "7501985d68be66176ad1daa8ae98bb72a1e1bee1ae98b7abe779eae9a2f2900e",
+    "flash_bytes": 29674,
+    "static_sram_bytes": 1016,
+    "defines": "-DTINYPTP_BOOT_ROLE=2 -DTINYPTP_SERVO=4",
+    "uploaded_trials": [
+      "pllfll-01",
+      "pllfll-02"
+    ]
+  },
+  "pllfll_master_compile_only": {
+    "flash_bytes": 29678,
+    "static_sram_bytes": 1016,
+    "uploaded": false
+  },
+  "pi_hex_sha256": "facc9dab08bb78738e3c5bfca7672bd7855578b6e000e3a17662ada07bf46900",
+  "pi_rebuild_byte_identical": true,
+  "grandmaster_hex_sha256": "93d38313c683fd9fae9aefb4f0e1c2043097f5706cb7f92a928fa5617a2c12b0",
+  "build_toolchain": "AVR core 1.8.8; USB Host Shield Library 2.0 1.7.0",
+  "maximum_runtime_stack": "unmeasured",
+  "worst_case_execution_time": "unmeasured",
+  "installed_follower_after_trials": "saved fixed PI image"
+}

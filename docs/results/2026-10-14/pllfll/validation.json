@@ -1,0 +1,222 @@
+{
+  "pi-01": {
+    "master": {
+      "source": "pi-01-master.log",
+      "sha256": "de6662682dd5e10ef69c533fe89b66549a2bb6ae9bb63b7bfea82a33002bfe9c",
+      "utc_start": "2026-10-14T10:09:44.050493+00:00",
+      "boot_count": 1,
+      "pps_readback_enabled": true,
+      "max_counters": {
+        "timeouts": 0,
+        "missing_rx": 0,
+        "discarded": 0
+      },
+      "error_events": {
+        "initialization failed": 0,
+        "link down": 0,
+        "USB disconnected": 0
+      },
+      "last_status": "tinyptp[297.825]: port 1: MASTER sync 286 delay_resp 286 freq +0 timeouts 0 missing_rx 0 discarded 0"
+    },
+    "follower": {
+      "source": "pi-01-follower.log",
+      "sha256": "88e794b0915464073029b2a3b5bb9932537fa69659967ae27055e1f8c217f3b9",
+      "utc_start": "2026-10-14T10:09:44.050400+00:00",
+      "boot_count": 1,
+      "pps_readback_enabled": true,
+      "max_counters": {
+        "timeouts": 0,
+        "missing_rx": 0,
+        "discarded": 0
+      },
+      "error_events": {
+        "initialization failed": 0,
+        "link down": 0,
+        "USB disconnected": 0
+      },
+      "last_status": "tinyptp[291.817]: FOLLOWER samples 279 timeouts 0 missing_rx 0 discarded 0",
+      "accepted_samples": 286,
+      "window_samples": 166,
+      "window_state_counts": {
+        "3": 166
+      },
+      "sample_gaps": 0
+    }
+  },
+  "pllfll-01": {
+    "master": {
+      "source": "pllfll-01-master.log",
+      "sha256": "af208ca0368da844d52f5048c5253d6f454f3570dcada8aca637ec2bdee7f6ae",
+      "utc_start": "2026-10-14T10:14:53.603420+00:00",
+      "boot_count": 1,
+      "pps_readback_enabled": true,
+      "max_counters": {
+        "timeouts": 0,
+        "missing_rx": 0,
+        "discarded": 0
+      },
+      "error_events": {
+        "initialization failed": 0,
+        "link down": 0,
+        "USB disconnected": 0
+      },
+      "last_status": "tinyptp[297.825]: port 1: MASTER sync 286 delay_resp 286 freq +0 timeouts 0 missing_rx 0 discarded 0"
+    },
+    "follower": {
+      "source": "pllfll-01-follower.log",
+      "sha256": "cc363425f4b9fc695bd98e73ccaa4ca4f66115dcf336ff82ea28ac83804b14be",
+      "utc_start": "2026-10-14T10:14:53.603036+00:00",
+      "boot_count": 1,
+      "pps_readback_enabled": true,
+      "max_counters": {
+        "timeouts": 0,
+        "missing_rx": 0,
+        "discarded": 0
+      },
+      "error_events": {
+        "initialization failed": 0,
+        "link down": 0,
+        "USB disconnected": 0
+      },
+      "last_status": "tinyptp[291.820]: FOLLOWER samples 279 timeouts 0 missing_rx 0 discarded 0",
+      "accepted_samples": 286,
+      "window_samples": 166,
+      "window_state_counts": {
+        "3": 166
+      },
+      "sample_gaps": 0
+    }
+  },
+  "pi-02": {
+    "master": {
+      "source": "pi-02-master.log",
+      "sha256": "74739f3d54c2de56315da26805411d8d839b9bc1200a12bd1c19f414df9e6451",
+      "utc_start": "2026-10-14T10:20:02.953262+00:00",
+      "boot_count": 1,
+      "pps_readback_enabled": true,
+      "max_counters": {
+        "timeouts": 0,
+        "missing_rx": 0,
+        "discarded": 0
+      },
+      "error_events": {
+        "initialization failed": 0,
+        "link down": 0,
+        "USB disconnected": 0
+      },
+      "last_status": "tinyptp[297.824]: port 1: MASTER sync 286 delay_resp 286 freq +0 timeouts 0 missing_rx 0 discarded 0"
+    },
+    "follower": {
+      "source": "pi-02-follower.log",
+      "sha256": "02cfd7013258c6c17def29589f5a144bd73ca6516418ca06f5725c815dca3017",
+      "utc_start": "2026-10-14T10:20:02.954288+00:00",
+      "boot_count": 1,
+      "pps_readback_enabled": true,
+      "max_counters": {
+        "timeouts": 0,
+        "missing_rx": 0,
+        "discarded": 0
+      },
+      "error_events": {
+        "initialization failed": 0,
+        "link down": 0,
+        "USB disconnected": 0
+      },
+      "last_status": "tinyptp[291.817]: FOLLOWER samples 279 timeouts 0 missing_rx 0 discarded 0",
+      "accepted_samples": 286,
+      "window_samples": 166,
+      "window_state_counts": {
+        "3": 166
+      },
+      "sample_gaps": 0
+    }
+  },
+  "pllfll-02": {
+    "master": {
+      "source": "pllfll-02-master.log",
+      "sha256": "3066ba164cec722a28636d26c288da46c5297372037b58464738916684e4839a",
+      "utc_start": "2026-10-14T10:25:12.516026+00:00",
+      "boot_count": 1,
+      "pps_readback_enabled": true,
+      "max_counters": {
+        "timeouts": 0,
+        "missing_rx": 0,
+        "discarded": 0
+      },
+      "error_events": {
+        "initialization failed": 0,
+        "link down": 0,
+        "USB disconnected": 0
+      },
+      "last_status": "tinyptp[297.825]: port 1: MASTER sync 286 delay_resp 286 freq +0 timeouts 0 missing_rx 0 discarded 0"
+    },
+    "follower": {
+      "source": "pllfll-02-follower.log",
+      "sha256": "0298084015a70d4ea2d6846a28826860f5fb91278419725c46cfa4dfb6047a2f",
+      "utc_start": "2026-10-14T10:25:12.503622+00:00",
+      "boot_count": 1,
+      "pps_readback_enabled": true,
+      "max_counters": {
+        "timeouts": 0,
+        "missing_rx": 0,
+        "discarded": 0
+      },
+      "error_events": {
+        "initialization failed": 0,
+        "link down": 0,
+        "USB disconnected": 0
+      },
+      "last_status": "tinyptp[291.820]: FOLLOWER samples 279 timeouts 0 missing_rx 0 discarded 0",
+      "accepted_samples": 286,
+      "window_samples": 166,
+      "window_state_counts": {
+        "3": 166
+      },
+      "sample_gaps": 0
+    }
+  },
+  "pi-03": {
+    "master": {
+      "source": "pi-03-master.log",
+      "sha256": "1f916e24d131ec78ab6075b55de5116790af0303fc44a65b87bb997d618706b6",
+      "utc_start": "2026-10-14T10:30:21.852259+00:00",
+      "boot_count": 1,
+      "pps_readback_enabled": true,
+      "max_counters": {
+        "timeouts": 0,
+        "missing_rx": 0,
+        "discarded": 0
+      },
+      "error_events": {
+        "initialization failed": 0,
+        "link down": 0,
+        "USB disconnected": 0
+      },
+      "last_status": "tinyptp[297.825]: port 1: MASTER sync 286 delay_resp 286 freq +0 timeouts 0 missing_rx 0 discarded 0"
+    },
+    "follower": {
+      "source": "pi-03-follower.log",
+      "sha256": "260119499e7f9879ce987a039433d57a97efddf1c6329cac0c63dac02b8c4331",
+      "utc_start": "2026-10-14T10:30:21.852903+00:00",
+      "boot_count": 1,
+      "pps_readback_enabled": true,
+      "max_counters": {
+        "timeouts": 0,
+        "missing_rx": 0,
+        "discarded": 0
+      },
+      "error_events": {
+        "initialization failed": 0,
+        "link down": 0,
+        "USB disconnected": 0
+      },
+      "last_status": "tinyptp[291.817]: FOLLOWER samples 279 timeouts 0 missing_rx 0 discarded 0",
+      "accepted_samples": 286,
+      "window_samples": 166,
+      "window_state_counts": {
+        "3": 166
+      },
+      "sample_gaps": 0
+    }
+  }
+}

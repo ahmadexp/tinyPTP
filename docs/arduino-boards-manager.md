@@ -1,6 +1,44 @@
 # Install tinyPTP using a Boards Manager JSON URL
 
-Add this URL to Arduino IDE 2's **Additional Boards Manager URLs**:
+The GitHub repository is currently **private**. Arduino Boards Manager cannot
+use your browser's signed-in GitHub session, so the raw GitHub index and release
+asset URLs return 404 to it. The package has been built and tested; use the
+local method below until publicly accessible hosting is arranged.
+
+## Private repository: localhost JSON method
+
+1. While signed in to GitHub, download **tinyPTP-avr-0.1.0.zip** from the
+   [board package release](https://github.com/ahmadexp/tinyPTP/releases/tag/boards-v0.1.0).
+   This is the board ZIP, not the separate `tinyPTP-0.1.0.zip` library ZIP.
+2. From a checkout of this repository, run:
+
+   ```sh
+   python3 tools/serve_boards.py /path/to/tinyPTP-avr-0.1.0.zip
+   ```
+
+3. Keep that terminal open and add this URL to **Additional Boards Manager URLs**:
+
+   ```text
+   http://127.0.0.1:8765/package_tinyptp_index.json
+   ```
+
+4. Follow the installation steps below. Stop the server with Ctrl-C after
+   installation; installed examples compile without the server running.
+
+The helper checks the archive hash and serves only the JSON and matching ZIP,
+on the local computer only. It needs Python 3, but no external Python packages
+or GitHub token. The IDE and server must run on the same computer. Use `--port`
+if 8765 is occupied, and copy the URL it prints. Restart it for reinstalls or
+updates; remove the localhost URL from IDE preferences when no longer needed
+to avoid index-refresh errors while the server is stopped.
+
+## Hosted index (requires public access)
+
+The intended hosted URL is shown below, but **it will not work in Boards
+Manager while the repository and its release assets remain private**. Both the
+index and the archive it references must be accessible without authentication.
+Do not paste GitHub access tokens into the URL.
+
 
 ```text
 https://raw.githubusercontent.com/ahmadexp/tinyPTP/main/package_tinyptp_index.json
@@ -19,7 +57,8 @@ it does not require a different board or a new bootloader. The separate
 2. In **Library Manager**, install **USB Host Shield Library 2.0**, version
    **1.7.0**. The board package bundles tinyPTP, not the USB host dependency.
 3. Open **File → Preferences** on Windows/Linux, or **Arduino IDE → Settings**
-   on macOS. Add the URL above to **Additional Boards Manager URLs**. Preserve
+   on macOS. Add the **localhost URL** (or an accessible hosted index) to
+   **Additional Boards Manager URLs**. Preserve
    any URLs already listed, then save the settings.
 4. Open **Boards Manager**, search **tinyPTP UNO**, and install version **0.1.0**.
 5. Select **Tools → Board → tinyPTP UNO → tinyPTP UNO (ATmega328P)** and choose
@@ -83,13 +122,15 @@ Arduino board definitions.
 
 ## Arduino CLI equivalent
 
+With the local server running:
+
 ```sh
 arduino-cli core update-index --additional-urls \
-  https://raw.githubusercontent.com/ahmadexp/tinyPTP/main/package_tinyptp_index.json
+  http://127.0.0.1:8765/package_tinyptp_index.json
 arduino-cli core install arduino:avr@1.8.8
 arduino-cli lib install 'USB Host Shield Library 2.0@1.7.0'
 arduino-cli core install tinyptp:avr@0.1.0 --additional-urls \
-  https://raw.githubusercontent.com/ahmadexp/tinyPTP/main/package_tinyptp_index.json
+  http://127.0.0.1:8765/package_tinyptp_index.json
 arduino-cli lib examples --fqbn tinyptp:avr:uno tinyPTP
 ```
 

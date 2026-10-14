@@ -20,7 +20,7 @@ but no previously installed core, library, or board profile was inherited.
 The official `arduino:avr@1.8.8` core and USB Host Shield Library 2.0 version
 1.7.0 were installed first. The custom index was served temporarily on loopback
 with only its archive URL changed; the platform bytes and SHA-256 matched the
-public release artifact. Boards Manager installation and example discovery
+release artifact. Boards Manager installation and example discovery
 succeeded. Each bundled example compiled without custom compiler flags or an
 explicit library path.
 
@@ -40,6 +40,17 @@ properties resolve the official core, standard UNO variant, and installed
 avrdude tool. No uploads or live serial reads were performed. Neither lab UNO
 was reflashed, and the graphical IDE itself was not exercised remotely.
 Burn Bootloader is outside this package's configuration and validation scope.
+
+## Hosted URL check
+
+After publishing the index and release, an unauthenticated index refresh returned
+404. GitHub API inspection confirmed that the repository is private. The public
+URL installation therefore **did not pass** and is not claimed to work. The
+package passes the isolated loopback installation above. A local serving helper
+provides that method without changing repository visibility or embedding tokens.
+The helper passed GET/HEAD, size/hash, unlisted-file denial, and incorrect-archive
+rejection checks; see [local server validation](local-server-validation.json)
+and the [failed unauthenticated refresh](public-update-index.log).
 
 ## Evidence and reproduction
 

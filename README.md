@@ -28,16 +28,12 @@ The follower supports fixed **PI**, experimental **integer linear regression**,
 
 ## Install with Arduino IDE
 
-**JSON / Boards Manager option:** add this to **Additional Boards Manager URLs**:
-
-```text
-https://raw.githubusercontent.com/ahmadexp/tinyPTP/main/package_tinyptp_index.json
-```
-
-Install **Arduino AVR Boards 1.8.8** and **USB Host Shield Library 2.0 1.7.0**
-first. Then install **tinyPTP UNO** through Boards Manager and select
-**tinyPTP UNO (ATmega328P)** to access the bundled examples.
-[Full JSON installation instructions](docs/arduino-boards-manager.md).
+**JSON / Boards Manager option:** the package is available, but this repository
+is private, so Arduino cannot fetch its GitHub URLs anonymously. The
+[localhost JSON method](docs/arduino-boards-manager.md) serves the downloaded
+package on your own computer. It installs **tinyPTP UNO (ATmega328P)** with all
+seven examples, after installing the Arduino AVR core and USB host dependency.
+Public hosting is required for a directly usable internet index URL.
 
 **ZIP-library option:**
 

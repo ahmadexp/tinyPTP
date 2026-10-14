@@ -1,0 +1,13 @@
+{
+  "bind": "127.0.0.1",
+  "port": 8765,
+  "index_get": true,
+  "archive_get": true,
+  "archive_head": true,
+  "archive_sha256_verified": true,
+  "archive_size_verified": true,
+  "unlisted_path_returns_404": true,
+  "incorrect_archive_rejected": true,
+  "public_github_index_available_without_authentication": false,
+  "github_repository_visibility": "private"
+}

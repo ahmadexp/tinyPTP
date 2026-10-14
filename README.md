@@ -23,7 +23,7 @@ UNO-to-Linux experiment is retained below. This is an experimental fixed-role
 implementation, not a complete PTP stack or a flexPTP port.
 
 The follower supports fixed **PI**, experimental **integer linear regression**,
-**adaptive PI**, and a **Kalman experiment**, selected at build time. See the
+**adaptive PI**, **Kalman**, and **PLL/FLL** experiments, selected at build time. See the
 [servo guide](docs/servos.md) for selection, control behavior, and UNO resource use.
 
 ## The working setup

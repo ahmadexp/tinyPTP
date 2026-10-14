@@ -2,6 +2,7 @@
 #include <stdint.h>
 #include "BuildConfig.h"
 #include "KalmanServo.h"
+#include "PllFllServo.h"
 
 inline int32_t servoLimit(int64_t value) {
   return value > 500000 ? 500000 : value < -500000 ? -500000 : int32_t(value);
@@ -146,7 +147,9 @@ public:
   }
 };
 
-#if TINYPTP_SERVO == 3
+#if TINYPTP_SERVO == 4
+typedef PllFllServo PtpServo;
+#elif TINYPTP_SERVO == 3
 typedef KalmanServo PtpServo;
 #elif TINYPTP_SERVO == 2
 typedef AutoPiServo PtpServo;

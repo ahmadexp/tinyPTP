@@ -20,16 +20,25 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("pi", type=Path)
     parser.add_argument("candidate", type=Path)
-    parser.add_argument("--candidate-label", choices=["LINREG", "AUTO_PI", "KALMAN"], default="LINREG")
+    parser.add_argument("--candidate-label", choices=["LINREG", "AUTO_PI", "KALMAN", "PLL_FLL"], default="LINREG")
     parser.add_argument("--reference-after", type=Path, help="Optional repeated fixed-PI capture after the candidate")
+    parser.add_argument("--reference-between", type=Path, help="PI run between two candidate trials")
+    parser.add_argument("--candidate-repeat", type=Path, help="Repeated candidate after the middle PI run")
     parser.add_argument("--output-dir", type=Path, required=True)
     parser.add_argument("--after", type=float, default=120)
     args = parser.parse_args()
     if args.after < 0:
         parser.error("--after must be nonnegative")
     args.output_dir.mkdir(parents=True, exist_ok=True)
+    if bool(args.reference_between) != bool(args.candidate_repeat):
+        parser.error("--reference-between and --candidate-repeat must be supplied together")
+    if args.candidate_repeat and args.candidate_label == "AUTO_PI":
+        parser.error("Repeated adaptive-PI gain plots are not implemented")
     runs, summary = {}, {}
     sources = [("PI", args.pi), (args.candidate_label, args.candidate)]
+    if args.candidate_repeat:
+        sources.extend([("PI_MIDDLE", args.reference_between),
+                        (args.candidate_label + "_REPEAT", args.candidate_repeat)])
     if args.reference_after:
         sources.append(("PI_AFTER", args.reference_after))
     for name, path in sources:
@@ -87,18 +96,26 @@ def main():
     plt.rcParams.update({"font.family": "DejaVu Sans", "font.size": 10,
                          "svg.hashsalt": "tinyptp-servo-comparison"})
     colors = {"PI": "#2563eb", args.candidate_label: "#c2410c", "PI_AFTER": "#0f766e"}
+    colors.update({"PI_MIDDLE": "#7c3aed", args.candidate_label + "_REPEAT": "#be185d"})
+    labels = {"PI": "PI 1", "PI_MIDDLE": "PI 2", "PI_AFTER": "PI 3",
+              args.candidate_label: args.candidate_label.replace("_", "/") + " 1",
+              args.candidate_label + "_REPEAT": args.candidate_label.replace("_", "/") + " 2"} if args.candidate_repeat else {}
     for steady in [False, True]:
         fig, axes = plt.subplots(4 if gain_rows else 3, 1, figsize=(10, 10 if gain_rows else 8), sharex=True)
         fig.subplots_adjust(left=0.15, right=0.97, top=0.84, bottom=0.11, hspace=0.28)
         title = {"AUTO_PI": "Fixed and adaptive PI follower servos",
                  "LINREG": "PI and linear-regression follower servos",
-                 "KALMAN": "PI and Kalman follower servos"}[args.candidate_label]
+                 "KALMAN": "PI and Kalman follower servos",
+                 "PLL_FLL": "PI and PLL/FLL follower servos"}[args.candidate_label]
         fig.suptitle(title, x=0.15, y=0.97,
                      ha="left", fontsize=19, fontweight="bold")
-        subtitle = (f"All samples after {args.after:g} s | " + " | ".join(
-            f"{name} RMS {summary[name]['offset_rms_ns']:.2f} ns" for name in runs)
-            if steady else "Separate runs on the same UNO and TimeStick pair | acquisition included")
-        fig.text(0.15, 0.91, subtitle, fontsize=10 if args.reference_after else 11)
+        scores = [f"{labels.get(name, name)} {'' if args.candidate_repeat else 'RMS '}{summary[name]['offset_rms_ns']:.2f} ns" for name in runs]
+        if steady and args.candidate_repeat:
+            subtitle = f"Offset RMS, all samples after {args.after:g} s\n" + " | ".join(scores[:3]) + "\n" + " | ".join(scores[3:])
+        else:
+            subtitle = (f"All samples after {args.after:g} s | " + " | ".join(scores)
+                        if steady else "Separate runs on the same UNO and TimeStick pair | acquisition included")
+        fig.text(0.15, 0.91, subtitle, va="top", fontsize=10 if args.reference_after else 11)
         for name, (rows, window) in runs.items():
             data = window if steady else rows
             for ax, key, scale, label in zip(axes,
@@ -106,10 +123,10 @@ def main():
                     [1 if steady else 1e6, 1, 1],
                     ["Offset (ns)" if steady else "Offset (ms)", "Correction (ppb)", "Path delay (ns)"]):
                 ax.plot([r["elapsed_s"] for r in data], [r[key]/scale for r in data],
-                        color=colors[name], label=name, linewidth=0.85, marker=".", markersize=2)
+                        color=colors[name], label=labels.get(name, name), linewidth=0.85, marker=".", markersize=2)
                 style_axis(ax, label)
                 ax.yaxis.set_major_formatter(ScalarFormatter(useOffset=False))
-        axes[0].legend(loc="best", frameon=False)
+        axes[0].legend(loc="best", frameon=False, ncol=3 if args.candidate_repeat else 1)
         axes[0].axhline(0, color="#64748b", linewidth=0.6, linestyle="--")
         if gain_rows:
             start = args.after if steady else 0

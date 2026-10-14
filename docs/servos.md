@@ -1,7 +1,7 @@
 # Follower clock servos
 
 The follower offers fixed PI (the default), experimental integer linear
-regression, adaptive PI (`auto_pi`), and a two-state Kalman option. The grandmaster keeps
+regression, adaptive PI (`auto_pi`), two-state Kalman, and PLL/FLL options. The grandmaster keeps
 its free-running clock; it has no upstream source for a servo to track.
 All follower options produce
 the same 115200-baud ptp4l-style offset, frequency, and path-delay messages.
@@ -14,6 +14,7 @@ SERVO=pi BUILD_DIR="$PWD/build/pi" sh tools/build_roles.sh
 SERVO=linreg BUILD_DIR="$PWD/build/linreg" sh tools/build_roles.sh
 SERVO=auto_pi BUILD_DIR="$PWD/build/auto-pi" sh tools/build_roles.sh
 SERVO=kalman BUILD_DIR="$PWD/build/kalman" sh tools/build_roles.sh
+SERVO=pllfll BUILD_DIR="$PWD/build/pllfll" sh tools/build_roles.sh
 ```
 
 Set `ARDUINO_CLI` and `ARDUINO_CONFIG` if the CLI or configuration is outside
@@ -21,7 +22,7 @@ the normal search path. Upload the desired `follower` build directory to the
 follower UNO using the [standalone instructions](standalone-roles.md).
 The grandmaster does not need reflashing to change the follower's servo.
 For Arduino IDE, select `TINYPTP_SERVO` in `BuildConfig.h`: `0` for PI, `1`
-for linreg, `2` for adaptive PI, or `3` for Kalman, with `TINYPTP_BOOT_ROLE=2` for
+for linreg, `2` for adaptive PI, `3` for Kalman, or `4` for PLL/FLL, with `TINYPTP_BOOT_ROLE=2` for
 the follower. Selection is at compile time, not a serial command.
 
 ## Controllers
@@ -156,3 +157,13 @@ with a two-state filter, then steers from those estimates. It uses software
 floating point and provisional fixed noise parameters. Numerical checks and
 UNO builds pass, but the hardware comparison is pending recovery of an
 initialization failure encountered with the existing fixed-PI firmware.
+
+## PLL/FLL
+
+`SERVO=pllfll` selects a fixed-point hybrid with a four-second phase correction
+and an eight-interval frequency estimator. The frequency estimate removes the
+known effect of prior corrections, then smooths successive window estimates
+with gain 1/2. Raw serial offsets remain unchanged. This is an independent
+experiment, not a port of NTP's clock discipline or an automatic bandwidth tuner.
+
+[Equations, limitations, tests, and resources](pllfll-servo.md)

@@ -71,9 +71,10 @@ tinyptp[seconds.milliseconds]: master offset OFFSET sSTATE freq FREQUENCY path d
   link loss, or restart. It is not an independent accuracy measurement.
 
 The state numbering is inspired by [LinuxPTP's servo states](https://github.com/richardcochran/linuxptp/blob/master/servo.h).
-The servo remains this project's integer PI implementation, not LinuxPTP's
-servo ported to AVR. The full protocol/profile and independent PPS measurement
-limitations in the earlier reports still apply.
+The default servo is this project's integer PI implementation. An experimental
+integer linear-regression option is also available; see the [servo guide](servos.md).
+Neither controller is a LinuxPTP servo ported to AVR. The full protocol/profile
+and independent PPS measurement limitations in the earlier reports still apply.
 
 Status lines show boot role, selected clock identity, port transitions, and
 periodic error counters. Register dumps and per-update PBus writes are quiet
@@ -122,11 +123,13 @@ correct board using `arduino-cli upload --input-dir ...`, as in the existing
 paths are listed in the [two-UNO guide](two-uno-setup.md).
 
 With AVR core 1.8.8 and USB Host Shield Library 2.0 version 1.7.0, the installed
-grandmaster image uses **28528 bytes flash**; the installed follower from the
-PPS-fix build uses **28008 bytes**. Rebuilding the follower with the latest
-shared source uses **28524 bytes**.
-Both use **995 bytes static SRAM**, leaving **1053 bytes** beyond static allocation.
-Maximum runtime stack usage is unmeasured.
+grandmaster image uses **28528 bytes flash**. The original PPS-fix follower
+used **28008 bytes**; the selectable-servo PI follower uses **28556 bytes**.
+These images use **995 bytes static SRAM**, leaving **1053 bytes** beyond static
+allocation. The experimental linreg follower uses **31174 bytes flash** and
+**1105 bytes static SRAM**. Maximum runtime stack usage is unmeasured. See the
+[servo comparison](results/2026-10-13/servo-comparison/README.md) for tested
+firmware hashes and captured data.
 
 The two standalone images were uploaded on 2026-10-13. The earlier Python
 pair process was stopped. Validation captures send no startup commands and
@@ -193,7 +196,7 @@ determine whether its hardware clock is currently being disciplined.
 Run from the repository root on a host with a C++11 compiler and Python 3:
 
 ```sh
-for test in ptp_math ptp_protocol ptp_log pps_output; do
+for test in ptp_math ptp_protocol ptp_log pps_output ptp_servo; do
   c++ -std=c++11 -Wall -Wextra -Werror -fsanitize=address,undefined \
     tests/$test.cpp -o /tmp/tinyptp-$test
   /tmp/tinyptp-$test

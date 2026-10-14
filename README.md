@@ -22,6 +22,10 @@ the 1 Gb/s negotiation fix, and the hardware experiment. Use the
 UNO-to-Linux experiment is retained below. This is an experimental fixed-role
 implementation, not a complete PTP stack or a flexPTP port.
 
+The follower supports the original **PI servo** and an experimental
+**integer linear-regression servo** selected at build time. See the
+[servo guide](docs/servos.md) for selection, control behavior, and UNO resource use.
+
 ## The working setup
 
 ![Two Arduino UNOs with USB Host Shields and TimeSticks linked by Ethernet](docs/images/two-uno-timestick-setup.png)
@@ -86,6 +90,28 @@ were visible again. See the [recovery record](docs/results/2026-10-13/power-cycl
 The underlying restart failure remains unresolved. The excerpts above remain
 the earlier verified run, not output from the failed attempt.
 
+
+## PI and linear-regression servos
+
+A five-minute hardware trial for each controller completed **288 exchanges
+per run**, with no reported exchange errors. Using the same 120-second
+acquisition cutoff leaves 168 samples per controller:
+
+| Internal offset estimate | PI | Linreg |
+| --- | ---: | ---: |
+| RMS | 47.51 ns | 32.06 ns |
+| Mean | -4.49 ns | +8.51 ns |
+| Range | -130 to +105 ns | -75 to +110 ns |
+
+![PI and linreg follower steady-state comparison](docs/results/2026-10-13/servo-comparison/plots/servo-steady-state.png)
+
+Linreg had lower RMS in this trial pair. These are sequential runs with
+uncontrolled oscillator drift, not proof of a general improvement or a
+physical PPS accuracy result. PI remains the default; linreg is an independent
+integer eight-point regression, not LinuxPTP's adaptive implementation.
+
+[Raw logs, acquisition plot, CSV data, and comparison method](docs/results/2026-10-13/servo-comparison/README.md)
+| [Build either servo](docs/servos.md)
 
 ## PPS on the oscilloscope
 

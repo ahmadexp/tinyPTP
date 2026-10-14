@@ -1,0 +1,122 @@
+UTC: 2026-10-14T03:14:08.295951+00:00
+Port: /dev/serial/by-id/usb-Arduino__www.arduino.cc__0043_1453230343235190E071-if00; baud: 115200; reset: True
+tinyptp[0.000]: boot role GRANDMASTER
+tinyptp[0.000]: serial 115200 8N1; offset/path ns; frequency ppb
+tinyptp[0.582]: PPS register read failed
+tinyptp[0.583]: port 1: initializing Ethernet and hardware clock
+tinyptp[11.801]: PPS gate before=0x4000
+tinyptp[11.803]: PPS gate=0x4000 clock=0x5F active_ns=500000000 enabled (register readback)
+tinyptp[11.807]: clock identity 9c69d3.fffe.2ba18d
+tinyptp[11.811]: port 1: INITIALIZING to MASTER on FIXED_ROLE
+tinyptp[11.816]: port 1: assuming the grandmaster role
+tinyptp[11.822]: grandmaster: free-running oscillator, UTC not valid
+tinyptp[11.828]: port 1: MASTER sync 0 delay_resp 0 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[12.815]: port 1: received Delay_Req from follower 9c69d3.fffe.2ba12f
+tinyptp[12.828]: port 1: MASTER sync 1 delay_resp 1 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[13.828]: port 1: MASTER sync 2 delay_resp 2 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[14.828]: port 1: MASTER sync 3 delay_resp 3 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[15.828]: port 1: MASTER sync 4 delay_resp 4 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[16.828]: port 1: MASTER sync 5 delay_resp 5 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[17.828]: port 1: MASTER sync 6 delay_resp 6 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[18.828]: port 1: MASTER sync 7 delay_resp 7 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[19.828]: port 1: MASTER sync 8 delay_resp 8 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[20.828]: port 1: MASTER sync 9 delay_resp 9 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[21.828]: port 1: MASTER sync 10 delay_resp 10 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[22.828]: port 1: MASTER sync 11 delay_resp 11 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[23.828]: port 1: MASTER sync 12 delay_resp 12 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[24.828]: port 1: MASTER sync 13 delay_resp 13 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[25.828]: port 1: MASTER sync 14 delay_resp 14 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[26.828]: port 1: MASTER sync 15 delay_resp 15 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[27.828]: port 1: MASTER sync 16 delay_resp 16 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[28.828]: port 1: MASTER sync 17 delay_resp 17 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[29.828]: port 1: MASTER sync 18 delay_resp 18 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[30.828]: port 1: MASTER sync 19 delay_resp 19 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[31.828]: port 1: MASTER sync 20 delay_resp 20 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[32.828]: port 1: MASTER sync 21 delay_resp 21 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[33.828]: port 1: MASTER sync 22 delay_resp 22 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[34.828]: port 1: MASTER sync 23 delay_resp 23 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[35.828]: port 1: MASTER sync 24 delay_resp 24 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[36.828]: port 1: MASTER sync 25 delay_resp 25 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[37.828]: port 1: MASTER sync 26 delay_resp 26 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[38.828]: port 1: MASTER sync 27 delay_resp 27 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[39.828]: port 1: MASTER sync 28 delay_resp 28 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[40.828]: port 1: MASTER sync 29 delay_resp 29 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[41.828]: port 1: MASTER sync 30 delay_resp 30 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[42.828]: port 1: MASTER sync 31 delay_resp 31 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[43.828]: port 1: MASTER sync 32 delay_resp 32 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[44.828]: port 1: MASTER sync 33 delay_resp 33 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[45.828]: port 1: MASTER sync 34 delay_resp 34 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[46.828]: port 1: MASTER sync 35 delay_resp 35 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[47.828]: port 1: MASTER sync 36 delay_resp 36 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[48.828]: port 1: MASTER sync 37 delay_resp 37 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[49.828]: port 1: MASTER sync 38 delay_resp 38 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[50.828]: port 1: MASTER sync 39 delay_resp 39 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[51.828]: port 1: MASTER sync 40 delay_resp 40 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[52.828]: port 1: MASTER sync 41 delay_resp 41 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[53.828]: port 1: MASTER sync 42 delay_resp 42 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[54.828]: port 1: MASTER sync 43 delay_resp 43 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[55.828]: port 1: MASTER sync 44 delay_resp 44 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[56.828]: port 1: MASTER sync 45 delay_resp 45 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[57.828]: port 1: MASTER sync 46 delay_resp 46 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[58.828]: port 1: MASTER sync 47 delay_resp 47 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[59.828]: port 1: MASTER sync 48 delay_resp 48 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[60.828]: port 1: MASTER sync 49 delay_resp 49 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[61.828]: port 1: MASTER sync 50 delay_resp 50 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[62.828]: port 1: MASTER sync 51 delay_resp 51 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[63.828]: port 1: MASTER sync 52 delay_resp 52 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[64.828]: port 1: MASTER sync 53 delay_resp 53 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[65.828]: port 1: MASTER sync 54 delay_resp 54 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[66.828]: port 1: MASTER sync 55 delay_resp 55 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[67.828]: port 1: MASTER sync 56 delay_resp 56 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[68.828]: port 1: MASTER sync 57 delay_resp 57 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[69.828]: port 1: MASTER sync 58 delay_resp 58 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[70.828]: port 1: MASTER sync 59 delay_resp 59 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[71.828]: port 1: MASTER sync 60 delay_resp 60 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[72.828]: port 1: MASTER sync 61 delay_resp 61 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[73.828]: port 1: MASTER sync 62 delay_resp 62 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[74.828]: port 1: MASTER sync 63 delay_resp 63 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[75.828]: port 1: MASTER sync 64 delay_resp 64 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[76.828]: port 1: MASTER sync 65 delay_resp 65 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[77.828]: port 1: MASTER sync 66 delay_resp 66 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[78.828]: port 1: MASTER sync 67 delay_resp 67 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[79.828]: port 1: MASTER sync 68 delay_resp 68 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[80.828]: port 1: MASTER sync 69 delay_resp 69 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[81.828]: port 1: MASTER sync 70 delay_resp 70 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[82.828]: port 1: MASTER sync 71 delay_resp 71 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[83.828]: port 1: MASTER sync 72 delay_resp 72 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[84.828]: port 1: MASTER sync 73 delay_resp 73 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[85.828]: port 1: MASTER sync 74 delay_resp 74 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[86.828]: port 1: MASTER sync 75 delay_resp 75 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[87.828]: port 1: MASTER sync 76 delay_resp 76 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[88.828]: port 1: MASTER sync 77 delay_resp 77 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[89.828]: port 1: MASTER sync 78 delay_resp 78 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[90.828]: port 1: MASTER sync 79 delay_resp 79 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[91.828]: port 1: MASTER sync 80 delay_resp 80 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[92.828]: port 1: MASTER sync 81 delay_resp 81 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[93.828]: port 1: MASTER sync 82 delay_resp 82 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[94.828]: port 1: MASTER sync 83 delay_resp 83 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[95.828]: port 1: MASTER sync 84 delay_resp 84 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[96.828]: port 1: MASTER sync 85 delay_resp 85 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[97.828]: port 1: MASTER sync 86 delay_resp 86 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[98.828]: port 1: MASTER sync 87 delay_resp 87 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[99.828]: port 1: MASTER sync 88 delay_resp 88 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[100.828]: port 1: MASTER sync 89 delay_resp 89 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[101.828]: port 1: MASTER sync 90 delay_resp 90 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[102.828]: port 1: MASTER sync 91 delay_resp 91 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[103.828]: port 1: MASTER sync 92 delay_resp 92 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[104.828]: port 1: MASTER sync 93 delay_resp 93 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[105.828]: port 1: MASTER sync 94 delay_resp 94 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[106.828]: port 1: MASTER sync 95 delay_resp 95 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[107.828]: port 1: MASTER sync 96 delay_resp 96 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[108.828]: port 1: MASTER sync 97 delay_resp 97 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[109.828]: port 1: MASTER sync 98 delay_resp 98 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[110.828]: port 1: MASTER sync 99 delay_resp 99 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[111.828]: port 1: MASTER sync 100 delay_resp 100 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[112.828]: port 1: MASTER sync 101 delay_resp 101 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[113.828]: port 1: MASTER sync 102 delay_resp 102 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[114.828]: port 1: MASTER sync 103 delay_resp 103 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[115.828]: port 1: MASTER sync 104 delay_resp 104 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[116.828]: port 1: MASTER sync 105 delay_resp 105 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[117.828]: port 1: MASTER sync 106 delay_resp 106 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[118.828]: port 1: MASTER sync 107 delay_resp 107 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[119.828]: port 1: MASTER sync 108 delay_resp 108 freq +0 timeouts 0 missing_rx 0 discarded 0

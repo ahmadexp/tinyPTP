@@ -1,0 +1,54 @@
+{
+  "pi": {
+    "master": {
+      "utc": "2026-10-14T03:02:29.127466+00:00",
+      "boot_count": 1,
+      "status_lines": 289,
+      "last_status": "tinyptp[299.828]: port 1: MASTER sync 288 delay_resp 288 freq +0 timeouts 0 missing_rx 0 discarded 0",
+      "max_timeouts": 0,
+      "max_missing_rx": 0,
+      "max_discarded": 0,
+      "pps_enabled_readback": true,
+      "early_pps_query_failures": 1,
+      "sha256": "1559f94ef9875ee85a8e07781283aedd8c01816a3cd208d33445fe1a960280eb"
+    },
+    "follower": {
+      "utc": "2026-10-14T03:02:29.124820+00:00",
+      "boot_count": 1,
+      "status_lines": 29,
+      "last_status": "tinyptp[291.822]: FOLLOWER samples 279 timeouts 0 missing_rx 0 discarded 0",
+      "max_timeouts": 0,
+      "max_missing_rx": 0,
+      "max_discarded": 0,
+      "pps_enabled_readback": true,
+      "early_pps_query_failures": 1,
+      "sha256": "28d53203f985d954e19245d8f10b014c24cfa2df74a08371516994c5ff0f1019"
+    }
+  },
+  "linreg": {
+    "master": {
+      "utc": "2026-10-14T03:08:15.360984+00:00",
+      "boot_count": 1,
+      "status_lines": 289,
+      "last_status": "tinyptp[299.827]: port 1: MASTER sync 288 delay_resp 288 freq +0 timeouts 0 missing_rx 0 discarded 0",
+      "max_timeouts": 0,
+      "max_missing_rx": 0,
+      "max_discarded": 0,
+      "pps_enabled_readback": true,
+      "early_pps_query_failures": 1,
+      "sha256": "5d2034624136e61aaa70da7826a527b60e1c698d0554cb511c2a08c93392f1b8"
+    },
+    "follower": {
+      "utc": "2026-10-14T03:08:15.361036+00:00",
+      "boot_count": 1,
+      "status_lines": 29,
+      "last_status": "tinyptp[291.822]: FOLLOWER samples 279 timeouts 0 missing_rx 0 discarded 0",
+      "max_timeouts": 0,
+      "max_missing_rx": 0,
+      "max_discarded": 0,
+      "pps_enabled_readback": true,
+      "early_pps_query_failures": 1,
+      "sha256": "400a26d2434c38dfa3af7652d262126dc173ed0bb36af7f99d2c6b0d207b8a5a"
+    }
+  }
+}

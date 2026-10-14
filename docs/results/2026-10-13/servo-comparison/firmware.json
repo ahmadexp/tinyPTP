@@ -1,0 +1,34 @@
+{
+  "base_commit": "b5250452d9abea11b0c1810a87ff3d36ee93e0eb",
+  "source_note": "Servo changes in this report were built on this base commit. Source hashes identify the tested files.",
+  "source_sha256": {
+    "examples/TimeStickProbe/PtpServo.h": "71c7c3169b87bc934033fc142155cbb2df5480fd611a23abb20959fad3febed3",
+    "examples/TimeStickProbe/PtpClient.h": "3a1dcdb84174780c002902d7bb7f923d4d5e0fc9c77a6b816b23365c553eb53f",
+    "examples/TimeStickProbe/BuildConfig.h": "68b8f12f9a95251a59095260fe57b1abad6a3a296794804acfdf8450e8e64120"
+  },
+  "grandmaster_hex_sha256": "93d38313c683fd9fae9aefb4f0e1c2043097f5706cb7f92a928fa5617a2c12b0",
+  "follower_builds": {
+    "PI": {
+      "hex_sha256": "facc9dab08bb78738e3c5bfca7672bd7855578b6e000e3a17662ada07bf46900",
+      "flash_bytes": 28556,
+      "static_sram_bytes": 995,
+      "defines": "-DTINYPTP_BOOT_ROLE=2 -DTINYPTP_SERVO=0"
+    },
+    "LINREG": {
+      "hex_sha256": "bf1a0c1ff72fca6c6aafd8e389990e5715f6dfcaf6b2ec50e7fd2bb521afae92",
+      "flash_bytes": 31174,
+      "static_sram_bytes": 1105,
+      "defines": "-DTINYPTP_BOOT_ROLE=2 -DTINYPTP_SERVO=1"
+    }
+  },
+  "grandmaster_uno_serial": "1453230343235190E071",
+  "follower_uno_serial": "14533303731351B0C090",
+  "grandmaster_clock_identity": "9c69d3.fffe.2ba18d",
+  "follower_clock_identity": "9c69d3.fffe.2ba12f",
+  "capture_seconds_per_run": 300,
+  "analysis_cutoff_seconds_after_first_sample": 120,
+  "serial_baud": 115200,
+  "protocol": "L2, domain 42, two-step E2E, direct Ethernet, fixed roles, 1 Hz Sync",
+  "build_toolchain": "AVR core 1.8.8; USB Host Shield Library 2.0 1.7.0",
+  "maximum_runtime_stack": "unmeasured"
+}

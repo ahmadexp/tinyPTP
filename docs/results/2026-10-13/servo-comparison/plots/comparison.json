@@ -1,0 +1,44 @@
+{
+  "PI": {
+    "source_log": "servo-pi-20261013-01-follower.log",
+    "source_sha256": "28d53203f985d954e19245d8f10b014c24cfa2df74a08371516994c5ff0f1019",
+    "total_samples": 288,
+    "cutoff_s": 120.0,
+    "first_s3_elapsed_s": 80.033,
+    "window_samples": 168,
+    "window_span_s": 167.076,
+    "offset_mean_ns": -4.494047619047619,
+    "offset_rms_ns": 47.507831434607155,
+    "offset_stddev_ns": 47.29479446637632,
+    "offset_min_ns": -130,
+    "offset_max_ns": 105,
+    "path_mean_ns": 733.4821428571429,
+    "frequency_min_ppb": -10625,
+    "frequency_max_ppb": -10477,
+    "state_counts": {
+      "3": 168
+    },
+    "sample_number_gaps": 0
+  },
+  "LINREG": {
+    "source_log": "servo-linreg-20261013-01-follower.log",
+    "source_sha256": "400a26d2434c38dfa3af7652d262126dc173ed0bb36af7f99d2c6b0d207b8a5a",
+    "total_samples": 288,
+    "cutoff_s": 120.0,
+    "first_s3_elapsed_s": 60.023,
+    "window_samples": 168,
+    "window_span_s": 167.077,
+    "offset_mean_ns": 8.511904761904763,
+    "offset_rms_ns": 32.057426151027336,
+    "offset_stddev_ns": 30.906731447256508,
+    "offset_min_ns": -75,
+    "offset_max_ns": 110,
+    "path_mean_ns": 733.3333333333334,
+    "frequency_min_ppb": -10620,
+    "frequency_max_ppb": -10557,
+    "state_counts": {
+      "3": 168
+    },
+    "sample_number_gaps": 0
+  }
+}

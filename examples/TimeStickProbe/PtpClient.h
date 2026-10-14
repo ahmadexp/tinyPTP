@@ -2,6 +2,7 @@
 #include "PtpMath.h"
 #include "PtpLog.h"
 #include "PpsOutput.h"
+#include "PtpServo.h"
 
 // Fixed peer, L2, domain 42, two-step, E2E. No BMCA or profile claim.
 const uint8_t ptpMaster[10] = {0x0c,0x9d,0x92,0xff,0xfe,0xc5,0x83,0x32,0,1};
@@ -16,7 +17,8 @@ PtpTime t1, t2, t3, t4;
 int64_t syncCorrection = 0, responseCorrection = 0;
 uint32_t exchangeStarted = 0, quarantineUntil = 0;
 uint32_t ptpSamples = 0, ptpTimeouts = 0, ptpRxMissing = 0, ptpRxDiscard = 0;
-int32_t integralPpb = 0, frequencyPpb = 0;
+PtpServo clockServo;
+int32_t frequencyPpb = 0;
 uint8_t tsReport[131];
 uint16_t tsUsed = 0;
 bool tsOverflow = false;
@@ -59,6 +61,7 @@ void finishPtpExchange() {
   // Reject impossible or implausible direct-link measurements, including
   // events spanning an unexpected clock step or stale timestamp pairing.
   if (path < -1000 || path > 1000000) {
+    clockServo.clearHistory();
     servoStableSamples = 0;
     Serial.print(F("PTP rejected path_ns=")); printSigned64(path); Serial.println(); return;
   }
@@ -80,7 +83,7 @@ void finishPtpExchange() {
   }
   if (offset > 500000000LL || offset < -500000000LL) {
     if (!ptpSetClock(-offset)) { Serial.println(F("PTP clock step failed")); ptpRunning = false; return; }
-    integralPpb = frequencyPpb = 0; servoStableSamples = 0;
+    clockServo.reset(); frequencyPpb = 0; servoStableSamples = 0;
     if (!ptpSetFrequency(0)) ptpRunning = false;
     quarantineUntil = millis() + 200;
 #if TINYPTP_PTP4L_LOG
@@ -91,15 +94,7 @@ void finishPtpExchange() {
 #endif
     return;
   }
-  // 1 Hz PI servo, ppb equals ns/s. Conditional integration prevents windup.
-  int64_t proposedIntegral = int64_t(integralPpb) - offset / 20;
-  if (proposedIntegral > 200000) proposedIntegral = 200000;
-  if (proposedIntegral < -200000) proposedIntegral = -200000;
-  int64_t control = proposedIntegral - offset / 2;
-  if (control <= 500000 && control >= -500000) integralPpb = proposedIntegral;
-  if (control > 500000) control = 500000;
-  if (control < -500000) control = -500000;
-  frequencyPpb = control;
+  frequencyPpb = clockServo.update(offset, t1.sec * 1000UL + t1.ns / 1000000UL, frequencyPpb);
   if (!ptpSetFrequency(frequencyPpb)) {
     ptpRunning = false; ptpLogPrefix(); Serial.println(F("frequency update failed")); return;
   }
@@ -310,7 +305,7 @@ void startPtpClient(bool discipline, bool masterRole = false, bool learnMaster =
   tsUsed = rxUsed = 0; tsOverflow = rxOverflow = false;
   tsPackets = tsReports = 0;
   ptpSamples = ptpTimeouts = ptpRxMissing = ptpRxDiscard = 0;
-  integralPpb = frequencyPpb = 0; quarantineUntil = millis() + 200;
+  clockServo.reset(); frequencyPpb = 0; quarantineUntil = millis() + 200;
   ptpDiscipline = discipline && !masterRole;
   if (!ptpSetFrequency(0)) return;
   ptpRunning = true;
@@ -322,6 +317,13 @@ void startPtpClient(bool discipline, bool masterRole = false, bool learnMaster =
   if (masterRole) {
     ptpLogPrefix(); Serial.println(F("port 1: assuming the grandmaster role"));
     ptpLogPrefix(); Serial.println(F("grandmaster: free-running oscillator, UTC not valid"));
+  } else if (ptpDiscipline) {
+    ptpLogPrefix();
+#if TINYPTP_SERVO == 1
+    Serial.println(F("servo LINREG window 8 phase_tau 4s limit 500000 ppb"));
+#else
+    Serial.println(F("servo PI kp 1/2 ki 1/20 limit 500000 ppb"));
+#endif
   }
 
 }
@@ -364,6 +366,7 @@ void pollPtpClient() {
   if (!ptpRunning) return;
   if (ptpMasterRole) pollPtpMasterSchedule();
   if (haveSync && uint32_t(millis() - exchangeStarted) > 2500) {
+    clockServo.clearHistory();
     ++ptpTimeouts; servoStableSamples = 0;
     Serial.print(F("PTP exchange timeout follow=")); Serial.print(haveFollow);
     Serial.print(F(" tx=")); Serial.print(haveTx);
@@ -378,6 +381,7 @@ void pollPtpClient() {
     clearPtpExchange();
   }
   if (!ptpMasterRole && uint32_t(millis() - lastCompletedExchange) > 5000) {
+    clockServo.clearHistory();
     if (followerReceiving) {
       ptpLogPrefix(); Serial.println(F("port 1: SLAVE to LISTENING on SYNC_TIMEOUT"));
       followerReceiving = false; servoStableSamples = 0;

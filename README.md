@@ -123,6 +123,26 @@ frames.
 | [SVG figures and reproduction instructions](docs/results/2026-10-13/power-cycle-recovery/plots/README.md)
 | [Validation record](docs/results/2026-10-13/power-cycle-recovery/validation.json)
 
+### Longer steady-state run
+
+A separate **15-minute capture** completed **888 exchanges**. Excluding the
+first 120 seconds after the first accepted exchange leaves **768 samples over
+12.79 minutes**. Every sample in that fixed window is shown, without smoothing
+or outlier removal.
+
+![Follower offset, frequency correction, and path delay over 12.79 minutes of steady-state data](docs/results/2026-10-13/steady-state-15min/plots/follower-steady-state.png)
+
+The longer window has **25.00 ns offset RMS**, **+2.17 ns mean**, and a range of
+**-85 to +50 ns**. Mean estimated path delay is **736.72 ns**. All 768 samples
+are in `s3`, with no missing sample numbers; neither board reports exchange
+timeouts, missing receive timestamps, or discarded frames during this capture.
+These remain internal PTP estimates, not independently measured PPS accuracy.
+
+[Long-run report and reproduction instructions](docs/results/2026-10-13/steady-state-15min/README.md)
+| [Steady-state CSV](docs/results/2026-10-13/steady-state-15min/plots/steady-state-samples.csv)
+| [SVG figure](docs/results/2026-10-13/steady-state-15min/plots/follower-steady-state.svg)
+| [Validation record](docs/results/2026-10-13/steady-state-15min/validation.json)
+
 ## USB Host Shield power jumpers
 
 ![Three required solder-jumper positions circled on the tested USB Host Shield VS60](docs/images/usb-host-shield-power-jumpers.png)

@@ -1,0 +1,64 @@
+{
+  "requested_capture_seconds": 900,
+  "collectors_finished_on_host": true,
+  "capture_start_utc": {
+    "master": "2026-10-14T00:47:43.403039+00:00",
+    "follower": "2026-10-14T00:47:43.394875+00:00"
+  },
+  "boot_markers": {
+    "master": 1,
+    "follower": 1
+  },
+  "pps_enabled_readbacks": {
+    "master": 1,
+    "follower": 1
+  },
+  "startup_query_before_initialization_failed": true,
+  "initialization_failures": 0,
+  "master_status_lines": 889,
+  "master_last_uptime_s": 899.827,
+  "master_report_interval_min_ms": 1000,
+  "master_report_interval_max_ms": 1000,
+  "master_final_syncs": 888,
+  "master_final_delay_responses": 888,
+  "master_max_timeouts": 0,
+  "master_max_missing_rx": 0,
+  "master_max_discarded": 0,
+  "follower_total_samples": 888,
+  "follower_sequence_matches_sample": true,
+  "follower_max_reported_timeouts": 0,
+  "follower_max_reported_missing_rx": 0,
+  "follower_max_reported_discarded": 0,
+  "steady_state": {
+    "source_log": "steady-state-20261013-01-follower.log",
+    "source_sha256": "2d4a5381311596e97ccfb35e5b8768541e4ea6a7b480280f3793938bf7afa834",
+    "selection": "All accepted exchanges at or after the fixed elapsed-time cutoff.",
+    "cutoff_after_first_sample_s": 120.0,
+    "total_samples": 888,
+    "excluded_acquisition_samples": 120,
+    "window_samples": 768,
+    "window_first_sample": 121,
+    "window_last_sample": 888,
+    "window_first_elapsed_s": 120.051,
+    "window_last_elapsed_s": 887.401,
+    "window_span_s": 767.35,
+    "offset_mean_ns": 2.1744791666666665,
+    "offset_rms_ns": 24.99869788275648,
+    "offset_population_stddev_ns": 24.903946197080213,
+    "offset_min_ns": -85,
+    "offset_max_ns": 50,
+    "path_mean_ns": 736.71875,
+    "path_min_ns": 730,
+    "path_max_ns": 745,
+    "frequency_first_ppb": -10649,
+    "frequency_last_ppb": -10690,
+    "frequency_min_ppb": -10700,
+    "frequency_max_ppb": -10476,
+    "servo_state_counts": {
+      "3": 768
+    },
+    "largest_sample_interval_s": 1.003,
+    "sample_number_gaps": 0,
+    "measurement_limit": "Internal PTP estimates; not calibrated PPS or UTC measurements."
+  }
+}

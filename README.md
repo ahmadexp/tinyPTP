@@ -97,20 +97,31 @@ outputs. The photograph was taken separately from the serial capture above;
 no cursor measurement, channel-to-role mapping, or cable/channel delay
 calibration was supplied, so it is not used to claim a numerical PPS offset.
 
-### Direct USB screenshot export
+## Follower measurements
 
-The scope's saved image was retrieved through USB Sharing on October 13 at
-approximately 17:23 Pacific. This particular saved screen has the trigger menu
-open and no resolved PPS transitions, so it is a diagnostic capture rather than
-a PPS timing measurement.
+These graphs use **166 accepted exchanges** from the verified 180-second
+capture after the October 13 power cycle. They show the follower's internal
+PTP estimates, not oscilloscope waveforms or independently measured UTC accuracy.
+Buffered output before the final UNO boot is excluded.
 
-![Direct scope export with trigger menu and no resolved PPS transitions](docs/results/2026-10-13/oscilloscope/scope-screen.png)
+![Follower offset, frequency correction, and path delay during acquisition](docs/results/2026-10-13/power-cycle-recovery/plots/follower-acquisition.png)
 
-The [original BMP, companion file, checksums, and export procedure](docs/results/2026-10-13/oscilloscope/README.md)
-are preserved. To activate export, press the gray **ON** button inside
-**Menu > USB Sharing**, after selecting that tab. The Mac then sees a mass
-storage volume. A new saved acquisition showing both PPS edges is still needed
-for a direct waveform image of the synchronized outputs.
+The full run shows offset convergence, the applied frequency correction, and
+estimated mean one-way path delay. The horizontal axis starts at the first
+accepted exchange; the shaded region marks the final 60 samples.
+
+![Follower offset for the final 60 samples, with 10.37 ns RMS](docs/results/2026-10-13/power-cycle-recovery/plots/follower-offset-detail.png)
+
+The final 60 samples have **10.37 ns offset RMS**, **-6 ns mean**, and a range of
+**-25 to +10 ns**. Mean estimated path delay is **739.33 ns**. Points are original
+samples without smoothing. The grandmaster finished with 166 Sync and Delay_Resp
+exchanges and zero reported timeouts, missing receive timestamps, or discarded
+frames.
+
+[Raw follower log](docs/results/2026-10-13/power-cycle-recovery/pps-recovery-follower-20261013-01.log)
+| [Extracted CSV](docs/results/2026-10-13/power-cycle-recovery/plots/follower-samples.csv)
+| [SVG figures and reproduction instructions](docs/results/2026-10-13/power-cycle-recovery/plots/README.md)
+| [Validation record](docs/results/2026-10-13/power-cycle-recovery/validation.json)
 
 ## USB Host Shield power jumpers
 

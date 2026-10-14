@@ -45,6 +45,10 @@ These are internal PTP estimates, not calibrated PPS or UTC measurements.
 Analysis starts at the final boot marker in each file, excluding buffered
 output from before that boot; the original log files retain those bytes.
 
+The [follower graphs and extracted CSV](plots/README.md) show acquisition,
+frequency correction, path delay, and the final offset window. Reproduction
+instructions are included with the figures.
+
 The installed grandmaster image has SHA-256
 `93d38313c683fd9fae9aefb4f0e1c2043097f5706cb7f92a928fa5617a2c12b0`;
 the follower image has SHA-256

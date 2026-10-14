@@ -190,6 +190,40 @@ and the absence of an independent PPS measurement limit broader conclusions.
 [Control law, fixed-point implementation, and tests](docs/pllfll-servo.md)
 | [Results, raw logs, CSV data, and remote recovery](docs/results/2026-10-14/pllfll/README.md)
 
+## Startup transients for every servo
+
+The archived comparisons now include a common transient analysis of **all five
+servo types**, using **13 runs and 3,722 accepted exchanges**. Each servo has
+its own startup, near-zero settling, and frequency-correction figure in the
+[expanded transient report](docs/results/2026-10-14/transients/README.md).
+
+![Startup transients for fixed PI, linreg, adaptive PI, Kalman, and PLL/FLL](docs/results/2026-10-14/transients/plots/all-servo-transients.png)
+
+| Servo | Runs | First s3 after first accepted sample | Opposite-side peak in first 120 s |
+| --- | ---: | ---: | ---: |
+| Fixed PI | 8 | 73.029 to 82.033 s | -42,815 to -100,555 ns |
+| Linreg | 1 | 60.023 s | -180 ns |
+| Adaptive PI | 1 | 62.024 s | -20 ns |
+| Kalman | 1 | 59.025 s | -25 ns |
+| PLL/FLL | 2 | 60.023 and 86.035 s | -175 and -235 ns |
+
+Fixed PI shows a larger negative excursion followed by recovery. The other
+controllers approach zero with much smaller early excursions in these captures,
+but this does not imply better steady-state performance. All runs remain in
+`s3` after acquisition; seven do not demonstrate sustained +/-100 ns settling
+over the remaining record. The report defines settling separately from the
+eight-sample +/-1 us `s3` indication and includes output-limit sample counts.
+
+These are observed startup responses, not controlled injected disturbances.
+Initial offsets range from 12.05 to 26.63 ms, and sequential conditions differ.
+The PLL/FLL repeat starts with almost twice the phase error of its first run,
+so comparing first-s3 times alone would be misleading. Measurements are internal
+PTP telemetry; PI remains the default and installed follower servo.
+
+[Per-servo plots, interpretation, and metric definitions](docs/results/2026-10-14/transients/README.md)
+| [All metrics](docs/results/2026-10-14/transients/plots/metrics.csv)
+| [Complete sample data](docs/results/2026-10-14/transients/plots/samples.csv)
+
 ## PPS on the oscilloscope
 
 ![Both TimeStick PPS outputs connected to the oscilloscope](docs/images/two-timestick-pps-oscilloscope.png)

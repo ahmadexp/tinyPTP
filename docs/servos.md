@@ -120,7 +120,8 @@ builds use:
 | PI | 28,556 | 995 |
 | Linreg | 31,174 | 1,105 |
 | Adaptive PI | 30,364 | 1,017 |
-| Kalman (hardware performance unvalidated) | 31,426 | 1,017 |
+| Kalman | 31,426 | 1,017 |
+| PLL/FLL | 29,674 | 1,016 |
 
 Linreg leaves 1,082 bytes of flash and 943 bytes beyond static SRAM allocation.
 Maximum runtime stack use has not been measured. This is a tight flash budget
@@ -155,8 +156,10 @@ experimental despite passing the functional and simulated checks.
 The [Kalman experiment](kalman-servo.md) estimates phase and intrinsic frequency
 with a two-state filter, then steers from those estimates. It uses software
 floating point and provisional fixed noise parameters. Numerical checks and
-UNO builds pass, but the hardware comparison is pending recovery of an
-initialization failure encountered with the existing fixed-PI firmware.
+UNO builds pass. After remote recovery, the
+[hardware comparison](results/2026-10-13/kalman/README.md) measured
+48.30 / 94.99 / 110.60 ns RMS for PI / Kalman / PI. The changing reference
+results prevent attributing the difference to the controller alone.
 
 ## PLL/FLL
 
@@ -167,3 +170,20 @@ with gain 1/2. Raw serial offsets remain unchanged. This is an independent
 experiment, not a port of NTP's clock discipline or an automatic bandwidth tuner.
 
 [Equations, limitations, tests, and resources](pllfll-servo.md)
+
+## Startup, settling, and overshoot
+
+The [all-servo transient report](results/2026-10-14/transients/README.md)
+reanalyzes all 13 published comparison runs with common time axes and explicit
+settling criteria. It includes a separate figure for each controller, initial
+offsets, first-s3 times, sustained +/-1 us and +/-100 ns settling, opposite-side
+startup peaks, and counts of commands at the output limit.
+
+The first 120 seconds expose behavior hidden by steady-state-only RMS tables.
+Fixed PI crosses through zero by tens of microseconds before recovering;
+the other tested controllers have smaller early opposite-side excursions.
+That observation does not establish better residual noise or a controlled
+acquisition-speed ranking. Different initial offsets, saturation, oscillator
+conditions, and limited repeat counts matter. The detailed report separates
+those limitations from measured results and describes controlled phase-step,
+frequency-step, and holdover tests that remain future work.

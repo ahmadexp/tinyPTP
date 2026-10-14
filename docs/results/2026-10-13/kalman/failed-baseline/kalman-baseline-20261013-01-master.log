@@ -1,0 +1,37 @@
+UTC: 2026-10-14T04:15:08.766430+00:00
+Port: /dev/serial/by-id/usb-Arduino__www.arduino.cc__0043_1453230343235190E071-if00; baud: 115200; reset: True
+tinyptp[0.000]: boot role GRANDMASTER
+tinyptp[0.000]: serial 115200 8N1; offset/path ns; frequency ppb
+tinyptp[0.582]: port 1: initializing Ethernet and hardware clock
+tinyptp[6.612]: initialization failed; retrying in 5 seconds (d for diagnostics)
+tinyptp[11.614]: port 1: initializing Ethernet and hardware clock
+tinyptp[18.746]: initialization failed; retrying in 5 seconds (d for diagnostics)
+tinyptp[23.748]: port 1: initializing Ethernet and hardware clock
+tinyptp[30.880]: initialization failed; retrying in 5 seconds (d for diagnostics)
+tinyptp[35.881]: port 1: initializing Ethernet and hardware clock
+tinyptp[43.014]: initialization failed; retrying in 5 seconds (d for diagnostics)
+tinyptp[48.015]: port 1: initializing Ethernet and hardware clock
+tinyptp[55.148]: initialization failed; retrying in 5 seconds (d for diagnostics)
+tinyptp[60.149]: port 1: initializing Ethernet and hardware clock
+tinyptp[71.285]: initialization failed; retrying in 5 seconds (d for diagnostics)
+tinyptp[76.288]: port 1: initializing Ethernet and hardware clock
+tinyptp[83.420]: initialization failed; retrying in 5 seconds (d for diagnostics)
+tinyptp[88.421]: port 1: initializing Ethernet and hardware clock
+tinyptp[95.553]: initialization failed; retrying in 5 seconds (d for diagnostics)
+tinyptp[100.554]: port 1: initializing Ethernet and hardware clock
+tinyptp[107.686]: initialization failed; retrying in 5 seconds (d for diagnostics)
+tinyptp[112.688]: port 1: initializing Ethernet and hardware clock
+tinyptp[119.820]: initialization failed; retrying in 5 seconds (d for diagnostics)
+tinyptp[124.822]: port 1: initializing Ethernet and hardware clock
+tinyptp[131.954]: initialization failed; retrying in 5 seconds (d for diagnostics)
+tinyptp[136.955]: port 1: initializing Ethernet and hardware clock
+tinyptp[144.088]: initialization failed; retrying in 5 seconds (d for diagnostics)
+tinyptp[149.090]: port 1: initializing Ethernet and hardware clock
+tinyptp[156.223]: initialization failed; retrying in 5 seconds (d for diagnostics)
+tinyptp[161.224]: port 1: initializing Ethernet and hardware clock
+tinyptp[168.356]: initialization failed; retrying in 5 seconds (d for diagnostics)
+tinyptp[173.357]: port 1: initializing Ethernet and hardware clock
+tinyptp[180.488]: initialization failed; retrying in 5 seconds (d for diagnostics)
+tinyptp[185.490]: port 1: initializing Ethernet and hardware clock
+tinyptp[192.622]: initialization failed; retrying in 5 seconds (d for diagnostics)
+tinyptp[197.624]: port 1: initializing Ethernet and hardware clock

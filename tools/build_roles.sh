@@ -9,7 +9,8 @@ case "$servo" in
   pi) servo_id=0 ;;
   linreg) servo_id=1 ;;
   auto_pi) servo_id=2 ;;
-  *) echo "SERVO must be pi, linreg, or auto_pi" >&2; exit 1 ;;
+  kalman) servo_id=3 ;;
+  *) echo "SERVO must be pi, linreg, auto_pi, or kalman" >&2; exit 1 ;;
 esac
 set -- "$cli"
 if [ -n "${ARDUINO_CONFIG:-}" ]; then

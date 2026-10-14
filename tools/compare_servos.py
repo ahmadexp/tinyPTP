@@ -20,7 +20,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("pi", type=Path)
     parser.add_argument("candidate", type=Path)
-    parser.add_argument("--candidate-label", choices=["LINREG", "AUTO_PI"], default="LINREG")
+    parser.add_argument("--candidate-label", choices=["LINREG", "AUTO_PI", "KALMAN"], default="LINREG")
     parser.add_argument("--reference-after", type=Path, help="Optional repeated fixed-PI capture after the candidate")
     parser.add_argument("--output-dir", type=Path, required=True)
     parser.add_argument("--after", type=float, default=120)
@@ -90,7 +90,9 @@ def main():
     for steady in [False, True]:
         fig, axes = plt.subplots(4 if gain_rows else 3, 1, figsize=(10, 10 if gain_rows else 8), sharex=True)
         fig.subplots_adjust(left=0.15, right=0.97, top=0.84, bottom=0.11, hspace=0.28)
-        title = "Fixed and adaptive PI follower servos" if gain_rows else "PI and linear-regression follower servos"
+        title = {"AUTO_PI": "Fixed and adaptive PI follower servos",
+                 "LINREG": "PI and linear-regression follower servos",
+                 "KALMAN": "PI and Kalman follower servos"}[args.candidate_label]
         fig.suptitle(title, x=0.15, y=0.97,
                      ha="left", fontsize=19, fontweight="bold")
         subtitle = (f"All samples after {args.after:g} s | " + " | ".join(

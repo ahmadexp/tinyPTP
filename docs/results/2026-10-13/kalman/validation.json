@@ -1,0 +1,26 @@
+{
+  "master": {
+    "source": "failed-baseline/kalman-baseline-20261013-01-master.log",
+    "sha256": "cec5c016bb5ba76b112533c35f9fd9540dd573a45e3fc7b0843172e64ee69c59",
+    "utc_start": "2026-10-14T04:15:08.766430+00:00",
+    "boot_count": 1,
+    "initialization_failures": 16,
+    "link_down_events": 0,
+    "accepted_samples": 0,
+    "last_serial_uptime_s": 197.624,
+    "capture_terminated": true,
+    "termination_reason": "Repeated startup failure with no PTP exchanges; stopped readers using SIGTERM, firmware unchanged"
+  },
+  "follower": {
+    "source": "failed-baseline/kalman-baseline-20261013-01-follower.log",
+    "sha256": "883a7fa3353212e281ec4618f32db0ef1f54551cffbc73d74b03703c6431659e",
+    "utc_start": "2026-10-14T04:15:08.766123+00:00",
+    "boot_count": 1,
+    "initialization_failures": 13,
+    "link_down_events": 2,
+    "accepted_samples": 0,
+    "last_serial_uptime_s": 197.175,
+    "capture_terminated": true,
+    "termination_reason": "Repeated startup failure with no PTP exchanges; stopped readers using SIGTERM, firmware unchanged"
+  }
+}

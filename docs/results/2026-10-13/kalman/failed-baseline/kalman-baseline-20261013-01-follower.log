@@ -1,0 +1,47 @@
+UTC: 2026-10-14T04:15:08.766123+00:00
+Port: /dev/serial/by-id/usb-Arduino__www.arduino.cc__0043_14533303731351B0C090-if00; baud: 115200; reset: True
+tinyptp[0.000]: boot role FOLLOWER
+tinyptp[0.000]: serial 115200 8N1; offset/path ns; frequency ppb
+tinyptp[0.580]: port 1: initializing Ethernet and hardware clock
+tinyptp[11.797]: PPS gate before=0x4000
+tinyptp[11.799]: PPS gate=0x4000 clock=0x5F active_ns=500000000 enabled (register readback)
+tinyptp[11.803]: clock identity 9c69d3.fffe.2ba12f
+tinyptp[11.807]: port 1: INITIALIZING to LISTENING on FIXED_ROLE
+tinyptp[11.813]: servo PI kp 1/2 ki 1/20 limit 500000 ppb
+tinyptp[11.819]: FOLLOWER samples 0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[15.339]: port 1: link down
+tinyptp[16.819]: port 1: initializing Ethernet and hardware clock
+tinyptp[26.976]: initialization failed; retrying in 5 seconds (d for diagnostics)
+tinyptp[31.978]: port 1: initializing Ethernet and hardware clock
+tinyptp[39.115]: initialization failed; retrying in 5 seconds (d for diagnostics)
+tinyptp[44.116]: port 1: initializing Ethernet and hardware clock
+tinyptp[49.254]: initialization failed; retrying in 5 seconds (d for diagnostics)
+tinyptp[54.256]: port 1: initializing Ethernet and hardware clock
+tinyptp[59.394]: initialization failed; retrying in 5 seconds (d for diagnostics)
+tinyptp[64.395]: port 1: initializing Ethernet and hardware clock
+tinyptp[76.715]: PPS gate before=0x4000
+tinyptp[76.717]: PPS gate=0x4000 clock=0x5F active_ns=500000000 enabled (register readback)
+tinyptp[76.721]: clock identity 9c69d3.fffe.2ba12f
+tinyptp[76.725]: port 1: INITIALIZING to LISTENING on FIXED_ROLE
+tinyptp[76.730]: servo PI kp 1/2 ki 1/20 limit 500000 ppb
+tinyptp[76.736]: FOLLOWER samples 0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[79.456]: port 1: link down
+tinyptp[81.735]: port 1: initializing Ethernet and hardware clock
+tinyptp[91.871]: initialization failed; retrying in 5 seconds (d for diagnostics)
+tinyptp[96.873]: port 1: initializing Ethernet and hardware clock
+tinyptp[102.010]: initialization failed; retrying in 5 seconds (d for diagnostics)
+tinyptp[107.011]: port 1: initializing Ethernet and hardware clock
+tinyptp[112.148]: initialization failed; retrying in 5 seconds (d for diagnostics)
+tinyptp[117.150]: port 1: initializing Ethernet and hardware clock
+tinyptp[128.468]: initialization failed; retrying in 5 seconds (d for diagnostics)
+tinyptp[133.471]: port 1: initializing Ethernet and hardware clock
+tinyptp[144.613]: initialization failed; retrying in 5 seconds (d for diagnostics)
+tinyptp[149.614]: port 1: initializing Ethernet and hardware clock
+tinyptp[155.753]: initialization failed; retrying in 5 seconds (d for diagnostics)
+tinyptp[160.754]: port 1: initializing Ethernet and hardware clock
+tinyptp[167.892]: initialization failed; retrying in 5 seconds (d for diagnostics)
+tinyptp[172.895]: port 1: initializing Ethernet and hardware clock
+tinyptp[180.033]: initialization failed; retrying in 5 seconds (d for diagnostics)
+tinyptp[185.034]: port 1: initializing Ethernet and hardware clock
+tinyptp[192.174]: initialization failed; retrying in 5 seconds (d for diagnostics)
+tinyptp[197.175]: port 1: initializing Ethernet and hardware clock

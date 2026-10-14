@@ -23,7 +23,7 @@ UNO-to-Linux experiment is retained below. This is an experimental fixed-role
 implementation, not a complete PTP stack or a flexPTP port.
 
 The follower supports fixed **PI**, experimental **integer linear regression**,
-and experimental **adaptive PI**, selected at build time. See the
+**adaptive PI**, and a **Kalman experiment**, selected at build time. See the
 [servo guide](docs/servos.md) for selection, control behavior, and UNO resource use.
 
 ## The working setup
@@ -130,6 +130,21 @@ follower. These are internal PTP estimates, not calibrated PPS measurements.
 ![Fixed PI and adaptive PI measurements with automatic gain changes](docs/results/2026-10-13/auto-pi/plots/servo-steady-state.png)
 
 [All three runs, gain telemetry, CSV data, and validation](docs/results/2026-10-13/auto-pi/README.md)
+
+## Kalman filter experiment
+
+`SERVO=kalman` builds a two-state filter that estimates clock offset and
+intrinsic frequency error, including the correction already applied to the
+clock. A separate controller cancels estimated drift and removes phase over
+four seconds. It uses 31,426 flash bytes and 1,017 static SRAM bytes on the UNO.
+
+Numerical, simulation, protocol, and build checks pass. **Hardware performance
+is not yet validated:** the new fixed-PI baseline encountered initialization
+and link failures before the Kalman image was uploaded. Fixed PI is still
+installed. No measured Kalman accuracy claim is made.
+
+[Model, noise assumptions, simulation results, and build instructions](docs/kalman-servo.md)
+| [Hardware attempt and raw failure logs](docs/results/2026-10-13/kalman/README.md)
 
 ## PPS on the oscilloscope
 

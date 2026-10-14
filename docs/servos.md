@@ -1,7 +1,7 @@
 # Follower clock servos
 
 The follower offers fixed PI (the default), experimental integer linear
-regression, and experimental adaptive PI (`auto_pi`). The grandmaster keeps
+regression, adaptive PI (`auto_pi`), and a two-state Kalman option. The grandmaster keeps
 its free-running clock; it has no upstream source for a servo to track.
 All follower options produce
 the same 115200-baud ptp4l-style offset, frequency, and path-delay messages.
@@ -13,6 +13,7 @@ The startup message identifies the selected controller.
 SERVO=pi BUILD_DIR="$PWD/build/pi" sh tools/build_roles.sh
 SERVO=linreg BUILD_DIR="$PWD/build/linreg" sh tools/build_roles.sh
 SERVO=auto_pi BUILD_DIR="$PWD/build/auto-pi" sh tools/build_roles.sh
+SERVO=kalman BUILD_DIR="$PWD/build/kalman" sh tools/build_roles.sh
 ```
 
 Set `ARDUINO_CLI` and `ARDUINO_CONFIG` if the CLI or configuration is outside
@@ -20,7 +21,7 @@ the normal search path. Upload the desired `follower` build directory to the
 follower UNO using the [standalone instructions](standalone-roles.md).
 The grandmaster does not need reflashing to change the follower's servo.
 For Arduino IDE, select `TINYPTP_SERVO` in `BuildConfig.h`: `0` for PI, `1`
-for linreg, or `2` for adaptive PI, together with `TINYPTP_BOOT_ROLE=2` for
+for linreg, `2` for adaptive PI, or `3` for Kalman, with `TINYPTP_BOOT_ROLE=2` for
 the follower. Selection is at compile time, not a serial command.
 
 ## Controllers
@@ -118,6 +119,7 @@ builds use:
 | PI | 28,556 | 995 |
 | Linreg | 31,174 | 1,105 |
 | Adaptive PI | 30,364 | 1,017 |
+| Kalman (hardware performance unvalidated) | 31,426 | 1,017 |
 
 Linreg leaves 1,082 bytes of flash and 943 bytes beyond static SRAM allocation.
 Maximum runtime stack use has not been measured. This is a tight flash budget
@@ -148,3 +150,9 @@ measured 12.12 / 22.20 / 19.85 ns offset RMS in equal fixed-cutoff windows.
 Adaptive PI did not improve hardware RMS in that experiment. Fixed PI remains
 the default and installed follower image; the adaptive option remains
 experimental despite passing the functional and simulated checks.
+
+The [Kalman experiment](kalman-servo.md) estimates phase and intrinsic frequency
+with a two-state filter, then steers from those estimates. It uses software
+floating point and provisional fixed noise parameters. Numerical checks and
+UNO builds pass, but the hardware comparison is pending recovery of an
+initialization failure encountered with the existing fixed-PI firmware.

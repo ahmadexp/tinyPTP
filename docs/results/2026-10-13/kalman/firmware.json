@@ -1,0 +1,28 @@
+{
+  "base_commit": "bc76d4cc693c5ae953a6a2ef4aa71f82da8b8ace",
+  "source_sha256": {
+    "examples/TimeStickProbe/KalmanServo.h": "73d99be37f749897626e35675496aa52be1589a5470acc843be483a3121a7083",
+    "examples/TimeStickProbe/PtpServo.h": "2b90aa42a873cafa98e0fa98977dd7cbf2715d51fb01f6fdf654e9e709ff94d5",
+    "examples/TimeStickProbe/PtpClient.h": "4843f05c2a82b97e1038f4fdfe0131541fb8243cf720b2d5a211c7d08d184090",
+    "examples/TimeStickProbe/BuildConfig.h": "545b0cee038f0b226fbf82f213e6d73e326777bc8794e5b3026a7a79735a1537"
+  },
+  "kalman_follower": {
+    "hex_sha256": "49c42cc64aeb761b4c0186ead82ffdc7b6e0f658318ecba0ad4cc6a5450c6713",
+    "defines": "-DTINYPTP_BOOT_ROLE=2 -DTINYPTP_SERVO=3",
+    "flash_bytes": 31426,
+    "static_sram_bytes": 1017,
+    "uploaded": false
+  },
+  "kalman_grandmaster_build": {
+    "flash_bytes": 31428,
+    "static_sram_bytes": 1017,
+    "uploaded": false
+  },
+  "fixed_pi_rebuild_hex_sha256": "facc9dab08bb78738e3c5bfca7672bd7855578b6e000e3a17662ada07bf46900",
+  "fixed_pi_rebuild_identical_to_installed": true,
+  "unchanged_grandmaster_hex_sha256": "93d38313c683fd9fae9aefb4f0e1c2043097f5706cb7f92a928fa5617a2c12b0",
+  "build_toolchain": "AVR core 1.8.8; USB Host Shield Library 2.0 1.7.0",
+  "hardware_comparison": "Blocked by existing PI initialization/link failure; no Kalman upload or measurement",
+  "maximum_runtime_stack": "unmeasured",
+  "worst_case_avr_update_time": "unmeasured"
+}

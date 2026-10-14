@@ -331,6 +331,8 @@ void startPtpClient(bool discipline, bool masterRole = false, bool learnMaster =
     ptpLogPrefix();
 #if TINYPTP_SERVO == 2
     Serial.println(F("servo AUTO_PI mode 2 kp_milli 750 ki_milli 125 window 16 limit 500000 ppb"));
+#elif TINYPTP_SERVO == 3
+    Serial.println(F("servo KALMAN states 2 R 100 Qfreq 4 Qphase 1 phase_tau 4s limit 500000 ppb"));
 #elif TINYPTP_SERVO == 1
     Serial.println(F("servo LINREG window 8 phase_tau 4s limit 500000 ppb"));
 #else

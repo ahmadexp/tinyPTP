@@ -94,6 +94,21 @@ outputs. The photograph was taken separately from the serial capture above;
 no cursor measurement, channel-to-role mapping, or cable/channel delay
 calibration was supplied, so it is not used to claim a numerical PPS offset.
 
+### Direct USB screenshot export
+
+The scope's saved image was retrieved through USB Sharing on October 13 at
+approximately 17:23 Pacific. This particular saved screen has the trigger menu
+open and no resolved PPS transitions, so it is a diagnostic capture rather than
+a PPS timing measurement.
+
+![Direct scope export with trigger menu and no resolved PPS transitions](docs/results/2026-10-13/oscilloscope/scope-screen.png)
+
+The [original BMP, companion file, checksums, and export procedure](docs/results/2026-10-13/oscilloscope/README.md)
+are preserved. To activate export, press the gray **ON** button inside
+**Menu > USB Sharing**, after selecting that tab. The Mac then sees a mass
+storage volume. A new saved acquisition showing both PPS edges is still needed
+for a direct waveform image of the synchronized outputs.
+
 ## USB Host Shield power jumpers
 
 ![Three required solder-jumper positions circled on the tested USB Host Shield VS60](docs/images/usb-host-shield-power-jumpers.png)

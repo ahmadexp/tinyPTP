@@ -1,0 +1,85 @@
+tinyPTP paper preparation, ISPCS 2027
+Working draft created 2026-10-15. Not submitted or submission-ready.
+
+FILES
+- tinyptp-ispcs2027.tex: standalone IEEE conference manuscript, including plots
+  and bibliography. No external figure files or bibliography database needed.
+- refresh_figures.py: checks archived log hashes, sample counts, and RMS values,
+  then refreshes embedded figure coordinates. Requires Python 3 standard library.
+
+POSITIONING
+Primary contribution: implementation and characterization of a small PTP
+experimental platform using a USB Ethernet timestamping peripheral with an
+8-bit or Cortex-M4F controller. No claim of a new PTP algorithm, first-ever
+implementation, calibrated nanosecond accuracy, or universal servo superiority.
+The reported quantitative servo campaign is R4. R3 figures are build-resource
+results from the matching archived matrix, not a controlled performance baseline.
+
+EVIDENCE MAP (paths relative to repository root)
+- Protocol and timestamp arithmetic: src/detail/PtpClient.h and PtpMath.h.
+- Platform differences: src/detail/BuildConfig.h and Application.h.
+- Controller equations: src/detail/PtpServo.h, KalmanServo.h, PllFllServo.h.
+- Numeric results and transient criteria:
+  docs/results/2026-10-14/uno-r4-minima/plots/summary.json.
+- Source captures and hashes:
+  docs/results/2026-10-14/uno-r4-minima/trials/manifest.json and *.log.
+- Resource table: same archive/build-matrix.json. These are later R3 builds;
+  do not substitute older flash sizes from docs/servos.md.
+- Trial firmware: source revision 530c8d12ea393717c4cddbf38cfe14aeba0f0785.
+- Recorded results: revision ac6d0844de25c776f805f94002e2f99cc71844c3.
+- Master is free-running. Six link reinitializations span follower uploads.
+- All offset graphs display measurements, not filtered state estimates.
+- Startup graph uses absolute values and displays exact zeros at 1 ns solely
+  to make the logarithmic scale possible. Tables use the unmodified data.
+- Documentation issue noticed during review: the grandmaster row in the archived
+  report's board-identity table contains build-size values. The manuscript does
+  not use that row. Check manifests/raw logs when preparing endpoint identities;
+  do not silently edit checksummed experimental records.
+
+SUBMISSION DETAILS TO CONFIRM
+Target edition: ISPCS 2027, confirmed by author.
+Author: Ahmad Byagowi. Affiliation: Time Appliances Project.
+Contact details and funding: not supplied.
+No 2027 call or author instructions were confirmed in the 2026-10-15 search.
+The 2026 call uses six-page IEEE double-column papers. This is a provisional
+formatting reference only, not a verified 2027 requirement.
+Official pages reviewed:
+https://ispcs.org/2026/authors/call-for-papers
+https://ispcs.org/2026/full-paper-submission-instructions
+Check the target edition's publication requirements before finalization.
+Repository is currently private. Do not promise a publicly accessible artifact
+or change repository visibility without an explicit decision from the owner.
+The literature section is a starting point. Complete a focused related-work
+review before making a novelty claim, particularly for MCU-based PTP nodes,
+USB timestamp retrieval, and embedded clock-control implementations.
+
+PRIORITY MEASUREMENTS BEFORE SUBMISSION
+1. Independent PPS comparison, simultaneous with serial captures.
+   Record counter/scope model, calibration, input thresholds, cable delays,
+   channel skew, termination, warm-up, and reference-clock arrangement.
+   Reverse channels, swap cables, and exchange endpoint roles to investigate
+   fixed measurement and link asymmetries. Report uncertainty and distinguish
+   relative phase from UTC accuracy.
+2. Repeated controller comparison with predeclared parameters and windows.
+   Randomize run order in blocks, use a common warm-up and step policy, record
+   ambient/device temperature, and repeat on more than one endpoint pair if
+   available. Start with at least ten runs per controller as a planning target;
+   adjust repetition count using observed run-to-run variability. Treat runs,
+   not correlated one-second samples, as the replication unit.
+3. Controlled transients.
+   Apply identical signed phase/frequency perturbations to each controller;
+   report initial error, overshoot, settling criterion, saturation, and recovery.
+   Include a baseline with the same fractional integral arithmetic to isolate
+   gain scheduling from precision and interval-handling changes.
+4. Longer stability and recovery.
+   Collect multi-hour PPS and serial records before choosing meaningful TDEV,
+   MTIE, or Allan-deviation averaging ranges. Test packet loss, changing traffic,
+   disconnects, reboot/reinitialization, and changed link paths separately.
+5. Resource and actuation characterization.
+   Measure stack high-water use and timing of hardware frequency updates. Run
+   both MCU platforms under matched conditions before claiming a speed or timing
+   benefit attributable to the processor.
+
+All items above are proposed measurements, not completed results. Existing
+records are sufficient for a feasibility draft but not a calibrated accuracy
+claim or a statistically supported ranking of the five controllers.

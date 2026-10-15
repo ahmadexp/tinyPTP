@@ -1,0 +1,6 @@
+UTC: 2026-10-15T00:37:31.210474+00:00
+Port: /dev/cu.usbmodem3201; baud: 115200; native USB
+tinyptp[0.498]: boot role FOLLOWER
+tinyptp[0.498]: serial 115200 8N1; offset/path ns; frequency ppb
+tinyptp[0.499]: platform UNO_R4_MINIMA cpu_hz 48000000 rx_buffer 4096 usb_poll_budget 4 float_hw single
+tinyptp[1.076]: port 1: initializing Ethernet and hardware clock

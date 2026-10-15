@@ -1,0 +1,142 @@
+[
+  {
+    "platform": "r4",
+    "fqbn": "arduino:renesas_uno:minima",
+    "example": "FollowerAdaptivePI",
+    "returncode": 0,
+    "size": [
+      "Sketch uses 64996 bytes (24%) of program storage space. Maximum is 262144 bytes.",
+      "Global variables use 9100 bytes (27%) of dynamic memory, leaving 23668 bytes for local variables. Maximum is 32768 bytes."
+    ]
+  },
+  {
+    "platform": "r4",
+    "fqbn": "arduino:renesas_uno:minima",
+    "example": "FollowerKalman",
+    "returncode": 0,
+    "size": [
+      "Sketch uses 64612 bytes (24%) of program storage space. Maximum is 262144 bytes.",
+      "Global variables use 9100 bytes (27%) of dynamic memory, leaving 23668 bytes for local variables. Maximum is 32768 bytes."
+    ]
+  },
+  {
+    "platform": "r4",
+    "fqbn": "arduino:renesas_uno:minima",
+    "example": "FollowerLinreg",
+    "returncode": 0,
+    "size": [
+      "Sketch uses 64656 bytes (24%) of program storage space. Maximum is 262144 bytes.",
+      "Global variables use 9224 bytes (28%) of dynamic memory, leaving 23544 bytes for local variables. Maximum is 32768 bytes."
+    ]
+  },
+  {
+    "platform": "r4",
+    "fqbn": "arduino:renesas_uno:minima",
+    "example": "FollowerPI",
+    "returncode": 0,
+    "size": [
+      "Sketch uses 64084 bytes (24%) of program storage space. Maximum is 262144 bytes.",
+      "Global variables use 9080 bytes (27%) of dynamic memory, leaving 23688 bytes for local variables. Maximum is 32768 bytes."
+    ]
+  },
+  {
+    "platform": "r4",
+    "fqbn": "arduino:renesas_uno:minima",
+    "example": "FollowerPllFll",
+    "returncode": 0,
+    "size": [
+      "Sketch uses 64424 bytes (24%) of program storage space. Maximum is 262144 bytes.",
+      "Global variables use 9104 bytes (27%) of dynamic memory, leaving 23664 bytes for local variables. Maximum is 32768 bytes."
+    ]
+  },
+  {
+    "platform": "r4",
+    "fqbn": "arduino:renesas_uno:minima",
+    "example": "Grandmaster",
+    "returncode": 0,
+    "size": [
+      "Sketch uses 64096 bytes (24%) of program storage space. Maximum is 262144 bytes.",
+      "Global variables use 9080 bytes (27%) of dynamic memory, leaving 23688 bytes for local variables. Maximum is 32768 bytes."
+    ]
+  },
+  {
+    "platform": "r4",
+    "fqbn": "arduino:renesas_uno:minima",
+    "example": "TimeStickProbe",
+    "returncode": 0,
+    "size": [
+      "Sketch uses 63860 bytes (24%) of program storage space. Maximum is 262144 bytes.",
+      "Global variables use 9076 bytes (27%) of dynamic memory, leaving 23692 bytes for local variables. Maximum is 32768 bytes."
+    ]
+  },
+  {
+    "platform": "r3",
+    "fqbn": "arduino:avr:uno",
+    "example": "FollowerAdaptivePI",
+    "returncode": 0,
+    "size": [
+      "Sketch uses 30996 bytes (96%) of program storage space. Maximum is 32256 bytes.",
+      "Global variables use 1017 bytes (49%) of dynamic memory, leaving 1031 bytes for local variables. Maximum is 2048 bytes."
+    ]
+  },
+  {
+    "platform": "r3",
+    "fqbn": "arduino:avr:uno",
+    "example": "FollowerKalman",
+    "returncode": 0,
+    "size": [
+      "Sketch uses 32138 bytes (99%) of program storage space. Maximum is 32256 bytes.",
+      "Global variables use 1017 bytes (49%) of dynamic memory, leaving 1031 bytes for local variables. Maximum is 2048 bytes."
+    ]
+  },
+  {
+    "platform": "r3",
+    "fqbn": "arduino:avr:uno",
+    "example": "FollowerLinreg",
+    "returncode": 0,
+    "size": [
+      "Sketch uses 31546 bytes (97%) of program storage space. Maximum is 32256 bytes.",
+      "Global variables use 1105 bytes (53%) of dynamic memory, leaving 943 bytes for local variables. Maximum is 2048 bytes."
+    ]
+  },
+  {
+    "platform": "r3",
+    "fqbn": "arduino:avr:uno",
+    "example": "FollowerPI",
+    "returncode": 0,
+    "size": [
+      "Sketch uses 29152 bytes (90%) of program storage space. Maximum is 32256 bytes.",
+      "Global variables use 995 bytes (48%) of dynamic memory, leaving 1053 bytes for local variables. Maximum is 2048 bytes."
+    ]
+  },
+  {
+    "platform": "r3",
+    "fqbn": "arduino:avr:uno",
+    "example": "FollowerPllFll",
+    "returncode": 0,
+    "size": [
+      "Sketch uses 29984 bytes (92%) of program storage space. Maximum is 32256 bytes.",
+      "Global variables use 1016 bytes (49%) of dynamic memory, leaving 1032 bytes for local variables. Maximum is 2048 bytes."
+    ]
+  },
+  {
+    "platform": "r3",
+    "fqbn": "arduino:avr:uno",
+    "example": "Grandmaster",
+    "returncode": 0,
+    "size": [
+      "Sketch uses 29154 bytes (90%) of program storage space. Maximum is 32256 bytes.",
+      "Global variables use 995 bytes (48%) of dynamic memory, leaving 1053 bytes for local variables. Maximum is 2048 bytes."
+    ]
+  },
+  {
+    "platform": "r3",
+    "fqbn": "arduino:avr:uno",
+    "example": "TimeStickProbe",
+    "returncode": 0,
+    "size": [
+      "Sketch uses 28668 bytes (88%) of program storage space. Maximum is 32256 bytes.",
+      "Global variables use 995 bytes (48%) of dynamic memory, leaving 1053 bytes for local variables. Maximum is 2048 bytes."
+    ]
+  }
+]

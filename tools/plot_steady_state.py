@@ -13,7 +13,7 @@ import math
 from pathlib import Path
 import statistics
 
-from plot_follower import plt, read_samples, save_figure, style_axis
+from plot_follower import boot_count, plt, read_samples, save_figure, style_axis
 from matplotlib.ticker import ScalarFormatter
 
 
@@ -27,7 +27,7 @@ def main():
     if args.after < 0:
         parser.error("--after must be nonnegative")
     text = args.log.read_text()
-    if text.count("tinyptp[0.000]: boot role") != 1:
+    if boot_count(text) != 1:
         parser.error("Long-run analysis requires exactly one boot in the capture")
     rows = read_samples(args.log)
     window = [r for r in rows if r["elapsed_s"] >= args.after]

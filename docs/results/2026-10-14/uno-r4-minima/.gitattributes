@@ -1,0 +1,2 @@
+# Preserve raw capture bytes and hashes, including serial CRLF and hex dumps.
+*.log -text whitespace=-blank-at-eol

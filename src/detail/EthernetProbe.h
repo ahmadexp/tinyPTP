@@ -5,7 +5,7 @@
 EpInfo ethernetEndpoints[5];
 bool ethernetReady = false;
 uint8_t probeMac[6];
-uint8_t rxAggregate[256];
+uint8_t rxAggregate[TINYPTP_RX_BUFFER_SIZE];
 uint16_t rxUsed = 0;
 bool rxOverflow = false;
 

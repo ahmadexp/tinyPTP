@@ -2,7 +2,11 @@
 
 Use **Arduino IDE 2**, a **classic Arduino UNO R3 (ATmega328P, 16 MHz)**,
 a MAX3421E USB Host Shield, and a supported **AX88279 TimeStick** per node.
-UNO R4, UNO WiFi Rev2, and the AX88279A variant are not supported by this package.
+The development source also supports **UNO R4 Minima**. Follow the
+[R4 installation and validation guide](https://github.com/ahmadexp/tinyPTP/blob/uno-r4-minima/docs/uno-r4-minima.md)
+for its board core, native USB behavior, and experimental status. The published
+**v0.1.0 ZIP and Boards Manager package remain R3-only**. UNO R4 WiFi, UNO WiFi
+Rev2, and the AX88279A variant are not supported by this package.
 The tested shield power jumpers must be connected; see the
 [hardware photographs](https://github.com/ahmadexp/tinyPTP#usb-host-shield-power-jumpers).
 
@@ -115,7 +119,8 @@ flash/SRAM report before adding application code. Runtime stack use is unmeasure
 - **`TinyPTP.h: No such file or directory`**: install the tinyPTP ZIP and reopen
   the example. Copying an `.ino` alone does not install the library.
 - **`Usb.h: No such file or directory`**: install USB Host Shield Library 2.0.
-- **Wrong processor error**: select the classic **Arduino Uno**, not UNO R4.
+- **Wrong processor error**: v0.1.0 requires the classic **Arduino Uno**.
+  R4 Minima needs the development library and **Arduino UNO R4 Boards** core.
 - **Upload failure**: check board/port selection and close any other serial
   reader. A successful compile does not mean the correct board was uploaded.
 - **Repeated USB/PHY/clock initialization errors**: check shield jumper wiring,

@@ -7,8 +7,8 @@
 #include <SPI.h>
 #include <Usb.h>
 
-#if !defined(__AVR_ATmega328P__) || F_CPU != 16000000UL
-#error "tinyPTP currently targets a 16 MHz ATmega328P (classic Arduino UNO R3)"
+#if !(defined(__AVR_ATmega328P__) && F_CPU == 16000000UL) && !defined(ARDUINO_UNOR4_MINIMA)
+#error "tinyPTP targets Arduino UNO R3 (16 MHz ATmega328P) or UNO R4 Minima"
 #endif
 
 namespace tinyptp_detail {

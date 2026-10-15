@@ -12,7 +12,7 @@ import re
 from pathlib import Path
 import statistics
 
-from plot_follower import plt, read_samples, save_figure, style_axis
+from plot_follower import boot_count, plt, read_samples, save_figure, style_axis
 from matplotlib.ticker import ScalarFormatter
 
 
@@ -42,7 +42,7 @@ def main():
     if args.reference_after:
         sources.append(("PI_AFTER", args.reference_after))
     for name, path in sources:
-        if path.read_text().count("tinyptp[0.000]: boot role") != 1:
+        if boot_count(path.read_text()) != 1:
             parser.error(f"{path}: expected exactly one boot")
         rows = read_samples(path)
         window = [r for r in rows if r["elapsed_s"] >= args.after]

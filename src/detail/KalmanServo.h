@@ -2,7 +2,8 @@
 #include <stdint.h>
 
 // Two-state clock model: phase ns, intrinsic frequency error ppb (ns/s).
-// Single-precision software floating point; no absolute epoch is converted.
+// Single precision, using the R4's FPU when enabled by its core toolchain.
+// No absolute epoch is converted to floating point.
 class KalmanServo {
   float phase = 0, frequency = 0;
   float p00 = 100, p01 = 0, p11 = 1000000;

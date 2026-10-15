@@ -1,0 +1,29 @@
+[
+  {
+    "attempt": "trials-01",
+    "captured_samples": 281,
+    "first_offset_ns": -598474635,
+    "last_offset_ns": 0,
+    "first_uptime_s": 12.685,
+    "last_uptime_s": 478.985,
+    "missing_sample_numbers": 186
+  },
+  {
+    "attempt": "trials-02",
+    "captured_samples": 73,
+    "first_offset_ns": -412488670,
+    "last_offset_ns": -377213220,
+    "first_uptime_s": 12.914,
+    "last_uptime_s": 84.91,
+    "missing_sample_numbers": 0
+  },
+  {
+    "attempt": "trials-03",
+    "captured_samples": 91,
+    "first_offset_ns": -347856835,
+    "last_offset_ns": -303758590,
+    "first_uptime_s": 12.978,
+    "last_uptime_s": 102.975,
+    "missing_sample_numbers": 0
+  }
+]

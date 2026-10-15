@@ -1,0 +1,29 @@
+dfu-util 0.11-arduino4
+
+Copyright 2005-2009 Weston Schmidt, Harald Welte and OpenMoko Inc.
+Copyright 2010-2021 Tormod Volden and Stefan Schmidt
+This program is Free Software and has ABSOLUTELY NO WARRANTY
+Please report bugs to http://sourceforge.net/p/dfu-util/tickets/
+
+Opening DFU capable USB device...
+Device ID 2341:0069
+Run-Time device DFU version 0101
+Claiming USB DFU (Run-Time) Interface...
+Setting Alternate Interface zero...
+Determining device status...
+DFU state(0) = appIDLE, status(0) = No error condition is present
+Device really in Run-Time Mode, send DFU detach request...
+Device will detach and reattach...
+Opening DFU USB Device...
+Claiming USB DFU Interface...
+Setting Alternate Interface #0 ...
+Determining device status...
+DFU state(2) = dfuIDLE, status(0) = No error condition is present
+DFU mode device DFU version 0101
+Device returned transfer size 64
+Copying data from PC to DFU device
+Download	[                         ]   0%            0 bytesDownload	[=                        ]   4%         2624 bytesDownload	[==                       ]   8%         5184 bytesDownload	[===                      ]  12%         7744 bytesDownload	[====                     ]  16%        10304 bytesDownload	[=====                    ]  20%        12864 bytesDownload	[======                   ]  24%        15424 bytesDownload	[=======                  ]  28%        17984 bytesDownload	[========                 ]  32%        20544 bytesDownload	[=========                ]  36%        23104 bytesDownload	[==========               ]  40%        25664 bytesDownload	[===========              ]  44%        28288 bytesDownload	[============             ]  48%        30848 bytesDownload	[=============            ]  52%        33408 bytesDownload	[==============           ]  56%        35968 bytesDownload	[===============          ]  60%        38528 bytesDownload	[===============          ]  60%        38976 bytesDownload	[================         ]  64%        41088 bytesDownload	[=================        ]  68%        43648 bytesDownload	[==================       ]  72%        46208 bytesDownload	[===================      ]  76%        48768 bytesDownload	[====================     ]  80%        51328 bytesDownload	[=====================    ]  84%        53952 bytesDownload	[======================   ]  88%        56512 bytesDownload	[=======================  ]  92%        59072 bytesDownload	[======================== ]  96%        61632 bytesDownload	[=========================] 100%        64092 bytes
+Download done.
+DFU state(7) = dfuMANIFEST, status(0) = No error condition is present
+DFU state(2) = dfuIDLE, status(0) = No error condition is present
+Done!

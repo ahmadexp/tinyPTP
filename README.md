@@ -7,7 +7,8 @@ maintains the hardware clock.
 
 **UNO R4 Minima port:** the development branch adds a 4 KB receive buffer,
 bounded USB burst polling, hardware floating point for Kalman, and CPU timing
-telemetry. See the [R4 setup and validation guide](docs/uno-r4-minima.md).
+telemetry. Both R4 boards have been flashed and tested as grandmaster/follower.
+See the [R4 setup and validation guide](docs/uno-r4-minima.md).
 The published v0.1.0 ZIP and Boards Manager package still target the R3.
 The measurements and photographs below are the original R3 experiments;
 R4 evidence is recorded separately.
@@ -32,6 +33,40 @@ implementation, not a complete PTP stack or a flexPTP port.
 The follower supports fixed **PI**, experimental **integer linear regression**,
 **adaptive PI**, **Kalman**, and **PLL/FLL** experiments, selected at build time. See the
 [servo guide](docs/servos.md) for selection, control behavior, and UNO resource use.
+
+## UNO R4 Minima results
+
+The R4 pair completed five five-minute servo trials and a fifteen-minute PI
+run, with **2,328 accepted exchanges, no capture gaps, and no reported follower
+exchange errors**. Each short-run steady window uses the same 120-second
+acquisition cutoff and contains 167 samples, all in s3:
+
+| Servo | Offset RMS | Median sampled servo update |
+| --- | ---: | ---: |
+| Fixed PI | 41.01 ns | 6 us |
+| Linear regression | 33.93 ns | 22 us |
+| Adaptive PI | 16.35 ns | 12 us |
+| Kalman | 40.77 ns | 9 us |
+| PLL/FLL | 83.83 ns | 7 us |
+
+![R4 servo offsets, path estimates and CPU update timings](docs/results/2026-10-14/uno-r4-minima/plots/r4-servo-comparison.png)
+
+The longer PI run retained **767 steady samples over 12.77 minutes**, with
+**23.23 ns RMS** and offsets from **-70 to +80 ns**. Both boards are left
+programmed for automatic startup, with fixed PI on the follower.
+
+![R4 longer fixed-PI steady-state run](docs/results/2026-10-14/uno-r4-minima/steady-state/follower-steady-state.png)
+
+These are internal PTP estimates from sequential trials, not calibrated PPS
+measurements or proof of an R4 accuracy improvement over R3. Adaptive PI had
+the lowest RMS in this sequence; fixed PI remains the default. The R4 also
+adds a 1 ms first-exchange clock-step threshold to avoid prolonged startup
+slewing; the runtime threshold remains 500 ms. The master automatically
+reinitialized its Ethernet/PTP role when each follower upload dropped the
+link, so it was not an uninterrupted reference across upload boundaries.
+
+[All startup transient graphs, settling results, raw logs and hashes](docs/results/2026-10-14/uno-r4-minima/README.md)
+| [R4 Arduino IDE installation](docs/uno-r4-minima.md)
 
 ## Install with Arduino IDE
 

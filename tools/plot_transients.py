@@ -10,7 +10,7 @@ import hashlib
 import json
 from pathlib import Path
 
-from plot_follower import plt, read_samples, save_figure, style_axis
+from plot_follower import boot_count, plt, read_samples, save_figure, style_axis
 
 TYPES = {"PI": "Fixed PI", "LINREG": "Linear regression",
          "AUTO_PI": "Adaptive PI", "KALMAN": "Kalman", "PLL_FLL": "PLL/FLL"}
@@ -72,7 +72,7 @@ def load_runs(comparisons, root):
             if digest != previous["source_sha256"]:
                 raise ValueError(f"Source hash mismatch: {log}")
             text = log.read_text()
-            if text.count("tinyptp[0.000]: boot role") != 1:
+            if boot_count(text) != 1:
                 raise ValueError(f"Expected exactly one boot: {log}")
             rows = read_samples(log)
             result = metrics(rows)

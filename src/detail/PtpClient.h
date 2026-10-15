@@ -28,6 +28,9 @@ uint16_t announceSequence = 0;
 uint8_t servoStableSamples = 0;
 uint32_t lastCompletedExchange = 0;
 bool followerReceiving = false;
+#if TINYPTP_CPU_PROFILE
+uint32_t servoLastUs = 0, servoMaxUs = 0, usbPollMaxUs = 0;
+#endif
 
 void clearPtpExchange() { haveSync = haveFollow = haveTx = haveResponse = false; }
 bool ptpHardwareTime(const uint8_t *p, PtpTime &t) {
@@ -81,7 +84,10 @@ void finishPtpExchange() {
 #endif
     return;
   }
-  if (offset > 500000000LL || offset < -500000000LL) {
+  // MCU uploads do not guarantee a common initial clock phase. Avoid a long startup
+  // slew on R4, while retaining the established runtime step threshold.
+  const int64_t stepThreshold = ptpSamples == 1 ? TINYPTP_FIRST_STEP_THRESHOLD_NS : 500000000LL;
+  if (offset > stepThreshold || offset < -stepThreshold) {
     if (!ptpSetClock(-offset)) { Serial.println(F("PTP clock step failed")); ptpRunning = false; return; }
     clockServo.reset(); frequencyPpb = 0; servoStableSamples = 0;
     if (!ptpSetFrequency(0)) ptpRunning = false;
@@ -97,7 +103,14 @@ void finishPtpExchange() {
 #if TINYPTP_SERVO == 2
   const uint8_t previousServoMode = clockServo.mode();
 #endif
+#if TINYPTP_CPU_PROFILE
+  const uint32_t servoStartedUs = micros();
+#endif
   frequencyPpb = clockServo.update(offset, t1.sec * 1000UL + t1.ns / 1000000UL, frequencyPpb);
+#if TINYPTP_CPU_PROFILE
+  servoLastUs = uint32_t(micros() - servoStartedUs);
+  if (servoLastUs > servoMaxUs) servoMaxUs = servoLastUs;
+#endif
   if (!ptpSetFrequency(frequencyPpb)) {
     ptpRunning = false; ptpLogPrefix(); Serial.println(F("frequency update failed")); return;
   }
@@ -217,7 +230,7 @@ void parsePtpAggregate() {
   const uint32_t trailer = readLe32(rxAggregate + rxUsed - 8);
   const uint16_t count = trailer & 0x1fff;
   const uint32_t offset = trailer >> 13;
-  if (!count || count > 8 || offset >= rxUsed - 8) { ++ptpRxDiscard; return; }
+  if (!count || offset >= uint16_t(rxUsed - 8) || count > (rxUsed - 8 - offset) / 8) { ++ptpRxDiscard; return; }
   // Validate the entire aggregate before allowing any frame to affect state.
   for (uint8_t pass = 0; pass < 2; ++pass) {
     uint16_t payload = 0, meta = offset;
@@ -238,26 +251,27 @@ void parsePtpAggregate() {
     if (payload != offset || meta != rxUsed - 8) { ++ptpRxDiscard; return; }
   }
 }
-void pollPtpRx() {
+bool pollPtpRx() {
   uint8_t packet[64]; uint16_t count = sizeof(packet);
   uint8_t error = Usb.inTransfer(verifiedAsixAddress, 2, &count, packet);
-  if (error == hrNAK) return;
-  if (error) { ptpRunning = false; Serial.print(F("PTP RX USB error=")); Serial.println(error); return; }
+  if (error == hrNAK) return false;
+  if (error) { ptpRunning = false; Serial.print(F("PTP RX USB error=")); Serial.println(error); return false; }
   if (count > sizeof(rxAggregate) - rxUsed) rxOverflow = true;
   if (!rxOverflow) { memcpy(rxAggregate + rxUsed, packet, count); rxUsed += count; }
-  if (count == 64) return;
+  if (count == 64) return true;
   if (!rxOverflow) parsePtpAggregate(); else ++ptpRxDiscard;
   rxUsed = 0; rxOverflow = false;
+  return true;
 }
-void pollPtpTxTimestamp() {
+bool pollPtpTxTimestamp() {
   uint8_t packet[64]; uint16_t count = sizeof(packet);
   uint8_t error = Usb.inTransfer(verifiedAsixAddress, 4, &count, packet);
-  if (error == hrNAK) return;
-  if (error) { ptpRunning = false; Serial.print(F("PTP timestamp USB error=")); Serial.println(error); return; }
+  if (error == hrNAK) return false;
+  if (error) { ptpRunning = false; Serial.print(F("PTP timestamp USB error=")); Serial.println(error); return false; }
   ++tsPackets;
   if (count > sizeof(tsReport) - tsUsed) tsOverflow = true;
   if (!tsOverflow) { memcpy(tsReport + tsUsed, packet, count); tsUsed += count; }
-  if (count == 64) return;
+  if (count == 64) return true;
   ++tsReports;
   if (diagnosticsEnabled && tsReports <= 3) {
     Serial.print(F("TX timestamp report bytes=")); Serial.println(tsUsed);
@@ -284,6 +298,7 @@ void pollPtpTxTimestamp() {
     }
   }
   tsUsed = 0; tsOverflow = false;
+  return true;
 }
 void startPtpClient(bool discipline, bool masterRole = false, bool learnMaster = false) {
   if (!ethernetReady) { Serial.println(F("Run e first")); return; }
@@ -376,10 +391,20 @@ void pollPtpClient() {
       Diag.println();
     }
   }
-  pollPtpRx();
-  if (!ptpRunning) return;
-  pollPtpTxTimestamp();
-  if (!ptpRunning) return;
+#if TINYPTP_CPU_PROFILE
+  const uint32_t usbStartedUs = micros();
+#endif
+  for (uint8_t packet = 0; packet < TINYPTP_USB_POLL_BUDGET; ++packet) {
+    const bool received = pollPtpRx();
+    if (!ptpRunning) return;
+    const bool stamped = pollPtpTxTimestamp();
+    if (!ptpRunning) return;
+    if (!received && !stamped) break;
+  }
+#if TINYPTP_CPU_PROFILE
+  const uint32_t usbElapsedUs = uint32_t(micros() - usbStartedUs);
+  if (usbElapsedUs > usbPollMaxUs) usbPollMaxUs = usbElapsedUs;
+#endif
   if (ptpMasterRole) pollPtpMasterSchedule();
   if (haveSync && uint32_t(millis() - exchangeStarted) > 2500) {
     clockServo.clearHistory();
@@ -409,6 +434,12 @@ void pollPtpClient() {
   const uint16_t reportInterval = TINYPTP_PTP4L_LOG && ptpMasterRole ? 1000 : 10000;
   if (uint32_t(millis() - lastReport) >= reportInterval) {
     lastReport = millis();
+#if TINYPTP_CPU_PROFILE
+    ptpLogPrefix(); Serial.print(F("CPU servo_last_us ")); Serial.print(servoLastUs);
+    Serial.print(F(" servo_max_us ")); Serial.print(servoMaxUs);
+    Serial.print(F(" usb_poll_max_us ")); Serial.println(usbPollMaxUs);
+    servoMaxUs = usbPollMaxUs = 0;
+#endif
 #if TINYPTP_PTP4L_LOG
     if (ptpMasterRole) {
       ptpLogMaster(ptpSamples, masterResponses, frequencyPpb,

@@ -1,0 +1,583 @@
+UTC: 2026-10-15T00:29:14.663895+00:00
+Port: /dev/cu.usbmodem2101; baud: 115200; native USB
+tinyptp[0.582]: boot role GRANDMASTER
+tinyptp[0.582]: serial 115200 8N1; offset/path ns; frequency ppb
+tinyptp[0.583]: platform UNO_R4_MINIMA cpu_hz 48000000 rx_buffer 4096 usb_poll_budget 4 float_hw single
+tinyptp[1.161]: port 1: initializing Ethernet and hardware clock
+tinyptp[20.361]: PPS gate before=0x4000
+tinyptp[20.363]: PPS gate=0x4000 clock=0x5F active_ns=500000000 enabled (register readback)
+tinyptp[20.364]: clock identity 9c69d3.fffe.2ba12f
+tinyptp[20.366]: port 1: INITIALIZING to MASTER on FIXED_ROLE
+tinyptp[20.367]: port 1: assuming the grandmaster role
+tinyptp[20.367]: grandmaster: free-running oscillator, UTC not valid
+tinyptp[20.368]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 141
+tinyptp[20.369]: port 1: MASTER sync 0 delay_resp 0 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[21.368]: port 1: received Delay_Req from follower 9c69d3.fffe.2ba18d
+tinyptp[21.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 2710
+tinyptp[21.371]: port 1: MASTER sync 1 delay_resp 1 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[22.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1267
+tinyptp[22.370]: port 1: MASTER sync 2 delay_resp 2 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[23.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1149
+tinyptp[23.370]: port 1: MASTER sync 3 delay_resp 3 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[24.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1288
+tinyptp[24.370]: port 1: MASTER sync 4 delay_resp 4 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[25.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1223
+tinyptp[25.371]: port 1: MASTER sync 5 delay_resp 5 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[26.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1285
+tinyptp[26.370]: port 1: MASTER sync 6 delay_resp 6 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[27.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1217
+tinyptp[27.370]: port 1: MASTER sync 7 delay_resp 7 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[28.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1397
+tinyptp[28.370]: port 1: MASTER sync 8 delay_resp 8 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[29.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1258
+tinyptp[29.370]: port 1: MASTER sync 9 delay_resp 9 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[30.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1216
+tinyptp[30.370]: port 1: MASTER sync 10 delay_resp 10 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[31.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1244
+tinyptp[31.370]: port 1: MASTER sync 11 delay_resp 11 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[32.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1173
+tinyptp[32.370]: port 1: MASTER sync 12 delay_resp 12 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[33.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1408
+tinyptp[33.370]: port 1: MASTER sync 13 delay_resp 13 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[34.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1199
+tinyptp[34.370]: port 1: MASTER sync 14 delay_resp 14 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[35.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1221
+tinyptp[35.370]: port 1: MASTER sync 15 delay_resp 15 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[36.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1260
+tinyptp[36.370]: port 1: MASTER sync 16 delay_resp 16 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[37.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1223
+tinyptp[37.370]: port 1: MASTER sync 17 delay_resp 17 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[38.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1288
+tinyptp[38.371]: port 1: MASTER sync 18 delay_resp 18 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[39.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1223
+tinyptp[39.370]: port 1: MASTER sync 19 delay_resp 19 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[40.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1148
+tinyptp[40.371]: port 1: MASTER sync 20 delay_resp 20 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[41.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1244
+tinyptp[41.370]: port 1: MASTER sync 21 delay_resp 21 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[42.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1297
+tinyptp[42.371]: port 1: MASTER sync 22 delay_resp 22 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[43.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1241
+tinyptp[43.370]: port 1: MASTER sync 23 delay_resp 23 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[44.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1175
+tinyptp[44.370]: port 1: MASTER sync 24 delay_resp 24 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[66.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1174
+tinyptp[66.370]: port 1: MASTER sync 46 delay_resp 46 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[67.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1149
+tinyptp[67.370]: port 1: MASTER sync 47 delay_resp 47 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[68.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1301
+tinyptp[68.370]: port 1: MASTER sync 48 delay_resp 48 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[69.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1220
+tinyptp[69.370]: port 1: MASTER sync 49 delay_resp 49 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[70.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1267
+tinyptp[70.370]: port 1: MASTER sync 50 delay_resp 50 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[71.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1149
+tinyptp[71.370]: port 1: MASTER sync 51 delay_resp 51 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[72.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1267
+tinyptp[72.370]: port 1: MASTER sync 52 delay_resp 52 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[73.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1175
+tinyptp[73.370]: port 1: MASTER sync 53 delay_resp 53 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[74.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1284
+tinyptp[74.371]: port 1: MASTER sync 54 delay_resp 54 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[75.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1149
+tinyptp[75.370]: port 1: MASTER sync 55 delay_resp 55 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[76.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1149
+tinyptp[76.370]: port 1: MASTER sync 56 delay_resp 56 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[77.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1244
+tinyptp[77.370]: port 1: MASTER sync 57 delay_resp 57 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[78.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1296
+tinyptp[78.370]: port 1: MASTER sync 58 delay_resp 58 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[79.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1149
+tinyptp[79.370]: port 1: MASTER sync 59 delay_resp 59 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[80.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1168
+tinyptp[80.370]: port 1: MASTER sync 60 delay_resp 60 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[81.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1309
+tinyptp[81.370]: port 1: MASTER sync 61 delay_resp 61 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[82.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1198
+tinyptp[82.370]: port 1: MASTER sync 62 delay_resp 62 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[83.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1168
+tinyptp[83.370]: port 1: MASTER sync 63 delay_resp 63 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[84.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1261
+tinyptp[84.371]: port 1: MASTER sync 64 delay_resp 64 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[85.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1149
+tinyptp[85.370]: port 1: MASTER sync 65 delay_resp 65 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[86.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1152
+tinyptp[86.371]: port 1: MASTER sync 66 delay_resp 66 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[87.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1223
+tinyptp[87.371]: port 1: MASTER sync 67 delay_resp 67 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[88.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1397
+tinyptp[88.370]: port 1: MASTER sync 68 delay_resp 68 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[89.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1224
+tinyptp[89.370]: port 1: MASTER sync 69 delay_resp 69 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[90.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1396
+tinyptp[90.370]: port 1: MASTER sync 70 delay_resp 70 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[91.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1242
+tinyptp[91.370]: port 1: MASTER sync 71 delay_resp 71 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[92.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1174
+tinyptp[92.370]: port 1: MASTER sync 72 delay_resp 72 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[93.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1414
+tinyptp[93.370]: port 1: MASTER sync 73 delay_resp 73 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[94.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1300
+tinyptp[94.370]: port 1: MASTER sync 74 delay_resp 74 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[95.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1309
+tinyptp[95.370]: port 1: MASTER sync 75 delay_resp 75 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[96.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1267
+tinyptp[96.370]: port 1: MASTER sync 76 delay_resp 76 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[97.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1174
+tinyptp[97.370]: port 1: MASTER sync 77 delay_resp 77 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[98.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1287
+tinyptp[98.370]: port 1: MASTER sync 78 delay_resp 78 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[99.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1156
+tinyptp[99.371]: port 1: MASTER sync 79 delay_resp 79 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[100.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1149
+tinyptp[100.370]: port 1: MASTER sync 80 delay_resp 80 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[101.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1155
+tinyptp[101.370]: port 1: MASTER sync 81 delay_resp 81 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[102.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1149
+tinyptp[102.370]: port 1: MASTER sync 82 delay_resp 82 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[103.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1249
+tinyptp[103.370]: port 1: MASTER sync 83 delay_resp 83 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[104.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1223
+tinyptp[104.370]: port 1: MASTER sync 84 delay_resp 84 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[105.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1237
+tinyptp[105.370]: port 1: MASTER sync 85 delay_resp 85 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[106.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1173
+tinyptp[106.370]: port 1: MASTER sync 86 delay_resp 86 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[107.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1308
+tinyptp[107.370]: port 1: MASTER sync 87 delay_resp 87 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[108.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1295
+tinyptp[108.370]: port 1: MASTER sync 88 delay_resp 88 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[109.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1175
+tinyptp[109.370]: port 1: MASTER sync 89 delay_resp 89 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[110.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1267
+tinyptp[110.370]: port 1: MASTER sync 90 delay_resp 90 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[111.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1143
+tinyptp[111.371]: port 1: MASTER sync 91 delay_resp 91 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[112.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1152
+tinyptp[112.371]: port 1: MASTER sync 92 delay_resp 92 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[113.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1156
+tinyptp[113.370]: port 1: MASTER sync 93 delay_resp 93 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[114.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1396
+tinyptp[114.370]: port 1: MASTER sync 94 delay_resp 94 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[115.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1149
+tinyptp[115.370]: port 1: MASTER sync 95 delay_resp 95 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[116.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1222
+tinyptp[116.370]: port 1: MASTER sync 96 delay_resp 96 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[117.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1238
+tinyptp[117.370]: port 1: MASTER sync 97 delay_resp 97 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[118.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1168
+tinyptp[118.370]: port 1: MASTER sync 98 delay_resp 98 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[119.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1149
+tinyptp[119.370]: port 1: MASTER sync 99 delay_resp 99 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[120.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1168
+tinyptp[120.370]: port 1: MASTER sync 100 delay_resp 100 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[121.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1221
+tinyptp[121.370]: port 1: MASTER sync 101 delay_resp 101 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[122.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1199
+tinyptp[122.370]: port 1: MASTER sync 102 delay_resp 102 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[123.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1148
+tinyptp[123.370]: port 1: MASTER sync 103 delay_resp 103 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[124.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1152
+tinyptp[124.370]: port 1: MASTER sync 104 delay_resp 104 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[125.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1224
+tinyptp[125.371]: port 1: MASTER sync 105 delay_resp 105 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[126.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1149
+tinyptp[126.371]: port 1: MASTER sync 106 delay_resp 106 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[127.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1224
+tinyptp[127.370]: port 1: MASTER sync 107 delay_resp 107 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[128.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1298
+tinyptp[128.370]: port 1: MASTER sync 108 delay_resp 108 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[129.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1237
+tinyptp[129.370]: port 1: MASTER sync 109 delay_resp 109 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[130.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1223
+tinyptp[130.370]: port 1: MASTER sync 110 delay_resp 110 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[131.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1149
+tinyptp[131.370]: port 1: MASTER sync 111 delay_resp 111 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[132.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1175
+tinyptp[132.370]: port 1: MASTER sync 112 delay_resp 112 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[153.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1149
+tinyptp[153.371]: port 1: MASTER sync 133 delay_resp 133 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[154.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1149
+tinyptp[154.370]: port 1: MASTER sync 134 delay_resp 134 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[155.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1156
+tinyptp[155.371]: port 1: MASTER sync 135 delay_resp 135 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[156.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1149
+tinyptp[156.370]: port 1: MASTER sync 136 delay_resp 136 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[157.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1249
+tinyptp[157.370]: port 1: MASTER sync 137 delay_resp 137 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[158.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1223
+tinyptp[158.370]: port 1: MASTER sync 138 delay_resp 138 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[159.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1237
+tinyptp[159.371]: port 1: MASTER sync 139 delay_resp 139 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[160.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1173
+tinyptp[160.370]: port 1: MASTER sync 140 delay_resp 140 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[161.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1308
+tinyptp[161.371]: port 1: MASTER sync 141 delay_resp 141 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[162.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1301
+tinyptp[162.371]: port 1: MASTER sync 142 delay_resp 142 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[163.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1168
+tinyptp[163.371]: port 1: MASTER sync 143 delay_resp 143 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[164.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1261
+tinyptp[164.370]: port 1: MASTER sync 144 delay_resp 144 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[165.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1181
+tinyptp[165.370]: port 1: MASTER sync 145 delay_resp 145 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[166.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1308
+tinyptp[166.371]: port 1: MASTER sync 146 delay_resp 146 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[167.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1224
+tinyptp[167.371]: port 1: MASTER sync 147 delay_resp 147 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[168.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1396
+tinyptp[168.371]: port 1: MASTER sync 148 delay_resp 148 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[169.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1149
+tinyptp[169.370]: port 1: MASTER sync 149 delay_resp 149 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[170.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1222
+tinyptp[170.370]: port 1: MASTER sync 150 delay_resp 150 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[171.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1250
+tinyptp[171.370]: port 1: MASTER sync 151 delay_resp 151 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[172.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1152
+tinyptp[172.370]: port 1: MASTER sync 152 delay_resp 152 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[173.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1149
+tinyptp[173.370]: port 1: MASTER sync 153 delay_resp 153 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[174.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1168
+tinyptp[174.371]: port 1: MASTER sync 154 delay_resp 154 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[175.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1301
+tinyptp[175.370]: port 1: MASTER sync 155 delay_resp 155 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[176.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1206
+tinyptp[176.371]: port 1: MASTER sync 156 delay_resp 156 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[177.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1174
+tinyptp[177.371]: port 1: MASTER sync 157 delay_resp 157 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[178.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1151
+tinyptp[178.371]: port 1: MASTER sync 158 delay_resp 158 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[179.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1217
+tinyptp[179.371]: port 1: MASTER sync 159 delay_resp 159 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[180.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1149
+tinyptp[180.371]: port 1: MASTER sync 160 delay_resp 160 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[181.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1156
+tinyptp[181.370]: port 1: MASTER sync 161 delay_resp 161 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[182.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1298
+tinyptp[182.370]: port 1: MASTER sync 162 delay_resp 162 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[183.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1238
+tinyptp[183.370]: port 1: MASTER sync 163 delay_resp 163 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[184.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1223
+tinyptp[184.371]: port 1: MASTER sync 164 delay_resp 164 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[185.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1149
+tinyptp[185.371]: port 1: MASTER sync 165 delay_resp 165 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[186.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1174
+tinyptp[186.370]: port 1: MASTER sync 166 delay_resp 166 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[187.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1308
+tinyptp[187.370]: port 1: MASTER sync 167 delay_resp 167 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[188.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1301
+tinyptp[188.370]: port 1: MASTER sync 168 delay_resp 168 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[189.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1149
+tinyptp[189.371]: port 1: MASTER sync 169 delay_resp 169 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[190.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1268
+tinyptp[190.370]: port 1: MASTER sync 170 delay_resp 170 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[191.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1149
+tinyptp[191.371]: port 1: MASTER sync 171 delay_resp 171 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[192.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1151
+tinyptp[192.371]: port 1: MASTER sync 172 delay_resp 172 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[193.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1224
+tinyptp[193.371]: port 1: MASTER sync 173 delay_resp 173 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[194.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1148
+tinyptp[194.370]: port 1: MASTER sync 174 delay_resp 174 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[195.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1244
+tinyptp[195.370]: port 1: MASTER sync 175 delay_resp 175 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[196.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1223
+tinyptp[196.370]: port 1: MASTER sync 176 delay_resp 176 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[197.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1244
+tinyptp[197.371]: port 1: MASTER sync 177 delay_resp 177 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[198.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1182
+tinyptp[198.370]: port 1: MASTER sync 178 delay_resp 178 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[199.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1412
+tinyptp[199.370]: port 1: MASTER sync 179 delay_resp 179 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[200.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1300
+tinyptp[200.370]: port 1: MASTER sync 180 delay_resp 180 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[201.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1221
+tinyptp[201.370]: port 1: MASTER sync 181 delay_resp 181 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[202.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1267
+tinyptp[202.371]: port 1: MASTER sync 182 delay_resp 182 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[203.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1150
+tinyptp[203.370]: port 1: MASTER sync 183 delay_resp 183 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[204.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1287
+tinyptp[204.371]: port 1: MASTER sync 184 delay_resp 184 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[205.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1223
+tinyptp[205.370]: port 1: MASTER sync 185 delay_resp 185 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[206.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1148
+tinyptp[206.371]: port 1: MASTER sync 186 delay_resp 186 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[207.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1223
+tinyptp[207.370]: port 1: MASTER sync 187 delay_resp 187 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[208.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1298
+tinyptp[208.371]: port 1: MASTER sync 188 delay_resp 188 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[209.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1244
+tinyptp[209.370]: port 1: MASTER sync 189 delay_resp 189 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[210.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1174
+tinyptp[210.371]: port 1: MASTER sync 190 delay_resp 190 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[211.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1408
+tinyptp[211.370]: port 1: MASTER sync 191 delay_resp 191 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[212.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1174
+tinyptp[212.371]: port 1: MASTER sync 192 delay_resp 192 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[213.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1308
+tinyptp[213.370]: port 1: MASTER sync 193 delay_resp 193 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[214.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1298
+tinyptp[214.370]: port 1: MASTER sync 194 delay_resp 194 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[215.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1149
+tinyptp[215.371]: port 1: MASTER sync 195 delay_resp 195 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[216.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1261
+tinyptp[216.370]: port 1: MASTER sync 196 delay_resp 196 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[217.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1224
+tinyptp[217.371]: port 1: MASTER sync 197 delay_resp 197 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[218.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1295
+tinyptp[218.371]: port 1: MASTER sync 198 delay_resp 198 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[219.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1147
+tinyptp[219.371]: port 1: MASTER sync 199 delay_resp 199 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[220.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1149
+tinyptp[220.370]: port 1: MASTER sync 200 delay_resp 200 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[221.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1156
+tinyptp[221.370]: port 1: MASTER sync 201 delay_resp 201 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[222.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1223
+tinyptp[222.370]: port 1: MASTER sync 202 delay_resp 202 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[223.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1149
+tinyptp[223.370]: port 1: MASTER sync 203 delay_resp 203 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[224.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1168
+tinyptp[224.370]: port 1: MASTER sync 204 delay_resp 204 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[225.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1309
+tinyptp[225.370]: port 1: MASTER sync 205 delay_resp 205 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[226.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1301
+tinyptp[226.371]: port 1: MASTER sync 206 delay_resp 206 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[227.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1220
+tinyptp[227.371]: port 1: MASTER sync 207 delay_resp 207 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[228.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1267
+tinyptp[228.371]: port 1: MASTER sync 208 delay_resp 208 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[229.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1149
+tinyptp[229.370]: port 1: MASTER sync 209 delay_resp 209 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[230.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1152
+tinyptp[230.370]: port 1: MASTER sync 210 delay_resp 210 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[231.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1222
+tinyptp[231.371]: port 1: MASTER sync 211 delay_resp 211 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[232.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1396
+tinyptp[232.371]: port 1: MASTER sync 212 delay_resp 212 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[233.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1155
+tinyptp[233.370]: port 1: MASTER sync 213 delay_resp 213 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[234.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1298
+tinyptp[234.371]: port 1: MASTER sync 214 delay_resp 214 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[235.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1251
+tinyptp[235.370]: port 1: MASTER sync 215 delay_resp 215 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[236.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1175
+tinyptp[236.371]: port 1: MASTER sync 216 delay_resp 216 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[237.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1149
+tinyptp[237.370]: port 1: MASTER sync 217 delay_resp 217 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[238.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1301
+tinyptp[238.370]: port 1: MASTER sync 218 delay_resp 218 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[239.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1220
+tinyptp[239.370]: port 1: MASTER sync 219 delay_resp 219 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[240.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1260
+tinyptp[240.370]: port 1: MASTER sync 220 delay_resp 220 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[241.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1175
+tinyptp[241.370]: port 1: MASTER sync 221 delay_resp 221 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[242.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1149
+tinyptp[242.370]: port 1: MASTER sync 222 delay_resp 222 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[243.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1149
+tinyptp[243.371]: port 1: MASTER sync 223 delay_resp 223 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[244.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1285
+tinyptp[244.370]: port 1: MASTER sync 224 delay_resp 224 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[245.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1224
+tinyptp[245.370]: port 1: MASTER sync 225 delay_resp 225 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[246.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1389
+tinyptp[246.370]: port 1: MASTER sync 226 delay_resp 226 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[247.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1149
+tinyptp[247.371]: port 1: MASTER sync 227 delay_resp 227 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[248.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1223
+tinyptp[248.370]: port 1: MASTER sync 228 delay_resp 228 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[394.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1175
+tinyptp[394.371]: port 1: MASTER sync 374 delay_resp 374 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[395.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1407
+tinyptp[395.371]: port 1: MASTER sync 375 delay_resp 375 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[396.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1199
+tinyptp[396.371]: port 1: MASTER sync 376 delay_resp 376 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[397.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1308
+tinyptp[397.370]: port 1: MASTER sync 377 delay_resp 377 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[398.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1267
+tinyptp[398.371]: port 1: MASTER sync 378 delay_resp 378 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[399.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1149
+tinyptp[399.370]: port 1: MASTER sync 379 delay_resp 379 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[400.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1267
+tinyptp[400.371]: port 1: MASTER sync 380 delay_resp 380 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[401.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1222
+tinyptp[401.371]: port 1: MASTER sync 381 delay_resp 381 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[402.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1149
+tinyptp[402.371]: port 1: MASTER sync 382 delay_resp 382 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[403.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1149
+tinyptp[403.370]: port 1: MASTER sync 383 delay_resp 383 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[404.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1396
+tinyptp[404.370]: port 1: MASTER sync 384 delay_resp 384 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[405.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1244
+tinyptp[405.370]: port 1: MASTER sync 385 delay_resp 385 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[406.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1168
+tinyptp[406.370]: port 1: MASTER sync 386 delay_resp 386 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[407.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1149
+tinyptp[407.370]: port 1: MASTER sync 387 delay_resp 387 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[408.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1301
+tinyptp[408.370]: port 1: MASTER sync 388 delay_resp 388 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[409.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1308
+tinyptp[409.370]: port 1: MASTER sync 389 delay_resp 389 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[410.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1199
+tinyptp[410.371]: port 1: MASTER sync 390 delay_resp 390 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[411.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1149
+tinyptp[411.371]: port 1: MASTER sync 391 delay_resp 391 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[412.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1260
+tinyptp[412.370]: port 1: MASTER sync 392 delay_resp 392 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[413.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1224
+tinyptp[413.370]: port 1: MASTER sync 393 delay_resp 393 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[414.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1151
+tinyptp[414.370]: port 1: MASTER sync 394 delay_resp 394 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[415.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1224
+tinyptp[415.371]: port 1: MASTER sync 395 delay_resp 395 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[416.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1396
+tinyptp[416.370]: port 1: MASTER sync 396 delay_resp 396 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[417.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1149
+tinyptp[417.370]: port 1: MASTER sync 397 delay_resp 397 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[418.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1224
+tinyptp[418.370]: port 1: MASTER sync 398 delay_resp 398 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[419.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1149
+tinyptp[419.370]: port 1: MASTER sync 399 delay_resp 399 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[420.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1175
+tinyptp[420.370]: port 1: MASTER sync 400 delay_resp 400 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[421.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1421
+tinyptp[421.371]: port 1: MASTER sync 401 delay_resp 401 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[422.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1301
+tinyptp[422.370]: port 1: MASTER sync 402 delay_resp 402 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[423.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1181
+tinyptp[423.370]: port 1: MASTER sync 403 delay_resp 403 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[424.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1267
+tinyptp[424.370]: port 1: MASTER sync 404 delay_resp 404 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[425.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1168
+tinyptp[425.371]: port 1: MASTER sync 405 delay_resp 405 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[426.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1287
+tinyptp[426.370]: port 1: MASTER sync 406 delay_resp 406 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[427.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1149
+tinyptp[427.371]: port 1: MASTER sync 407 delay_resp 407 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[428.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1147
+tinyptp[428.371]: port 1: MASTER sync 408 delay_resp 408 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[429.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1217
+tinyptp[429.370]: port 1: MASTER sync 409 delay_resp 409 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[430.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1297
+tinyptp[430.371]: port 1: MASTER sync 410 delay_resp 410 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[431.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1244
+tinyptp[431.370]: port 1: MASTER sync 411 delay_resp 411 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[432.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1216
+tinyptp[432.370]: port 1: MASTER sync 412 delay_resp 412 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[433.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1149
+tinyptp[433.370]: port 1: MASTER sync 413 delay_resp 413 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[434.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1149
+tinyptp[434.370]: port 1: MASTER sync 414 delay_resp 414 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[435.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1309
+tinyptp[435.370]: port 1: MASTER sync 415 delay_resp 415 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[436.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1259
+tinyptp[436.370]: port 1: MASTER sync 416 delay_resp 416 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[437.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1147
+tinyptp[437.370]: port 1: MASTER sync 417 delay_resp 417 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[438.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1308
+tinyptp[438.370]: port 1: MASTER sync 418 delay_resp 418 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[439.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1224
+tinyptp[439.371]: port 1: MASTER sync 419 delay_resp 419 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[440.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1149
+tinyptp[440.371]: port 1: MASTER sync 420 delay_resp 420 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[441.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1223
+tinyptp[441.370]: port 1: MASTER sync 421 delay_resp 421 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[442.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1298
+tinyptp[442.370]: port 1: MASTER sync 422 delay_resp 422 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[443.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1243
+tinyptp[443.371]: port 1: MASTER sync 423 delay_resp 423 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[444.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1295
+tinyptp[444.370]: port 1: MASTER sync 424 delay_resp 424 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[445.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1149
+tinyptp[445.371]: port 1: MASTER sync 425 delay_resp 425 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[446.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1175
+tinyptp[446.370]: port 1: MASTER sync 426 delay_resp 426 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[447.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1306
+tinyptp[447.370]: port 1: MASTER sync 427 delay_resp 427 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[448.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1308
+tinyptp[448.370]: port 1: MASTER sync 428 delay_resp 428 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[449.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1168
+tinyptp[449.370]: port 1: MASTER sync 429 delay_resp 429 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[450.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1260
+tinyptp[450.370]: port 1: MASTER sync 430 delay_resp 430 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[451.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1224
+tinyptp[451.371]: port 1: MASTER sync 431 delay_resp 431 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[452.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1151
+tinyptp[452.371]: port 1: MASTER sync 432 delay_resp 432 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[453.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1224
+tinyptp[453.371]: port 1: MASTER sync 433 delay_resp 433 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[454.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1149
+tinyptp[454.370]: port 1: MASTER sync 434 delay_resp 434 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[455.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1244
+tinyptp[455.371]: port 1: MASTER sync 435 delay_resp 435 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[456.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1304
+tinyptp[456.370]: port 1: MASTER sync 436 delay_resp 436 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[457.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1244
+tinyptp[457.370]: port 1: MASTER sync 437 delay_resp 437 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[458.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1168
+tinyptp[458.370]: port 1: MASTER sync 438 delay_resp 438 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[459.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1413
+tinyptp[459.370]: port 1: MASTER sync 439 delay_resp 439 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[460.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1199
+tinyptp[460.371]: port 1: MASTER sync 440 delay_resp 440 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[461.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1221
+tinyptp[461.370]: port 1: MASTER sync 441 delay_resp 441 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[462.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1267
+tinyptp[462.370]: port 1: MASTER sync 442 delay_resp 442 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[463.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1149
+tinyptp[463.370]: port 1: MASTER sync 443 delay_resp 443 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[464.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1288
+tinyptp[464.370]: port 1: MASTER sync 444 delay_resp 444 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[465.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1149
+tinyptp[465.371]: port 1: MASTER sync 445 delay_resp 445 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[466.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1397
+tinyptp[466.371]: port 1: MASTER sync 446 delay_resp 446 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[467.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1156
+tinyptp[467.370]: port 1: MASTER sync 447 delay_resp 447 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[468.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1297
+tinyptp[468.371]: port 1: MASTER sync 448 delay_resp 448 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[469.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1244
+tinyptp[469.370]: port 1: MASTER sync 449 delay_resp 449 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[470.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1223
+tinyptp[470.370]: port 1: MASTER sync 450 delay_resp 450 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[471.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1149
+tinyptp[471.370]: port 1: MASTER sync 451 delay_resp 451 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[472.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1168
+tinyptp[472.371]: port 1: MASTER sync 452 delay_resp 452 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[473.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1220
+tinyptp[473.370]: port 1: MASTER sync 453 delay_resp 453 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[474.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1199
+tinyptp[474.370]: port 1: MASTER sync 454 delay_resp 454 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[475.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1149
+tinyptp[475.370]: port 1: MASTER sync 455 delay_resp 455 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[476.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1267
+tinyptp[476.370]: port 1: MASTER sync 456 delay_resp 456 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[477.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1142
+tinyptp[477.370]: port 1: MASTER sync 457 delay_resp 457 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[478.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1294
+tinyptp[478.371]: port 1: MASTER sync 458 delay_resp 458 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[479.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1223
+tinyptp[479.370]: port 1: MASTER sync 459 delay_resp 459 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[480.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1149
+tinyptp[480.370]: port 1: MASTER sync 460 delay_resp 460 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[481.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1244
+tinyptp[481.371]: port 1: MASTER sync 461 delay_resp 461 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[482.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1297
+tinyptp[482.370]: port 1: MASTER sync 462 delay_resp 462 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[483.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1149
+tinyptp[483.370]: port 1: MASTER sync 463 delay_resp 463 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[484.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1175
+tinyptp[484.370]: port 1: MASTER sync 464 delay_resp 464 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[485.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1309
+tinyptp[485.370]: port 1: MASTER sync 465 delay_resp 465 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[486.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1199
+tinyptp[486.370]: port 1: MASTER sync 466 delay_resp 466 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[487.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1174
+tinyptp[487.370]: port 1: MASTER sync 467 delay_resp 467 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[488.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1260
+tinyptp[488.371]: port 1: MASTER sync 468 delay_resp 468 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[489.370]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 375
+tinyptp[489.370]: port 1: MASTER sync 468 delay_resp 468 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[489.488]: port 1: link down
+tinyptp[489.488]: port 1: initializing Ethernet and hardware clock

@@ -1,0 +1,58 @@
+[
+  {
+    "example": "FollowerAdaptivePI",
+    "arm_gcc_13_flash": 64996,
+    "arm_gcc_13_static_ram": 9100,
+    "bundled_gcc_7_flash": 66012,
+    "bundled_gcc_7_static_ram": 8868,
+    "arm_gcc_13_binary_sha256": "93b23196b17f935501b8a2368ec74b72f8aeb91d4c734fc92ac7cf1b656d6ea7"
+  },
+  {
+    "example": "FollowerKalman",
+    "arm_gcc_13_flash": 64612,
+    "arm_gcc_13_static_ram": 9100,
+    "bundled_gcc_7_flash": 65548,
+    "bundled_gcc_7_static_ram": 8868,
+    "arm_gcc_13_binary_sha256": "04d2341407ba3354b9720b1ec0cbdd5ce35df32471f59aafbbd6122ff782f2d9"
+  },
+  {
+    "example": "FollowerLinreg",
+    "arm_gcc_13_flash": 64656,
+    "arm_gcc_13_static_ram": 9224,
+    "bundled_gcc_7_flash": 65640,
+    "bundled_gcc_7_static_ram": 9000,
+    "arm_gcc_13_binary_sha256": "b3bfcce203ea8ee481d1c471afbb431836ed665464ddc898a89b06fe2e509819"
+  },
+  {
+    "example": "FollowerPI",
+    "arm_gcc_13_flash": 64084,
+    "arm_gcc_13_static_ram": 9080,
+    "bundled_gcc_7_flash": 65004,
+    "bundled_gcc_7_static_ram": 8848,
+    "arm_gcc_13_binary_sha256": "5bedbc549c3b120a632e57f5753751719c8a5c4b9202023cba762908092702f9"
+  },
+  {
+    "example": "FollowerPllFll",
+    "arm_gcc_13_flash": 64424,
+    "arm_gcc_13_static_ram": 9104,
+    "bundled_gcc_7_flash": 65420,
+    "bundled_gcc_7_static_ram": 8880,
+    "arm_gcc_13_binary_sha256": "79e8783c4f601b4659e06d40735f16889cbc69198781181737ea0f3046331d37"
+  },
+  {
+    "example": "Grandmaster",
+    "arm_gcc_13_flash": 64096,
+    "arm_gcc_13_static_ram": 9080,
+    "bundled_gcc_7_flash": 65016,
+    "bundled_gcc_7_static_ram": 8848,
+    "arm_gcc_13_binary_sha256": "402e54e75e2815725bb93d8014d1318a21e581c4caf22a39243d29bb201a3411"
+  },
+  {
+    "example": "TimeStickProbe",
+    "arm_gcc_13_flash": 63860,
+    "arm_gcc_13_static_ram": 9076,
+    "bundled_gcc_7_flash": 64820,
+    "bundled_gcc_7_static_ram": 8848,
+    "arm_gcc_13_binary_sha256": "265c68f1283578504d3211c3bade7d07bfb4bceca66291317455faa644494df7"
+  }
+]

@@ -3,6 +3,7 @@
 #include <cstring>
 #include <vector>
 #include <algorithm>
+#include "../src/detail/BuildConfig.h"
 #define F(x) x
 #define HEX 16
 const uint8_t hrNAK = 4;
@@ -17,24 +18,36 @@ struct SerialStub {
 bool diagnosticsEnabled = true;
 uint32_t nowMs = 1000;
 uint32_t millis() { return nowMs; }
+uint32_t micros() { return nowMs * 1000; }
 void delay(unsigned) {}
 void hexByte(uint8_t) {}
 bool ethernetReady=true,hardwareReady=true;
 uint8_t verifiedAsixAddress=1,probeMac[6]={0x9c,0x69,0xd3,0x2b,0xa1,0x2f};
-uint8_t rxAggregate[256]; uint16_t rxUsed=0; bool rxOverflow=false;
+uint8_t rxAggregate[TINYPTP_RX_BUFFER_SIZE]; uint16_t rxUsed=0; bool rxOverflow=false;
 uint32_t readLe32(const uint8_t *p) {return uint32_t(p[0])|(uint32_t(p[1])<<8)|(uint32_t(p[2])<<16)|(uint32_t(p[3])<<24);}
-bool asixRead(uint8_t,uint8_t,uint16_t,uint16_t,uint8_t,uint8_t*) {return false;}
+bool clockReadAvailable=false;
+unsigned clockSteps=0;
+bool asixRead(uint8_t,uint8_t request,uint16_t,uint16_t,uint8_t length,uint8_t *data) {
+  if (!clockReadAvailable || request!=0x13 || length!=10) return false;
+  memset(data,0,10);data[4]=100;return true;
+}
 bool asixWrite(uint8_t,uint8_t,uint16_t,uint16_t,uint8_t,uint32_t) {return true;}
 bool pbusWrite(uint8_t,uint16_t,uint16_t,uint32_t) {return true;}
 bool macWrite(uint8_t,uint8_t,uint32_t) {return true;}
 bool reportClockProgress(uint8_t) {return true;}
 struct UsbStub {
   std::vector<uint8_t> sent;
-  uint8_t outError = 0;
+  uint8_t outError = 0, onlyEndpoint = 0;
+  uint16_t attempts[5] = {};
   std::vector<std::vector<uint8_t>> queued;
-  uint8_t ctrlReq(uint8_t,uint8_t,uint8_t,uint8_t,uint8_t,uint8_t,uint16_t,uint16_t,uint16_t,uint8_t*,void*) {return 0;}
+  uint8_t ctrlReq(uint8_t,uint8_t,uint8_t,uint8_t req,uint8_t lo,uint8_t hi,uint16_t,uint16_t,uint16_t,uint8_t*,void*) {
+    if(req==0x11 && lo==8 && hi==0x10) ++clockSteps;
+    return 0;
+  }
   uint8_t outTransfer(uint8_t,uint8_t,uint16_t n,uint8_t *p) {sent.assign(p,p+n);return outError;}
-  uint8_t inTransfer(uint8_t,uint8_t,uint16_t *n,uint8_t *p) {
+  uint8_t inTransfer(uint8_t,uint8_t ep,uint16_t *n,uint8_t *p) {
+    ++attempts[ep];
+    if(onlyEndpoint && ep != onlyEndpoint) return hrNAK;
     if(queued.empty()) return hrNAK;
     assert(queued.front().size()<=*n); *n=queued.front().size();
     std::copy(queued.front().begin(),queued.front().end(),p);queued.erase(queued.begin());return 0;
@@ -139,10 +152,64 @@ int main() {
   pollPtpMasterSchedule();assert(!ptpRunning && !masterSyncPending);Usb.outError=0;
   ptpMasterRole=false;
 
+  // The R4 buffer accepts more than eight frames, with whole-aggregate validation.
+#if TINYPTP_RX_BUFFER_SIZE >= 800
+  clearPtpExchange(); ptpLearnMaster=false; quarantineUntil=0;
+  memset(rxAggregate,0,sizeof(rxAggregate));
+  for(unsigned i=0;i<9;++i) {
+    header(frame,0,100+i,44);memcpy(rxAggregate+i*64,frame,60);
+    uint8_t *meta=rxAggregate+576+i*24;meta[1]=8;meta[2]=60;meta[7]=1;
+    memcpy(meta+8,stamp,10);
+  }
+  le32(rxAggregate+792,(576UL<<13)|9);rxUsed=800;
+  const uint32_t discardedBefore=ptpRxDiscard;
+  parsePtpAggregate();assert(haveSync && syncSequence==100 && ptpRxDiscard==discardedBefore);
+  clearPtpExchange();rxAggregate[576+8*24+2]=65; // Bad final frame, no earlier delivery.
+  parsePtpAggregate();assert(!haveSync && ptpRxDiscard==discardedBefore+1);
+#endif
+  // Service multiple full USB packets on R4, but stop at the per-loop budget.
+  clearPtpExchange();ptpRunning=true;rxUsed=0;rxOverflow=false;
+  lastCompletedExchange=nowMs;Usb.onlyEndpoint=2;
+  Usb.queued.assign(8,std::vector<uint8_t>(64,1));
+  pollPtpClient();
+  assert(rxUsed==64*TINYPTP_USB_POLL_BUDGET);
+  assert(Usb.queued.size()==8-TINYPTP_USB_POLL_BUDGET);
+  Usb.queued.clear();
+  const unsigned rxBefore=Usb.attempts[2],txBefore=Usb.attempts[4];
+  pollPtpClient(); // Empty queues stop immediately instead of spending the whole budget.
+  assert(Usb.attempts[2]==rxBefore+1 && Usb.attempts[4]==txBefore+1);
+  rxUsed=0;Usb.onlyEndpoint=0;
+
+  // First-acquisition stepping must not turn into a low-threshold runtime step.
+  clockReadAvailable=true;ptpDiscipline=true;
+  auto exchangeWithOffset = [&](int64_t offset, bool first) {
+    t1={100,100000000};t2=t1;assert(ptpAdd(t2,offset));
+    t4={100,110000000};t3=t4;assert(ptpAdd(t3,offset));
+    syncCorrection=responseCorrection=0;
+    haveSync=haveFollow=haveTx=haveResponse=true;
+    ptpSamples=first ? 0 : 1;ptpRunning=true;
+    finishPtpExchange();assert(ptpRunning);
+  };
+  for(int sign : {-1,1}) {
+    unsigned before=clockSteps;
+    exchangeWithOffset(sign*1000000LL,true);assert(clockSteps==before);
+    exchangeWithOffset(sign*1000001LL,true);
+#if defined(ARDUINO_UNOR4_MINIMA)
+    assert(clockSteps==before+1);
+#else
+    assert(clockSteps==before);
+#endif
+    before=clockSteps;
+    exchangeWithOffset(sign*1000001LL,false);assert(clockSteps==before);
+    exchangeWithOffset(sign*500000000LL,false);assert(clockSteps==before);
+    exchangeWithOffset(sign*500000001LL,false);assert(clockSteps==before+1);
+  }
+  clockReadAvailable=false;
+
   // Exercise malformed aggregate bounds under ASan/UBSan.
   uint32_t random=17;
   for(unsigned trial=0;trial<20000;++trial) {
     for(auto &byte:rxAggregate) {random^=random<<13;random^=random>>17;random^=random<<5;byte=random;}
-    rxUsed=trial%257;parsePtpAggregate();
+    rxUsed=trial%(sizeof(rxAggregate)+1);parsePtpAggregate();
   }
 }

@@ -1,0 +1,32 @@
+{
+  "started_utc": "2026-10-15T00:29:06.213879+00:00",
+  "master_serial": "320D1D22393131396E3833354B57336E",
+  "follower_serial": "320D072639313139112733354B57336E",
+  "firmware_sha256": {
+    "Grandmaster": "eec95c4b176ae360ff40408056d78bd5cd30405ec8630ca8136929bad40f54d7",
+    "FollowerPI": "5d18e652958eae18b29260e1a2c69977fb412530c97073ee0989a24d42576eb2",
+    "FollowerLinreg": "89112021fc1055853fb57de92460fb3f66507f5e10ee50a42e74e019d1a2b06d",
+    "FollowerAdaptivePI": "34557a8404738524c3dc861833dea1b80682fabc8d3e6d481bfe4b35f2c213c4",
+    "FollowerKalman": "7ee3dc3662d1d2123f715bcffc46f93663419a12581a7a09e52533c13211822f",
+    "FollowerPllFll": "bbdf23cb3236713abbf916c558036e38fd66e9f359fa137713c4517f953e07fb"
+  },
+  "trials": [
+    {
+      "label": "pi",
+      "example": "FollowerPI",
+      "seconds": 300,
+      "started_utc": "2026-10-15T00:29:14.660568+00:00",
+      "ended_utc": "2026-10-15T00:37:22.831059+00:00",
+      "log_sha256": "d77ed90a865d1a8e899003f439068b6beedfdfd1a4f4d4110ba3607e9cebaba0",
+      "samples": 281,
+      "boots": 1
+    },
+    {
+      "label": "linreg",
+      "example": "FollowerLinreg",
+      "seconds": 300,
+      "started_utc": "2026-10-15T00:37:22.832853+00:00"
+    }
+  ],
+  "ended_utc": "2026-10-15T00:37:37.108396+00:00"
+}

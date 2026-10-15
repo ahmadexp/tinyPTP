@@ -5,6 +5,13 @@ MAX3421E USB Host Shield and an AX88279-based TimeStick. The UNO runs the PTP
 role and follower clock servo; the TimeStick timestamps Ethernet packets and
 maintains the hardware clock.
 
+**UNO R4 Minima port:** the development branch adds a 4 KB receive buffer,
+bounded USB burst polling, hardware floating point for Kalman, and CPU timing
+telemetry. See the [R4 setup and validation guide](docs/uno-r4-minima.md).
+The published v0.1.0 ZIP and Boards Manager package still target the R3.
+The measurements and photographs below are the original R3 experiments;
+R4 evidence is recorded separately.
+
 **Working: two UNOs, each with a USB Host Shield and AX88279 TimeStick,
 running master/follower PTP over a direct Ethernet cable.**
 

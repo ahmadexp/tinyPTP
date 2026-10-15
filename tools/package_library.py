@@ -7,10 +7,16 @@ import zipfile
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--output", type=Path, default=Path("build/tinyPTP-0.1.0.zip"))
+    parser.add_argument("--output", type=Path)
     args = parser.parse_args()
     root = Path(__file__).resolve().parents[1]
-    files = [root / "library.properties", root / "docs/arduino-ide.md"]
+    version = next(line.split('=', 1)[1] for line in
+                   (root / 'library.properties').read_text().splitlines()
+                   if line.startswith('version='))
+    if args.output is None:
+        args.output = root / 'build' / f'tinyPTP-{version}.zip'
+    files = [root / "library.properties", root / "docs/arduino-ide.md",
+             root / "docs/uno-r4-minima.md"]
     files += sorted((root / "src").rglob("*.h"))
     files += sorted((root / "examples").glob("*/*.ino"))
     args.output.parent.mkdir(parents=True, exist_ok=True)

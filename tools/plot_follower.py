@@ -27,12 +27,19 @@ SAMPLE = re.compile(
 )
 
 
+BOOT = re.compile(r"^tinyptp\[\d+\.\d+\]: boot role (?:GRANDMASTER|FOLLOWER|DIAGNOSTIC)[ \t]*$", re.MULTILINE)
+
+
+def boot_count(text):
+    return len(BOOT.findall(text))
+
+
 def read_samples(path):
     text = path.read_text()
-    marker = "tinyptp[0.000]: boot role"
-    if marker not in text:
+    markers = list(BOOT.finditer(text))
+    if not markers:
         raise ValueError("Capture needs a boot marker to delimit buffered output")
-    text = text[text.rindex(marker):]
+    text = text[markers[-1].start():]
     rows = []
     for line in text.splitlines():
         match = SAMPLE.fullmatch(line.strip())

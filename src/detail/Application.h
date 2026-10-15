@@ -149,10 +149,27 @@ void reportDevice(UsbDevice *device) {
 
 void begin() {
   Serial.begin(115200);
+#if defined(ARDUINO_UNOR4_MINIMA)
+  // Native USB CDC may not have a monitor yet. Preserve startup evidence when
+  // a host opens promptly, but still start autonomously after five seconds.
+  const uint32_t serialWaitStarted = millis();
+  while (!Serial && uint32_t(millis() - serialWaitStarted) < 5000) delay(1);
+#endif
   ptpLogPrefix(); Serial.print(F("boot role "));
   Serial.println(TINYPTP_BOOT_ROLE == 1 ? F("GRANDMASTER") :
                  TINYPTP_BOOT_ROLE == 2 ? F("FOLLOWER") : F("DIAGNOSTIC"));
   ptpLogPrefix(); Serial.println(F("serial 115200 8N1; offset/path ns; frequency ppb"));
+#if defined(ARDUINO_UNOR4_MINIMA)
+  ptpLogPrefix(); Serial.print(F("platform UNO_R4_MINIMA cpu_hz ")); Serial.print(F_CPU);
+  Serial.print(F(" rx_buffer ")); Serial.print(sizeof(rxAggregate));
+  Serial.print(F(" usb_poll_budget ")); Serial.print(TINYPTP_USB_POLL_BUDGET);
+  Serial.print(F(" first_step_ns ")); Serial.print(long(TINYPTP_FIRST_STEP_THRESHOLD_NS));
+#if defined(__ARM_FP) && (__ARM_FP & 4)
+  Serial.println(F(" float_hw single"));
+#else
+  Serial.println(F(" float_hw disabled"));
+#endif
+#endif
   // Common shields also carry an SD socket. Keep its chip select inactive.
   pinMode(4, OUTPUT);
   digitalWrite(4, HIGH);

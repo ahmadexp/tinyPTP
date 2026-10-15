@@ -28,7 +28,7 @@ The [2026-10-13 pair report](docs/two-uno-test-2026-10-13.md) records both devic
 the 1 Gb/s negotiation fix, and the hardware experiment. Use the
 [two-UNO procedure](docs/two-uno-setup.md) for this topology. The earlier
 UNO-to-Linux experiment is retained below. This is an experimental fixed-role
-implementation, not a complete PTP stack or a flexPTP port.
+implementation with a limited PTP feature set.
 
 The follower supports fixed **PI**, experimental **integer linear regression**,
 **adaptive PI**, **Kalman**, and **PLL/FLL** experiments, selected at build time. See the
@@ -468,24 +468,6 @@ Firmware, silicon revision, and full-speed descriptors for the tested units
 are recorded in the bring-up report. Additional sticks must be identified
 individually; VID/PID alone does not distinguish these ASIX revisions.
 
-## Why flexPTP cannot be used unchanged
-
-The inspected flexPTP source has 16 receive and 16 transmit message-pool entries.
-Each contains a 128-byte payload. Those payloads alone require 4096 bytes, before
-message metadata, protocol state, queues, network buffers, USB state, and stack.
-The ATmega328P has only 2048 bytes of SRAM and 32 KB of flash.
-
-flexPTP does support OS-less operation, so an RTOS is not the obstacle. A port
-would require reducing message pools and queues, supplying a USB Ethernet
-network adapter and hardware-clock port, auditing AVR integer widths and
-floating-point behavior, and measuring the complete linked image. Its stock
-memory layout is unsuitable; this is not proof that a carefully reduced fork
-could never fit. No full flexPTP AVR build has been attempted here.
-
-The working experiment uses a smaller fixed-role implementation in
-`src/detail/PtpClient.h`. A reduced flexPTP port remains an optional
-future direction, not a dependency of the current firmware.
-
 ## Implemented PTP exchange
 
 - Linux fixed master and UNO fixed client, domain 42, direct cable, unique identities.
@@ -605,9 +587,6 @@ Inspected on 2026-10-08:
   `4c2935a1f723f8ec66fc3a3b4fb6a246b9de7c6e`.
   See `TimeStick2/DRV/ax_ptp.c`, `ax_ptp.h`, `ax_main.c`, and
   `ax88179a_772d.c` for the hardware-clock, timestamp, and USB framing paths.
-- [flexPTP](https://github.com/epagris/flexPTP), revision
-  `3b33b895b230020bbd281b492b6adb9a253234f0`.
-  See `src/flexptp/task_ptp.c` and `ptp_types.h` for message pools and payloads.
 - [USB Host Shield Library 2.0](https://github.com/felis/USB_Host_Shield_2.0),
   revision `e5bc9950ba5389b67ad99175c312154af53df71d`.
 - [ASIX AX88179B](https://www.asix.com.tw/en/product/USBEthernet/Super-Speed_USB_Ethernet/AX88179B)
@@ -616,7 +595,7 @@ Inspected on 2026-10-08:
 - [MAX3421E](https://www.analog.com/en/products/max3421e.html) host specifications.
 - [Arduino UNO R3](https://docs.arduino.cc/hardware/uno-rev3/) specifications.
 
-No upstream implementation is vendored here. flexPTP is MIT licensed. The ASIX
-driver source contains GPL notices, while the TimeStick repository has a
+No upstream implementation is vendored here. The ASIX driver source contains
+GPL notices, while the TimeStick repository has a
 separate hardware/project license. Preserve the applicable notices and review
 the relevant file licenses when incorporating upstream code.

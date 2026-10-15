@@ -1,0 +1,78 @@
+{
+  "status": "complete",
+  "started_utc": "2026-10-15T00:43:19.365334+00:00",
+  "master_serial": "320D1D22393131396E3833354B57336E",
+  "follower_serial": "320D072639313139112733354B57336E",
+  "master_warmup_s": 30,
+  "firmware_sha256": {
+    "Grandmaster": "402e54e75e2815725bb93d8014d1318a21e581c4caf22a39243d29bb201a3411",
+    "FollowerPI": "5bedbc549c3b120a632e57f5753751719c8a5c4b9202023cba762908092702f9",
+    "FollowerLinreg": "b3bfcce203ea8ee481d1c471afbb431836ed665464ddc898a89b06fe2e509819",
+    "FollowerAdaptivePI": "93b23196b17f935501b8a2368ec74b72f8aeb91d4c734fc92ac7cf1b656d6ea7",
+    "FollowerKalman": "04d2341407ba3354b9720b1ec0cbdd5ce35df32471f59aafbbd6122ff782f2d9",
+    "FollowerPllFll": "79e8783c4f601b4659e06d40735f16889cbc69198781181737ea0f3046331d37"
+  },
+  "trials": [
+    {
+      "label": "pi",
+      "example": "FollowerPI",
+      "seconds": 300,
+      "started_utc": "2026-10-15T00:43:57.639571+00:00",
+      "ended_utc": "2026-10-15T00:49:06.114411+00:00",
+      "log_sha256": "8fee0f1808b32fd3588d1e3a9ebc9e3dad5339bcedf3a76611ddaaa04c90e96c",
+      "samples": 288,
+      "boots": 1
+    },
+    {
+      "label": "linreg",
+      "example": "FollowerLinreg",
+      "seconds": 300,
+      "started_utc": "2026-10-15T00:49:06.115782+00:00",
+      "ended_utc": "2026-10-15T00:54:14.634569+00:00",
+      "log_sha256": "80707ee3039f575c04936b1697211ecbf3cd1e5dbbe1217b83aa82fb3602608a",
+      "samples": 288,
+      "boots": 1
+    },
+    {
+      "label": "adaptive-pi",
+      "example": "FollowerAdaptivePI",
+      "seconds": 300,
+      "started_utc": "2026-10-15T00:54:14.635636+00:00",
+      "ended_utc": "2026-10-15T00:59:23.099560+00:00",
+      "log_sha256": "b9ba33d35ba6a4c5a519ed41d9c02fdfe36baadb2147f48ad4009a96256f10ca",
+      "samples": 288,
+      "boots": 1
+    },
+    {
+      "label": "kalman",
+      "example": "FollowerKalman",
+      "seconds": 300,
+      "started_utc": "2026-10-15T00:59:23.100597+00:00",
+      "ended_utc": "2026-10-15T01:04:31.651217+00:00",
+      "log_sha256": "8245ae566c2f21d8afb1b6437cb3a33e1f14f8369ec21f5617c6ea21c1af6410",
+      "samples": 288,
+      "boots": 1
+    },
+    {
+      "label": "pllfll",
+      "example": "FollowerPllFll",
+      "seconds": 300,
+      "started_utc": "2026-10-15T01:04:31.652344+00:00",
+      "ended_utc": "2026-10-15T01:09:40.211025+00:00",
+      "log_sha256": "bc863af02dafbf6812e9722e22f968f63820e54b0d21916927a192da7bff3d7f",
+      "samples": 288,
+      "boots": 1
+    },
+    {
+      "label": "pi-steady",
+      "example": "FollowerPI",
+      "seconds": 900,
+      "started_utc": "2026-10-15T01:09:40.212204+00:00",
+      "ended_utc": "2026-10-15T01:24:48.908649+00:00",
+      "log_sha256": "fe5a7b956770922b111e44c3d32454b6becbb93607467b34163af383006de9f5",
+      "samples": 888,
+      "boots": 1
+    }
+  ],
+  "ended_utc": "2026-10-15T01:24:49.112570+00:00"
+}

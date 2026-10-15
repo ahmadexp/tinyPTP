@@ -1,0 +1,32 @@
+{
+  "source_log": "pi-steady.log",
+  "source_sha256": "fe5a7b956770922b111e44c3d32454b6becbb93607467b34163af383006de9f5",
+  "selection": "All accepted exchanges at or after the fixed elapsed-time cutoff.",
+  "cutoff_after_first_sample_s": 120.0,
+  "total_samples": 888,
+  "excluded_acquisition_samples": 121,
+  "window_samples": 767,
+  "window_first_sample": 122,
+  "window_last_sample": 888,
+  "window_first_elapsed_s": 120.993,
+  "window_last_elapsed_s": 886.993,
+  "window_span_s": 766.0,
+  "offset_mean_ns": -9.667535853976531,
+  "offset_rms_ns": 23.22793916294549,
+  "offset_population_stddev_ns": 21.12050918585002,
+  "offset_min_ns": -70,
+  "offset_max_ns": 80,
+  "path_mean_ns": 733.8200782268578,
+  "path_min_ns": 725,
+  "path_max_ns": 745,
+  "frequency_first_ppb": 10343,
+  "frequency_last_ppb": 10609,
+  "frequency_min_ppb": 10314,
+  "frequency_max_ppb": 10631,
+  "servo_state_counts": {
+    "3": 767
+  },
+  "largest_sample_interval_s": 1.001,
+  "sample_number_gaps": 0,
+  "measurement_limit": "Internal PTP estimates; not calibrated PPS or UTC measurements."
+}

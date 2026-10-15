@@ -100,6 +100,8 @@ def plots(output, results, traces):
             ax.set_title(NAMES[key], loc='left')
         axes[i, 0].set_yscale('symlog', linthresh=1000)
         axes[i, 0].set_ylim(-limit*1.3, limit*1.3)
+        axes[i, 0].set_yticks([-1e9, -1e6, -1e3, 0, 1e3, 1e6, 1e9],
+                             labels=['-1G', '-1M', '-1k', '0', '+1k', '+1M', '+1G'])
         axes[i, 1].set_ylim(-525, 525)
         for band in [-1000, 1000]:
             axes[i, 0].axhline(band, color='#64748b', ls='--', lw=.6)

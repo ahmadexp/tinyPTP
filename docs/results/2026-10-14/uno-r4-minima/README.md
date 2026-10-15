@@ -5,6 +5,11 @@ Two UNO R4 Minima boards replaced the UNO R3s. Each carries the existing
 MAX3421E USB Host Shield and AX88279 TimeStick, with direct Ethernet between
 the sticks. The upload/capture host is an Intel Mac (Darwin 25.6.0).
 
+**Completed:** five 300-second servo trials and a 900-second fixed-PI run,
+from **2026-10-15 00:43:19 to 01:24:49 UTC**. All **2,328 accepted follower
+samples** were captured without sample-number gaps. Both boards remain
+programmed with automatic roles: grandmaster and fixed-PI follower.
+
 ## Board and clock identities
 
 | Role | R4 USB serial | Serial port during capture | TimeStick clock identity |
@@ -32,10 +37,14 @@ Uploads select the full USB serial, not an ambiguous VID/PID or port number.
   native QMK AVR GCC 15.2.0 toolchain. R3 builds retain the 256-byte buffer,
   one-round polling budget, and disabled CPU profiling.
 - Eight native C++ suites passed with address/undefined-behavior sanitizers.
-  The protocol harness additionally passed with the R4 configuration for each
-  of the five servo selections, including 20,000 randomized aggregates per run.
+  The protocol harness additionally passed with both R3 and R4 configurations
+  for each of the five servo selections, including 20,000 randomized aggregates
+  per run and first-exchange/runtime step boundaries.
 - Thirteen Python analysis tests passed, including nonzero boot timestamps,
   settling criteria, checksum rejection and retention of non-s3 steady samples.
+- The development ZIP installs into an isolated Arduino sketchbook, all seven
+  examples are discovered, and its packaged Kalman example builds with the
+  bundled R4 toolchain. No graphical IDE interaction was required.
 
 Flash and static RAM are compiler reports, not measured stack high-water marks.
 The R4 has 262,144 flash bytes and 32,768 RAM bytes. Heap and runtime stack
@@ -89,7 +98,116 @@ architectures. `servo_last_us` measures only filter arithmetic;
 The periodic last-update median is sampled telemetry, not a median over every
 individual servo execution.
 
-Results will be added after the complete capture sequence is validated.
+The final sequence is remote attempt `trials-04`, archived here as `trials/`.
+It used the temporary macOS sleep assertions and completed independently of
+SSH connectivity. Every capture has exactly one real boot marker, the expected
+servo name and R4 platform banner, and a matching SHA-256. Uploaded image
+hashes match the Arm GCC 13 build record. The preliminary attempts are retained
+in [bringup](bringup/README.md), with their sleep gaps and old-threshold startup
+behavior documented separately.
+
+The master log contains one MCU boot and six Ethernet link-down/reinitialization
+events, one for each follower upload/startup. Its role counters restart after
+these automatic reinitializations. The master was not an uninterrupted clock
+reference across the upload boundaries; compare each individual follower run.
+Within the completed captures, follower sample numbering is continuous. All
+reported master/follower timeout, missing-RX and discard counters are zero;
+there are no rejected paths or initialization failures in the final sequence.
+
+## Five-servo comparison
+
+Each 300-second capture contains 288 accepted exchanges. The common 120-second
+cutoff leaves 167 samples over 166 seconds per servo, all in s3. The first
+accepted sample is a coarse clock step in each run. The short windows show:
+
+| Servo | Offset RMS | Offset range | First s3 | Median sampled update | Peak update in steady window |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Fixed PI | 41.01 ns | -110 to +20 ns | 50.99 s | 6 us | 9 us |
+| Linear regression | 33.93 ns | -105 to +50 ns | 35.99 s | 22 us | 25 us |
+| Adaptive PI | 16.35 ns | -50 to +30 ns | 36.00 s | 12 us | 15 us |
+| Kalman | 40.77 ns | -105 to +65 ns | 32.99 s | 9 us | 11 us |
+| PLL/FLL | 83.83 ns | -195 to +140 ns | 35.99 s | 7 us | 11 us |
+
+![R4 steady windows and measured servo CPU cost](plots/r4-servo-comparison.png)
+
+Adaptive PI had the lowest RMS in this sequence, but it is one sequential
+trial per servo, with different oscillator drift and starting offsets. Fixed
+PI remains the default. The 9 us Kalman update demonstrates that the existing
+filter runs comfortably on the R4; it is not a measured R3-to-R4 speedup.
+Linreg's integer regression costs more CPU here than the hardware-float
+Kalman filter. Even the largest measured update is small relative to the 1 Hz
+exchange period. USB polling sections reached about 3.1 to 3.8 ms in steady
+windows, including parsing, callbacks and clock/serial I/O.
+
+## Startup transients
+
+Times below start at the first accepted exchange, not power-on. The final
+in-band suffix must last at least 30 seconds to count as settled. Initial
+offsets differ, so these are observed trajectories rather than a controlled
+acquisition-speed ranking.
+
+| Servo | Initial offset | Settled within +/-1,000 ns | Settled within +/-100 ns |
+| --- | ---: | ---: | ---: |
+| Fixed PI | -861.929 ms | 43.99 s | 126.99 s |
+| Linear regression | -868.118 ms | 28.99 s | 157.99 s |
+| Adaptive PI | -330.405 ms | 29.00 s | 44.00 s |
+| Kalman | -254.350 ms | 25.99 s | 123.99 s |
+| PLL/FLL | -256.198 ms | 28.99 s | 242.99 s |
+
+![Startup offsets and corrections for every R4 servo](plots/r4-startup-transients.png)
+
+The adaptive-PI, Kalman, and PLL/FLL starts also exercise the new first-exchange
+rule on hardware: each starts below the old 500 ms threshold and records s1
+and a clock step. Subsequent small excursions use the frequency servo.
+
+## Longer fixed-PI run
+
+The 900-second capture contains **888 exchanges**. After the same 120-second
+cutoff, **767 samples over 766 seconds** remain, all in s3:
+
+- Offset RMS **23.23 ns**, mean **-9.67 ns**, population standard deviation **21.12 ns**.
+- Offset range **-70 to +80 ns**; no missing sample numbers.
+- Mean path estimate **733.82 ns**; range **725 to 745 ns**.
+- Longest accepted-sample interval **1.001 s**.
+- Median sampled PI update **6 us**, maximum **7 us** in this steady window.
+
+![Longer R4 fixed-PI steady-state capture](steady-state/follower-steady-state.png)
+
+The lower RMS than the earlier short PI trial shows why a short sequential
+comparison is not a definitive servo ranking. No calibrated physical PPS
+measurement was made during this session.
+
+## Data and example output
+
+[Capture manifest and image hashes](trials/manifest.json)
+| [Grandmaster log](trials/grandmaster.log)
+| [Long follower log](trials/pi-steady.log)
+| [All servo metrics and transient statistics](plots/summary.json)
+| [Extracted samples and CPU telemetry](plots)
+| [Long-run statistics](steady-state/steady-state-summary.json)
+
+Consecutive final status lines from the master:
+
+```text
+tinyptp[2480.161]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1214
+tinyptp[2480.161]: port 1: MASTER sync 887 delay_resp 887 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[2481.161]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 1221
+tinyptp[2481.161]: port 1: MASTER sync 888 delay_resp 888 freq +0 timeouts 0 missing_rx 0 discarded 0
+```
+
+The master runs no follower servo, so its servo timing fields are zero.
+Both sketches print at 115200 baud without a host-issued start command.
+
+Consecutive final follower samples:
+
+```text
+tinyptp[898.080]: master offset 30 s3 freq +10599 path delay 735 sample 886 seq 886
+tinyptp[899.079]: master offset 10 s3 freq +10609 path delay 735 sample 887 seq 887
+tinyptp[900.079]: master offset 10 s3 freq +10609 path delay 735 sample 888 seq 888
+```
+
+[Archive checksums](SHA256SUMS) cover the raw logs, manifests, build records,
+analysis files and rendered figures. Serial log CRLF bytes are preserved.
 
 ## Reproduce
 

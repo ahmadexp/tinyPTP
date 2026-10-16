@@ -1,0 +1,52 @@
+{
+  "status": "complete",
+  "created_utc": "2026-10-16T15:27:22.336026+00:00",
+  "duration_requested_s": 15.0,
+  "digital_channels": [
+    0,
+    1
+  ],
+  "digital_sample_rate_hz": 500000000,
+  "digital_threshold_volts_api": 3.3,
+  "glitch_filters": [],
+  "channel_roles": "unassigned",
+  "calibration": "none: no channel/cable skew correction",
+  "host_platform": "macOS-26.6.2-x86_64-i386-64bit",
+  "packages": {
+    "logic2-automation": "1.0.11",
+    "pyserial": "3.5"
+  },
+  "serial_ports": [
+    "/dev/cu.usbmodem2101",
+    "/dev/cu.usbmodem3201"
+  ],
+  "baud": 115200,
+  "serial_timing": "Host receive timestamps are not hardware edge timestamps.",
+  "logic_app": {
+    "api_version": {
+      "major": 1,
+      "minor": 0,
+      "patch": 0
+    },
+    "app_version": "2.4.48",
+    "app_pid": 11263
+  },
+  "device": {
+    "device_id": "DE6166D1E5FB7317",
+    "device_type": "DeviceType.LOGIC_PRO_8",
+    "is_simulation": false
+  },
+  "capture_requested_utc": "2026-10-16T15:27:22.391316+00:00",
+  "capture_completed_utc": "2026-10-16T15:27:38.003300+00:00",
+  "serial_errors": [],
+  "finished_utc": "2026-10-16T15:27:38.509426+00:00",
+  "sha256": {
+    "digital.csv": "d4b42a5cd92127c94edf84f90a63c3c4260cd142f6dc5ccfcd6f11a40cb8c75b",
+    "digital_0.bin": "12c07ba662f1ba7b6239cd1fba19dc0fea02d3ba9ab168d1895ed5bd22734372",
+    "digital_1.bin": "653560a195cb944ab35c82dd175dee6c5fbb94bf8d8aa90c3a8dca27e9d7f834",
+    "pps.sal": "92241116bea8cb5483db0e93ccf01aefca1e60f791844614f5ba5ae238ebdb3d",
+    "serial-0.log": "d87ed170a88202206f4553b57a7bab9fa3642d36d970ce4f9e48989a7fd2eeef",
+    "serial-1.log": "5ae8672fdd9e30d5eb1b187c8a739e372a2924aeaee2ffb2380005d81415e936",
+    "serial-receive-times.jsonl": "7d40f4f6f11b1594ac5264bf976ac65c1102c6c7465f328d910a58fd279b953e"
+  }
+}

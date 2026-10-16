@@ -1,0 +1,51 @@
+{
+  "status": "complete",
+  "created_utc": "2026-10-16T15:49:29.723984+00:00",
+  "duration_requested_s": 60.0,
+  "digital_channels": [
+    0,
+    1
+  ],
+  "digital_sample_rate_hz": 500000000,
+  "digital_threshold_volts_api": 3.3,
+  "glitch_filters": [],
+  "channel_roles": {
+    "0": "unassigned",
+    "1": "unassigned"
+  },
+  "mapping_evidence": "User confirmed both inputs share the original CH1 grandmaster PPS output, with measurement leads and grounds otherwise unchanged",
+  "calibration": "none: no channel/cable skew correction",
+  "host_platform": "macOS-26.6.2-x86_64-i386-64bit",
+  "packages": {
+    "logic2-automation": "1.0.11",
+    "pyserial": "3.5"
+  },
+  "serial_ports": [],
+  "baud": 115200,
+  "serial_timing": "Host receive timestamps are not hardware edge timestamps.",
+  "logic_app": {
+    "api_version": {
+      "major": 1,
+      "minor": 0,
+      "patch": 0
+    },
+    "app_version": "2.4.48",
+    "app_pid": 11263
+  },
+  "device": {
+    "device_id": "DE6166D1E5FB7317",
+    "device_type": "DeviceType.LOGIC_PRO_8",
+    "is_simulation": false
+  },
+  "capture_requested_utc": "2026-10-16T15:49:29.773207+00:00",
+  "capture_completed_utc": "2026-10-16T15:50:30.482950+00:00",
+  "serial_errors": [],
+  "finished_utc": "2026-10-16T15:50:31.032004+00:00",
+  "sha256": {
+    "digital.csv": "daace3baa80ad5130eca67b458fb58764fedf6e785ded22166cd3d526ad84826",
+    "digital_0.bin": "f20f2390d85e80c524805d73692fde5e00e914f89bbee06d8ea1e9655cb50a10",
+    "digital_1.bin": "fbcf26244afc34ab731440105899d755c63dbd615bab24eb1081e6c779738f5b",
+    "pps.sal": "f446cc30306e5b050b12ce27030d9e6117129b00a5b7cf86f12391d360709fee",
+    "serial-receive-times.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

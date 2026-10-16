@@ -1,11 +1,12 @@
 tinyPTP paper preparation, ISPCS 2027
-Working draft created 2026-10-15. Not submitted or submission-ready.
+Working draft created 2026-10-15; physical PPS follow-up added 2026-10-16. Not submitted or submission-ready.
 
 FILES
 - tinyptp-ispcs2027.tex: standalone IEEE conference manuscript, including plots
   and bibliography. No external figure files or bibliography database needed.
 - refresh_figures.py: checks archived log hashes, sample counts, and RMS values,
-  then refreshes embedded figure coordinates. Requires Python 3 standard library.
+  then refreshes embedded figure coordinates, including the independently
+  captured PPS record after native-export verification. Requires Python 3 standard library.
 
 POSITIONING
 Primary contribution: implementation and characterization of a small PTP
@@ -53,8 +54,31 @@ The literature section is a starting point. Complete a focused related-work
 review before making a novelty claim, particularly for MCU-based PTP nodes,
 USB timestamp retrieval, and embedded clock-control implementations.
 
+PHYSICAL PPS FOLLOW-UP, 2026-10-16
+- Archive: docs/results/2026-10-16/saleae-pps/.
+- Saleae Logic Pro 8, 500 MS/s, CH0 follower and CH1 grandmaster.
+- Same-type, approximately equal-length leads and common ground confirmed by user.
+- 900.091 s, fixed PI, simultaneous raw serial logs from both R4 boards.
+- Two bursts of extra transitions interrupt two high portions, cause undetermined.
+- Post-inspection qualification: complete continuous high and preceding low
+  durations each 490--510 ms. The low-duration condition was added after the
+  final restoration check; it leaves the long-run counts/statistics unchanged.
+  Excludes affected cycles and boundary partial pulses; no phase-based rejection.
+- 777 post-cutoff rising pairs: mean +14.59 ns, SD 21.74 ns, RMS 26.18 ns,
+  range -46 to +64 ns. Positive means follower physical edge is later.
+- Simultaneous internal estimates: 781 post-cutoff samples, RMS 26.13 ns.
+- No channel/cable correction, traceable calibration, or UTC reference.
+- Subsequent 60.095 s same-source check: 61 rising pairs, mean CH1-minus-CH0
+  +0.230 ns, range 0 to +2 ns; no extra transitions. No correction applied.
+- Restoration check: 30 s, follower remains locked; five CH1 notches near
+  rising edges. All raw and qualified diagnostic data are archived separately.
+- Clean repeats and disturbance investigation pending. The same-source check
+  is empirical, not traceable calibration, and changes output loading.
+- This is one PI observation, not physical evidence ranking the five servos.
+
 PRIORITY MEASUREMENTS BEFORE SUBMISSION
-1. Independent PPS comparison, simultaneous with serial captures.
+1. Repeat the independent PPS comparison with verified measurement paths,
+   simultaneous serial captures, and investigation of the extra transitions.
    Record counter/scope model, calibration, input thresholds, cable delays,
    channel skew, termination, warm-up, and reference-clock arrangement.
    Reverse channels, swap cables, and exchange endpoint roles to investigate
@@ -80,6 +104,7 @@ PRIORITY MEASUREMENTS BEFORE SUBMISSION
    both MCU platforms under matched conditions before claiming a speed or timing
    benefit attributable to the processor.
 
-All items above are proposed measurements, not completed results. Existing
+The October 16 qualified physical PPS observation is complete. The additional
+checks and repeated campaigns listed above are proposed work, not completed results. Existing
 records are sufficient for a feasibility draft but not a calibrated accuracy
 claim or a statistically supported ranking of the five controllers.

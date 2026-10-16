@@ -1,0 +1,344 @@
+{
+  "source_csv_sha256": "01905cb8b1e18a2799130f349ed0bf1204418d985b1ebd1fe8c9f78aca13d633",
+  "sign_convention": "CH1 edge time minus CH0 edge time",
+  "sample_rate_hz": 500000000,
+  "sample_interval_ns": 2.0,
+  "pairing_window_seconds": 0.1,
+  "calibration": "uncalibrated: no channel/cable skew correction or timebase calibration",
+  "quantization_note": "Two sampled edge times can differ from the true interval by up to one sample period, excluding other errors.",
+  "channel_roles": {
+    "0": "follower",
+    "1": "grandmaster"
+  },
+  "channels": {
+    "0": {
+      "rising_count": 897,
+      "falling_count": 897,
+      "rising_period": {
+        "count": 896,
+        "mean_ns": 1002104625.78125,
+        "median_ns": 999872704.0,
+        "stddev_population_ns": 47186770.70447519,
+        "rms_about_zero_ns": 1003214968.1607107,
+        "min_ns": 999872356.0,
+        "max_ns": 1999745046.0,
+        "peak_to_peak_ns": 999872690.0
+      },
+      "high_pulse_width": {
+        "count": 897,
+        "mean_ns": 499936390.6198439,
+        "median_ns": 499936356.0,
+        "stddev_population_ns": 152.6577600819627,
+        "rms_about_zero_ns": 499936390.61986727,
+        "min_ns": 499936180.0,
+        "max_ns": 499936826.0,
+        "peak_to_peak_ns": 646.0
+      },
+      "periods_outside_0p99_to_1p01_seconds": 2
+    },
+    "1": {
+      "rising_count": 897,
+      "falling_count": 897,
+      "rising_period": {
+        "count": 896,
+        "mean_ns": 1002104625.3705357,
+        "median_ns": 999872702.0,
+        "stddev_population_ns": 47186770.5347008,
+        "rms_about_zero_ns": 1003214967.7424656,
+        "min_ns": 999872358.0,
+        "max_ns": 1999745048.0,
+        "peak_to_peak_ns": 999872690.0
+      },
+      "high_pulse_width": {
+        "count": 897,
+        "mean_ns": 499936388.90746933,
+        "median_ns": 499936358.0,
+        "stddev_population_ns": 152.10734239999863,
+        "rms_about_zero_ns": 499936388.90749246,
+        "min_ns": 499936178.0,
+        "max_ns": 499936798.0,
+        "peak_to_peak_ns": 620.0
+      },
+      "periods_outside_0p99_to_1p01_seconds": 2
+    }
+  },
+  "edges": {
+    "rising": {
+      "count": 897,
+      "mean_ns": -16.503901895206244,
+      "median_ns": -16.0,
+      "stddev_population_ns": 34.41844020323728,
+      "rms_about_zero_ns": 38.17077159018943,
+      "min_ns": -76.0,
+      "max_ns": 352.0,
+      "peak_to_peak_ns": 428.0,
+      "unmatched_ch0_seconds": [],
+      "unmatched_ch1_seconds": []
+    },
+    "falling": {
+      "count": 897,
+      "mean_ns": -18.216276477146042,
+      "median_ns": -18.0,
+      "stddev_population_ns": 33.73782521004419,
+      "rms_about_zero_ns": 38.341538552793075,
+      "min_ns": -78.0,
+      "max_ns": 324.0,
+      "peak_to_peak_ns": 402.0,
+      "unmatched_ch0_seconds": [],
+      "unmatched_ch1_seconds": []
+    }
+  },
+  "pulse_qualification": {
+    "rule": "Complete continuous high and preceding low durations each 490 to 510 ms inclusive; no phase-based rejection.",
+    "selection_note": "Introduced after extra transitions were detected; this is not a predeclared glitch-free result.",
+    "boundary_note": "Partial high pulses and pulses without an observed preceding falling edge are excluded.",
+    "channels": {
+      "0": {
+        "raw_rising_count": 904,
+        "raw_falling_count": 904,
+        "accepted_complete_pulses": 897,
+        "rejected_complete_pulses": [
+          {
+            "rise_s": "630.893543396",
+            "fall_s": "630.987483466",
+            "width_ns": "93940070.000000000",
+            "preceding_low_ns": "499936252.000000000"
+          },
+          {
+            "rise_s": "630.987483470",
+            "fall_s": "630.987483488",
+            "width_ns": "18.000000000",
+            "preceding_low_ns": "4.000000000"
+          },
+          {
+            "rise_s": "630.987483492",
+            "fall_s": "631.393479664",
+            "width_ns": "405996172.000000000",
+            "preceding_low_ns": "4.000000000"
+          },
+          {
+            "rise_s": "708.883598156",
+            "fall_s": "709.066469580",
+            "width_ns": "182871424.000000000",
+            "preceding_low_ns": "499936238.000000000"
+          },
+          {
+            "rise_s": "709.066469582",
+            "fall_s": "709.066469602",
+            "width_ns": "20.000000000",
+            "preceding_low_ns": "2.000000000"
+          },
+          {
+            "rise_s": "709.066469604",
+            "fall_s": "709.383534408",
+            "width_ns": "317064804.000000000",
+            "preceding_low_ns": "2.000000000"
+          }
+        ],
+        "excluded_rising_s": [
+          "630.893543396",
+          "630.987483470",
+          "630.987483492",
+          "708.883598156",
+          "709.066469582",
+          "709.066469604",
+          "899.859229964"
+        ],
+        "excluded_falling_s": [
+          "0.473676098",
+          "630.987483466",
+          "630.987483488",
+          "631.393479664",
+          "709.066469580",
+          "709.066469602",
+          "709.383534408"
+        ]
+      },
+      "1": {
+        "raw_rising_count": 905,
+        "raw_falling_count": 905,
+        "accepted_complete_pulses": 897,
+        "rejected_complete_pulses": [
+          {
+            "rise_s": "630.893543378",
+            "fall_s": "630.987483470",
+            "width_ns": "93940092.000000000",
+            "preceding_low_ns": "499936262.000000000"
+          },
+          {
+            "rise_s": "630.987483474",
+            "fall_s": "630.987483490",
+            "width_ns": "16.000000000",
+            "preceding_low_ns": "4.000000000"
+          },
+          {
+            "rise_s": "630.987483494",
+            "fall_s": "630.987483510",
+            "width_ns": "16.000000000",
+            "preceding_low_ns": "4.000000000"
+          },
+          {
+            "rise_s": "630.987483514",
+            "fall_s": "631.393479640",
+            "width_ns": "405996126.000000000",
+            "preceding_low_ns": "4.000000000"
+          },
+          {
+            "rise_s": "708.883598172",
+            "fall_s": "709.066469584",
+            "width_ns": "182871412.000000000",
+            "preceding_low_ns": "499936230.000000000"
+          },
+          {
+            "rise_s": "709.066469586",
+            "fall_s": "709.066469604",
+            "width_ns": "18.000000000",
+            "preceding_low_ns": "2.000000000"
+          },
+          {
+            "rise_s": "709.066469608",
+            "fall_s": "709.383534418",
+            "width_ns": "317064810.000000000",
+            "preceding_low_ns": "4.000000000"
+          }
+        ],
+        "excluded_rising_s": [
+          "630.893543378",
+          "630.987483474",
+          "630.987483494",
+          "630.987483514",
+          "708.883598172",
+          "709.066469586",
+          "709.066469608",
+          "899.859229950"
+        ],
+        "excluded_falling_s": [
+          "0.473676476",
+          "630.987483470",
+          "630.987483490",
+          "630.987483510",
+          "631.393479640",
+          "709.066469584",
+          "709.066469604",
+          "709.383534418"
+        ]
+      }
+    }
+  },
+  "mapping_evidence": "probe-02 CH0 phase step and recovery match follower serial offsets",
+  "verified_native_settings": {
+    "enabledChannels": [
+      {
+        "type": "Digital",
+        "index": 0
+      },
+      {
+        "type": "Digital",
+        "index": 1
+      }
+    ],
+    "sampleRate": {
+      "digital": 500000000
+    },
+    "digitalThreshold": {
+      "description": "3.3+ Volts"
+    },
+    "glitchFilter": {
+      "enabled": false,
+      "channels": []
+    }
+  },
+  "verified_binary_exports": {
+    "0": {
+      "initial_state": 1,
+      "begin_s": 0.0,
+      "end_s": 900.0910848,
+      "transitions": 1808
+    },
+    "1": {
+      "initial_state": 1,
+      "begin_s": 0.0,
+      "end_s": 900.0910848,
+      "transitions": 1810
+    }
+  },
+  "physical_sign": "follower edge minus grandmaster edge; positive means follower edge is later",
+  "after_s": 120.0,
+  "physical_pps": {
+    "rising": {
+      "full": {
+        "count": 897,
+        "mean_ns": 16.503901895206244,
+        "median_ns": 16.0,
+        "stddev_population_ns": 34.41844020323728,
+        "rms_about_zero_ns": 38.17077159018943,
+        "min_ns": -352.0,
+        "max_ns": 76.0,
+        "peak_to_peak_ns": 428.0
+      },
+      "post_cutoff": {
+        "count": 777,
+        "mean_ns": 14.592020592020592,
+        "median_ns": 14.0,
+        "stddev_population_ns": 21.73550110766072,
+        "rms_about_zero_ns": 26.17936350179418,
+        "min_ns": -46.0,
+        "max_ns": 64.0,
+        "peak_to_peak_ns": 110.0
+      }
+    },
+    "falling": {
+      "full": {
+        "count": 897,
+        "mean_ns": 18.216276477146042,
+        "median_ns": 18.0,
+        "stddev_population_ns": 33.73782521004419,
+        "rms_about_zero_ns": 38.341538552793075,
+        "min_ns": -324.0,
+        "max_ns": 78.0,
+        "peak_to_peak_ns": 402.0
+      },
+      "post_cutoff": {
+        "count": 778,
+        "mean_ns": 16.15681233933162,
+        "median_ns": 16.0,
+        "stddev_population_ns": 22.71407355356278,
+        "rms_about_zero_ns": 27.874212497665983,
+        "min_ns": -50.0,
+        "max_ns": 66.0,
+        "peak_to_peak_ns": 116.0
+      }
+    }
+  },
+  "serial": {
+    "samples": 901,
+    "outside_capture_interval_samples": 0,
+    "post_cutoff": {
+      "count": 781,
+      "mean_ns": -14.334186939820743,
+      "median_ns": -15.0,
+      "stddev_population_ns": 21.849613374625722,
+      "rms_about_zero_ns": 26.13186789814978,
+      "min_ns": -65.0,
+      "max_ns": 50.0,
+      "peak_to_peak_ns": 115.0
+    },
+    "states_post_cutoff": {
+      "0": 0,
+      "1": 0,
+      "2": 0,
+      "3": 781
+    },
+    "sample_number_gaps": 0,
+    "nonincreasing_sample_ids": 0,
+    "events": [],
+    "uptime_interval_max_s": 1.0010000000000332,
+    "time_alignment": "Serial host receive times are approximate; samples are not paired with individual PPS edges."
+  },
+  "capture_end_s": 900.0910848,
+  "reported_counter_maxima": {
+    "timeouts": 0,
+    "missing_rx": 0,
+    "discarded": 0
+  }
+}

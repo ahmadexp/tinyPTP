@@ -68,6 +68,25 @@ link, so it was not an uninterrupted reference across upload boundaries.
 [All startup transient graphs, settling results, raw logs and hashes](docs/results/2026-10-14/uno-r4-minima/README.md)
 | [R4 Arduino IDE installation](docs/uno-r4-minima.md)
 
+## Physical PPS measurement on the R4 pair
+
+A separate **15-minute Saleae capture at 500 MS/s** recorded both PPS outputs
+and simultaneous serial logs with fixed PI. After a 120-second cutoff,
+**777 qualified rising-edge pairs** gave **26.18 ns RMS separation**, a
+**+14.59 ns mean** (follower later), and a **-46 to +64 ns range**.
+The simultaneous internal offset was **26.13 ns RMS**.
+
+Two bursts of extra transitions interrupted two PPS cycles. The report retains
+all raw data and explicitly excludes those cycles using a complete-pulse
+qualification rule. These are uncorrected relative measurements, not calibrated
+accuracy. A subsequent one-minute same-source check measured rising-edge
+differences of 0 to 2 ns (mean 0.23 ns), with no extra transitions. No skew
+correction was applied, and the earlier disturbances remain unexplained.
+
+![Independent physical PPS timing and simultaneous serial data](docs/results/2026-10-16/saleae-pps/plots/pps-and-serial.png)
+
+[Setup, exclusions, digital edge detail, native recording, raw logs and reproduction](docs/results/2026-10-16/saleae-pps/README.md)
+
 ## Install with Arduino IDE
 
 **JSON / Boards Manager option:** the package is available, but this repository
@@ -453,8 +472,9 @@ to sustain that rate for a sparse PTP exchange.
 The UNO runs the protocol state machine and clock servo. The TimeStick
 maintains the precision hardware clock and timestamps Ethernet ingress and
 egress. The standalone firmware now enables and checks the PPS output gate;
-the user confirmed PPS output on both units. Quantitative waveform and
-edge-offset measurements remain pending. USB delivery
+the user confirmed PPS output on both units. The separate
+[R4 physical PPS report](docs/results/2026-10-16/saleae-pps/README.md) records
+quantitative digital edge measurements and their limitations. USB delivery
 latency does not become the packet timestamp error when timestamps are captured at the Ethernet interface. It
 still affects update delay, buffering, and the ability to service timestamp
 queues before overflow. Never substitute `micros()` or USB completion times for
@@ -476,7 +496,7 @@ individually; VID/PID alone does not distinguish these ASIX revisions.
 - Sync, Follow_Up, Delay_Req and Delay_Resp; Linux emits Announce, with no client BMCA.
 - Static allocation, one outstanding exchange, bounded retries and timeouts.
 - Integer timestamp calculations and a bounded fixed-point frequency servo.
-- Discipline the client TimeStick clock; independent PPS comparison remains future work.
+- Discipline the client TimeStick clock; an independent R4 PPS comparison is archived above.
 
 This intentionally limited experiment is not a complete general-purpose
 PTP implementation: no BMCA, P2P/gPTP, management, arbitrary TLVs, or profile
@@ -502,7 +522,8 @@ free-running sticks alone can establish relative synchronization.
 
 1. Characterize longer two-UNO runs, repeated startup, and recovery behavior.
 2. Add a separate AX88279A register and timestamp path for the original unit.
-3. Independently compare the enabled PPS outputs; assess PHY/link asymmetry.
+3. Characterize PPS measurement-path skew, investigate the recorded extra transitions,
+   repeat clean captures, and assess PHY/link asymmetry.
 4. Measure runtime stack high-water use, long-duration stability, and recovery
    from dropped packets, cable changes, USB disconnects, and power cycles.
 5. Test background traffic and aggregation pressure before broader deployment.

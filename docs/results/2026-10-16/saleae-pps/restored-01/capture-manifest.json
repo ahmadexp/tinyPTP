@@ -1,0 +1,56 @@
+{
+  "status": "complete",
+  "created_utc": "2026-10-16T15:52:00.373662+00:00",
+  "duration_requested_s": 30.0,
+  "digital_channels": [
+    0,
+    1
+  ],
+  "digital_sample_rate_hz": 500000000,
+  "digital_threshold_volts_api": 3.3,
+  "glitch_filters": [],
+  "channel_roles": {
+    "0": "follower",
+    "1": "grandmaster"
+  },
+  "mapping_evidence": "User confirmed CH0 restored to original follower PPS output, CH1 remains grandmaster; original roles established in probe-02",
+  "calibration": "none: no channel/cable skew correction",
+  "host_platform": "macOS-26.6.2-x86_64-i386-64bit",
+  "packages": {
+    "logic2-automation": "1.0.11",
+    "pyserial": "3.5"
+  },
+  "serial_ports": [
+    "/dev/cu.usbmodem2101",
+    "/dev/cu.usbmodem3201"
+  ],
+  "baud": 115200,
+  "serial_timing": "Host receive timestamps are not hardware edge timestamps.",
+  "logic_app": {
+    "api_version": {
+      "major": 1,
+      "minor": 0,
+      "patch": 0
+    },
+    "app_version": "2.4.48",
+    "app_pid": 11263
+  },
+  "device": {
+    "device_id": "DE6166D1E5FB7317",
+    "device_type": "DeviceType.LOGIC_PRO_8",
+    "is_simulation": false
+  },
+  "capture_requested_utc": "2026-10-16T15:52:00.429129+00:00",
+  "capture_completed_utc": "2026-10-16T15:52:31.038279+00:00",
+  "serial_errors": [],
+  "finished_utc": "2026-10-16T15:52:31.447231+00:00",
+  "sha256": {
+    "digital.csv": "2e9e2b1923dfec28b0ba8be4386ecd4623eae2485af09f1424a95e4300b9fd72",
+    "digital_0.bin": "133f5038fba83e0b945f02bac0cf5c9879974ed33a686436204616487630c368",
+    "digital_1.bin": "798ed68429300b8f8caddb7ff9f250b40a0d63b47c321173068adabbccc0dd04",
+    "pps.sal": "a64b0df60afc4b583cb0b15be93f1757ddd517f399fbfff93a473bf6e0f08fbc",
+    "serial-0.log": "ae92f182a85b44bafd713bd3ff0c33cb2d3bc2544d59a12ab8a1c127e1465b0f",
+    "serial-1.log": "f88b0a1e14d21c44e8b4294c1b965f50df488341d9bd17a16ffc3d92f9a07e04",
+    "serial-receive-times.jsonl": "179f5efe5ece472956404f992e6eadda2aabc346065f2a0ce8e573ccce3676cb"
+  }
+}

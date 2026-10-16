@@ -1,0 +1,344 @@
+{
+  "source_csv_sha256": "2e9e2b1923dfec28b0ba8be4386ecd4623eae2485af09f1424a95e4300b9fd72",
+  "sign_convention": "CH1 edge time minus CH0 edge time",
+  "sample_rate_hz": 500000000,
+  "sample_interval_ns": 2.0,
+  "pairing_window_seconds": 0.1,
+  "calibration": "uncalibrated: no channel/cable skew correction or timebase calibration",
+  "quantization_note": "Two sampled edge times can differ from the true interval by up to one sample period, excluding other errors.",
+  "channel_roles": {
+    "0": "follower",
+    "1": "grandmaster"
+  },
+  "channels": {
+    "0": {
+      "rising_count": 29,
+      "falling_count": 29,
+      "rising_period": {
+        "count": 28,
+        "mean_ns": 999872946.3571428,
+        "median_ns": 999872929.0,
+        "stddev_population_ns": 82.09411597399061,
+        "rms_about_zero_ns": 999872946.3571463,
+        "min_ns": 999872844.0,
+        "max_ns": 999873126.0,
+        "peak_to_peak_ns": 282.0
+      },
+      "high_pulse_width": {
+        "count": 29,
+        "mean_ns": 499936479.9310345,
+        "median_ns": 499936472.0,
+        "stddev_population_ns": 43.70270332874375,
+        "rms_about_zero_ns": 499936479.9310364,
+        "min_ns": 499936426.0,
+        "max_ns": 499936576.0,
+        "peak_to_peak_ns": 150.0
+      },
+      "periods_outside_0p99_to_1p01_seconds": 0
+    },
+    "1": {
+      "rising_count": 24,
+      "falling_count": 24,
+      "rising_period": {
+        "count": 23,
+        "mean_ns": 1217236630.173913,
+        "median_ns": 999872998.0,
+        "stddev_population_ns": 506974810.26700926,
+        "rms_about_zero_ns": 1318593368.7389808,
+        "min_ns": 999872846.0,
+        "max_ns": 2999618622.0,
+        "peak_to_peak_ns": 1999745776.0
+      },
+      "high_pulse_width": {
+        "count": 24,
+        "mean_ns": 499936484.4166667,
+        "median_ns": 499936481.0,
+        "stddev_population_ns": 45.61059513850799,
+        "rms_about_zero_ns": 499936484.4166688,
+        "min_ns": 499936420.0,
+        "max_ns": 499936572.0,
+        "peak_to_peak_ns": 152.0
+      },
+      "periods_outside_0p99_to_1p01_seconds": 4
+    }
+  },
+  "edges": {
+    "rising": {
+      "count": 24,
+      "mean_ns": -2.25,
+      "median_ns": -2.0,
+      "stddev_population_ns": 3.665719574653795,
+      "rms_about_zero_ns": 4.301162633521313,
+      "min_ns": -12.0,
+      "max_ns": 4.0,
+      "peak_to_peak_ns": 16.0,
+      "unmatched_ch0_seconds": [
+        "15.379110952",
+        "17.378856784",
+        "22.378221242",
+        "23.378094118",
+        "27.377585556"
+      ],
+      "unmatched_ch1_seconds": []
+    },
+    "falling": {
+      "count": 24,
+      "mean_ns": -4.0,
+      "median_ns": -4.0,
+      "stddev_population_ns": 5.033222956847166,
+      "rms_about_zero_ns": 6.429100507328637,
+      "min_ns": -16.0,
+      "max_ns": 8.0,
+      "peak_to_peak_ns": 24.0,
+      "unmatched_ch0_seconds": [
+        "15.879047426",
+        "17.878793242",
+        "22.878157692",
+        "23.878030556",
+        "27.877521986"
+      ],
+      "unmatched_ch1_seconds": []
+    }
+  },
+  "pulse_qualification": {
+    "rule": "Complete continuous high and preceding low durations each 490 to 510 ms inclusive; no phase-based rejection.",
+    "selection_note": "Introduced after extra transitions were detected; this is not a predeclared glitch-free result.",
+    "boundary_note": "Partial high pulses and pulses without an observed preceding falling edge are excluded.",
+    "channels": {
+      "0": {
+        "raw_rising_count": 30,
+        "raw_falling_count": 30,
+        "accepted_complete_pulses": 29,
+        "rejected_complete_pulses": [
+          {
+            "rise_s": "0.381015618",
+            "fall_s": "0.880952198",
+            "width_ns": "499936580.000000000",
+            "preceding_low_ns": null
+          }
+        ],
+        "excluded_rising_s": [
+          "0.381015618"
+        ],
+        "excluded_falling_s": [
+          "0.880952198"
+        ]
+      },
+      "1": {
+        "raw_rising_count": 35,
+        "raw_falling_count": 35,
+        "accepted_complete_pulses": 24,
+        "rejected_complete_pulses": [
+          {
+            "rise_s": "0.381015620",
+            "fall_s": "0.880952194",
+            "width_ns": "499936574.000000000",
+            "preceding_low_ns": null
+          },
+          {
+            "rise_s": "15.379110944",
+            "fall_s": "15.379110960",
+            "width_ns": "16.000000000",
+            "preceding_low_ns": "499936456.000000000"
+          },
+          {
+            "rise_s": "15.379110962",
+            "fall_s": "15.879047412",
+            "width_ns": "499936450.000000000",
+            "preceding_low_ns": "2.000000000"
+          },
+          {
+            "rise_s": "17.378856778",
+            "fall_s": "17.378856792",
+            "width_ns": "14.000000000",
+            "preceding_low_ns": "499936450.000000000"
+          },
+          {
+            "rise_s": "17.378856794",
+            "fall_s": "17.878793238",
+            "width_ns": "499936444.000000000",
+            "preceding_low_ns": "2.000000000"
+          },
+          {
+            "rise_s": "22.378221236",
+            "fall_s": "22.378221250",
+            "width_ns": "14.000000000",
+            "preceding_low_ns": "499936432.000000000"
+          },
+          {
+            "rise_s": "22.378221252",
+            "fall_s": "22.878157680",
+            "width_ns": "499936428.000000000",
+            "preceding_low_ns": "2.000000000"
+          },
+          {
+            "rise_s": "23.378094110",
+            "fall_s": "23.378094126",
+            "width_ns": "16.000000000",
+            "preceding_low_ns": "499936430.000000000"
+          },
+          {
+            "rise_s": "23.378094128",
+            "fall_s": "23.878030558",
+            "width_ns": "499936430.000000000",
+            "preceding_low_ns": "2.000000000"
+          },
+          {
+            "rise_s": "27.377585550",
+            "fall_s": "27.377585566",
+            "width_ns": "16.000000000",
+            "preceding_low_ns": "499936426.000000000"
+          },
+          {
+            "rise_s": "27.377585568",
+            "fall_s": "27.877521976",
+            "width_ns": "499936408.000000000",
+            "preceding_low_ns": "2.000000000"
+          }
+        ],
+        "excluded_rising_s": [
+          "0.381015620",
+          "15.379110944",
+          "15.379110962",
+          "17.378856778",
+          "17.378856794",
+          "22.378221236",
+          "22.378221252",
+          "23.378094110",
+          "23.378094128",
+          "27.377585550",
+          "27.377585568"
+        ],
+        "excluded_falling_s": [
+          "0.880952194",
+          "15.379110960",
+          "15.879047412",
+          "17.378856792",
+          "17.878793238",
+          "22.378221250",
+          "22.878157680",
+          "23.378094126",
+          "23.878030558",
+          "27.377585566",
+          "27.877521976"
+        ]
+      }
+    }
+  },
+  "mapping_evidence": "User confirmed CH0 restored to original follower PPS output, CH1 remains grandmaster; original roles established in probe-02",
+  "verified_native_settings": {
+    "enabledChannels": [
+      {
+        "type": "Digital",
+        "index": 0
+      },
+      {
+        "type": "Digital",
+        "index": 1
+      }
+    ],
+    "sampleRate": {
+      "digital": 500000000
+    },
+    "digitalThreshold": {
+      "description": "3.3+ Volts"
+    },
+    "glitchFilter": {
+      "enabled": false,
+      "channels": []
+    }
+  },
+  "verified_binary_exports": {
+    "0": {
+      "initial_state": 0,
+      "begin_s": 0.0,
+      "end_s": 30.01417728,
+      "transitions": 60
+    },
+    "1": {
+      "initial_state": 0,
+      "begin_s": 0.0,
+      "end_s": 30.01417728,
+      "transitions": 70
+    }
+  },
+  "physical_sign": "follower edge minus grandmaster edge; positive means follower edge is later",
+  "after_s": 0.0,
+  "physical_pps": {
+    "rising": {
+      "full": {
+        "count": 24,
+        "mean_ns": 2.25,
+        "median_ns": 2.0,
+        "stddev_population_ns": 3.665719574653795,
+        "rms_about_zero_ns": 4.301162633521313,
+        "min_ns": -4.0,
+        "max_ns": 12.0,
+        "peak_to_peak_ns": 16.0
+      },
+      "post_cutoff": {
+        "count": 24,
+        "mean_ns": 2.25,
+        "median_ns": 2.0,
+        "stddev_population_ns": 3.665719574653795,
+        "rms_about_zero_ns": 4.301162633521313,
+        "min_ns": -4.0,
+        "max_ns": 12.0,
+        "peak_to_peak_ns": 16.0
+      }
+    },
+    "falling": {
+      "full": {
+        "count": 24,
+        "mean_ns": 4.0,
+        "median_ns": 4.0,
+        "stddev_population_ns": 5.033222956847166,
+        "rms_about_zero_ns": 6.429100507328637,
+        "min_ns": -8.0,
+        "max_ns": 16.0,
+        "peak_to_peak_ns": 24.0
+      },
+      "post_cutoff": {
+        "count": 24,
+        "mean_ns": 4.0,
+        "median_ns": 4.0,
+        "stddev_population_ns": 5.033222956847166,
+        "rms_about_zero_ns": 6.429100507328637,
+        "min_ns": -8.0,
+        "max_ns": 16.0,
+        "peak_to_peak_ns": 24.0
+      }
+    }
+  },
+  "serial": {
+    "samples": 30,
+    "outside_capture_interval_samples": 1,
+    "post_cutoff": {
+      "count": 30,
+      "mean_ns": -1.5,
+      "median_ns": 0.0,
+      "stddev_population_ns": 3.905124837953327,
+      "rms_about_zero_ns": 4.183300132670378,
+      "min_ns": -10.0,
+      "max_ns": 5.0,
+      "peak_to_peak_ns": 15.0
+    },
+    "states_post_cutoff": {
+      "0": 0,
+      "1": 0,
+      "2": 0,
+      "3": 30
+    },
+    "sample_number_gaps": 0,
+    "nonincreasing_sample_ids": 0,
+    "events": [],
+    "uptime_interval_max_s": 1.0009999999999764,
+    "time_alignment": "Serial host receive times are approximate; samples are not paired with individual PPS edges."
+  },
+  "capture_end_s": 30.01417728,
+  "reported_counter_maxima": {
+    "timeouts": 0,
+    "missing_rx": 0,
+    "discarded": 0
+  }
+}

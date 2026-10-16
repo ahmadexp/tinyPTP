@@ -1,0 +1,37 @@
+{
+  "measurement_date": "2026-10-16",
+  "controllers": "Two Arduino UNO R4 Minima boards with MAX3421E USB Host Shields",
+  "link": "Direct Ethernet between two AX88279-based TimeSticks",
+  "follower_servo": "Fixed PI; startup log reports kp 1/2, ki 1/20, limit 500000 ppb",
+  "firmware_changed_during_measurement": false,
+  "channel_roles": {
+    "0": "follower",
+    "1": "grandmaster"
+  },
+  "follower_identity": "9c69d3.fffe.2ba18d",
+  "grandmaster_identity": "9c69d3.fffe.2ba12f",
+  "role_evidence": "Startup capture probe-02: CH0 phase step and recovery track the follower serial offsets; CH1 has a nearly constant period.",
+  "lead_type_and_length": "User confirmed the two measurement leads are the same type and approximately the same length; exact lengths and propagation delays were not measured.",
+  "ground": "User confirmed the Saleae ground is connected to TimeStick signal ground.",
+  "instrument": "Saleae Logic Pro 8",
+  "instrument_id": "DE6166D1E5FB7317",
+  "digital_sample_rate_hz": 500000000,
+  "digital_preset": "3.3+ V; vendor nominal switching threshold approximately 1.65 V",
+  "glitch_filter": false,
+  "external_reference": "None; grandmaster is free-running and not UTC-traceable",
+  "temperature": "Not measured",
+  "termination": "Saleae digital inputs; no additional termination was documented",
+  "calibration": "No traceable calibration or channel/cable skew correction",
+  "steady_window_rule": "Exclude first 120 seconds of the 900-second capture; preserve and report the full record too.",
+  "same_source_check": {
+    "status": "complete",
+    "capture": "same-source-01",
+    "wiring": "User confirmed CH0 moved to the PPS source already feeding CH1; both inputs share the grandmaster source, leads and grounds otherwise unchanged.",
+    "correction_applied": false
+  },
+  "wiring_restored": {
+    "user_confirmed": true,
+    "capture": "restored-01",
+    "result": "Both PPS signals and locked serial output observed; five CH1 rising-edge notches require investigation."
+  }
+}

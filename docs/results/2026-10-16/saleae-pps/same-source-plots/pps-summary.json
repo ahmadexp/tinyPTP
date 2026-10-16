@@ -1,0 +1,128 @@
+{
+  "source_csv_sha256": "daace3baa80ad5130eca67b458fb58764fedf6e785ded22166cd3d526ad84826",
+  "sign_convention": "CH1 edge time minus CH0 edge time",
+  "sample_rate_hz": 500000000,
+  "sample_interval_ns": 2.0,
+  "pairing_window_seconds": 0.1,
+  "calibration": "uncalibrated: no channel/cable skew correction or timebase calibration",
+  "quantization_note": "Two sampled edge times can differ from the true interval by up to one sample period, excluding other errors.",
+  "channel_roles": "unassigned",
+  "channels": {
+    "0": {
+      "rising_count": 61,
+      "falling_count": 60,
+      "rising_period": {
+        "count": 60,
+        "mean_ns": 999872873.0333333,
+        "median_ns": 999872846.0,
+        "stddev_population_ns": 98.54913608054726,
+        "rms_about_zero_ns": 999872873.0333382,
+        "min_ns": 999872756.0,
+        "max_ns": 999873126.0,
+        "peak_to_peak_ns": 370.0
+      },
+      "high_pulse_width": {
+        "count": 60,
+        "mean_ns": 499936444.1,
+        "median_ns": 499936429.0,
+        "stddev_population_ns": 50.46903340993696,
+        "rms_about_zero_ns": 499936444.1000025,
+        "min_ns": 499936380.0,
+        "max_ns": 499936574.0,
+        "peak_to_peak_ns": 194.0
+      },
+      "periods_outside_0p99_to_1p01_seconds": 0
+    },
+    "1": {
+      "rising_count": 61,
+      "falling_count": 60,
+      "rising_period": {
+        "count": 60,
+        "mean_ns": 999872873.0,
+        "median_ns": 999872845.0,
+        "stddev_population_ns": 98.47876251591846,
+        "rms_about_zero_ns": 999872873.0000049,
+        "min_ns": 999872756.0,
+        "max_ns": 999873124.0,
+        "peak_to_peak_ns": 368.0
+      },
+      "high_pulse_width": {
+        "count": 60,
+        "mean_ns": 499936444.0,
+        "median_ns": 499936430.0,
+        "stddev_population_ns": 50.26728558416497,
+        "rms_about_zero_ns": 499936444.0000025,
+        "min_ns": 499936380.0,
+        "max_ns": 499936572.0,
+        "peak_to_peak_ns": 192.0
+      },
+      "periods_outside_0p99_to_1p01_seconds": 0
+    }
+  },
+  "edges": {
+    "rising": {
+      "count": 61,
+      "mean_ns": 0.22950819672131148,
+      "median_ns": 0.0,
+      "stddev_population_ns": 0.6374499047614288,
+      "rms_about_zero_ns": 0.6775074858941582,
+      "min_ns": 0.0,
+      "max_ns": 2.0,
+      "peak_to_peak_ns": 2.0,
+      "unmatched_ch0_seconds": [],
+      "unmatched_ch1_seconds": []
+    },
+    "falling": {
+      "count": 60,
+      "mean_ns": 0.13333333333333333,
+      "median_ns": 0.0,
+      "stddev_population_ns": 0.7180219742846006,
+      "rms_about_zero_ns": 0.7302967433402214,
+      "min_ns": -2.0,
+      "max_ns": 2.0,
+      "peak_to_peak_ns": 4.0,
+      "unmatched_ch0_seconds": [],
+      "unmatched_ch1_seconds": []
+    }
+  },
+  "purpose": "Same PPS source on both inputs; empirical channel/lead delay check, not a PTP measurement or traceable calibration",
+  "wiring_evidence": "User confirmed both inputs share the original CH1 grandmaster PPS output, with measurement leads and grounds otherwise unchanged",
+  "verified_native_settings": {
+    "enabledChannels": [
+      {
+        "type": "Digital",
+        "index": 0
+      },
+      {
+        "type": "Digital",
+        "index": 1
+      }
+    ],
+    "sampleRate": {
+      "digital": 500000000
+    },
+    "digitalThreshold": {
+      "description": "3.3+ Volts"
+    },
+    "glitchFilter": {
+      "enabled": false,
+      "channels": []
+    }
+  },
+  "verified_binary_exports": {
+    "0": {
+      "initial_state": 0,
+      "begin_s": 0.0,
+      "end_s": 60.09520128,
+      "transitions": 121
+    },
+    "1": {
+      "initial_state": 0,
+      "begin_s": 0.0,
+      "end_s": 60.09520128,
+      "transitions": 121
+    }
+  },
+  "capture_end_s": 60.09520128,
+  "correction_applied_to_baseline": false
+}

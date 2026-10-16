@@ -1,0 +1,25 @@
+{
+  "status": "bringup_only",
+  "probe_01": {
+    "description": "First five-second digital capture: both inputs flat while both TimeSticks failed PPS register reads. Not a synchronization measurement.",
+    "device": "Logic Pro 8",
+    "device_id": "DE6166D1E5FB7317",
+    "digital_sample_rate_hz": 500000000,
+    "digital_channels": [
+      0,
+      1
+    ],
+    "digital_threshold_volts_api": 3.3
+  },
+  "probe_02": {
+    "description": "Fifteen-second startup capture after full assembly power cycle. Contains PI acquisition and identifies channel roles. Not a steady-state run.",
+    "channel_roles": {
+      "0": "follower",
+      "1": "grandmaster"
+    },
+    "mapping_evidence": "CH0 steps backward in clock phase and its physical recovery matches the follower offset trace. CH1 has a nearly constant PPS period.",
+    "follower_identity": "9c69d3.fffe.2ba18d",
+    "grandmaster_identity": "9c69d3.fffe.2ba12f"
+  },
+  "recovery": "Saleae firmware transfer initially timed out; reconnecting its USB cable restored enumeration. Full UNO/shield/TimeStick power cycling restored clock initialization and PPS. No firmware was changed in this session."
+}

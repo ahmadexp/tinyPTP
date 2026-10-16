@@ -1,0 +1,26 @@
+tinyptp[18.776]: PPS gate before=0x0
+tinyptp[18.778]: PPS gate=0x4000 clock=0x5F active_ns=500000000 enabled (register readback)
+tinyptp[18.780]: clock identity 9c69d3.fffe.2ba18d
+tinyptp[18.781]: port 1: INITIALIZING to LISTENING on FIXED_ROLE
+tinyptp[18.782]: servo PI kp 1/2 ki 1/20 limit 500000 ppb
+tinyptp[18.783]: CPU servo_last_us 0 servo_max_us 0 usb_poll_max_us 141
+tinyptp[18.784]: FOLLOWER samples 0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[20.041]: selected master 9c69d3.fffe.2ba12f
+tinyptp[20.043]: port 1: LISTENING to SLAVE on MASTER_SELECTED
+tinyptp[20.050]: master offset 261517145 s1 freq +0 path delay 745 sample 1 seq 1
+tinyptp[20.052]: clock stepped; acquiring residual offset
+tinyptp[21.045]: master offset -677090 s2 freq +372399 path delay 745 sample 2 seq 2
+tinyptp[22.044]: master offset -315430 s2 freq +207340 path delay 405 sample 3 seq 3
+tinyptp[23.045]: master offset -117280 s2 freq +114129 path delay 545 sample 4 seq 4
+tinyptp[24.044]: master offset -12665 s2 freq +62454 path delay 640 sample 5 seq 5
+tinyptp[25.045]: master offset 40230 s2 freq +33996 path delay 685 sample 6 seq 6
+tinyptp[26.044]: master offset 64555 s2 freq +18607 path delay 710 sample 7 seq 7
+tinyptp[27.045]: master offset 73465 s2 freq +10479 path delay 730 sample 8 seq 8
+tinyptp[28.045]: master offset 74215 s2 freq +6394 path delay 730 sample 9 seq 9
+tinyptp[28.783]: CPU servo_last_us 6 servo_max_us 6 usb_poll_max_us 4503
+tinyptp[28.784]: FOLLOWER samples 9 timeouts 0 missing_rx 0 discarded 0
+tinyptp[29.045]: master offset 70875 s2 freq +4521 path delay 740 sample 10 seq 10
+tinyptp[30.044]: master offset 65645 s2 freq +3854 path delay 740 sample 11 seq 11
+tinyptp[31.045]: master offset 59740 s2 freq +3819 path delay 735 sample 12 seq 12
+tinyptp[32.044]: master offset 53790 s2 freq +4105 path delay 745 sample 13 seq 13
+tinyptp[33.045]: master offset 48115 s2 freq +4538 path delay 740 sample 14 seq 14

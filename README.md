@@ -71,21 +71,51 @@ link, so it was not an uninterrupted reference across upload boundaries.
 ## Physical PPS measurement on the R4 pair
 
 A separate **15-minute Saleae capture at 500 MS/s** recorded both PPS outputs
-and simultaneous serial logs with fixed PI. After a 120-second cutoff,
-**777 qualified rising-edge pairs** gave **26.18 ns RMS separation**, a
-**+14.59 ns mean** (follower later), and a **-46 to +64 ns range**.
-The simultaneous internal offset was **26.13 ns RMS**.
+and simultaneous serial logs with fixed PI on October 16, 2026. **CH0 was the
+follower and CH1 the grandmaster.** After a 120-second cutoff, the physical
+rising-edge separation was **26.18 ns RMS**, alongside **26.13 ns RMS** in the
+simultaneous internal PTP estimates.
+
+| Observable after 120 s | Samples | Mean | Standard deviation | RMS | Range |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Physical PPS rising edges | 777 | +14.59 ns | 21.74 ns | **26.18 ns** | -46 to +64 ns |
+| Physical PPS falling edges | 778 | +16.16 ns | 22.71 ns | **27.87 ns** | -50 to +66 ns |
+| Internal PTP offset | 781 | -14.33 ns | 21.85 ns | **26.13 ns** | -65 to +50 ns |
+
+For physical PPS, positive means the follower edge arrives later. Internal
+clock phase uses the opposite sign. All 781 post-cutoff serial samples were
+in **s3**, with no sample-number gaps. Serial traces use approximate host
+receipt times, not pairing with individual PPS edges.
 
 Two bursts of extra transitions interrupted two PPS cycles. The report retains
-all raw data and explicitly excludes those cycles using a complete-pulse
-qualification rule. These are uncorrected relative measurements, not calibrated
-accuracy. A subsequent one-minute same-source check measured rising-edge
-differences of 0 to 2 ns (mean 0.23 ns), with no extra transitions. No skew
-correction was applied, and the earlier disturbances remain unexplained.
+all raw data and explicitly excludes those cycles and boundary partial pulses.
+Qualification requires a complete high and preceding low, each 490 to 510 ms;
+no phase-based outlier removal is applied. These are uncorrected relative
+measurements, not calibrated accuracy. The **2 ns nominal sample interval**
+does not establish 2 ns measurement accuracy.
 
 ![Independent physical PPS timing and simultaneous serial data](docs/results/2026-10-16/saleae-pps/plots/pps-and-serial.png)
 
+### Same-source check and restored wiring
+
+With both Saleae inputs connected to the same grandmaster PPS output, a
+subsequent one-minute check measured **61 rising-edge pairs**, with differences
+of **0 to 2 ns**, mean **+0.23 ns**, and standard deviation **0.64 ns**
+(CH1 minus CH0). No extra transitions were detected in this short check.
+The leads were the same type and approximately the same length. No skew
+correction was applied to the original PTP results; this check is not a
+traceable calibration.
+
+![Same-source channel and lead check](docs/results/2026-10-16/saleae-pps/same-source-plots/same-source-check.png)
+
+After restoring CH0 to the follower, both PPS signals and locked serial output
+were confirmed in a 30-second diagnostic. That recording also contains five
+brief CH1 notches near rising edges. Their cause remains unexplained, so
+signal-path investigation and a longer clean repeat remain necessary. Both
+boards were left running with the original measurement wiring restored.
+
 [Setup, exclusions, digital edge detail, native recording, raw logs and reproduction](docs/results/2026-10-16/saleae-pps/README.md)
+| [ISPCS 2027 paper source](paper/ispcs-2027/tinyptp-ispcs2027.tex)
 
 ## Install with Arduino IDE
 

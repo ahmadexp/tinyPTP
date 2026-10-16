@@ -132,3 +132,12 @@ different starting offsets and oscillator drift, so lower RMS in one trial
 does not establish a generally superior servo or an R4 speedup. Serial offsets
 are internal PTP estimates, not physical PPS measurements. Scope confirmation
 is separate from PPS register readback.
+
+The [Saleae servo campaign](results/2026-10-16/saleae-servos/README.md) adds
+simultaneous physical PPS and serial recordings for all five controllers and
+a longer PI run. `tools/run_saleae_trials.py` verifies firmware hashes and uses
+the same USB identity selection, with CH0 on the follower and CH1 on the
+grandmaster. Its analysis cutoff is 120 seconds from Saleae capture start,
+not from the first serial exchange. The report includes startup plots, raw
+native recordings, pulse exclusions, and the acquisition command. Qualified
+PPS statistics remain subject to the documented signal-path limitations.

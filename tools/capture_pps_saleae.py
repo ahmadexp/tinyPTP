@@ -30,6 +30,8 @@ def main():
     parser.add_argument('--sample-rate',type=int,default=500_000_000)
     parser.add_argument('--logic-level',type=float,default=3.3)
     parser.add_argument('--serial-port',action='append',default=[])
+    parser.add_argument('--preserve-serial-buffer',action='store_true',
+                        help='Retain buffered startup output when opening serial ports immediately after upload')
     parser.add_argument('--device-id')
     parser.add_argument('--ch0-role',choices=['unassigned','follower','grandmaster'],default='unassigned')
     parser.add_argument('--ch1-role',choices=['unassigned','follower','grandmaster'],default='unassigned')
@@ -46,6 +48,7 @@ def main():
               'host_platform':platform.platform(),
               'packages':{p:importlib.metadata.version(p) for p in ['logic2-automation','pyserial']},
               'serial_ports':args.serial_port,'baud':115200,
+              'serial_input_buffer_cleared':not args.preserve_serial_buffer,
               'serial_timing':'Host receive timestamps are not hardware edge timestamps.'}
     def save():
         (out/'capture-manifest.json').write_text(json.dumps(manifest,indent=2,default=str)+'\n')
@@ -55,7 +58,8 @@ def main():
             awake=subprocess.Popen(['caffeinate','-disu'],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
         for i,name in enumerate(args.serial_port):
             port=serial.Serial(name,115200,timeout=0,exclusive=True)
-            port.reset_input_buffer()
+            if not args.preserve_serial_buffer:
+                port.reset_input_buffer()
             ports.append(port);files.append((out/f'serial-{i}.log').open('xb'))
         def read_serial():
             with (out/'serial-receive-times.jsonl').open('x') as stamps:

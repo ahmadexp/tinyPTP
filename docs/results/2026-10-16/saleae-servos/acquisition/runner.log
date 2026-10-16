@@ -1,0 +1,12 @@
+2026-10-16T16:13:29.246860+00:00 uploading pi
+2026-10-16T16:18:38.978833+00:00 captured pi 289 serial samples
+2026-10-16T16:18:38.979422+00:00 uploading linreg
+2026-10-16T16:23:48.707018+00:00 captured linreg 289 serial samples
+2026-10-16T16:23:48.707535+00:00 uploading adaptive-pi
+2026-10-16T16:28:58.385924+00:00 captured adaptive-pi 289 serial samples
+2026-10-16T16:28:58.386627+00:00 uploading kalman
+2026-10-16T16:34:08.247644+00:00 captured kalman 289 serial samples
+2026-10-16T16:34:08.248267+00:00 uploading pllfll
+2026-10-16T16:39:18.061236+00:00 captured pllfll 289 serial samples
+2026-10-16T16:39:18.061901+00:00 uploading pi-steady
+2026-10-16T16:54:27.937042+00:00 captured pi-steady 889 serial samples

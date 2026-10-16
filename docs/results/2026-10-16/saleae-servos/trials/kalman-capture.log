@@ -1,0 +1,57 @@
+{
+  "status": "complete",
+  "created_utc": "2026-10-16T16:29:06.914701+00:00",
+  "duration_requested_s": 300.0,
+  "digital_channels": [
+    0,
+    1
+  ],
+  "digital_sample_rate_hz": 500000000,
+  "digital_threshold_volts_api": 3.3,
+  "glitch_filters": [],
+  "channel_roles": {
+    "0": "follower",
+    "1": "grandmaster"
+  },
+  "mapping_evidence": "Unchanged wiring after confirmed restoration: CH0 follower, CH1 grandmaster; startup mapping archived in saleae-pps/bringup/probe-02",
+  "calibration": "none: no channel/cable skew correction",
+  "host_platform": "macOS-26.6.2-x86_64-i386-64bit",
+  "packages": {
+    "logic2-automation": "1.0.11",
+    "pyserial": "3.5"
+  },
+  "serial_ports": [
+    "/dev/cu.usbmodem2101",
+    "/dev/cu.usbmodem3201"
+  ],
+  "baud": 115200,
+  "serial_input_buffer_cleared": false,
+  "serial_timing": "Host receive timestamps are not hardware edge timestamps.",
+  "logic_app": {
+    "api_version": {
+      "major": 1,
+      "minor": 0,
+      "patch": 0
+    },
+    "app_version": "2.4.48",
+    "app_pid": 11263
+  },
+  "device": {
+    "device_id": "DE6166D1E5FB7317",
+    "device_type": "DeviceType.LOGIC_PRO_8",
+    "is_simulation": false
+  },
+  "capture_requested_utc": "2026-10-16T16:29:06.970611+00:00",
+  "capture_completed_utc": "2026-10-16T16:34:07.582827+00:00",
+  "serial_errors": [],
+  "finished_utc": "2026-10-16T16:34:08.182771+00:00",
+  "sha256": {
+    "digital.csv": "7cbd67900869b66b3d6db450d776774bf08fbd846c0c732315dc1d6fb129e594",
+    "digital_0.bin": "3ed5de6505552fe6fc62981f46185ee035e02d32ac794a22dd978e471b2cb059",
+    "digital_1.bin": "e0b6c89fd8dea5122579c87db4ad61c9b0688e9bee8cf0cc870a80bb7e38b8f9",
+    "pps.sal": "7e83cb6e81777e869a399bdc0c49823130b1a68259e5c09ebd045a4494bb12bf",
+    "serial-0.log": "675ca6d5239fe1d7948df89fcf67e7f7f48e169dcf1d9fb46097ee3b7811cb70",
+    "serial-1.log": "51c261ab5e7387490c3933f3b6c1d76c3c72b17cad5f68a00f38113942a53bb7",
+    "serial-receive-times.jsonl": "e5e3528c5726e5eb3e9be37e58baa3ffee87081b3d09c8a7115321f4cc962919"
+  }
+}

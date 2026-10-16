@@ -1,0 +1,57 @@
+{
+  "status": "complete",
+  "created_utc": "2026-10-16T16:13:37.817561+00:00",
+  "duration_requested_s": 300.0,
+  "digital_channels": [
+    0,
+    1
+  ],
+  "digital_sample_rate_hz": 500000000,
+  "digital_threshold_volts_api": 3.3,
+  "glitch_filters": [],
+  "channel_roles": {
+    "0": "follower",
+    "1": "grandmaster"
+  },
+  "mapping_evidence": "Unchanged wiring after confirmed restoration: CH0 follower, CH1 grandmaster; startup mapping archived in saleae-pps/bringup/probe-02",
+  "calibration": "none: no channel/cable skew correction",
+  "host_platform": "macOS-26.6.2-x86_64-i386-64bit",
+  "packages": {
+    "logic2-automation": "1.0.11",
+    "pyserial": "3.5"
+  },
+  "serial_ports": [
+    "/dev/cu.usbmodem2101",
+    "/dev/cu.usbmodem3201"
+  ],
+  "baud": 115200,
+  "serial_input_buffer_cleared": false,
+  "serial_timing": "Host receive timestamps are not hardware edge timestamps.",
+  "logic_app": {
+    "api_version": {
+      "major": 1,
+      "minor": 0,
+      "patch": 0
+    },
+    "app_version": "2.4.48",
+    "app_pid": 11263
+  },
+  "device": {
+    "device_id": "DE6166D1E5FB7317",
+    "device_type": "DeviceType.LOGIC_PRO_8",
+    "is_simulation": false
+  },
+  "capture_requested_utc": "2026-10-16T16:13:37.866997+00:00",
+  "capture_completed_utc": "2026-10-16T16:18:38.486525+00:00",
+  "serial_errors": [],
+  "finished_utc": "2026-10-16T16:18:38.931879+00:00",
+  "sha256": {
+    "digital.csv": "5113ca3cdb8ed37d95a635003315f780c5edceb8bad42f36cc335c75f2129692",
+    "digital_0.bin": "ce01855f2f277617480c9018eaa7c50d9ff3017b7bf92d60576defeced3edac6",
+    "digital_1.bin": "e8ff9fc20477cdb2657ce513fef954dd38e470f7c62055ce239c305bfecac10a",
+    "pps.sal": "533ffef5bfee42194e70540fb34a7e6557aec69ec9d4c328223a401a35d261d7",
+    "serial-0.log": "37981e11d0a434e882eb1c1703e68eca5e0f994aa0c853799020241673d89a1f",
+    "serial-1.log": "45b0db5bc027ae5e2eb3426cbf979396377cbcc6706fe37e7051707c6adba1b5",
+    "serial-receive-times.jsonl": "d11796328944e61bc4ee4249efb50341974e42ce0775e2366177d5886c5a9403"
+  }
+}

@@ -5,8 +5,9 @@ FILES
 - tinyptp-ispcs2027.tex: standalone IEEE conference manuscript, including plots
   and bibliography. No external figure files or bibliography database needed.
 - refresh_figures.py: checks archived log hashes, sample counts, and RMS values,
-  then refreshes embedded figure coordinates, including the independently
-  captured PPS record after native-export verification. Requires Python 3 standard library.
+  then refreshes embedded figure coordinates and the physical servo table,
+  including raw PPS/serial recomputation after native-export verification.
+  Requires Python 3 standard library.
 
 POSITIONING
 Primary contribution: implementation and characterization of a small PTP
@@ -76,6 +77,35 @@ PHYSICAL PPS FOLLOW-UP, 2026-10-16
   is empirical, not traceable calibration, and changes output loading.
 - This is one PI observation, not physical evidence ranking the five servos.
 
+FIVE-CONTROLLER SALEAE CAMPAIGN, 2026-10-16
+- Archive: docs/results/2026-10-16/saleae-servos/.
+- Completed five 300 s captures and one 900.091 s PI record with simultaneous
+  native PPS recordings and raw serial logs; complete manifest verified.
+- 2,334 accepted exchanges in raw serial logs, no sample gaps or reported
+  exchange errors. All 1,680 post-cutoff serial samples are in s3.
+- Qualified rising-edge RMS: PI 9.94 ns (177 pairs), regression 6.22 ns (170),
+  adaptive PI 10.16 ns (155), Kalman 11.55 ns (159), PLL/FLL 17.77 ns (176).
+  Longer PI: 38.44 ns (758), simultaneous internal RMS 38.16 ns (780).
+- This campaign is additional evidence, not a replacement for the initial
+  26.18 ns PI record. The PI observations must not be pooled.
+- Identical firmware hashes to the original R4 campaign, fixed sequential
+  order, one observation per condition, no controlled initial phase.
+- Same instrument, channel mapping, 500 MS/s and threshold preset. The earlier
+  high/preceding-low qualification rule was declared before outcome analysis.
+- This campaign applies 120 s from Saleae capture start, including approximately
+  aligned serial observations. The older serial-only analysis used time from
+  first accepted exchange; do not describe their windows as identical.
+- CH1 extra transitions remain unexplained. Qualified sample counts differ,
+  making comparisons conditional on different exclusions. Keep all raw edges.
+- Physical startup plots do not establish identical step responses. The final
+  in-band suffix diagnostic requires 30 s with no gap above 1.5 s; excluded
+  pulses can prevent a result without implying servo failure.
+- Same-source checks do not remove loading differences or prove traceable
+  calibration. No new cable/channel correction or UTC reference is introduced.
+- Repeated randomized trials, signal-path diagnosis, and the controlled
+  disturbances below remain outstanding. The new capture does not repeat R3
+  or Linux-peer topology experiments.
+
 PRIORITY MEASUREMENTS BEFORE SUBMISSION
 1. Repeat the independent PPS comparison with verified measurement paths,
    simultaneous serial captures, and investigation of the extra transitions.
@@ -104,7 +134,8 @@ PRIORITY MEASUREMENTS BEFORE SUBMISSION
    both MCU platforms under matched conditions before claiming a speed or timing
    benefit attributable to the processor.
 
-The October 16 qualified physical PPS observation is complete. The additional
-checks and repeated campaigns listed above are proposed work, not completed results. Existing
+The October 16 archives distinguish completed qualified PPS observations from
+proposed controlled and replicated studies. The priority measurements above
+remain proposed work, not completed results. Existing
 records are sufficient for a feasibility draft but not a calibrated accuracy
 claim or a statistically supported ranking of the five controllers.

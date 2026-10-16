@@ -1,0 +1,56 @@
+{
+  "planned_utc": "2026-10-16T16:13:33.129478+00:00",
+  "purpose": "Repeat five servo startup/steady comparisons and longer PI experiment with simultaneous physical PPS and serial observations.",
+  "platform": "UNO R4 Minima pair with AX88279 TimeSticks and MAX3421E shields",
+  "order": [
+    "pi",
+    "linreg",
+    "adaptive-pi",
+    "kalman",
+    "pllfll",
+    "pi-steady"
+  ],
+  "durations_s": [
+    300,
+    300,
+    300,
+    300,
+    300,
+    900
+  ],
+  "replicates_per_condition": 1,
+  "randomized": false,
+  "master": "Free-running; flashed once with the archived image; may reinitialize when follower upload drops the link.",
+  "firmware_sha256": {
+    "Grandmaster": "402e54e75e2815725bb93d8014d1318a21e581c4caf22a39243d29bb201a3411",
+    "FollowerPI": "5bedbc549c3b120a632e57f5753751719c8a5c4b9202023cba762908092702f9",
+    "FollowerLinreg": "b3bfcce203ea8ee481d1c471afbb431836ed665464ddc898a89b06fe2e509819",
+    "FollowerAdaptivePI": "93b23196b17f935501b8a2368ec74b72f8aeb91d4c734fc92ac7cf1b656d6ea7",
+    "FollowerKalman": "04d2341407ba3354b9720b1ec0cbdd5ce35df32471f59aafbbd6122ff782f2d9",
+    "FollowerPllFll": "79e8783c4f601b4659e06d40735f16889cbc69198781181737ea0f3046331d37"
+  },
+  "channel_roles": {
+    "0": "follower",
+    "1": "grandmaster"
+  },
+  "sample_rate_hz": 500000000,
+  "threshold_preset": "3.3+ V",
+  "glitch_filter": false,
+  "phase_control": "None. Upload-triggered startup is not an equal imposed phase step.",
+  "analysis": {
+    "cutoff_seconds": 120,
+    "cutoff_origin": "Saleae capture start, for both physical PPS and host-receipt serial timing",
+    "qualification": "Complete continuous high and preceding low each 490 to 510 ms; no phase-based outlier rejection. Preserve all raw transitions and excluded observations.",
+    "pairing": "Unique corresponding qualified edges within +/-100 ms; report unmatched observations. PPS alone does not identify integer-second offsets.",
+    "physical_sign": "Follower edge minus grandmaster edge; positive means follower later.",
+    "skew_correction": false,
+    "statistics": "Counts, mean, population standard deviation, RMS about zero, min/max, full and post-cutoff windows.",
+    "transients": "Plot physical and serial acquisition separately, without claiming equal initial conditions or causal servo ranking."
+  },
+  "known_limits": [
+    "Earlier captures showed extra transitions; do not call the stream glitch-free or infer their cause.",
+    "One sequential trial per condition is exploratory, not a replicated performance ranking.",
+    "No instrument calibration, external timebase, UTC reference, temperature measurement, or controlled disturbance."
+  ],
+  "end_state": "Restore fixed PI by finishing with pi-steady; preserve logs on failure."
+}

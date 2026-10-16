@@ -1,0 +1,57 @@
+{
+  "status": "complete",
+  "created_utc": "2026-10-16T16:18:47.570241+00:00",
+  "duration_requested_s": 300.0,
+  "digital_channels": [
+    0,
+    1
+  ],
+  "digital_sample_rate_hz": 500000000,
+  "digital_threshold_volts_api": 3.3,
+  "glitch_filters": [],
+  "channel_roles": {
+    "0": "follower",
+    "1": "grandmaster"
+  },
+  "mapping_evidence": "Unchanged wiring after confirmed restoration: CH0 follower, CH1 grandmaster; startup mapping archived in saleae-pps/bringup/probe-02",
+  "calibration": "none: no channel/cable skew correction",
+  "host_platform": "macOS-26.6.2-x86_64-i386-64bit",
+  "packages": {
+    "logic2-automation": "1.0.11",
+    "pyserial": "3.5"
+  },
+  "serial_ports": [
+    "/dev/cu.usbmodem2101",
+    "/dev/cu.usbmodem3201"
+  ],
+  "baud": 115200,
+  "serial_input_buffer_cleared": false,
+  "serial_timing": "Host receive timestamps are not hardware edge timestamps.",
+  "logic_app": {
+    "api_version": {
+      "major": 1,
+      "minor": 0,
+      "patch": 0
+    },
+    "app_version": "2.4.48",
+    "app_pid": 11263
+  },
+  "device": {
+    "device_id": "DE6166D1E5FB7317",
+    "device_type": "DeviceType.LOGIC_PRO_8",
+    "is_simulation": false
+  },
+  "capture_requested_utc": "2026-10-16T16:18:47.628786+00:00",
+  "capture_completed_utc": "2026-10-16T16:23:48.245950+00:00",
+  "serial_errors": [],
+  "finished_utc": "2026-10-16T16:23:48.668074+00:00",
+  "sha256": {
+    "digital.csv": "700263c28ac7e03123e54e7550b775f7ec164c0b7c7c55819d5e91638b91c97f",
+    "digital_0.bin": "57192a001c2b4a0b6a0274cb943ca84dae3e7d5ca4d84b5e433f9296506b4ad6",
+    "digital_1.bin": "9cebb63b919fc06092ade594a21ffeb8e31c6dce501a63c2bc4be0a1c0573be1",
+    "pps.sal": "cb05d8487a6bef3b202912b44fa52a5203707ded8f258d6c863cd31107c1b156",
+    "serial-0.log": "3bf22d7065042b92673a6df5ce8c2ba5a1ef96ccf2e1a292ee5e60e51044d799",
+    "serial-1.log": "5a59e918c150233b3b70a8989eb5875a1b3f7e4268ef9ae2524f3dd1847384ac",
+    "serial-receive-times.jsonl": "6a00d6f4e1e0abe33dc888af8b06eb2117adf0b778d28846317707587ce8458b"
+  }
+}

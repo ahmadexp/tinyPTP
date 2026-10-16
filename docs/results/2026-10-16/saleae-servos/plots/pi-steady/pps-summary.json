@@ -1,0 +1,715 @@
+{
+  "source_csv_sha256": "1a9e231eb9562315b459443a04ac397d051fcda7cdd21bd47fae7262fe8c3626",
+  "sign_convention": "CH1 edge time minus CH0 edge time",
+  "sample_rate_hz": 500000000,
+  "sample_interval_ns": 2.0,
+  "pairing_window_seconds": 0.1,
+  "calibration": "uncalibrated: no channel/cable skew correction or timebase calibration",
+  "quantization_note": "Two sampled edge times can differ from the true interval by up to one sample period, excluding other errors.",
+  "channel_roles": {
+    "0": "follower",
+    "1": "grandmaster"
+  },
+  "channels": {
+    "0": {
+      "rising_count": 889,
+      "falling_count": 889,
+      "rising_period": {
+        "count": 888,
+        "mean_ns": 1004034517.7747748,
+        "median_ns": 999872032.0,
+        "stddev_population_ns": 88991436.48487689,
+        "rms_about_zero_ns": 1007970628.8631958,
+        "min_ns": 999673182.0,
+        "max_ns": 3176384956.0,
+        "peak_to_peak_ns": 2176711774.0
+      },
+      "high_pulse_width": {
+        "count": 889,
+        "mean_ns": 499935856.1192351,
+        "median_ns": 499936022.0,
+        "stddev_population_ns": 3950.7770771510313,
+        "rms_about_zero_ns": 499935856.13484573,
+        "min_ns": 499835862.0,
+        "max_ns": 499941374.0,
+        "peak_to_peak_ns": 105512.0
+      },
+      "periods_outside_0p99_to_1p01_seconds": 2
+    },
+    "1": {
+      "rising_count": 870,
+      "falling_count": 870,
+      "rising_period": {
+        "count": 869,
+        "mean_ns": 1025205155.2497123,
+        "median_ns": 999872036.0,
+        "stddev_population_ns": 177907062.62561625,
+        "rms_about_zero_ns": 1040527045.9159924,
+        "min_ns": 999871980.0,
+        "max_ns": 3016921784.0,
+        "peak_to_peak_ns": 2017049804.0
+      },
+      "high_pulse_width": {
+        "count": 870,
+        "mean_ns": 499936017.891954,
+        "median_ns": 499936020.0,
+        "stddev_population_ns": 12.325557210512239,
+        "rms_about_zero_ns": 499936017.8919542,
+        "min_ns": 499935990.0,
+        "max_ns": 499936064.0,
+        "peak_to_peak_ns": 74.0
+      },
+      "periods_outside_0p99_to_1p01_seconds": 19
+    }
+  },
+  "edges": {
+    "rising": {
+      "count": 865,
+      "mean_ns": 538.7028901734104,
+      "median_ns": 20.0,
+      "stddev_population_ns": 13527.792295804624,
+      "rms_about_zero_ns": 13538.514143077598,
+      "min_ns": -319064.0,
+      "max_ns": 73130.0,
+      "peak_to_peak_ns": 392194.0,
+      "unmatched_ch0_seconds": [
+        "7.308533356",
+        "10.484918312",
+        "11.484801038",
+        "210.979236832",
+        "211.979108874",
+        "301.967592502",
+        "306.966952702",
+        "380.957483500",
+        "382.957227570",
+        "398.955180170",
+        "403.954540370",
+        "406.954156492",
+        "415.953004878",
+        "416.952876920",
+        "419.952493048",
+        "503.941744054",
+        "543.936625154",
+        "549.935857306",
+        "568.933425788",
+        "602.929074432",
+        "609.928178536",
+        "660.921650990",
+        "680.919090998",
+        "898.891185140"
+      ],
+      "unmatched_ch1_seconds": [
+        "6.988033236",
+        "10.004955020",
+        "11.004827114",
+        "12.004699202",
+        "13.004571286"
+      ]
+    },
+    "falling": {
+      "count": 865,
+      "mean_ns": 723.4196531791907,
+      "median_ns": 18.0,
+      "stddev_population_ns": 10382.315539820578,
+      "rms_about_zero_ns": 10407.488263889889,
+      "min_ns": -218880.0,
+      "max_ns": 72690.0,
+      "peak_to_peak_ns": 291570.0,
+      "unmatched_ch0_seconds": [
+        "7.808474724",
+        "10.984859682",
+        "11.984742412",
+        "211.479172860",
+        "212.479044900",
+        "302.467528538",
+        "307.466888730",
+        "381.457419528",
+        "383.457163596",
+        "399.455116196",
+        "404.454476394",
+        "407.454092522",
+        "416.452940910",
+        "417.452812952",
+        "420.452429078",
+        "504.441680076",
+        "544.436561170",
+        "550.435793328",
+        "569.433361814",
+        "603.429010442",
+        "610.428114552",
+        "661.421586998",
+        "681.419027000",
+        "899.391121134"
+      ],
+      "unmatched_ch1_seconds": [
+        "7.487969300",
+        "10.504891076",
+        "11.504763166",
+        "12.504635252",
+        "13.504507334"
+      ]
+    }
+  },
+  "pulse_qualification": {
+    "rule": "Complete continuous high and preceding low durations each 490 to 510 ms inclusive; no phase-based rejection.",
+    "selection_note": "Introduced after extra transitions were detected; this is not a predeclared glitch-free result.",
+    "boundary_note": "Partial high pulses and pulses without an observed preceding falling edge are excluded.",
+    "channels": {
+      "0": {
+        "raw_rising_count": 894,
+        "raw_falling_count": 893,
+        "accepted_complete_pulses": 889,
+        "rejected_complete_pulses": [
+          {
+            "rise_s": "6.308650628",
+            "fall_s": "6.808592000",
+            "width_ns": "499941372.000000000",
+            "preceding_low_ns": null
+          },
+          {
+            "rise_s": "8.308416076",
+            "fall_s": "8.472512564",
+            "width_ns": "164096488.000000000",
+            "preceding_low_ns": "499941352.000000000"
+          },
+          {
+            "rise_s": "9.485035586",
+            "fall_s": "9.984976956",
+            "width_ns": "499941370.000000000",
+            "preceding_low_ns": "1012523022.000000000"
+          },
+          {
+            "rise_s": "13.005249184",
+            "fall_s": "13.505007430",
+            "width_ns": "499758246.000000000",
+            "preceding_low_ns": "1020506772.000000000"
+          }
+        ],
+        "excluded_rising_s": [
+          "6.308650628",
+          "8.308416076",
+          "9.485035586",
+          "13.005249184",
+          "899.891057120"
+        ],
+        "excluded_falling_s": [
+          "6.808592000",
+          "8.472512564",
+          "9.984976956",
+          "13.505007430"
+        ]
+      },
+      "1": {
+        "raw_rising_count": 917,
+        "raw_falling_count": 916,
+        "accepted_complete_pulses": 870,
+        "rejected_complete_pulses": [
+          {
+            "rise_s": "5.988161116",
+            "fall_s": "6.488097184",
+            "width_ns": "499936068.000000000",
+            "preceding_low_ns": null
+          },
+          {
+            "rise_s": "7.987905348",
+            "fall_s": "7.992631656",
+            "width_ns": "4726308.000000000",
+            "preceding_low_ns": "499936048.000000000"
+          },
+          {
+            "rise_s": "9.005082922",
+            "fall_s": "9.505018978",
+            "width_ns": "499936056.000000000",
+            "preceding_low_ns": "1012451266.000000000"
+          },
+          {
+            "rise_s": "210.979236824",
+            "fall_s": "210.979236840",
+            "width_ns": "16.000000000",
+            "preceding_low_ns": "499936022.000000000"
+          },
+          {
+            "rise_s": "210.979236842",
+            "fall_s": "211.479172846",
+            "width_ns": "499936004.000000000",
+            "preceding_low_ns": "2.000000000"
+          },
+          {
+            "rise_s": "211.979108868",
+            "fall_s": "211.979108882",
+            "width_ns": "14.000000000",
+            "preceding_low_ns": "499936022.000000000"
+          },
+          {
+            "rise_s": "211.979108884",
+            "fall_s": "212.479044888",
+            "width_ns": "499936004.000000000",
+            "preceding_low_ns": "2.000000000"
+          },
+          {
+            "rise_s": "301.967592494",
+            "fall_s": "301.967592510",
+            "width_ns": "16.000000000",
+            "preceding_low_ns": "499936014.000000000"
+          },
+          {
+            "rise_s": "301.967592512",
+            "fall_s": "302.467528522",
+            "width_ns": "499936010.000000000",
+            "preceding_low_ns": "2.000000000"
+          },
+          {
+            "rise_s": "306.966952694",
+            "fall_s": "306.966952710",
+            "width_ns": "16.000000000",
+            "preceding_low_ns": "499936012.000000000"
+          },
+          {
+            "rise_s": "306.966952712",
+            "fall_s": "307.466888720",
+            "width_ns": "499936008.000000000",
+            "preceding_low_ns": "2.000000000"
+          },
+          {
+            "rise_s": "380.957483492",
+            "fall_s": "380.957483508",
+            "width_ns": "16.000000000",
+            "preceding_low_ns": "499936018.000000000"
+          },
+          {
+            "rise_s": "380.957483510",
+            "fall_s": "381.457419510",
+            "width_ns": "499936000.000000000",
+            "preceding_low_ns": "2.000000000"
+          },
+          {
+            "rise_s": "382.957227562",
+            "fall_s": "382.957227578",
+            "width_ns": "16.000000000",
+            "preceding_low_ns": "499936018.000000000"
+          },
+          {
+            "rise_s": "382.957227580",
+            "fall_s": "383.457163580",
+            "width_ns": "499936000.000000000",
+            "preceding_low_ns": "2.000000000"
+          },
+          {
+            "rise_s": "398.955180164",
+            "fall_s": "398.955180178",
+            "width_ns": "14.000000000",
+            "preceding_low_ns": "499936014.000000000"
+          },
+          {
+            "rise_s": "398.955180180",
+            "fall_s": "399.455116190",
+            "width_ns": "499936010.000000000",
+            "preceding_low_ns": "2.000000000"
+          },
+          {
+            "rise_s": "403.954540364",
+            "fall_s": "403.954540378",
+            "width_ns": "14.000000000",
+            "preceding_low_ns": "499936012.000000000"
+          },
+          {
+            "rise_s": "403.954540380",
+            "fall_s": "404.454476390",
+            "width_ns": "499936010.000000000",
+            "preceding_low_ns": "2.000000000"
+          },
+          {
+            "rise_s": "406.954156486",
+            "fall_s": "406.954156500",
+            "width_ns": "14.000000000",
+            "preceding_low_ns": "499936014.000000000"
+          },
+          {
+            "rise_s": "406.954156504",
+            "fall_s": "407.454092514",
+            "width_ns": "499936010.000000000",
+            "preceding_low_ns": "4.000000000"
+          },
+          {
+            "rise_s": "415.953004868",
+            "fall_s": "415.953004884",
+            "width_ns": "16.000000000",
+            "preceding_low_ns": "499936022.000000000"
+          },
+          {
+            "rise_s": "415.953004888",
+            "fall_s": "416.452940890",
+            "width_ns": "499936002.000000000",
+            "preceding_low_ns": "4.000000000"
+          },
+          {
+            "rise_s": "416.952876912",
+            "fall_s": "416.952876928",
+            "width_ns": "16.000000000",
+            "preceding_low_ns": "499936022.000000000"
+          },
+          {
+            "rise_s": "416.952876930",
+            "fall_s": "417.452812934",
+            "width_ns": "499936004.000000000",
+            "preceding_low_ns": "2.000000000"
+          },
+          {
+            "rise_s": "419.952493040",
+            "fall_s": "419.952493056",
+            "width_ns": "16.000000000",
+            "preceding_low_ns": "499936022.000000000"
+          },
+          {
+            "rise_s": "419.952493060",
+            "fall_s": "420.452429068",
+            "width_ns": "499936008.000000000",
+            "preceding_low_ns": "4.000000000"
+          },
+          {
+            "rise_s": "503.941744046",
+            "fall_s": "503.941744062",
+            "width_ns": "16.000000000",
+            "preceding_low_ns": "499936006.000000000"
+          },
+          {
+            "rise_s": "503.941744064",
+            "fall_s": "504.441680068",
+            "width_ns": "499936004.000000000",
+            "preceding_low_ns": "2.000000000"
+          },
+          {
+            "rise_s": "543.936625146",
+            "fall_s": "543.936625162",
+            "width_ns": "16.000000000",
+            "preceding_low_ns": "499936004.000000000"
+          },
+          {
+            "rise_s": "543.936625164",
+            "fall_s": "544.436561166",
+            "width_ns": "499936002.000000000",
+            "preceding_low_ns": "2.000000000"
+          },
+          {
+            "rise_s": "549.935857300",
+            "fall_s": "549.935857316",
+            "width_ns": "16.000000000",
+            "preceding_low_ns": "499935998.000000000"
+          },
+          {
+            "rise_s": "549.935857318",
+            "fall_s": "550.435793312",
+            "width_ns": "499935994.000000000",
+            "preceding_low_ns": "2.000000000"
+          },
+          {
+            "rise_s": "568.933425782",
+            "fall_s": "568.933425796",
+            "width_ns": "14.000000000",
+            "preceding_low_ns": "499936006.000000000"
+          },
+          {
+            "rise_s": "568.933425800",
+            "fall_s": "569.433361802",
+            "width_ns": "499936002.000000000",
+            "preceding_low_ns": "4.000000000"
+          },
+          {
+            "rise_s": "602.929074424",
+            "fall_s": "602.929074440",
+            "width_ns": "16.000000000",
+            "preceding_low_ns": "499936002.000000000"
+          },
+          {
+            "rise_s": "602.929074442",
+            "fall_s": "603.429010438",
+            "width_ns": "499935996.000000000",
+            "preceding_low_ns": "2.000000000"
+          },
+          {
+            "rise_s": "609.928178530",
+            "fall_s": "609.928178546",
+            "width_ns": "16.000000000",
+            "preceding_low_ns": "499936000.000000000"
+          },
+          {
+            "rise_s": "609.928178548",
+            "fall_s": "610.428114544",
+            "width_ns": "499935996.000000000",
+            "preceding_low_ns": "2.000000000"
+          },
+          {
+            "rise_s": "660.921650982",
+            "fall_s": "660.921650998",
+            "width_ns": "16.000000000",
+            "preceding_low_ns": "499936010.000000000"
+          },
+          {
+            "rise_s": "660.921651000",
+            "fall_s": "661.421586990",
+            "width_ns": "499935990.000000000",
+            "preceding_low_ns": "2.000000000"
+          },
+          {
+            "rise_s": "680.919090990",
+            "fall_s": "680.919091006",
+            "width_ns": "16.000000000",
+            "preceding_low_ns": "499935990.000000000"
+          },
+          {
+            "rise_s": "680.919091008",
+            "fall_s": "681.419026996",
+            "width_ns": "499935988.000000000",
+            "preceding_low_ns": "2.000000000"
+          },
+          {
+            "rise_s": "898.891185132",
+            "fall_s": "898.891185148",
+            "width_ns": "16.000000000",
+            "preceding_low_ns": "499935992.000000000"
+          },
+          {
+            "rise_s": "898.891185150",
+            "fall_s": "899.391121122",
+            "width_ns": "499935972.000000000",
+            "preceding_low_ns": "2.000000000"
+          },
+          {
+            "rise_s": "899.891057114",
+            "fall_s": "899.891057128",
+            "width_ns": "14.000000000",
+            "preceding_low_ns": "499935992.000000000"
+          }
+        ],
+        "excluded_rising_s": [
+          "5.988161116",
+          "7.987905348",
+          "9.005082922",
+          "210.979236824",
+          "210.979236842",
+          "211.979108868",
+          "211.979108884",
+          "301.967592494",
+          "301.967592512",
+          "306.966952694",
+          "306.966952712",
+          "380.957483492",
+          "380.957483510",
+          "382.957227562",
+          "382.957227580",
+          "398.955180164",
+          "398.955180180",
+          "403.954540364",
+          "403.954540380",
+          "406.954156486",
+          "406.954156504",
+          "415.953004868",
+          "415.953004888",
+          "416.952876912",
+          "416.952876930",
+          "419.952493040",
+          "419.952493060",
+          "503.941744046",
+          "503.941744064",
+          "543.936625146",
+          "543.936625164",
+          "549.935857300",
+          "549.935857318",
+          "568.933425782",
+          "568.933425800",
+          "602.929074424",
+          "602.929074442",
+          "609.928178530",
+          "609.928178548",
+          "660.921650982",
+          "660.921651000",
+          "680.919090990",
+          "680.919091008",
+          "898.891185132",
+          "898.891185150",
+          "899.891057114",
+          "899.891057130"
+        ],
+        "excluded_falling_s": [
+          "6.488097184",
+          "7.992631656",
+          "9.505018978",
+          "210.979236840",
+          "211.479172846",
+          "211.979108882",
+          "212.479044888",
+          "301.967592510",
+          "302.467528522",
+          "306.966952710",
+          "307.466888720",
+          "380.957483508",
+          "381.457419510",
+          "382.957227578",
+          "383.457163580",
+          "398.955180178",
+          "399.455116190",
+          "403.954540378",
+          "404.454476390",
+          "406.954156500",
+          "407.454092514",
+          "415.953004884",
+          "416.452940890",
+          "416.952876928",
+          "417.452812934",
+          "419.952493056",
+          "420.452429068",
+          "503.941744062",
+          "504.441680068",
+          "543.936625162",
+          "544.436561166",
+          "549.935857316",
+          "550.435793312",
+          "568.933425796",
+          "569.433361802",
+          "602.929074440",
+          "603.429010438",
+          "609.928178546",
+          "610.428114544",
+          "660.921650998",
+          "661.421586990",
+          "680.919091006",
+          "681.419026996",
+          "898.891185148",
+          "899.391121122",
+          "899.891057128"
+        ]
+      }
+    }
+  },
+  "mapping_evidence": "Unchanged wiring after confirmed restoration: CH0 follower, CH1 grandmaster; startup mapping archived in saleae-pps/bringup/probe-02",
+  "verified_native_settings": {
+    "enabledChannels": [
+      {
+        "type": "Digital",
+        "index": 0
+      },
+      {
+        "type": "Digital",
+        "index": 1
+      }
+    ],
+    "sampleRate": {
+      "digital": 500000000
+    },
+    "digitalThreshold": {
+      "description": "3.3+ Volts"
+    },
+    "glitchFilter": {
+      "enabled": false,
+      "channels": []
+    }
+  },
+  "verified_binary_exports": {
+    "0": {
+      "initial_state": 0,
+      "begin_s": 0.0,
+      "end_s": 900.0910848,
+      "transitions": 1787
+    },
+    "1": {
+      "initial_state": 0,
+      "begin_s": 0.0,
+      "end_s": 900.0910848,
+      "transitions": 1833
+    }
+  },
+  "physical_sign": "follower edge minus grandmaster edge; positive means follower edge is later",
+  "after_s": 120.0,
+  "physical_pps": {
+    "rising": {
+      "full": {
+        "count": 865,
+        "mean_ns": -538.7028901734104,
+        "median_ns": -20.0,
+        "stddev_population_ns": 13527.792295804624,
+        "rms_about_zero_ns": 13538.514143077598,
+        "min_ns": -73130.0,
+        "max_ns": 319064.0,
+        "peak_to_peak_ns": 392194.0
+      },
+      "post_cutoff": {
+        "count": 758,
+        "mean_ns": -8.306068601583114,
+        "median_ns": -16.0,
+        "stddev_population_ns": 37.53079636209616,
+        "rms_about_zero_ns": 38.43893145220526,
+        "min_ns": -92.0,
+        "max_ns": 134.0,
+        "peak_to_peak_ns": 226.0
+      }
+    },
+    "falling": {
+      "full": {
+        "count": 865,
+        "mean_ns": -723.4196531791907,
+        "median_ns": -18.0,
+        "stddev_population_ns": 10382.315539820578,
+        "rms_about_zero_ns": 10407.488263889889,
+        "min_ns": -72690.0,
+        "max_ns": 218880.0,
+        "peak_to_peak_ns": 291570.0
+      },
+      "post_cutoff": {
+        "count": 759,
+        "mean_ns": -6.5981554677206855,
+        "median_ns": -14.0,
+        "stddev_population_ns": 37.870391920509405,
+        "rms_about_zero_ns": 38.440892806869044,
+        "min_ns": -94.0,
+        "max_ns": 132.0,
+        "peak_to_peak_ns": 226.0
+      }
+    }
+  },
+  "serial": {
+    "samples": 888,
+    "outside_capture_interval_samples": 1,
+    "post_cutoff": {
+      "count": 780,
+      "mean_ns": 8.551282051282051,
+      "median_ns": 15.0,
+      "stddev_population_ns": 37.19082718307664,
+      "rms_about_zero_ns": 38.161263753733984,
+      "min_ns": -130.0,
+      "max_ns": 95.0,
+      "peak_to_peak_ns": 225.0
+    },
+    "states_post_cutoff": {
+      "0": 0,
+      "1": 0,
+      "2": 0,
+      "3": 780
+    },
+    "sample_number_gaps": 0,
+    "nonincreasing_sample_ids": 0,
+    "events": [
+      {
+        "port_index": 1,
+        "kind": "boot role",
+        "lines": [
+          "tinyptp[0.706]: boot role FOLLOWER"
+        ]
+      },
+      {
+        "port_index": 1,
+        "kind": "clock stepped",
+        "lines": [
+          "tinyptp[13.019]: clock stepped; acquiring residual offset"
+        ]
+      }
+    ],
+    "uptime_interval_max_s": 1.0010000000000332,
+    "time_alignment": "Serial host receive times are approximate; samples are not paired with individual PPS edges."
+  },
+  "capture_end_s": 900.0910848,
+  "reported_counter_maxima": {
+    "timeouts": 0,
+    "missing_rx": 0,
+    "discarded": 0
+  }
+}

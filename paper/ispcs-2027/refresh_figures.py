@@ -87,6 +87,50 @@ def pps_figure():
 \end{figure}''')
 
 
+def pps_servo_table():
+    """Recompute table statistics from verified native exports and raw serial."""
+    sys.path.insert(0, str(ROOT / 'tools'))
+    from analyze_pps import analyze, stats
+    from plot_pps_capture import verify_capture, serial_samples
+    data = ROOT / 'docs/results/2026-10-16/saleae-servos'
+    saved = json.loads((data / 'plots/summary.json').read_text())
+    manifest = json.loads((data / 'trials/manifest.json').read_text())
+    assert saved['campaign_status'] == manifest['status'] == 'complete'
+    assert saved['cutoff_s'] == manifest['analysis_cutoff_s'] == 120
+    names = {**NAMES, 'pi-steady': 'PI, 900 s'}
+    assert set(saved['trials']) == set(names)
+    body = []
+    for key, name in names.items():
+        path = data / 'trials' / key
+        capture, meta, binary = verify_capture(path)
+        assert capture['channel_roles'] == {'0': 'follower', '1': 'grandmaster'}
+        assert capture['device']['device_id'] == manifest['device_id']
+        assert capture['digital_sample_rate_hz'] == 500000000
+        assert meta['legacySettings']['digitalThreshold'] == {'description': '3.3+ Volts'}
+        _, pairs = analyze(path / 'digital.csv', 500000000, qualify_500ms=True)
+        p = stats(-d for a,b,d in pairs['rising'] if a >= 120)
+        serial, _ = serial_samples(path, meta)
+        end = min(v['end_s'] for v in binary.values())
+        q = stats(s['offset_ns'] for s in serial if 120 <= s['host_receive_elapsed_s'] <= end)
+        assert p == saved['trials'][key]['physical_pps']['rising']['post_cutoff']
+        assert q == saved['trials'][key]['serial']['post_cutoff']
+        body.append(f"{name} & {p['count']} & {p['mean_ns']:+.2f} & {p['rms_about_zero_ns']:.2f} & {q['rms_about_zero_ns']:.2f} " + r'\\')
+    return (r'''\begin{table}[t]
+\centering
+\caption{Later simultaneous PPS and serial campaign. Values after 120 s from capture start; PPS uses qualified rising pairs. All timing values in ns.}
+\label{tab:pps-servos}
+\small
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{lrrrr}
+\hline
+Controller & Pairs & PPS mean & PPS RMS & Serial RMS \\
+\hline
+''' + '\n'.join(body) + r'''
+\hline
+\end{tabular}
+\end{table}''')
+
+
 path = HERE / 'tinyptp-ispcs2027.tex'
 s = path.read_text()
 for marker,mode in [('STEADY','steady'), ('TRANSIENT','transient'), ('LONG','long')]:
@@ -103,6 +147,13 @@ if start in s:
     s = re.sub(re.escape(start) + r'.*?' + re.escape(end), lambda _: value, s, flags=re.S)
 else:
     s = s.replace('% PPS_FIGURE', value)
+start, end = '% BEGIN_PPS_SERVO_TABLE', '% END_PPS_SERVO_TABLE'
+value = start + '\n' + pps_servo_table() + '\n' + end
+if start in s:
+    s = re.sub(re.escape(start) + r'.*?' + re.escape(end), lambda _: value, s, flags=re.S)
+else:
+    assert '% PPS_SERVO_TABLE' in s
+    s = s.replace('% PPS_SERVO_TABLE', value)
 assert '\u2014' not in s
 path.write_text(s)
-print('Verified original six serial trials and native PPS capture/exports; embedded four data figures.')
+print('Verified original serial campaign and seven native PPS captures; embedded four figures and the PPS servo table.')

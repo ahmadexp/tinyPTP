@@ -196,7 +196,7 @@ def main():
     fig,axes=plt.subplots(3,1,figsize=(11,9),sharex=True,layout='constrained')
     for direction,color in [('rising','#2563eb'),('falling','#c2410c')]:
         items=pairs[direction]
-        axes[0].plot([float(p[0]) for p in items],[float(sign*p[2]) for p in items],'.-',ms=2,lw=.6,color=color,label=direction.title())
+        axes[0].plot([float(p[0]) for p in items],[float(sign*p[2]) for p in items],'.',ms=2,color=color,label=direction.title())
     axes[0].set_ylabel('PPS edge separation (ns)');axes[0].legend(ncol=2)
     axes[1].plot([s['host_receive_elapsed_s'] for s in serial],[s['offset_ns'] for s in serial],'.-',color='#0f766e',ms=2,lw=.6)
     axes[1].set_ylabel('Internal PTP offset (ns)')
@@ -216,6 +216,19 @@ def main():
     qualifier='High and preceding low must each span 490-510 ms; red marks rejected segments. ' if args.qualify_500ms else ''
     fig.text(.5,-.055,f"{manifest['digital_sample_rate_hz']/1e6:g} MS/s ({result['sample_interval_ns']:g} ns nominal sample interval). No skew correction. Gray: first {args.after:g} s. Serial times: host receipt.\n"+qualifier,ha='center',fontsize=9)
     save_figure(fig,args.output_dir/'pps-and-serial')
+    # Preserve the full trace and add a view where the acquisition step cannot
+    # hide nanosecond-scale post-cutoff behavior. No samples are removed from
+    # the archive or the full-record statistics.
+    post_values = [float(sign*p[2]) for direction in pairs for p in pairs[direction]
+                   if float(p[0])>=args.after]
+    for ax,values in zip(axes,[post_values,[s['offset_ns'] for s in postserial],
+                               [s['frequency_ppb'] for s in postserial]]):
+        ax.set_xlim(args.after,capture_end)
+        if values:
+            low,high=min(values),max(values);padding=max(1,(high-low)*.08)
+            ax.set_ylim(low-padding,high+padding)
+    fig.suptitle('Post-cutoff physical PPS timing and simultaneous PTP telemetry\nPPS: follower edge minus grandmaster edge; serial offset has the opposite phase sign',fontsize=13)
+    save_figure(fig,args.output_dir/'pps-steady-and-serial')
     plt.close(fig)
     # Deterministic representative: pair closest to the median post-cutoff rising separation.
     rising=[p for p in pairs['rising'] if p[0]>=Decimal(str(args.after))]
@@ -243,8 +256,9 @@ def main():
         if centers:
             with (args.capture_dir/'digital.csv').open() as f:
                 raw=list(csv.DictReader(f))
-            fig,axs=plt.subplots(len(centers),1,figsize=(10,3*len(centers)),squeeze=False,layout='constrained')
-            for ax,center in zip(axs[:,0],centers):
+            shown=centers[:6]
+            fig,axs=plt.subplots(len(shown),1,figsize=(10,3*len(shown)),squeeze=False,layout='constrained')
+            for ax,center in zip(axs[:,0],shown):
                 lo=center-Decimal('.000000020');hi=center+Decimal('.000000080')
                 for ch,base,color in [(0,0,'#2563eb'),(1,1.5,'#c2410c')]:
                     previous=next(int(row[f'Channel {ch}']) for row in reversed(raw) if Decimal(row['Time [s]'])<lo)
@@ -257,7 +271,7 @@ def main():
                     ax.step(x+[80.],y+[y[-1]],where='post',color=color,lw=1.5)
                 ax.set_yticks([.5,2],['CH0 follower','CH1 grandmaster'])
                 ax.set_xlabel(f'Time relative to {center} s (ns)');ax.grid(axis='x',alpha=.2)
-            fig.suptitle('Extra recorded transitions\nRaw digital samples; cause undetermined',fontsize=13)
+            fig.suptitle(f'Extra recorded transitions: first {len(shown)} of {len(centers)} short-segment clusters\nRaw digital samples; cause undetermined. All exclusions remain in the summary.',fontsize=13)
             save_figure(fig,args.output_dir/'extra-transitions')
             plt.close(fig)
     print(json.dumps({'pps':result['physical_pps'],'serial':result['serial']},indent=2))

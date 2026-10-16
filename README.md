@@ -117,6 +117,55 @@ boards were left running with the original measurement wiring restored.
 [Setup, exclusions, digital edge detail, native recording, raw logs and reproduction](docs/results/2026-10-16/saleae-pps/README.md)
 | [ISPCS 2027 paper source](paper/ispcs-2027/tinyptp-ispcs2027.tex)
 
+## Saleae comparison of all five R4 servos
+
+The five 300-second servo experiments were repeated on October 16 with
+**simultaneous physical PPS measurements and both serial logs**. The same
+firmware images and controller settings were used at **500 MS/s**, with
+**CH0 on the follower and CH1 on the grandmaster**. These are new sequential
+trials, separate from the earlier serial-only campaign and initial PI capture.
+
+| Servo | Qualified rising pairs | Physical PPS RMS | Internal offset RMS |
+| --- | ---: | ---: | ---: |
+| Fixed PI | 177 | 9.94 ns | 15.70 ns |
+| Linear regression | 170 | 6.22 ns | 8.04 ns |
+| Adaptive PI | 155 | 10.16 ns | 9.28 ns |
+| Kalman | 159 | 11.55 ns | 9.80 ns |
+| PLL/FLL | 176 | 17.77 ns | 23.81 ns |
+| Fixed PI, 15 minutes | 758 | 38.44 ns | 38.16 ns |
+
+The common cutoff is **120 seconds from Saleae capture start**, including for
+serial samples aligned by host receipt time. Physical PPS has the opposite
+phase sign to the internal offset. The earlier serial-only comparison used
+120 seconds from its first accepted exchange, so its window differs.
+
+![Five-servo physical PPS and simultaneous serial comparison](docs/results/2026-10-16/saleae-servos/plots/servo-steady-comparison.png)
+
+![Physical and serial startup transients for every servo](docs/results/2026-10-16/saleae-servos/plots/servo-startup-comparison.png)
+
+The six captures contain **2,334 accepted exchanges** in their raw serial
+logs, with no sample gaps or reported exchange errors. All post-cutoff serial
+samples are in s3. The longer PI capture spans **900.091 seconds** and has a
+qualified rising-edge range of **-92 to +134 ns**. Both boards are left
+running as grandmaster and fixed-PI follower.
+
+![Longer PI physical PPS and simultaneous internal offsets](docs/results/2026-10-16/saleae-servos/plots/pi-steady/pps-steady-and-serial.png)
+
+**Pulse exclusions matter:** the physical statistics retain only complete
+pulses whose high and preceding low each span 490 to 510 ms. This rule was
+recorded before outcome analysis. Brief extra transitions occur in the
+CH1 record, with different exclusion counts between trials; their cause is
+undetermined. No phase outliers, skew correction, smoothing, or detrending
+are applied. All raw transitions and exclusions are retained.
+
+Linear regression has the lowest qualified PPS RMS in these five observations.
+One sequential trial per servo, unequal startup phases, and differing pulse
+exclusions do not establish a general performance ranking or calibrated
+accuracy. The nominal 2 ns sample interval is not a 2 ns accuracy claim.
+R3 and Linux-peer topology tests were not repeated in this campaign.
+
+[Measurement plan, quality counts, startup criteria, individual plots and raw recordings](docs/results/2026-10-16/saleae-servos/README.md)
+
 ## Install with Arduino IDE
 
 **JSON / Boards Manager option:** the package is available, but this repository

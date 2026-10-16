@@ -1,0 +1,837 @@
+{
+  "campaign_status": "complete",
+  "cutoff_s": 120,
+  "cutoff_origin": "Saleae capture start; serial aligned approximately by host receipt",
+  "qualification_origin": "Rule carried forward from earlier Saleae measurements and recorded in this campaign plan before outcome analysis.",
+  "calibration": "No channel/cable correction or traceable calibration",
+  "trials": {
+    "pi": {
+      "name": "Fixed PI",
+      "duration_s": 300.00807936,
+      "firmware_sha256": "5bedbc549c3b120a632e57f5753751719c8a5c4b9202023cba762908092702f9",
+      "physical_pps": {
+        "rising": {
+          "full": {
+            "count": 284,
+            "mean_ns": -191148.69014084508,
+            "median_ns": -10.0,
+            "stddev_population_ns": 3187301.508458487,
+            "rms_about_zero_ns": 3193028.143872883,
+            "min_ns": -53808308.0,
+            "max_ns": 327800.0,
+            "peak_to_peak_ns": 54136108.0
+          },
+          "post_cutoff": {
+            "count": 177,
+            "mean_ns": -5.581920903954802,
+            "median_ns": -6.0,
+            "stddev_population_ns": 8.230116304720367,
+            "rms_about_zero_ns": 9.944478637275644,
+            "min_ns": -26.0,
+            "max_ns": 22.0,
+            "peak_to_peak_ns": 48.0
+          }
+        },
+        "falling": {
+          "full": {
+            "count": 284,
+            "mean_ns": -191712.2676056338,
+            "median_ns": -10.0,
+            "stddev_population_ns": 3186914.5324262492,
+            "rms_about_zero_ns": 3192675.6538270707,
+            "min_ns": -53803004.0,
+            "max_ns": 224736.0,
+            "peak_to_peak_ns": 54027740.0
+          },
+          "post_cutoff": {
+            "count": 177,
+            "mean_ns": -4.768361581920904,
+            "median_ns": -4.0,
+            "stddev_population_ns": 9.850722771629288,
+            "rms_about_zero_ns": 10.944131363403631,
+            "min_ns": -30.0,
+            "max_ns": 20.0,
+            "peak_to_peak_ns": 50.0
+          }
+        }
+      },
+      "serial": {
+        "samples": 288,
+        "outside_capture_interval_samples": 1,
+        "post_cutoff": {
+          "count": 180,
+          "mean_ns": 13.25,
+          "median_ns": 15.0,
+          "stddev_population_ns": 8.424089136386069,
+          "rms_about_zero_ns": 15.70120306784731,
+          "min_ns": -15.0,
+          "max_ns": 35.0,
+          "peak_to_peak_ns": 50.0
+        },
+        "states_post_cutoff": {
+          "0": 0,
+          "1": 0,
+          "2": 0,
+          "3": 180
+        },
+        "sample_number_gaps": 0,
+        "nonincreasing_sample_ids": 0,
+        "events": [
+          {
+            "port_index": 1,
+            "kind": "boot role",
+            "lines": [
+              "tinyptp[0.707]: boot role FOLLOWER"
+            ]
+          },
+          {
+            "port_index": 1,
+            "kind": "clock stepped",
+            "lines": [
+              "tinyptp[13.392]: clock stepped; acquiring residual offset"
+            ]
+          }
+        ],
+        "uptime_interval_max_s": 1.0010000000000048,
+        "time_alignment": "Serial host receive times are approximate; samples are not paired with individual PPS edges."
+      },
+      "serial_startup_since_first_exchange": {
+        "samples": 289,
+        "first_sample_uptime_s": 13.39,
+        "capture_span_s": 287.996,
+        "initial_offset_ns": -105707995,
+        "first_s3_s": 51.996,
+        "settle_1000ns_s": 44.997,
+        "settle_100ns_s": 64.997,
+        "opposite_peak_0_120s_ns": 75580,
+        "opposite_peak_time_s": 7.996,
+        "saturated_samples_0_120s": 0,
+        "last_saturated_sample_0_120s_s": null,
+        "s3_exits": 0,
+        "sample_number_gaps": 0,
+        "coarse_step_samples": 1
+      },
+      "physical_startup_since_capture": {
+        "first_matched_rising_s": 7.287914438,
+        "first_matched_rising_separation_ns": -53808308.0,
+        "final_contiguous_suffix_1000ns_s": null,
+        "final_contiguous_suffix_100ns_s": null
+      },
+      "quality": {
+        "0": {
+          "raw_rising": 293,
+          "qualified_complete_pulses": 289,
+          "rejected_complete_segments": 4,
+          "post_cutoff_rejected_complete_segments": 0,
+          "post_cutoff_short_high_segments": 0,
+          "excluded_rising": 4,
+          "unmatched_qualified_rising": 5
+        },
+        "1": {
+          "raw_rising": 297,
+          "qualified_complete_pulses": 288,
+          "rejected_complete_segments": 9,
+          "post_cutoff_rejected_complete_segments": 6,
+          "post_cutoff_short_high_segments": 3,
+          "excluded_rising": 9,
+          "unmatched_qualified_rising": 4
+        }
+      },
+      "reported_counter_maxima": {
+        "timeouts": 0,
+        "missing_rx": 0,
+        "discarded": 0
+      }
+    },
+    "linreg": {
+      "name": "Linear regression",
+      "duration_s": 300.00807936,
+      "firmware_sha256": "b3bfcce203ea8ee481d1c471afbb431836ed665464ddc898a89b06fe2e509819",
+      "physical_pps": {
+        "rising": {
+          "full": {
+            "count": 274,
+            "mean_ns": 16203.335766423357,
+            "median_ns": 2.0,
+            "stddev_population_ns": 90771.87824083521,
+            "rms_about_zero_ns": 92206.73494560181,
+            "min_ns": -12.0,
+            "max_ns": 744010.0,
+            "peak_to_peak_ns": 744022.0
+          },
+          "post_cutoff": {
+            "count": 170,
+            "mean_ns": 1.8705882352941177,
+            "median_ns": 1.0,
+            "stddev_population_ns": 5.929563490122271,
+            "rms_about_zero_ns": 6.2176220156432604,
+            "min_ns": -12.0,
+            "max_ns": 24.0,
+            "peak_to_peak_ns": 36.0
+          }
+        },
+        "falling": {
+          "full": {
+            "count": 274,
+            "mean_ns": 14885.569343065694,
+            "median_ns": 6.0,
+            "stddev_population_ns": 85192.3134000766,
+            "rms_about_zero_ns": 86483.00663785971,
+            "min_ns": -14.0,
+            "max_ns": 738684.0,
+            "peak_to_peak_ns": 738698.0
+          },
+          "post_cutoff": {
+            "count": 171,
+            "mean_ns": 2.9590643274853803,
+            "median_ns": 2.0,
+            "stddev_population_ns": 8.000991696681412,
+            "rms_about_zero_ns": 8.530646506834133,
+            "min_ns": -14.0,
+            "max_ns": 28.0,
+            "peak_to_peak_ns": 42.0
+          }
+        }
+      },
+      "serial": {
+        "samples": 289,
+        "outside_capture_interval_samples": 0,
+        "post_cutoff": {
+          "count": 180,
+          "mean_ns": -4.916666666666667,
+          "median_ns": -5.0,
+          "stddev_population_ns": 6.356864181514516,
+          "rms_about_zero_ns": 8.036375634160796,
+          "min_ns": -25.0,
+          "max_ns": 10.0,
+          "peak_to_peak_ns": 35.0
+        },
+        "states_post_cutoff": {
+          "0": 0,
+          "1": 0,
+          "2": 0,
+          "3": 180
+        },
+        "sample_number_gaps": 0,
+        "nonincreasing_sample_ids": 0,
+        "events": [
+          {
+            "port_index": 1,
+            "kind": "boot role",
+            "lines": [
+              "tinyptp[0.739]: boot role FOLLOWER"
+            ]
+          },
+          {
+            "port_index": 1,
+            "kind": "clock stepped",
+            "lines": [
+              "tinyptp[12.871]: clock stepped; acquiring residual offset"
+            ]
+          }
+        ],
+        "uptime_interval_max_s": 1.0010000000000048,
+        "time_alignment": "Serial host receive times are approximate; samples are not paired with individual PPS edges."
+      },
+      "serial_startup_since_first_exchange": {
+        "samples": 289,
+        "first_sample_uptime_s": 12.869,
+        "capture_span_s": 287.994,
+        "initial_offset_ns": -662142330,
+        "first_s3_s": 34.995,
+        "settle_1000ns_s": 27.994,
+        "settle_100ns_s": 36.994,
+        "opposite_peak_0_120s_ns": 5,
+        "opposite_peak_time_s": 99.994,
+        "saturated_samples_0_120s": 0,
+        "last_saturated_sample_0_120s_s": null,
+        "s3_exits": 0,
+        "sample_number_gaps": 0,
+        "coarse_step_samples": 1
+      },
+      "physical_startup_since_capture": {
+        "first_matched_rising_s": 13.805780692,
+        "first_matched_rising_separation_ns": 722742.0,
+        "final_contiguous_suffix_1000ns_s": null,
+        "final_contiguous_suffix_100ns_s": null
+      },
+      "quality": {
+        "0": {
+          "raw_rising": 294,
+          "qualified_complete_pulses": 289,
+          "rejected_complete_segments": 4,
+          "post_cutoff_rejected_complete_segments": 0,
+          "post_cutoff_short_high_segments": 0,
+          "excluded_rising": 5,
+          "unmatched_qualified_rising": 15
+        },
+        "1": {
+          "raw_rising": 307,
+          "qualified_complete_pulses": 279,
+          "rejected_complete_segments": 27,
+          "post_cutoff_rejected_complete_segments": 18,
+          "post_cutoff_short_high_segments": 9,
+          "excluded_rising": 28,
+          "unmatched_qualified_rising": 5
+        }
+      },
+      "reported_counter_maxima": {
+        "timeouts": 0,
+        "missing_rx": 0,
+        "discarded": 0
+      }
+    },
+    "adaptive-pi": {
+      "name": "Adaptive PI",
+      "duration_s": 300.04150272,
+      "firmware_sha256": "93b23196b17f935501b8a2368ec74b72f8aeb91d4c734fc92ac7cf1b656d6ea7",
+      "physical_pps": {
+        "rising": {
+          "full": {
+            "count": 253,
+            "mean_ns": 6687.660079051383,
+            "median_ns": 12.0,
+            "stddev_population_ns": 49377.59794203005,
+            "rms_about_zero_ns": 49828.42538007505,
+            "min_ns": -20.0,
+            "max_ns": 694252.0,
+            "peak_to_peak_ns": 694272.0
+          },
+          "post_cutoff": {
+            "count": 155,
+            "mean_ns": 4.361290322580645,
+            "median_ns": 6.0,
+            "stddev_population_ns": 9.179137545379911,
+            "rms_about_zero_ns": 10.162549845134278,
+            "min_ns": -20.0,
+            "max_ns": 20.0,
+            "peak_to_peak_ns": 40.0
+          }
+        },
+        "falling": {
+          "full": {
+            "count": 253,
+            "mean_ns": 5316.339920948617,
+            "median_ns": 14.0,
+            "stddev_population_ns": 36459.763899615136,
+            "rms_about_zero_ns": 36845.323363633965,
+            "min_ns": -24.0,
+            "max_ns": 499144.0,
+            "peak_to_peak_ns": 499168.0
+          },
+          "post_cutoff": {
+            "count": 155,
+            "mean_ns": 5.67741935483871,
+            "median_ns": 6.0,
+            "stddev_population_ns": 10.974419219769139,
+            "rms_about_zero_ns": 12.356009377705064,
+            "min_ns": -24.0,
+            "max_ns": 26.0,
+            "peak_to_peak_ns": 50.0
+          }
+        }
+      },
+      "serial": {
+        "samples": 288,
+        "outside_capture_interval_samples": 1,
+        "post_cutoff": {
+          "count": 180,
+          "mean_ns": 3.7222222222222223,
+          "median_ns": 5.0,
+          "stddev_population_ns": 8.500363100450837,
+          "rms_about_zero_ns": 9.27960727138337,
+          "min_ns": -10.0,
+          "max_ns": 30.0,
+          "peak_to_peak_ns": 40.0
+        },
+        "states_post_cutoff": {
+          "0": 0,
+          "1": 0,
+          "2": 0,
+          "3": 180
+        },
+        "sample_number_gaps": 0,
+        "nonincreasing_sample_ids": 0,
+        "events": [
+          {
+            "port_index": 1,
+            "kind": "boot role",
+            "lines": [
+              "tinyptp[0.691]: boot role FOLLOWER"
+            ]
+          },
+          {
+            "port_index": 1,
+            "kind": "clock stepped",
+            "lines": [
+              "tinyptp[13.028]: clock stepped; acquiring residual offset"
+            ]
+          }
+        ],
+        "uptime_interval_max_s": 1.0020000000000095,
+        "time_alignment": "Serial host receive times are approximate; samples are not paired with individual PPS edges."
+      },
+      "serial_startup_since_first_exchange": {
+        "samples": 289,
+        "first_sample_uptime_s": 13.026,
+        "capture_span_s": 287.996,
+        "initial_offset_ns": -453633365,
+        "first_s3_s": 34.996,
+        "settle_1000ns_s": 27.996,
+        "settle_100ns_s": 39.995,
+        "opposite_peak_0_120s_ns": 10,
+        "opposite_peak_time_s": 88.996,
+        "saturated_samples_0_120s": 0,
+        "last_saturated_sample_0_120s_s": null,
+        "s3_exits": 0,
+        "sample_number_gaps": 0,
+        "coarse_step_samples": 1
+      },
+      "physical_startup_since_capture": {
+        "first_matched_rising_s": 14.05201931,
+        "first_matched_rising_separation_ns": 694252.0,
+        "final_contiguous_suffix_1000ns_s": null,
+        "final_contiguous_suffix_100ns_s": null
+      },
+      "quality": {
+        "0": {
+          "raw_rising": 294,
+          "qualified_complete_pulses": 289,
+          "rejected_complete_segments": 4,
+          "post_cutoff_rejected_complete_segments": 0,
+          "post_cutoff_short_high_segments": 0,
+          "excluded_rising": 5,
+          "unmatched_qualified_rising": 36
+        },
+        "1": {
+          "raw_rising": 332,
+          "qualified_complete_pulses": 258,
+          "rejected_complete_segments": 73,
+          "post_cutoff_rejected_complete_segments": 50,
+          "post_cutoff_short_high_segments": 25,
+          "excluded_rising": 74,
+          "unmatched_qualified_rising": 5
+        }
+      },
+      "reported_counter_maxima": {
+        "timeouts": 0,
+        "missing_rx": 0,
+        "discarded": 0
+      }
+    },
+    "kalman": {
+      "name": "Kalman",
+      "duration_s": 300.04150272,
+      "firmware_sha256": "04d2341407ba3354b9720b1ec0cbdd5ce35df32471f59aafbbd6122ff782f2d9",
+      "physical_pps": {
+        "rising": {
+          "full": {
+            "count": 261,
+            "mean_ns": 10048.053639846743,
+            "median_ns": 4.0,
+            "stddev_population_ns": 60478.9671477737,
+            "rms_about_zero_ns": 61307.98356829825,
+            "min_ns": -14.0,
+            "max_ns": 654300.0,
+            "peak_to_peak_ns": 654314.0
+          },
+          "post_cutoff": {
+            "count": 159,
+            "mean_ns": 4.955974842767295,
+            "median_ns": 2.0,
+            "stddev_population_ns": 10.42936463506723,
+            "rms_about_zero_ns": 11.547005383792516,
+            "min_ns": -14.0,
+            "max_ns": 36.0,
+            "peak_to_peak_ns": 50.0
+          }
+        },
+        "falling": {
+          "full": {
+            "count": 261,
+            "mean_ns": 8795.954022988506,
+            "median_ns": 6.0,
+            "stddev_population_ns": 52958.74713359043,
+            "rms_about_zero_ns": 53684.24075214345,
+            "min_ns": -20.0,
+            "max_ns": 574010.0,
+            "peak_to_peak_ns": 574030.0
+          },
+          "post_cutoff": {
+            "count": 160,
+            "mean_ns": 6.625,
+            "median_ns": 4.0,
+            "stddev_population_ns": 12.178233656815754,
+            "rms_about_zero_ns": 13.863621460498695,
+            "min_ns": -16.0,
+            "max_ns": 42.0,
+            "peak_to_peak_ns": 58.0
+          }
+        }
+      },
+      "serial": {
+        "samples": 288,
+        "outside_capture_interval_samples": 1,
+        "post_cutoff": {
+          "count": 180,
+          "mean_ns": 0.027777777777777776,
+          "median_ns": 0.0,
+          "stddev_population_ns": 9.796501958213653,
+          "rms_about_zero_ns": 9.796541339790396,
+          "min_ns": -30.0,
+          "max_ns": 20.0,
+          "peak_to_peak_ns": 50.0
+        },
+        "states_post_cutoff": {
+          "0": 0,
+          "1": 0,
+          "2": 0,
+          "3": 180
+        },
+        "sample_number_gaps": 0,
+        "nonincreasing_sample_ids": 0,
+        "events": [
+          {
+            "port_index": 1,
+            "kind": "boot role",
+            "lines": [
+              "tinyptp[0.708]: boot role FOLLOWER"
+            ]
+          },
+          {
+            "port_index": 1,
+            "kind": "clock stepped",
+            "lines": [
+              "tinyptp[13.018]: clock stepped; acquiring residual offset"
+            ]
+          }
+        ],
+        "uptime_interval_max_s": 1.0010000000000048,
+        "time_alignment": "Serial host receive times are approximate; samples are not paired with individual PPS edges."
+      },
+      "serial_startup_since_first_exchange": {
+        "samples": 289,
+        "first_sample_uptime_s": 13.016,
+        "capture_span_s": 287.994,
+        "initial_offset_ns": -483422655,
+        "first_s3_s": 31.993,
+        "settle_1000ns_s": 24.994,
+        "settle_100ns_s": 32.994,
+        "opposite_peak_0_120s_ns": 15,
+        "opposite_peak_time_s": 58.994,
+        "saturated_samples_0_120s": 0,
+        "last_saturated_sample_0_120s_s": null,
+        "s3_exits": 0,
+        "sample_number_gaps": 0,
+        "coarse_step_samples": 1
+      },
+      "physical_startup_since_capture": {
+        "first_matched_rising_s": 14.005223854,
+        "first_matched_rising_separation_ns": 654300.0,
+        "final_contiguous_suffix_1000ns_s": null,
+        "final_contiguous_suffix_100ns_s": null
+      },
+      "quality": {
+        "0": {
+          "raw_rising": 294,
+          "qualified_complete_pulses": 289,
+          "rejected_complete_segments": 4,
+          "post_cutoff_rejected_complete_segments": 0,
+          "post_cutoff_short_high_segments": 0,
+          "excluded_rising": 5,
+          "unmatched_qualified_rising": 28
+        },
+        "1": {
+          "raw_rising": 321,
+          "qualified_complete_pulses": 266,
+          "rejected_complete_segments": 54,
+          "post_cutoff_rejected_complete_segments": 41,
+          "post_cutoff_short_high_segments": 21,
+          "excluded_rising": 55,
+          "unmatched_qualified_rising": 5
+        }
+      },
+      "reported_counter_maxima": {
+        "timeouts": 0,
+        "missing_rx": 0,
+        "discarded": 0
+      }
+    },
+    "pllfll": {
+      "name": "PLL/FLL",
+      "duration_s": 300.04150272,
+      "firmware_sha256": "79e8783c4f601b4659e06d40735f16889cbc69198781181737ea0f3046331d37",
+      "physical_pps": {
+        "rising": {
+          "full": {
+            "count": 281,
+            "mean_ns": 12982.903914590748,
+            "median_ns": -6.0,
+            "stddev_population_ns": 76997.84121460568,
+            "rms_about_zero_ns": 78084.71902853416,
+            "min_ns": -44.0,
+            "max_ns": 835454.0,
+            "peak_to_peak_ns": 835498.0
+          },
+          "post_cutoff": {
+            "count": 176,
+            "mean_ns": -7.9772727272727275,
+            "median_ns": -9.0,
+            "stddev_population_ns": 15.874491597247276,
+            "rms_about_zero_ns": 17.766157818627065,
+            "min_ns": -36.0,
+            "max_ns": 30.0,
+            "peak_to_peak_ns": 66.0
+          }
+        },
+        "falling": {
+          "full": {
+            "count": 281,
+            "mean_ns": 11497.615658362989,
+            "median_ns": -4.0,
+            "stddev_population_ns": 68149.66467006509,
+            "rms_about_zero_ns": 69112.7481762211,
+            "min_ns": -50.0,
+            "max_ns": 738062.0,
+            "peak_to_peak_ns": 738112.0
+          },
+          "post_cutoff": {
+            "count": 176,
+            "mean_ns": -5.954545454545454,
+            "median_ns": -8.0,
+            "stddev_population_ns": 16.729063639305515,
+            "rms_about_zero_ns": 17.757200844113406,
+            "min_ns": -42.0,
+            "max_ns": 38.0,
+            "peak_to_peak_ns": 80.0
+          }
+        }
+      },
+      "serial": {
+        "samples": 288,
+        "outside_capture_interval_samples": 1,
+        "post_cutoff": {
+          "count": 180,
+          "mean_ns": 17.77777777777778,
+          "median_ns": 20.0,
+          "stddev_population_ns": 15.839667349044772,
+          "rms_about_zero_ns": 23.81059521398918,
+          "min_ns": -25.0,
+          "max_ns": 50.0,
+          "peak_to_peak_ns": 75.0
+        },
+        "states_post_cutoff": {
+          "0": 0,
+          "1": 0,
+          "2": 0,
+          "3": 180
+        },
+        "sample_number_gaps": 0,
+        "nonincreasing_sample_ids": 0,
+        "events": [
+          {
+            "port_index": 1,
+            "kind": "boot role",
+            "lines": [
+              "tinyptp[0.729]: boot role FOLLOWER"
+            ]
+          },
+          {
+            "port_index": 1,
+            "kind": "clock stepped",
+            "lines": [
+              "tinyptp[13.157]: clock stepped; acquiring residual offset"
+            ]
+          }
+        ],
+        "uptime_interval_max_s": 1.0010000000000048,
+        "time_alignment": "Serial host receive times are approximate; samples are not paired with individual PPS edges."
+      },
+      "serial_startup_since_first_exchange": {
+        "samples": 289,
+        "first_sample_uptime_s": 13.155,
+        "capture_span_s": 287.994,
+        "initial_offset_ns": -365495325,
+        "first_s3_s": 33.994,
+        "settle_1000ns_s": 26.994,
+        "settle_100ns_s": 41.994,
+        "opposite_peak_0_120s_ns": 55,
+        "opposite_peak_time_s": 86.994,
+        "saturated_samples_0_120s": 0,
+        "last_saturated_sample_0_120s_s": null,
+        "s3_exits": 0,
+        "sample_number_gaps": 0,
+        "coarse_step_samples": 1
+      },
+      "physical_startup_since_capture": {
+        "first_matched_rising_s": 14.11631193,
+        "first_matched_rising_separation_ns": 835454.0,
+        "final_contiguous_suffix_1000ns_s": 267.08311717,
+        "final_contiguous_suffix_100ns_s": 267.08311717
+      },
+      "quality": {
+        "0": {
+          "raw_rising": 293,
+          "qualified_complete_pulses": 289,
+          "rejected_complete_segments": 4,
+          "post_cutoff_rejected_complete_segments": 0,
+          "post_cutoff_short_high_segments": 0,
+          "excluded_rising": 4,
+          "unmatched_qualified_rising": 8
+        },
+        "1": {
+          "raw_rising": 299,
+          "qualified_complete_pulses": 286,
+          "rejected_complete_segments": 13,
+          "post_cutoff_rejected_complete_segments": 8,
+          "post_cutoff_short_high_segments": 4,
+          "excluded_rising": 13,
+          "unmatched_qualified_rising": 5
+        }
+      },
+      "reported_counter_maxima": {
+        "timeouts": 0,
+        "missing_rx": 0,
+        "discarded": 0
+      }
+    },
+    "pi-steady": {
+      "name": "Fixed PI, longer run",
+      "duration_s": 900.0910848,
+      "firmware_sha256": "5bedbc549c3b120a632e57f5753751719c8a5c4b9202023cba762908092702f9",
+      "physical_pps": {
+        "rising": {
+          "full": {
+            "count": 865,
+            "mean_ns": -538.7028901734104,
+            "median_ns": -20.0,
+            "stddev_population_ns": 13527.792295804624,
+            "rms_about_zero_ns": 13538.514143077598,
+            "min_ns": -73130.0,
+            "max_ns": 319064.0,
+            "peak_to_peak_ns": 392194.0
+          },
+          "post_cutoff": {
+            "count": 758,
+            "mean_ns": -8.306068601583114,
+            "median_ns": -16.0,
+            "stddev_population_ns": 37.53079636209616,
+            "rms_about_zero_ns": 38.43893145220526,
+            "min_ns": -92.0,
+            "max_ns": 134.0,
+            "peak_to_peak_ns": 226.0
+          }
+        },
+        "falling": {
+          "full": {
+            "count": 865,
+            "mean_ns": -723.4196531791907,
+            "median_ns": -18.0,
+            "stddev_population_ns": 10382.315539820578,
+            "rms_about_zero_ns": 10407.488263889889,
+            "min_ns": -72690.0,
+            "max_ns": 218880.0,
+            "peak_to_peak_ns": 291570.0
+          },
+          "post_cutoff": {
+            "count": 759,
+            "mean_ns": -6.5981554677206855,
+            "median_ns": -14.0,
+            "stddev_population_ns": 37.870391920509405,
+            "rms_about_zero_ns": 38.440892806869044,
+            "min_ns": -94.0,
+            "max_ns": 132.0,
+            "peak_to_peak_ns": 226.0
+          }
+        }
+      },
+      "serial": {
+        "samples": 888,
+        "outside_capture_interval_samples": 1,
+        "post_cutoff": {
+          "count": 780,
+          "mean_ns": 8.551282051282051,
+          "median_ns": 15.0,
+          "stddev_population_ns": 37.19082718307664,
+          "rms_about_zero_ns": 38.161263753733984,
+          "min_ns": -130.0,
+          "max_ns": 95.0,
+          "peak_to_peak_ns": 225.0
+        },
+        "states_post_cutoff": {
+          "0": 0,
+          "1": 0,
+          "2": 0,
+          "3": 780
+        },
+        "sample_number_gaps": 0,
+        "nonincreasing_sample_ids": 0,
+        "events": [
+          {
+            "port_index": 1,
+            "kind": "boot role",
+            "lines": [
+              "tinyptp[0.706]: boot role FOLLOWER"
+            ]
+          },
+          {
+            "port_index": 1,
+            "kind": "clock stepped",
+            "lines": [
+              "tinyptp[13.019]: clock stepped; acquiring residual offset"
+            ]
+          }
+        ],
+        "uptime_interval_max_s": 1.0010000000000332,
+        "time_alignment": "Serial host receive times are approximate; samples are not paired with individual PPS edges."
+      },
+      "serial_startup_since_first_exchange": {
+        "samples": 889,
+        "first_sample_uptime_s": 13.017,
+        "capture_span_s": 887.993,
+        "initial_offset_ns": -480040940,
+        "first_s3_s": 51.993,
+        "settle_1000ns_s": 44.993,
+        "settle_100ns_s": 840.993,
+        "opposite_peak_0_120s_ns": 73140,
+        "opposite_peak_time_s": 7.993,
+        "saturated_samples_0_120s": 0,
+        "last_saturated_sample_0_120s_s": null,
+        "s3_exits": 0,
+        "sample_number_gaps": 0,
+        "coarse_step_samples": 1
+      },
+      "physical_startup_since_capture": {
+        "first_matched_rising_s": 14.00476243,
+        "first_matched_rising_separation_ns": 319064.0,
+        "final_contiguous_suffix_1000ns_s": null,
+        "final_contiguous_suffix_100ns_s": null
+      },
+      "quality": {
+        "0": {
+          "raw_rising": 894,
+          "qualified_complete_pulses": 889,
+          "rejected_complete_segments": 4,
+          "post_cutoff_rejected_complete_segments": 0,
+          "post_cutoff_short_high_segments": 0,
+          "excluded_rising": 5,
+          "unmatched_qualified_rising": 24
+        },
+        "1": {
+          "raw_rising": 917,
+          "qualified_complete_pulses": 870,
+          "rejected_complete_segments": 46,
+          "post_cutoff_rejected_complete_segments": 43,
+          "post_cutoff_short_high_segments": 22,
+          "excluded_rising": 47,
+          "unmatched_qualified_rising": 5
+        }
+      },
+      "reported_counter_maxima": {
+        "timeouts": 0,
+        "missing_rx": 0,
+        "discarded": 0
+      }
+    }
+  }
+}

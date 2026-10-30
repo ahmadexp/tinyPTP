@@ -1,4 +1,5 @@
 #pragma once
+#include "AsixChip.h"
 
 // ASIX vendor control-transfer protocol references:
 // TimeStick2/DRV/ax_main.c: ax_get_chip_version, ax_get_chip_feature
@@ -49,6 +50,11 @@ void reportAsixControls(UsbDevice *device) {
   const uint8_t error = Usb.setConf(address, 0, 1);
   Diag.print(F("SET_CONFIGURATION(1) error=0x")); hexByte(error); Diag.println();
   if (error) return;
+#if TINYPTP_AX88279A
+  // Use the USB control timeout rather than a packet-count limit while the
+  // A firmware services native-mode commands. Zero disables only NAK count.
+  device->epinfo[0].bmNakPower = 0;
+#endif
   delay(100);
   uint8_t chip;
   if (!asixRead(address, 0x01, 0x0005, 1, 1, &chip)) return;
@@ -83,14 +89,20 @@ void reportAsixControls(UsbDevice *device) {
     }
     Diag.println();
   }
-  if (code != 7) {
-    Diag.println(F("AX88279 clock read skipped: chip code is not 7"));
+  if (code != AsixChip::code) {
+    Diag.print(F("Chip does not match build; expected code=")); Diag.println(AsixChip::code);
     return;
   }
   verifiedAsixAddress = address;
+#if TINYPTP_AX88279A
+  // Unlike AX88279's dedicated clock request, the A part's PBus clock read
+  // needs firmware/PHY setup first. Follow the reference driver's ordering.
+  Diag.println(F("AX88279A clock read deferred until PHY setup"));
+#else
   for (uint8_t sample = 0; sample < 3; ++sample) {
-    uint8_t clock[10];
-    if (!asixRead(address, 0x13, 0x0002, 0x1014, sizeof(clock), clock)) return;
+    uint8_t clock[AsixChip::clockBytes];
+    if (!asixRead(address, AsixChip::clockRequest, AsixChip::clockValue,
+                  AsixChip::clockIndex, sizeof(clock), clock)) return;
     const uint32_t ns = uint32_t(clock[0]) | (uint32_t(clock[1]) << 8) |
                         (uint32_t(clock[2]) << 16) | (uint32_t(clock[3]) << 24);
     Diag.print(F("Clock seconds(hex)="));
@@ -101,4 +113,5 @@ void reportAsixControls(UsbDevice *device) {
     if (sample < 2) delay(1000);
   }
   Diag.println(F("Clock reads complete; clock has not been initialized or adjusted."));
+#endif
 }

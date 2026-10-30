@@ -1,0 +1,34 @@
+Environment: Arduino CLI 1.3.1; AVR Boards 1.8.8; USB Host Shield Library 2.0 1.7.0.
+AVR compilation: AX88279AGrandmaster, AX88279AFollowerPI, Grandmaster,
+FollowerPI, TimeStickProbe. Individual build logs are archived alongside this file.
+
+Host verification (Clang, C++17, -Wall -Wextra, AddressSanitizer and UBSan):
+PASS tests/ax88279a_report.cpp
+PASS tests/ptp_protocol.cpp (default AX88279)
+PASS tests/ptp_protocol.cpp (-DTINYPTP_AX88279A=1)
+PASS tests/ptp_protocol.cpp (-DARDUINO_UNOR4_MINIMA)
+PASS tests/pps_output.cpp (default AX88279 and -DTINYPTP_AX88279A=1)
+PASS tests/ptp_math.cpp
+PASS tests/ptp_servo.cpp
+PASS tests/ptp_log.cpp
+PASS tests/ptp_auto_pi.cpp
+PASS tests/ptp_kalman.cpp
+PASS tests/ptp_pllfll.cpp
+PASS python3 -m unittest discover -s tests -p 'test_*.py' (24 tests)
+PASS python3 -m py_compile tools/capture_pair.py
+PASS git diff --check (excluding raw .log captures, whose CRLF and spaces are retained)
+
+AX88279A parser tests cover the captured firmware 1.2.9.0 single-record report,
+short and maximum-length transfers, packet-aligned transfers terminated by ZLP,
+partial records, invalid status, wrong identity, duplicates, and bounded storage.
+Protocol tests cover matching TX completion, Sync/Follow_Up and Delay_Req/Resp,
+RX pipeline adjustment, initial clock stepping, and malformed RX aggregates.
+
+Final example HEX SHA-256 (without bootloader):
+c7a97b4b654cab84d6d096f19a64031e10578f7aad3f9cc327e180d18c5856e5  AX88279AGrandmaster.ino.hex
+4748fd1870410053afe03439d147037cf7f76db224e14ef406a18d95b2a3f9c2  AX88279AFollowerPI.ino.hex
+
+The diagnostic pair-04 images were built from generic role examples with
+-DTINYPTP_AX88279A=1 -DTINYPTP_FIRST_STEP_THRESHOLD_NS=1000000LL.
+Their HEX hashes are identical to the new dedicated examples above.
+Both images remain installed for the quiet 300-second paired-reset validation.

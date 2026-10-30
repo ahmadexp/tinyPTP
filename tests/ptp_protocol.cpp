@@ -4,6 +4,7 @@
 #include <vector>
 #include <algorithm>
 #include "../src/detail/BuildConfig.h"
+#include "../src/detail/AsixChip.h"
 #define F(x) x
 #define HEX 16
 const uint8_t hrNAK = 4;
@@ -28,20 +29,21 @@ uint32_t readLe32(const uint8_t *p) {return uint32_t(p[0])|(uint32_t(p[1])<<8)|(
 bool clockReadAvailable=false;
 unsigned clockSteps=0;
 bool asixRead(uint8_t,uint8_t request,uint16_t,uint16_t,uint8_t length,uint8_t *data) {
-  if (!clockReadAvailable || request!=0x13 || length!=10) return false;
-  memset(data,0,10);data[4]=100;return true;
+  if (!clockReadAvailable || request!=AsixChip::clockRequest || length!=AsixChip::clockBytes) return false;
+  memset(data,0,length);data[4]=100;return true;
 }
 bool asixWrite(uint8_t,uint8_t,uint16_t,uint16_t,uint8_t,uint32_t) {return true;}
 bool pbusWrite(uint8_t,uint16_t,uint16_t,uint32_t) {return true;}
 bool macWrite(uint8_t,uint8_t,uint32_t) {return true;}
 bool reportClockProgress(uint8_t) {return true;}
+bool initializePtpHardwareA(uint8_t) {return true;}
 struct UsbStub {
   std::vector<uint8_t> sent;
   uint8_t outError = 0, onlyEndpoint = 0;
   uint16_t attempts[5] = {};
   std::vector<std::vector<uint8_t>> queued;
   uint8_t ctrlReq(uint8_t,uint8_t,uint8_t,uint8_t req,uint8_t lo,uint8_t hi,uint16_t,uint16_t,uint16_t,uint8_t*,void*) {
-    if(req==0x11 && lo==8 && hi==0x10) ++clockSteps;
+    if(req==0x11 && lo==(AsixChip::setClock & 255) && hi==(AsixChip::setClock >> 8)) ++clockSteps;
     return 0;
   }
   uint8_t outTransfer(uint8_t,uint8_t,uint16_t n,uint8_t *p) {sent.assign(p,p+n);return outError;}
@@ -80,11 +82,25 @@ int main() {
   memcpy(frame+58,ptpIdentity,10);frame[58]^=1;
   handlePtpFrame(frame,68,nullptr);assert(!haveResponse);frame[58]^=1;
   handlePtpFrame(frame,68,nullptr);assert(haveResponse && !haveTx);
-  std::vector<uint8_t> report(131);report[65]=0x18;report[66]=1;
-  le32(report.data()+68,10001200);le32(report.data()+72,1700000000);report[130]=2;
-  Usb.queued={{report.begin(),report.begin()+64},{report.begin()+64,report.begin()+128},{report.begin()+128,report.end()}};
-  pollPtpTxTimestamp();pollPtpTxTimestamp();assert(!haveTx);
-  pollPtpTxTimestamp();assert(ptpSamples==1 && !haveSync && !haveResponse);
+  std::vector<uint8_t> report;
+  auto setReport = [&](uint8_t type, uint16_t seq, uint32_t ns, uint32_t sec) {
+#if TINYPTP_AX88279A
+    report.assign(16,0);le32(report.data(),ns);le32(report.data()+4,sec);
+    report[10]=seq;report[11]=seq>>8;report[12]=0x40|type;
+#else
+    report.assign(131,0);report[0]=8|(type<<4);report[1]=seq;report[2]=seq>>8;
+    le32(report.data()+3,ns);le32(report.data()+7,sec);report[130]=1;
+#endif
+  };
+  auto queueReport = [&]() {
+    for(size_t offset=0;offset<report.size();offset+=64) {
+      size_t end=std::min(offset+64,report.size());
+      Usb.queued.push_back({report.begin()+offset,report.begin()+end});
+    }
+    while (!Usb.queued.empty()) pollPtpTxTimestamp();
+  };
+  setReport(1,1,10001200,1700000000);queueReport();
+  assert(ptpSamples==1 && !haveSync && !haveResponse);
   // A timestamped Sync inside a complete 96-byte ASIX aggregate.
   memset(rxAggregate,0,sizeof(rxAggregate));header(frame,0,8,44);
   memcpy(rxAggregate,frame,60);rxAggregate[65]=8;rxAggregate[66]=60;rxAggregate[71]=1;
@@ -109,15 +125,19 @@ int main() {
   assert(Usb.sent.size()==72 && Usb.sent[22]==0 && Usb.sent[28]==2);
   assert(ptpBe16(Usb.sent.data()+24)==44 && !memcmp(Usb.sent.data()+42,ptpIdentity,10));
   assert(readLe32(Usb.sent.data())==(60UL|(60UL<<21)));
-  auto queueReport = [&]() {
-    Usb.queued={{report.begin(),report.begin()+64},{report.begin()+64,report.begin()+128},{report.begin()+128,report.end()}};
-    pollPtpTxTimestamp();pollPtpTxTimestamp();pollPtpTxTimestamp();
-  };
-  report.assign(131,0);report[0]=8;report[1]=1;report[130]=1;
-  le32(report.data()+3,123456789);le32(report.data()+7,1234);
+  setReport(0,1,123456789,1234);
   queueReport();assert(masterSyncPending && Usb.sent[22]==0); // wrong sequence
-  report[1]=0;report[0]=0x18;queueReport();assert(masterSyncPending); // wrong type
-  report[0]=8;queueReport();assert(!masterSyncPending && ptpSamples==1);
+  setReport(1,0,123456789,1234);queueReport();assert(masterSyncPending); // wrong type
+#if TINYPTP_AX88279A
+  // A candidate in a full USB packet is not usable before transfer completion.
+  // Nor may it complete a new exchange started while awaiting the final ZLP.
+  setReport(0,0,123456789,1234);report.resize(64);
+  Usb.queued={report};pollPtpTxTimestamp();assert(masterSyncPending);
+  syncSequence=1;Usb.queued={{}};pollPtpTxTimestamp();assert(masterSyncPending);
+  syncSequence=0;
+  setReport(0,0,1000000000,1234);queueReport();assert(masterSyncPending);
+#endif
+  setReport(0,0,123456789,1234);queueReport();assert(!masterSyncPending && ptpSamples==1);
   assert(Usb.sent[22]==8 && Usb.sent[28]==0 && Usb.sent[54]==2);
   PtpTime sentTime;assert(ptpWireTime(Usb.sent.data()+56,sentTime));
   assert(sentTime.sec==1234 && sentTime.ns==123456789);
@@ -141,7 +161,7 @@ int main() {
   assert(ptpBe16(Usb.sent.data()+52)==4321 && Usb.sent[54]==3);
   assert(!memcmp(Usb.sent.data()+66,frame+34,10));
   assert(ptpWireTime(Usb.sent.data()+56,sentTime));
-  assert(sentTime.sec==1700000000 && sentTime.ns==1200);
+  assert(sentTime.sec==1700000000 && sentTime.ns==1200-AsixChip::receiveDelayNs);
   frame[34]^=1;handlePtpFrame(frame,60,stamp);assert(masterResponses==1);frame[34]^=1;
   frame[29]=1;handlePtpFrame(frame,60,stamp);assert(masterResponses==1);frame[29]=0;
   // Timeout never fabricates a Follow_Up; retry has a new sequence.

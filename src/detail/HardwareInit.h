@@ -22,6 +22,7 @@ bool asixWrite(uint8_t address, uint8_t request, uint16_t value,
     Diag.print(F("ASIX write request=0x")); hexByte(request);
     Diag.print(F(" value=0x")); hexWord(value);
     Diag.print(F(" error=0x")); hexByte(error); Diag.println();
+    Diag.print(F("USB last token=0x")); hexByte(Usb.regRd(rHXFR)); Diag.println();
   }
   return error == 0;
 }
@@ -57,8 +58,9 @@ bool reportClockProgress(uint8_t address) {
   uint8_t previous[10] = {};
   bool advancing = true;
   for (uint8_t sample = 0; sample < 4; ++sample) {
-    uint8_t value[10];
-    if (!asixRead(address, 0x13, 2, 0x1014, sizeof(value), value)) return false;
+    uint8_t value[AsixChip::clockBytes];
+    if (!asixRead(address, AsixChip::clockRequest, AsixChip::clockValue,
+                  AsixChip::clockIndex, sizeof(value), value)) return false;
     Diag.print(F("Initialized clock sec(hex)="));
     for (int8_t i = 9; i >= 4; --i) hexByte(value[i]);
     Diag.print(F(" ns=")); Diag.println(readLe32(value));
@@ -71,7 +73,7 @@ bool reportClockProgress(uint8_t address) {
       }
       if (order <= 0) advancing = false;
     }
-    memcpy(previous, value, sizeof(value));
+    memcpy(previous, value, sizeof(previous));
     if (sample < 3) delay(1000);
   }
   Diag.println(advancing ? F("Clock progression PASS (rate accuracy unmeasured)")
@@ -79,12 +81,51 @@ bool reportClockProgress(uint8_t address) {
   return advancing;
 }
 
+#if TINYPTP_AX88279A
+bool updatePbusBits(uint8_t address, uint16_t bank, uint16_t reg,
+                    uint32_t clear, uint32_t set) {
+  uint8_t data[4];
+  if (!asixRead(address, 0x11, reg, bank, 4, data) ||
+      readLe32(data) == 0xdeadbeefUL) return false;
+  return pbusWrite(address, bank, reg, (readLe32(data) & ~clear) | set);
+}
+
+// AX88279A 1000/full reference configuration. Its firmware owns the
+// timestamp DMA ring, configured by request E3 rather than AX88279 CPU RAM.
+bool initializePtpHardwareA(uint8_t address) {
+  if (!updatePbusBits(address, 0x13, 0x300c, 0x7000, 0x2000) ||
+      !updatePbusBits(address, 0x0c, 0xf8c4, 0, 0x1000) ||
+      !updatePbusBits(address, 0x0c, 0xf8c8, 0, 0x4000) ||
+      !asixWrite(address, 0xe3, 1, 0, 0, 0)) return false;
+  uint8_t ring[12];
+  if (!asixRead(address, 0xe3, 2, 0, sizeof(ring), ring) || !ring[11]) return false;
+  ring[10] = ring[11];
+  if (Usb.ctrlReq(address, 0, 0x40, 0xe3, 2, 0, 0,
+                  sizeof(ring), sizeof(ring), ring, NULL) ||
+      !asixWrite(address, 0xe3, 4, 0, 0, 0) ||
+      !asixWrite(address, 0xe3, 8, 0, 0, 0)) return false;
+  // Vendor 1 Gb/s timing: UTP clock, addend 0x80000000, period 8 ns,
+  // TX pipeline compensation 80 ns; software RX compensation is 250 ns.
+  if (!pbusWrite(address, 0x12, 0x102c, 0x80000000UL) ||
+      !pbusWrite(address, 0x12, 0x1030, 8) ||
+      !pbusWrite(address, 0x12, 0x103c, 500000000UL) ||
+      !pbusWrite(address, 0x12, 0x1000, 0x2702fUL) ||
+      !updatePbusBits(address, 0x0107, 0x10c0, 0, 0x8000) ||
+      !pbusWrite(address, 0x12, 0x1034, 80) ||
+      !pbusWrite(address, 0x12, 0x2000, 0x3ff01UL) ||
+      !pbusWrite(address, 0x12, 0x3000, 0x0803ff11UL) ||
+      !pbusWrite(address, 0x12, 0x3008, 7) ||
+      !pbusWrite(address, 0x12, 0x0000, 0x4b)) return false;
+  return true;
+}
+#endif
+
 void initializeAsixHardware(UsbDevice *device) {
   hardwareReady = false;
   reportAsixControls(device);
   const uint8_t address = device->address.devAddress;
   if (!verifiedAsixAddress || verifiedAsixAddress != address) return;
-  Diag.println(F("AX88279 volatile initialization"));
+  Diag.println(F("ASIX volatile initialization"));
   // Native firmware mode with the timestamp endpoint enabled; reload the saved
   // configuration into volatile registers, then bring the PHY out of power-down.
   if (!asixWrite(address, 0x08, 1, 2, 0, 0) ||
@@ -130,10 +171,11 @@ void initializeAsixHardware(UsbDevice *device) {
 
   // Retry after native-mode and PHY setup. Chip code alone does not establish
   // support for the PTP USB requests, so do not write PTP registers on failure.
-  uint8_t clock[10];
+  uint8_t clock[AsixChip::clockBytes];
   bool clockAccessible = false;
   for (uint8_t attempt = 0; attempt < 10; ++attempt) {
-    if (asixRead(address, 0x13, 2, 0x1014, sizeof(clock), clock) &&
+    if (asixRead(address, AsixChip::clockRequest, AsixChip::clockValue,
+                 AsixChip::clockIndex, sizeof(clock), clock) &&
         readLe32(clock) < 1000000000UL) {
       clockAccessible = true; break;
     }
@@ -143,6 +185,9 @@ void initializeAsixHardware(UsbDevice *device) {
     Diag.println(F("PTP initialization skipped: clock request failed after PHY setup"));
     return;
   }
+#if TINYPTP_AX88279A
+  hardwareReady = initializePtpHardwareA(address) && reportClockProgress(address);
+#else
   // PTP CPU/report memory and counter setup from the AX88279 driver. Physical
   // PPS pin routing and packet parsers are not enabled by this phase.
   if (!pbusWrite(address, 0x12, 0x0000, 0x41080001UL) ||
@@ -164,4 +209,5 @@ void initializeAsixHardware(UsbDevice *device) {
   }
   if (!matching) Diag.println(F("PTP register readback mismatch"));
   hardwareReady = reportClockProgress(address) && matching;
+#endif
 }

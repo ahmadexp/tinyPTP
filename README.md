@@ -1,9 +1,17 @@
 # tinyPTP
 
 Experimental hardware-timestamped PTP on a classic Arduino UNO R3 with a
-MAX3421E USB Host Shield and an AX88279-based TimeStick. The UNO runs the PTP
-role and follower clock servo; the TimeStick timestamps Ethernet packets and
-maintains the hardware clock.
+MAX3421E USB Host Shield and an AX88279 or AX88279A Ethernet device. The UNO
+runs the PTP role and follower clock servo; the Ethernet device timestamps
+packets and maintains the hardware clock.
+
+**TimeStick V3 / AX88279A:** a separate driver path and dedicated
+`AX88279AGrandmaster` / `AX88279AFollowerPI` examples are available on this
+source. A TimeStick V3 and AX88279A development-board pair completed a
+five-minute UNO R3 test with **272 exchanges and zero exchange timeouts**.
+See the [AX88279A setup guide](docs/ax88279a.md) and
+[logs, graphs, and validation](docs/results/2026-10-30/ax88279a/README.md).
+This support is not included in the v0.1.0 release or Boards Manager bundle.
 
 **UNO R4 Minima port:** the development branch adds a 4 KB receive buffer,
 bounded USB burst polling, hardware floating point for Kalman, and CPU timing
@@ -500,8 +508,9 @@ measured PPS or UTC accuracy. Maximum stack use has not been measured.
   build/upload commands, serial controls, servo behavior, and next steps.
 
 Two units were tested. Both report USB `0B95:1790`, but the original is
-**AX88279A** (`bcdDevice 0500`, chip code 15) and is not supported by the current
-driver. The replacement is **AX88279 revision 1**, firmware `1.3.16.7`,
+**AX88279A** (`bcdDevice 0500`, chip code 15) and was unsupported in that
+October 12 experiment. The later [AX88279A path](docs/ax88279a.md) is separate.
+The replacement is **AX88279 revision 1**, firmware `1.3.16.7`,
 MAC `9C:69:D3:2B:A1:2F` (`bcdDevice 0400`, chip code 7); this is the working unit.
 The requested target was TimeStick v2, but the replacement's exact PCB revision
 is unconfirmed. VID/PID and USB device revision alone do not identify the PCB.
@@ -534,16 +543,17 @@ the TimeStick. Existing host PTP services and the host system clock are not
 reconfigured. This experiment establishes relative synchronization to the NIC,
 not independently verified UTC accuracy.
 
-Current limitations: AX88279 only, 1 Gb/s full duplex, one outstanding exchange,
+Current limitations: 1 Gb/s full duplex, one outstanding exchange,
 no BMCA or master failover, a bounded 256-byte aggregate buffer, and a 32-bit
 seconds epoch ending in 2106. Oversized aggregates are drained and discarded.
 No profile compliance, calibrated PHY asymmetry, or PPS accuracy is claimed.
-The original stick identifies as AX88279A and needs a different driver path.
+AX88279A requires the separate examples and register path described above.
 
 ## Feasibility
 
 The AX88279-based units demonstrate this architecture with both a Linux
-PTP peer and another UNO. The AX88279A variant remains unsupported. ASIX documents USB full-speed support for both
+PTP peer and another UNO. AX88279A bring-up is documented separately above.
+ASIX documents USB full-speed support for both
 the AX88179B and AX88279. This matches the MAX3421E's 12 Mbit/s host capability.
 An Ethernet PHY operating at 100 Mbit/s or faster does not require the USB host
 to sustain that rate for a sparse PTP exchange.
@@ -600,7 +610,7 @@ free-running sticks alone can establish relative synchronization.
 ## Remaining work
 
 1. Characterize longer two-UNO runs, repeated startup, and recovery behavior.
-2. Add a separate AX88279A register and timestamp path for the original unit.
+2. Broaden AX88279A firmware-version, startup, and independent PPS validation.
 3. Characterize PPS measurement-path skew, investigate the recorded extra transitions,
    repeat clean captures, and assess PHY/link asymmetry.
 4. Measure runtime stack high-water use, long-duration stability, and recovery

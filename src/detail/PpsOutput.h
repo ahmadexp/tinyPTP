@@ -1,4 +1,5 @@
 #pragma once
+#include "AsixChip.h"
 
 // AX88279: TimeStick2/DRV/ax_ptp.c, ax88279_ptp_pps_ctrl.
 // The output gate is separate from the clock's PPS_EN bit. Volatile only.
@@ -14,14 +15,14 @@ bool reportPpsState() {
   uint32_t gate, clock, width;
   if (!readPpsRegister(0x0c, 0xf8c8, gate) ||
       !readPpsRegister(0x12, 0x1000, clock) ||
-      !readPpsRegister(0x12, 0x1040, width)) {
+      !readPpsRegister(0x12, AsixChip::pulseWidthRegister, width)) {
     ptpLogPrefix(); Serial.println(F("PPS register read failed"));
     return false;
   }
   ptpLogPrefix(); Serial.print(F("PPS gate=0x")); Serial.print(gate, HEX);
   Serial.print(F(" clock=0x")); Serial.print(clock, HEX);
   Serial.print(F(" active_ns=")); Serial.print(width);
-  const bool enabled = (gate & 0x4000UL) && (clock & 0x10UL) &&
+  const bool enabled = (gate & 0x4000UL) && (clock & AsixChip::ppsEnable) &&
                        width == 500000000UL;
   Serial.println(enabled ? F(" enabled (register readback)") : F(" NOT enabled"));
   return enabled;

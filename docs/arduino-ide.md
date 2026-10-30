@@ -7,6 +7,9 @@ The development source also supports **UNO R4 Minima**. Follow the
 for its board core, native USB behavior, and experimental status. The published
 **v0.1.0 ZIP and Boards Manager package remain R3-only**. UNO R4 WiFi, UNO WiFi
 Rev2, and the AX88279A variant are not supported by this package.
+For **TimeStick V3 / AX88279A**, use the current source branch and its dedicated
+`AX88279AGrandmaster` and `AX88279AFollowerPI` examples. See the
+[AX88279A guide](ax88279a.md); the release package above does not contain them.
 The tested shield power jumpers must be connected; see the
 [hardware photographs](https://github.com/ahmadexp/tinyPTP#usb-host-shield-power-jumpers).
 

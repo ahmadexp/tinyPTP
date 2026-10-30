@@ -1,0 +1,32 @@
+{
+  "source_log": "follower.log",
+  "source_sha256": "a14506c4ce5a230ec4ea06fe600c736cc436740a4ca4dd9929cc4a200115d96c",
+  "selection": "All accepted exchanges at or after the fixed elapsed-time cutoff.",
+  "cutoff_after_first_sample_s": 120.0,
+  "total_samples": 272,
+  "excluded_acquisition_samples": 120,
+  "window_samples": 152,
+  "window_first_sample": 121,
+  "window_last_sample": 272,
+  "window_first_elapsed_s": 120.05,
+  "window_last_elapsed_s": 271.12,
+  "window_span_s": 151.07,
+  "offset_mean_ns": 16,
+  "offset_rms_ns": 16.0,
+  "offset_population_stddev_ns": 0.0,
+  "offset_min_ns": 16,
+  "offset_max_ns": 16,
+  "path_mean_ns": 26,
+  "path_min_ns": 26,
+  "path_max_ns": 26,
+  "frequency_first_ppb": 0,
+  "frequency_last_ppb": 0,
+  "frequency_min_ppb": 0,
+  "frequency_max_ppb": 0,
+  "servo_state_counts": {
+    "3": 152
+  },
+  "largest_sample_interval_s": 1.002,
+  "sample_number_gaps": 0,
+  "measurement_limit": "Internal PTP estimates; not calibrated PPS or UTC measurements."
+}

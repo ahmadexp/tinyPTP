@@ -69,8 +69,17 @@ void initializeEthernetProbe(UsbDevice *device) {
                   5, 5, 5, bulk, NULL)) {
     Diag.println(F("Bulk-IN setup failed")); return;
   }
-  if (!macWrite(0x22, 2, 0x0133) || !macWrite(0x0b, 2, 0x01aa) ||
-      !macWrite(0xb7, 1, 3)) return;
+  if (!macWrite(0x22, 2, 0x0133) || !macWrite(0x0b, 2, 0x01aa)) return;
+#if TINYPTP_AX88279A
+  // Match the A silicon's queue routing. Use only USB OUT endpoint 3;
+  // VLAN insertion and RX two-byte IP alignment remain disabled above.
+  if (!updatePbusBits(verifiedAsixAddress, 0x13, 0x3020, 0, 4) ||
+      !pbusWrite(verifiedAsixAddress, 0x13, 0x3024, 0x1b048090UL) ||
+      !pbusWrite(verifiedAsixAddress, 0x13, 0x302c, 1) ||
+      !pbusWrite(verifiedAsixAddress, 0x13, 0x302c, 0) ||
+      !updatePbusBits(verifiedAsixAddress, 0x17, 0x2300, 0, 0x0e)) return;
+#endif
+  if (!macWrite(0xb7, 1, 3)) return;
   rxUsed = 0; rxOverflow = false;
   ethernetReady = true;
   Diag.println(F("Ethernet probe ready; t sends 10 echo-test frames"));

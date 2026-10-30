@@ -1,0 +1,190 @@
+UTC: 2026-10-30T22:42:06.963262+00:00
+Port: /dev/ttyACM0; baud: 115200; reset: True
+tinyptp[0.000]: boot role GRANDMASTER
+tinyptp[0.000]: serial 115200 8N1; offset/path ns; frequency ppb
+tinyptp[0.582]: port 1: initializing Ethernet and hardware clock
+SET_CONFIGURATION(1) error=0x00
+ASIX chip status=0xF0 chip code=15
+ASIX silicon revision=0x01
+ASIX firmware=1.2.9.0
+ASIX MAC=CC:47:92:00:28:A4
+AX88279A clock read deferred until PHY setup
+ASIX volatile initialization
+PHY power=0x02
+PHY initial advertisement=0x1C01 gigabit_control=0x0A00
+PHY AN 2.5G advertisement=0x4001
+PHY BMSR=0x7949
+PHY BMSR=0x7949
+PHY BMSR=0x7949
+PHY BMSR=0x7949
+PHY BMSR=0x796D
+Ethernet PHY link UP
+PBUS write 0013:300C bytes=11 21 00 00 
+PBUS write 000C:F8C4 bytes=00 10 00 00 
+PBUS write 000C:F8C8 bytes=00 40 00 00 
+PBUS write 0012:102C bytes=00 00 00 80 
+PBUS write 0012:1030 bytes=08 00 00 00 
+PBUS write 0012:103C bytes=00 65 CD 1D 
+PBUS write 0012:1000 bytes=2F 70 02 00 
+PBUS write 0107:10C0 bytes=40 B0 08 00 
+PBUS write 0012:1034 bytes=50 00 00 00 
+PBUS write 0012:2000 bytes=01 FF 03 00 
+PBUS write 0012:3000 bytes=11 FF 03 08 
+PBUS write 0012:3008 bytes=07 00 00 00 
+PBUS write 0012:0000 bytes=4B 00 00 00 
+Initialized clock sec(hex)=000000000000 ns=21250536
+Initialized clock sec(hex)=000000000001 ns=25828648
+Initialized clock sec(hex)=000000000002 ns=27597680
+Initialized clock sec(hex)=000000000003 ns=29385048
+Clock progression PASS (rate accuracy unmeasured)
+Link interrupt=A1 73 81 00 6D 79 01 DC 
+PBUS write 0013:3020 bytes=04 00 FF 00 
+PBUS write 0013:3024 bytes=90 80 04 1B 
+PBUS write 0013:302C bytes=01 00 00 00 
+PBUS write 0013:302C bytes=00 00 00 00 
+PBUS write 0017:2300 bytes=1F 00 00 00 
+Ethernet probe ready; t sends 10 echo-test frames
+PBUS write 0013:300C bytes=11 21 00 00 
+PBUS write 000C:F8C4 bytes=00 10 00 00 
+PBUS write 000C:F8C8 bytes=00 40 00 00 
+PBUS write 0012:102C bytes=00 00 00 80 
+PBUS write 0012:1030 bytes=08 00 00 00 
+PBUS write 0012:103C bytes=00 65 CD 1D 
+PBUS write 0012:1000 bytes=2F 70 02 00 
+PBUS write 0107:10C0 bytes=40 B4 08 00 
+PBUS write 0012:1034 bytes=50 00 00 00 
+PBUS write 0012:2000 bytes=01 FF 03 00 
+PBUS write 0012:3000 bytes=11 FF 03 08 
+PBUS write 0012:3008 bytes=07 00 00 00 
+PBUS write 0012:0000 bytes=4B 00 00 00 
+Initialized clock sec(hex)=000000000000 ns=21235368
+Initialized clock sec(hex)=000000000001 ns=25814328
+Initialized clock sec(hex)=000000000002 ns=27589416
+Initialized clock sec(hex)=000000000003 ns=29383808
+Clock progression PASS (rate accuracy unmeasured)
+tinyptp[11.856]: PPS gate before=0x4000
+tinyptp[11.862]: PPS gate=0x4000 clock=0x2702F active_ns=500000000 enabled (register readback)
+PBUS write 0012:102C bytes=00 00 00 80 
+tinyptp[11.872]: clock identity cc4792.fffe.0028a4
+tinyptp[11.876]: port 1: INITIALIZING to MASTER on FIXED_ROLE
+tinyptp[11.881]: port 1: assuming the grandmaster role
+tinyptp[11.886]: grandmaster: free-running oscillator, UTC not valid
+tinyptp[11.892]: port 1: link down
+tinyptp[16.892]: port 1: initializing Ethernet and hardware clock
+SET_CONFIGURATION(1) error=0x00
+ASIX chip status=0xF0 chip code=15
+ASIX silicon revision=0x01
+ASIX firmware=1.2.9.0
+ASIX MAC=CC:47:92:00:28:A4
+AX88279A clock read deferred until PHY setup
+ASIX volatile initialization
+PHY power=0x02
+PHY initial advertisement=0x1C01 gigabit_control=0x0A00
+PHY AN 2.5G advertisement=0x4001
+PHY BMSR=0x7949
+PHY BMSR=0x7949
+PHY BMSR=0x7949
+PHY BMSR=0x7949
+PHY BMSR=0x796D
+Ethernet PHY link UP
+PBUS write 0013:300C bytes=11 21 00 00 
+PBUS write 000C:F8C4 bytes=00 10 00 00 
+PBUS write 000C:F8C8 bytes=00 40 00 00 
+PBUS write 0012:102C bytes=00 00 00 80 
+PBUS write 0012:1030 bytes=08 00 00 00 
+PBUS write 0012:103C bytes=00 65 CD 1D 
+PBUS write 0012:1000 bytes=2F 70 02 00 
+PBUS write 0107:10C0 bytes=40 B0 08 00 
+PBUS write 0012:1034 bytes=50 00 00 00 
+PBUS write 0012:2000 bytes=01 FF 03 00 
+PBUS write 0012:3000 bytes=11 FF 03 08 
+PBUS write 0012:3008 bytes=07 00 00 00 
+PBUS write 0012:0000 bytes=4B 00 00 00 
+Initialized clock sec(hex)=000000000000 ns=21248808
+Initialized clock sec(hex)=000000000001 ns=25668592
+Initialized clock sec(hex)=000000000002 ns=27443944
+Initialized clock sec(hex)=000000000003 ns=29212448
+Clock progression PASS (rate accuracy unmeasured)
+Link interrupt=A1 60 80 00 00 00 00 00 
+Link interrupt=A1 73 81 00 6D 79 01 DC 
+PBUS write 0013:3020 bytes=04 00 FF 00 
+PBUS write 0013:3024 bytes=90 80 04 1B 
+PBUS write 0013:302C bytes=01 00 00 00 
+PBUS write 0013:302C bytes=00 00 00 00 
+PBUS write 0017:2300 bytes=1F 00 00 00 
+Ethernet probe ready; t sends 10 echo-test frames
+PBUS write 0013:300C bytes=11 21 00 00 
+PBUS write 000C:F8C4 bytes=00 10 00 00 
+PBUS write 000C:F8C8 bytes=00 40 00 00 
+PBUS write 0012:102C bytes=00 00 00 80 
+PBUS write 0012:1030 bytes=08 00 00 00 
+PBUS write 0012:103C bytes=00 65 CD 1D 
+PBUS write 0012:1000 bytes=2F 70 02 00 
+PBUS write 0107:10C0 bytes=40 B4 08 00 
+PBUS write 0012:1034 bytes=50 00 00 00 
+PBUS write 0012:2000 bytes=01 FF 03 00 
+PBUS write 0012:3000 bytes=11 FF 03 08 
+PBUS write 0012:3008 bytes=07 00 00 00 
+PBUS write 0012:0000 bytes=4B 00 00 00 
+Initialized clock sec(hex)=000000000000 ns=21231216
+Initialized clock sec(hex)=000000000001 ns=25821704
+Initialized clock sec(hex)=000000000002 ns=27592240
+Initialized clock sec(hex)=000000000003 ns=29384192
+Clock progression PASS (rate accuracy unmeasured)
+tinyptp[28.327]: PPS gate before=0x4000
+tinyptp[28.332]: PPS gate=0x4000 clock=0x2702F active_ns=500000000 enabled (register readback)
+PBUS write 0012:102C bytes=00 00 00 80 
+tinyptp[28.343]: clock identity cc4792.fffe.0028a4
+tinyptp[28.347]: port 1: INITIALIZING to MASTER on FIXED_ROLE
+tinyptp[28.352]: port 1: assuming the grandmaster role
+tinyptp[28.357]: grandmaster: free-running oscillator, UTC not valid
+tinyptp[28.363]: port 1: MASTER sync 0 delay_resp 0 freq +0 timeouts 0 missing_rx 0 discarded 0
+AX88279A EP4 bytes=16
+28 CB EE 02 04 00 00 00 00 00 01 00 40 00 00 00 
+AX88279A report bytes=16 matches=0
+tinyptp[29.363]: port 1: MASTER sync 0 delay_resp 0 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[30.363]: port 1: MASTER sync 0 delay_resp 0 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[31.363]: port 1: MASTER sync 0 delay_resp 0 freq +0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[31.844]: port 1: Sync TX timestamp timeout
+AX88279A EP4 bytes=16
+C0 26 E0 20 06 00 00 00 00 00 02 00 40 00 00 00 
+AX88279A report bytes=16 matches=0
+tinyptp[32.363]: port 1: MASTER sync 0 delay_resp 0 freq +0 timeouts 1 missing_rx 0 discarded 0
+tinyptp[33.363]: port 1: MASTER sync 0 delay_resp 0 freq +0 timeouts 1 missing_rx 0 discarded 0
+tinyptp[34.345]: port 1: Sync TX timestamp timeout
+AX88279A EP4 bytes=16
+00 F5 34 03 09 00 00 00 00 00 03 00 40 00 00 00 
+AX88279A report bytes=16 matches=0
+tinyptp[34.363]: port 1: MASTER sync 0 delay_resp 0 freq +0 timeouts 2 missing_rx 0 discarded 0
+tinyptp[35.363]: port 1: MASTER sync 0 delay_resp 0 freq +0 timeouts 2 missing_rx 0 discarded 0
+tinyptp[36.363]: port 1: MASTER sync 0 delay_resp 0 freq +0 timeouts 2 missing_rx 0 discarded 0
+tinyptp[36.846]: port 1: Sync TX timestamp timeout
+AX88279A EP4 bytes=16
+20 A8 17 21 0B 00 00 00 00 00 04 00 40 00 00 00 
+AX88279A report bytes=16 matches=0
+tinyptp[37.363]: port 1: MASTER sync 0 delay_resp 0 freq +0 timeouts 3 missing_rx 0 discarded 0
+tinyptp[38.363]: port 1: MASTER sync 0 delay_resp 0 freq +0 timeouts 3 missing_rx 0 discarded 0
+tinyptp[39.347]: port 1: Sync TX timestamp timeout
+tinyptp[39.363]: port 1: MASTER sync 0 delay_resp 0 freq +0 timeouts 4 missing_rx 0 discarded 0
+tinyptp[40.363]: port 1: MASTER sync 0 delay_resp 0 freq +0 timeouts 4 missing_rx 0 discarded 0
+tinyptp[41.363]: port 1: MASTER sync 0 delay_resp 0 freq +0 timeouts 4 missing_rx 0 discarded 0
+tinyptp[41.848]: port 1: Sync TX timestamp timeout
+tinyptp[42.363]: port 1: MASTER sync 0 delay_resp 0 freq +0 timeouts 5 missing_rx 0 discarded 0
+tinyptp[43.363]: port 1: MASTER sync 0 delay_resp 0 freq +0 timeouts 5 missing_rx 0 discarded 0
+tinyptp[44.349]: port 1: Sync TX timestamp timeout
+tinyptp[44.363]: port 1: MASTER sync 0 delay_resp 0 freq +0 timeouts 6 missing_rx 0 discarded 0
+tinyptp[45.363]: port 1: MASTER sync 0 delay_resp 0 freq +0 timeouts 6 missing_rx 0 discarded 0
+tinyptp[46.363]: port 1: MASTER sync 0 delay_resp 0 freq +0 timeouts 6 missing_rx 0 discarded 0
+tinyptp[46.850]: port 1: Sync TX timestamp timeout
+tinyptp[47.363]: port 1: MASTER sync 0 delay_resp 0 freq +0 timeouts 7 missing_rx 0 discarded 0
+tinyptp[48.363]: port 1: MASTER sync 0 delay_resp 0 freq +0 timeouts 7 missing_rx 0 discarded 0
+tinyptp[49.351]: port 1: Sync TX timestamp timeout
+tinyptp[49.363]: port 1: MASTER sync 0 delay_resp 0 freq +0 timeouts 8 missing_rx 0 discarded 0
+tinyptp[50.363]: port 1: MASTER sync 0 delay_resp 0 freq +0 timeouts 8 missing_rx 0 discarded 0
+tinyptp[51.363]: port 1: MASTER sync 0 delay_resp 0 freq +0 timeouts 8 missing_rx 0 discarded 0
+tinyptp[51.852]: port 1: Sync TX timestamp timeout
+tinyptp[52.363]: port 1: MASTER sync 0 delay_resp 0 freq +0 timeouts 9 missing_rx 0 discarded 0
+tinyptp[53.363]: port 1: MASTER sync 0 delay_resp 0 freq +0 timeouts 9 missing_rx 0 discarded 0
+tinyptp[54.353]: port 1: Sync TX timestamp timeout
+tinyptp[54.363]: port 1: MASTER sync 0 delay_resp 0 freq +0 timeouts 10 missing_rx 0 discarded 0
+tinyptp[55.363]: port 1: MASTER sync 0 delay_resp 0 freq +0 timeouts 10 missing_rx 0 discarded 0

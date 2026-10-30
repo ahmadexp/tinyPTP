@@ -12,6 +12,7 @@ bool hostReady = false;
 uint8_t lastState = 0xff;
 bool automaticRoleEnabled = TINYPTP_BOOT_ROLE != 0;
 uint32_t bootRetryAt = 0;
+uint32_t busSampleAt = 0;
 
 void hexByte(uint8_t value) {
   if (value < 16) Diag.print('0');
@@ -197,6 +198,16 @@ void poll() {
     return;
   }
   Usb.Task();
+  // Some powered devices assert their full-speed pull-up after host startup.
+  // Refresh the bus state while detached, without relying solely on a connect
+  // interrupt. Never resample in the middle of enumeration or a transfer.
+  if (Usb.getUsbTaskState() == USB_DETACHED_SUBSTATE_WAIT_FOR_DEVICE &&
+      uint32_t(millis() - busSampleAt) >= 500) {
+    busSampleAt = millis();
+    Usb.regWr(rHCTL, bmSAMPLEBUS);
+    delay(1);
+    Usb.busprobe();
+  }
   const uint8_t state = Usb.getUsbTaskState();
   if (state != lastState) {
     Diag.print(F("USB state=0x")); hexByte(state); Diag.println();

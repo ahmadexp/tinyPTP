@@ -1,5 +1,14 @@
 #pragma once
 
+// Select the Ethernet silicon explicitly. AX88279A has a different PTP
+// register map and report format despite sharing the USB VID/PID.
+#ifndef TINYPTP_AX88279A
+#define TINYPTP_AX88279A 0
+#endif
+#if TINYPTP_AX88279A != 0 && TINYPTP_AX88279A != 1
+#error "TINYPTP_AX88279A must be 0 (AX88279) or 1 (AX88279A)"
+#endif
+
 // 0: interactive diagnostic, 1: automatic grandmaster, 2: automatic follower.
 // Select in the .ino before TinyPTP.h, or override via Arduino CLI flags.
 #ifndef TINYPTP_BOOT_ROLE

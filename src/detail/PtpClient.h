@@ -3,6 +3,9 @@
 #include "PtpLog.h"
 #include "PpsOutput.h"
 #include "PtpServo.h"
+#if TINYPTP_AX88279A
+#include "Ax88279aReport.h"
+#endif
 
 // Fixed peer, L2, domain 42, two-step, E2E. No BMCA or profile claim.
 const uint8_t ptpMaster[10] = {0x0c,0x9d,0x92,0xff,0xfe,0xc5,0x83,0x32,0,1};
@@ -19,7 +22,11 @@ uint32_t exchangeStarted = 0, quarantineUntil = 0;
 uint32_t ptpSamples = 0, ptpTimeouts = 0, ptpRxMissing = 0, ptpRxDiscard = 0;
 PtpServo clockServo;
 int32_t frequencyPpb = 0;
+#if TINYPTP_AX88279A
+Ax88279aReport aReport;
+#else
 uint8_t tsReport[131];
+#endif
 uint16_t tsUsed = 0;
 bool tsOverflow = false;
 uint32_t tsPackets = 0, tsReports = 0;
@@ -38,9 +45,13 @@ bool ptpHardwareTime(const uint8_t *p, PtpTime &t) {
   t.ns = readLe32(p); t.sec = readLe32(p + 4);
   return t.ns < 1000000000UL && (t.sec || t.ns);
 }
+bool ptpReceiveTime(const uint8_t *p, PtpTime &t) {
+  return ptpHardwareTime(p, t) && ptpAdd(t, -int64_t(AsixChip::receiveDelayNs));
+}
 bool ptpSetClock(int64_t delta) {
   uint8_t data[12] = {};
-  if (!asixRead(verifiedAsixAddress, 0x13, 2, 0x1014, 10, data)) return false;
+  if (!asixRead(verifiedAsixAddress, AsixChip::clockRequest, AsixChip::clockValue,
+                AsixChip::clockIndex, AsixChip::clockBytes, data)) return false;
   PtpTime now;
   if (!ptpHardwareTime(data, now) || !ptpAdd(now, delta)) return false;
   for (uint8_t i = 0; i < 4; ++i) {
@@ -48,13 +59,13 @@ bool ptpSetClock(int64_t delta) {
   }
   // Absolute set has USB latency. Use only for initial coarse acquisition;
   // the frequency servo removes the residual using packet timestamps.
-  return Usb.ctrlReq(verifiedAsixAddress, 0, 0x40, 0x11, 8, 0x10,
+  return Usb.ctrlReq(verifiedAsixAddress, 0, 0x40, 0x11, uint8_t(AsixChip::setClock), 0x10,
                      0x12, 12, 12, data, NULL) == 0;
 }
 bool ptpSetFrequency(int32_t ppb) {
   if (!verifiedAsixAddress || !hardwareReady) return false;
-  const uint32_t addend = 0xccccccccUL + int64_t(0xccccccccUL) * ppb / 1000000000LL;
-  return asixWrite(verifiedAsixAddress, 0x11, 0x1030, 0x12, 4, addend);
+  const uint32_t addend = AsixChip::baseAddend + int64_t(AsixChip::baseAddend) * ppb / 1000000000LL;
+  return asixWrite(verifiedAsixAddress, 0x11, AsixChip::addendRegister, 0x12, 4, addend);
 }
 void finishPtpExchange() {
   if (!haveSync || !haveFollow || !haveTx || !haveResponse) return;
@@ -170,7 +181,7 @@ void handleMasterDelayRequest(const uint8_t *h, uint16_t size, const uint8_t *st
   if ((h[0] & 0xf) != 1 || size != 44 || !memcmp(h + 20, ptpIdentity, 10)) return;
   if (masterFollowerBound && memcmp(h + 20, selectedFollower, 10)) return;
   PtpTime received;
-  if (!stamp || !ptpHardwareTime(stamp, received)) { ++ptpRxMissing; return; }
+  if (!stamp || !ptpReceiveTime(stamp, received)) { ++ptpRxMissing; return; }
   // Direct-link experiment: no transparent clocks or nonzero Delay_Req correction.
   if (ptpCorrection(h + 8) != 0) return;
   if (!masterFollowerBound) {
@@ -206,7 +217,7 @@ void handlePtpFrame(const uint8_t *frame, uint16_t length, const uint8_t *stamp)
   if (correction > 65536000000000LL || correction < -65536000000000LL) return;
   if (type == 0) {
     if (haveSync || !(h[6] & 2)) return; // fixed two-step master
-    if (!stamp || !ptpHardwareTime(stamp, t2)) { ++ptpRxMissing; return; }
+    if (!stamp || !ptpReceiveTime(stamp, t2)) { ++ptpRxMissing; return; }
     if (!followerReceiving) {
       ptpLogPrefix(); Serial.println(F("port 1: LISTENING to SLAVE on MASTER_SELECTED"));
       followerReceiving = true;
@@ -269,6 +280,36 @@ bool pollPtpTxTimestamp() {
   if (error == hrNAK) return false;
   if (error) { ptpRunning = false; Serial.print(F("PTP timestamp USB error=")); Serial.println(error); return false; }
   ++tsPackets;
+#if TINYPTP_AX88279A
+  if (diagnosticsEnabled && tsPackets <= 4) {
+    Serial.print(F("AX88279A EP4 bytes=")); Serial.println(count);
+    for (uint8_t i = 0; i < count; ++i) { hexByte(packet[i]); Serial.print(' '); }
+    Serial.println();
+  }
+  if (!aReport.feed(packet, count, ptpMasterRole ? 0 : 1,
+                    ptpMasterRole ? syncSequence : delaySequence)) return true;
+  ++tsReports;
+  if (diagnosticsEnabled && tsReports <= 4) {
+    Serial.print(F("AX88279A report bytes=")); Serial.print(aReport.used);
+    Serial.print(F(" matches=")); Serial.println(aReport.matches);
+  }
+  const uint8_t *candidate = aReport.candidate;
+  const uint16_t candidateSequence = uint16_t(candidate[10]) | (uint16_t(candidate[11]) << 8);
+  if (aReport.valid() && candidateSequence == (ptpMasterRole ? syncSequence : delaySequence) &&
+      (candidate[12] & 15) == (ptpMasterRole ? 0 : 1)) {
+    PtpTime sent;
+    if (ptpHardwareTime(aReport.candidate, sent)) {
+      if (ptpMasterRole && masterSyncPending) {
+        masterSyncPending = false;
+        if (!sendPtpMessage(8, syncSequence, &sent)) ptpRunning = false;
+        else ++ptpSamples;
+      } else if (!ptpMasterRole && haveFollow) {
+        t3 = sent; haveTx = true; finishPtpExchange();
+      }
+    }
+  }
+  aReport.reset();
+#else
   if (count > sizeof(tsReport) - tsUsed) tsOverflow = true;
   if (!tsOverflow) { memcpy(tsReport + tsUsed, packet, count); tsUsed += count; }
   if (count == 64) return true;
@@ -298,6 +339,7 @@ bool pollPtpTxTimestamp() {
     }
   }
   tsUsed = 0; tsOverflow = false;
+#endif
   return true;
 }
 void startPtpClient(bool discipline, bool masterRole = false, bool learnMaster = false) {
@@ -306,6 +348,10 @@ void startPtpClient(bool discipline, bool masterRole = false, bool learnMaster =
   ptpMasterRole = masterRole; ptpLearnMaster = learnMaster;
   ptpPeerBound = masterFollowerBound = masterSyncPending = false;
   masterResponses = 0; servoStableSamples = 0; followerReceiving = false;
+#if TINYPTP_AX88279A
+  if (!initializePtpHardwareA(verifiedAsixAddress)) return;
+  aReport.reset();
+#else
   uint8_t bfm;
   // MAC configuration invalidates the earlier PTP setup on the tested unit.
   // Restore the complete clock/report setup here, after Ethernet setup.
@@ -323,6 +369,7 @@ void startPtpClient(bool discipline, bool masterRole = false, bool learnMaster =
       !pbusWrite(verifiedAsixAddress, 0x12, 0x103c, 0) ||
       !asixWrite(verifiedAsixAddress, 0x15, 6, 0, 1, 0x50) ||
       !pbusWrite(verifiedAsixAddress, 0x13, 0x3004, 0x003f0100UL)) return;
+#endif
   if (!reportClockProgress(verifiedAsixAddress)) return;
   if (!enablePpsOutput()) return;
   memcpy(ptpIdentity, probeMac, 3); ptpIdentity[3] = 0xff; ptpIdentity[4] = 0xfe;
@@ -461,7 +508,12 @@ void pollPtpClient() {
     Serial.print(F(" discarded=")); Serial.println(ptpRxDiscard);
     Serial.print(F("PTP TX reports=")); Serial.print(tsReports);
     Serial.print(F(" packets=")); Serial.print(tsPackets);
-    Serial.print(F(" pending_bytes=")); Serial.println(tsUsed);
+    Serial.print(F(" pending_bytes="));
+#if TINYPTP_AX88279A
+    Serial.println(aReport.used);
+#else
+    Serial.println(tsUsed);
+#endif
 #endif
   }
 }

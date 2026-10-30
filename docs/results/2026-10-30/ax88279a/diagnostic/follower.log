@@ -1,0 +1,406 @@
+UTC 2026-10-30T22:43:33.323208+00:00
+Port /dev/ttyACM1 baud 115200 reset both
+tinyptp[0.000]: boot role FOLLOWER
+tinyptp[0.000]: serial 115200 8N1; offset/path ns; frequency ppb
+tinyptp[0.579]: port 1: initializing Ethernet and hardware clock
+SET_CONFIGURATION(1) error=0x00
+ASIX chip status=0xF0 chip code=15
+ASIX silicon revision=0x01
+ASIX firmware=1.2.9.0
+ASIX MAC=00:0E:C6:81:79:01
+AX88279A clock read deferred until PHY setup
+ASIX volatile initialization
+PHY power=0x02
+PHY initial advertisement=0x1C01 gigabit_control=0x0A00
+PHY AN 2.5G advertisement=0x4001
+PHY BMSR=0x7949
+PHY BMSR=0x7949
+PHY BMSR=0x7949
+PHY BMSR=0x796D
+Ethernet PHY link UP
+PBUS write 0013:300C bytes=11 21 00 00 
+PBUS write 000C:F8C4 bytes=00 10 00 00 
+PBUS write 000C:F8C8 bytes=00 40 00 00 
+PBUS write 0012:102C bytes=00 00 00 80 
+PBUS write 0012:1030 bytes=08 00 00 00 
+PBUS write 0012:103C bytes=00 65 CD 1D 
+PBUS write 0012:1000 bytes=2F 70 02 00 
+PBUS write 0107:10C0 bytes=40 B0 08 00 
+PBUS write 0012:1034 bytes=50 00 00 00 
+PBUS write 0012:2000 bytes=01 FF 03 00 
+PBUS write 0012:3000 bytes=11 FF 03 08 
+PBUS write 0012:3008 bytes=07 00 00 00 
+PBUS write 0012:0000 bytes=4B 00 00 00 
+Initialized clock sec(hex)=000000000000 ns=21193904
+Initialized clock sec(hex)=000000000001 ns=25245336
+Initialized clock sec(hex)=000000000002 ns=26747208
+Initialized clock sec(hex)=000000000003 ns=28096656
+Clock progression PASS (rate accuracy unmeasured)
+Link interrupt=A1 73 81 00 6D 79 01 DC 
+PBUS write 0013:3020 bytes=04 00 FF 00 
+PBUS write 0013:3024 bytes=90 80 04 1B 
+PBUS write 0013:302C bytes=01 00 00 00 
+PBUS write 0013:302C bytes=00 00 00 00 
+PBUS write 0017:2300 bytes=1F 00 00 00 
+Ethernet probe ready; t sends 10 echo-test frames
+PBUS write 0013:300C bytes=11 21 00 00 
+PBUS write 000C:F8C4 bytes=00 10 00 00 
+PBUS write 000C:F8C8 bytes=00 40 00 00 
+PBUS write 0012:102C bytes=00 00 00 80 
+PBUS write 0012:1030 bytes=08 00 00 00 
+PBUS write 0012:103C bytes=00 65 CD 1D 
+PBUS write 0012:1000 bytes=2F 70 02 00 
+PBUS write 0107:10C0 bytes=40 B4 08 00 
+PBUS write 0012:1034 bytes=50 00 00 00 
+PBUS write 0012:2000 bytes=01 FF 03 00 
+PBUS write 0012:3000 bytes=11 FF 03 08 
+PBUS write 0012:3008 bytes=07 00 00 00 
+PBUS write 0012:0000 bytes=4B 00 00 00 
+Initialized clock sec(hex)=000000000000 ns=21166960
+Initialized clock sec(hex)=000000000001 ns=25105968
+Initialized clock sec(hex)=000000000002 ns=26453872
+Initialized clock sec(hex)=000000000003 ns=27939144
+Clock progression PASS (rate accuracy unmeasured)
+tinyptp[10.853]: PPS gate before=0x4000
+tinyptp[10.857]: PPS gate=0x4000 clock=0x2702F active_ns=500000000 enabled (register readback)
+PBUS write 0012:102C bytes=00 00 00 80 
+tinyptp[10.868]: clock identity 000ec6.fffe.817901
+tinyptp[10.872]: port 1: INITIALIZING to LISTENING on FIXED_ROLE
+tinyptp[10.877]: servo PI kp 1/2 ki 1/20 limit 500000 ppb
+tinyptp[10.884]: port 1: link down
+tinyptp[15.883]: port 1: initializing Ethernet and hardware clock
+SET_CONFIGURATION(1) error=0x00
+ASIX chip status=0xF0 chip code=15
+ASIX silicon revision=0x01
+ASIX firmware=1.2.9.0
+ASIX MAC=00:0E:C6:81:79:01
+AX88279A clock read deferred until PHY setup
+ASIX volatile initialization
+PHY power=0x02
+PHY initial advertisement=0x1C01 gigabit_control=0x0A00
+PHY AN 2.5G advertisement=0x4001
+PHY BMSR=0x7949
+PHY BMSR=0x7949
+PHY BMSR=0x7949
+PHY BMSR=0x796D
+Ethernet PHY link UP
+PBUS write 0013:300C bytes=11 21 00 00 
+PBUS write 000C:F8C4 bytes=00 10 00 00 
+PBUS write 000C:F8C8 bytes=00 40 00 00 
+PBUS write 0012:102C bytes=00 00 00 80 
+PBUS write 0012:1030 bytes=08 00 00 00 
+PBUS write 0012:103C bytes=00 65 CD 1D 
+PBUS write 0012:1000 bytes=2F 70 02 00 
+PBUS write 0107:10C0 bytes=40 B0 08 00 
+PBUS write 0012:1034 bytes=50 00 00 00 
+PBUS write 0012:2000 bytes=01 FF 03 00 
+PBUS write 0012:3000 bytes=11 FF 03 08 
+PBUS write 0012:3008 bytes=07 00 00 00 
+PBUS write 0012:0000 bytes=4B 00 00 00 
+Initialized clock sec(hex)=000000000000 ns=21192936
+Initialized clock sec(hex)=000000000001 ns=25198640
+Initialized clock sec(hex)=000000000002 ns=26608048
+Initialized clock sec(hex)=000000000003 ns=27915616
+Clock progression PASS (rate accuracy unmeasured)
+Link interrupt=A1 60 80 00 00 00 00 00 
+Link interrupt=A1 73 81 00 6D 79 01 DC 
+PBUS write 0013:3020 bytes=04 00 FF 00 
+PBUS write 0013:3024 bytes=90 80 04 1B 
+PBUS write 0013:302C bytes=01 00 00 00 
+PBUS write 0013:302C bytes=00 00 00 00 
+PBUS write 0017:2300 bytes=1F 00 00 00 
+Ethernet probe ready; t sends 10 echo-test frames
+PBUS write 0013:300C bytes=11 21 00 00 
+PBUS write 000C:F8C4 bytes=00 10 00 00 
+PBUS write 000C:F8C8 bytes=00 40 00 00 
+PBUS write 0012:102C bytes=00 00 00 80 
+PBUS write 0012:1030 bytes=08 00 00 00 
+PBUS write 0012:103C bytes=00 65 CD 1D 
+PBUS write 0012:1000 bytes=2F 70 02 00 
+PBUS write 0107:10C0 bytes=40 B4 08 00 
+PBUS write 0012:1034 bytes=50 00 00 00 
+PBUS write 0012:2000 bytes=01 FF 03 00 
+PBUS write 0012:3000 bytes=11 FF 03 08 
+PBUS write 0012:3008 bytes=07 00 00 00 
+PBUS write 0012:0000 bytes=4B 00 00 00 
+Initialized clock sec(hex)=000000000000 ns=21165896
+Initialized clock sec(hex)=000000000001 ns=25059376
+Initialized clock sec(hex)=000000000002 ns=26365144
+Initialized clock sec(hex)=000000000003 ns=27800632
+Clock progression PASS (rate accuracy unmeasured)
+tinyptp[26.317]: PPS gate before=0x4000
+tinyptp[26.321]: PPS gate=0x4000 clock=0x2702F active_ns=500000000 enabled (register readback)
+PBUS write 0012:102C bytes=00 00 00 80 
+tinyptp[26.333]: clock identity 000ec6.fffe.817901
+tinyptp[26.337]: port 1: INITIALIZING to LISTENING on FIXED_ROLE
+tinyptp[26.342]: servo PI kp 1/2 ki 1/20 limit 500000 ppb
+tinyptp[26.348]: FOLLOWER samples 0 timeouts 0 missing_rx 0 discarded 0
+tinyptp[27.364]: selected master cc4792.fffe.0028a4
+tinyptp[27.365]: port 1: LISTENING to SLAVE on MASTER_SELECTED
+AX88279A EP4 bytes=16
+B0 C2 FE 04 04 00 00 00 00 00 01 00 41 00 00 00 
+AX88279A report bytes=16 matches=1
+PBUS write 0012:102C bytes=00 00 00 80 
+tinyptp[27.381]: master offset 28193264 s1 freq +0 path delay 38 sample 1 seq 1
+tinyptp[27.387]: clock stepped; acquiring residual offset
+AX88279A EP4 bytes=16
+18 E8 3C 03 05 00 00 00 00 00 02 00 41 00 00 00 
+AX88279A report bytes=16 matches=1
+PBUS write 0012:102C bytes=56 A0 0B 80 
+tinyptp[28.377]: master offset -645104 s2 freq +354807 path delay 38 sample 2 seq 2
+AX88279A EP4 bytes=16
+90 00 45 03 06 00 00 00 00 00 03 00 41 00 00 00 
+AX88279A report bytes=16 matches=1
+PTP rejected path_ns=-1014
+AX88279A EP4 bytes=16
+10 D4 4D 03 07 00 00 00 00 00 04 00 41 00 00 00 
+AX88279A report bytes=16 matches=1
+PTP rejected path_ns=-1002
+PBUS write 0012:102C bytes=17 93 F9 7F 
+tinyptp[31.371]: master offset 415172 s2 freq -196089 path delay -382 sample 3 seq 5
+PBUS write 0012:102C bytes=59 61 FC 7F 
+tinyptp[32.373]: master offset 221752 s2 freq -110466 path delay 326 sample 4 seq 6
+PBUS write 0012:102C bytes=BA 03 FE 7F 
+tinyptp[33.372]: master offset 110912 s2 freq -60591 path delay 174 sample 5 seq 7
+PBUS write 0012:102C bytes=5B EE FE 7F 
+tinyptp[34.373]: master offset 49976 s2 freq -32621 path delay 126 sample 6 seq 8
+PBUS write 0012:102C bytes=6E 70 FF 7F 
+tinyptp[35.373]: master offset 17240 s2 freq -17115 path delay 78 sample 7 seq 9
+tinyptp[36.348]: FOLLOWER samples 7 timeouts 0 missing_rx 0 discarded 0
+PBUS write 0012:102C bytes=B1 B8 FF 7F 
+tinyptp[36.374]: master offset 12 s2 freq -8501 path delay 66 sample 8 seq 10
+PBUS write 0012:102C bytes=11 E0 FF 7F 
+tinyptp[37.373]: master offset -8524 s2 freq -3807 path delay 50 sample 9 seq 11
+PBUS write 0012:102C bytes=57 F5 FF 7F 
+tinyptp[38.375]: master offset -12360 s2 freq -1271 path delay 46 sample 10 seq 12
+PBUS write 0012:102C bytes=71 00 00 80 
+tinyptp[39.374]: master offset -13644 s2 freq +53 path delay 42 sample 11 seq 13
+PBUS write 0012:102C bytes=F6 05 00 80 
+tinyptp[40.376]: master offset -13600 s2 freq +711 path delay 38 sample 12 seq 14
+PBUS write 0012:102C bytes=61 08 00 80 
+tinyptp[41.376]: master offset -12888 s2 freq +999 path delay 38 sample 13 seq 15
+PBUS write 0012:102C bytes=2F 09 00 80 
+tinyptp[42.377]: master offset -11892 s2 freq +1095 path delay 34 sample 14 seq 16
+PBUS write 0012:102C bytes=22 09 00 80 
+tinyptp[43.377]: master offset -10800 s2 freq +1089 path delay 38 sample 15 seq 17
+PBUS write 0012:102C bytes=A3 08 00 80 
+tinyptp[44.378]: master offset -9712 s2 freq +1030 path delay 38 sample 16 seq 18
+PBUS write 0012:102C bytes=F3 07 00 80 
+tinyptp[45.377]: master offset -8680 s2 freq +948 path delay 38 sample 17 seq 19
+tinyptp[46.348]: FOLLOWER samples 17 timeouts 0 missing_rx 0 discarded 0
+PBUS write 0012:102C bytes=36 07 00 80 
+tinyptp[46.379]: master offset -7732 s2 freq +860 path delay 34 sample 18 seq 20
+PBUS write 0012:102C bytes=7C 06 00 80 
+tinyptp[47.378]: master offset -6872 s2 freq +773 path delay 38 sample 19 seq 21
+PBUS write 0012:102C bytes=C7 05 00 80 
+tinyptp[48.380]: master offset -6096 s2 freq +689 path delay 38 sample 20 seq 22
+PBUS write 0012:102C bytes=28 05 00 80 
+tinyptp[49.379]: master offset -5408 s2 freq +615 path delay 38 sample 21 seq 23
+PBUS write 0012:102C bytes=94 04 00 80 
+tinyptp[50.380]: master offset -4792 s2 freq +546 path delay 38 sample 22 seq 24
+PBUS write 0012:102C bytes=13 04 00 80 
+tinyptp[51.380]: master offset -4248 s2 freq +486 path delay 38 sample 23 seq 25
+PBUS write 0012:102C bytes=9B 03 00 80 
+tinyptp[52.382]: master offset -3760 s2 freq +430 path delay 38 sample 24 seq 26
+PBUS write 0012:102C bytes=30 03 00 80 
+tinyptp[53.381]: master offset -3328 s2 freq +380 path delay 38 sample 25 seq 27
+PBUS write 0012:102C bytes=D7 02 00 80 
+tinyptp[54.382]: master offset -2952 s2 freq +339 path delay 38 sample 26 seq 28
+PBUS write 0012:102C bytes=7D 02 00 80 
+tinyptp[55.382]: master offset -2608 s2 freq +297 path delay 38 sample 27 seq 29
+tinyptp[56.348]: FOLLOWER samples 27 timeouts 0 missing_rx 0 discarded 0
+PBUS write 0012:102C bytes=36 02 00 80 
+tinyptp[56.383]: master offset -2312 s2 freq +264 path delay 38 sample 28 seq 30
+PBUS write 0012:102C bytes=F6 01 00 80 
+tinyptp[57.383]: master offset -2048 s2 freq +234 path delay 38 sample 29 seq 31
+PBUS write 0012:102C bytes=BE 01 00 80 
+tinyptp[58.384]: master offset -1816 s2 freq +208 path delay 38 sample 30 seq 32
+PBUS write 0012:102C bytes=8B 01 00 80 
+tinyptp[59.383]: master offset -1608 s2 freq +184 path delay 38 sample 31 seq 33
+PBUS write 0012:102C bytes=5E 01 00 80 
+tinyptp[60.385]: master offset -1424 s2 freq +163 path delay 38 sample 32 seq 34
+PBUS write 0012:102C bytes=39 01 00 80 
+tinyptp[61.385]: master offset -1264 s2 freq +146 path delay 38 sample 33 seq 35
+PBUS write 0012:102C bytes=0C 01 00 80 
+tinyptp[62.386]: master offset -1112 s2 freq +125 path delay 38 sample 34 seq 36
+PBUS write 0012:102C bytes=F4 00 00 80 
+tinyptp[63.386]: master offset -992 s2 freq +114 path delay 38 sample 35 seq 37
+PBUS write 0012:102C bytes=D4 00 00 80 
+tinyptp[64.388]: master offset -876 s2 freq +99 path delay 34 sample 36 seq 38
+PBUS write 0012:102C bytes=BA 00 00 80 
+tinyptp[65.386]: master offset -776 s2 freq +87 path delay 38 sample 37 seq 39
+tinyptp[66.348]: FOLLOWER samples 37 timeouts 0 missing_rx 0 discarded 0
+PBUS write 0012:102C bytes=A5 00 00 80 
+tinyptp[66.388]: master offset -688 s2 freq +77 path delay 38 sample 38 seq 40
+PBUS write 0012:102C bytes=98 00 00 80 
+tinyptp[67.388]: master offset -616 s2 freq +71 path delay 38 sample 39 seq 41
+PBUS write 0012:102C bytes=85 00 00 80 
+tinyptp[68.389]: master offset -544 s2 freq +62 path delay 38 sample 40 seq 42
+PBUS write 0012:102C bytes=73 00 00 80 
+tinyptp[69.388]: master offset -480 s2 freq +54 path delay 38 sample 41 seq 43
+PBUS write 0012:102C bytes=64 00 00 80 
+tinyptp[70.389]: master offset -424 s3 freq +47 path delay 38 sample 42 seq 44
+PBUS write 0012:102C bytes=62 00 00 80 
+tinyptp[71.389]: master offset -384 s3 freq +46 path delay 38 sample 43 seq 45
+PBUS write 0012:102C bytes=51 00 00 80 
+tinyptp[72.390]: master offset -336 s3 freq +38 path delay 38 sample 44 seq 46
+PBUS write 0012:102C bytes=44 00 00 80 
+tinyptp[73.391]: master offset -296 s3 freq +32 path delay 38 sample 45 seq 47
+PBUS write 0012:102C bytes=3E 00 00 80 
+tinyptp[74.391]: master offset -264 s3 freq +29 path delay 38 sample 46 seq 48
+PBUS write 0012:102C bytes=3E 00 00 80 
+tinyptp[75.392]: master offset -240 s3 freq +29 path delay 38 sample 47 seq 49
+tinyptp[76.348]: FOLLOWER samples 47 timeouts 0 missing_rx 0 discarded 0
+PBUS write 0012:102C bytes=31 00 00 80 
+tinyptp[76.393]: master offset -208 s3 freq +23 path delay 38 sample 48 seq 50
+PBUS write 0012:102C bytes=2A 00 00 80 
+tinyptp[77.392]: master offset -184 s3 freq +20 path delay 38 sample 49 seq 51
+PBUS write 0012:102C bytes=2A 00 00 80 
+tinyptp[78.393]: master offset -168 s3 freq +20 path delay 38 sample 50 seq 52
+PBUS write 0012:102C bytes=20 00 00 80 
+tinyptp[79.393]: master offset -144 s3 freq +15 path delay 38 sample 51 seq 53
+PBUS write 0012:102C bytes=1B 00 00 80 
+tinyptp[80.395]: master offset -128 s3 freq +13 path delay 38 sample 52 seq 54
+PBUS write 0012:102C bytes=20 00 00 80 
+tinyptp[81.394]: master offset -120 s3 freq +15 path delay 38 sample 53 seq 55
+PBUS write 0012:102C bytes=19 00 00 80 
+tinyptp[82.396]: master offset -104 s3 freq +12 path delay 38 sample 54 seq 56
+PBUS write 0012:102C bytes=11 00 00 80 
+tinyptp[83.394]: master offset -88 s3 freq +8 path delay 38 sample 55 seq 57
+PBUS write 0012:102C bytes=11 00 00 80 
+tinyptp[84.397]: master offset -80 s3 freq +8 path delay 38 sample 56 seq 58
+PBUS write 0012:102C bytes=0F 00 00 80 
+tinyptp[85.396]: master offset -72 s3 freq +7 path delay 38 sample 57 seq 59
+tinyptp[86.348]: FOLLOWER samples 57 timeouts 0 missing_rx 0 discarded 0
+PBUS write 0012:102C bytes=15 00 00 80 
+tinyptp[86.397]: master offset -72 s3 freq +10 path delay 38 sample 58 seq 60
+PBUS write 0012:102C bytes=08 00 00 80 
+tinyptp[87.396]: master offset -56 s3 freq +4 path delay 38 sample 59 seq 61
+PBUS write 0012:102C bytes=0C 00 00 80 
+tinyptp[88.397]: master offset -56 s3 freq +6 path delay 38 sample 60 seq 62
+PBUS write 0012:102C bytes=08 00 00 80 
+tinyptp[89.398]: master offset -48 s3 freq +4 path delay 38 sample 61 seq 63
+PBUS write 0012:102C bytes=0C 00 00 80 
+tinyptp[90.398]: master offset -48 s3 freq +6 path delay 38 sample 62 seq 64
+PBUS write 0012:102C bytes=08 00 00 80 
+tinyptp[91.399]: master offset -40 s3 freq +4 path delay 38 sample 63 seq 65
+PBUS write 0012:102C bytes=0C 00 00 80 
+tinyptp[92.399]: master offset -40 s3 freq +6 path delay 38 sample 64 seq 66
+PBUS write 0012:102C bytes=06 00 00 80 
+tinyptp[93.400]: master offset -32 s3 freq +3 path delay 38 sample 65 seq 67
+PBUS write 0012:102C bytes=08 00 00 80 
+tinyptp[94.401]: master offset -32 s3 freq +4 path delay 38 sample 66 seq 68
+PBUS write 0012:102C bytes=02 00 00 80 
+tinyptp[95.400]: master offset -24 s3 freq +1 path delay 38 sample 67 seq 69
+tinyptp[96.348]: FOLLOWER samples 67 timeouts 0 missing_rx 0 discarded 0
+PBUS write 0012:102C bytes=04 00 00 80 
+tinyptp[96.402]: master offset -24 s3 freq +2 path delay 38 sample 68 seq 70
+PBUS write 0012:102C bytes=06 00 00 80 
+tinyptp[97.400]: master offset -24 s3 freq +3 path delay 38 sample 69 seq 71
+PBUS write 0012:102C bytes=FE FF FF 7F 
+tinyptp[98.403]: master offset -16 s3 freq -1 path delay 38 sample 70 seq 72
+PBUS write 0012:102C bytes=FE FF FF 7F 
+tinyptp[99.402]: master offset -16 s3 freq -1 path delay 38 sample 71 seq 73
+PBUS write 0012:102C bytes=08 00 00 80 
+tinyptp[100.404]: master offset -24 s3 freq +4 path delay 38 sample 72 seq 74
+PBUS write 0012:102C bytes=00 00 00 80 
+tinyptp[101.402]: master offset -16 s3 freq +0 path delay 38 sample 73 seq 75
+PBUS write 0012:102C bytes=00 00 00 80 
+tinyptp[102.405]: master offset -16 s3 freq +0 path delay 38 sample 74 seq 76
+PBUS write 0012:102C bytes=00 00 00 80 
+tinyptp[103.403]: master offset -16 s3 freq +0 path delay 38 sample 75 seq 77
+PBUS write 0012:102C bytes=00 00 00 80 
+tinyptp[104.404]: master offset -16 s3 freq +0 path delay 38 sample 76 seq 78
+PBUS write 0012:102C bytes=00 00 00 80 
+tinyptp[105.405]: master offset -16 s3 freq +0 path delay 38 sample 77 seq 79
+tinyptp[106.348]: FOLLOWER samples 77 timeouts 0 missing_rx 0 discarded 0
+PBUS write 0012:102C bytes=00 00 00 80 
+tinyptp[106.405]: master offset -16 s3 freq +0 path delay 38 sample 78 seq 80
+PBUS write 0012:102C bytes=00 00 00 80 
+tinyptp[107.406]: master offset -16 s3 freq +0 path delay 38 sample 79 seq 81
+PBUS write 0012:102C bytes=00 00 00 80 
+tinyptp[108.405]: master offset -16 s3 freq +0 path delay 38 sample 80 seq 82
+PBUS write 0012:102C bytes=00 00 00 80 
+tinyptp[109.407]: master offset -16 s3 freq +0 path delay 38 sample 81 seq 83
+PBUS write 0012:102C bytes=00 00 00 80 
+tinyptp[110.407]: master offset -16 s3 freq +0 path delay 38 sample 82 seq 84
+PBUS write 0012:102C bytes=00 00 00 80 
+tinyptp[111.408]: master offset -16 s3 freq +0 path delay 38 sample 83 seq 85
+PBUS write 0012:102C bytes=00 00 00 80 
+tinyptp[112.408]: master offset -16 s3 freq +0 path delay 38 sample 84 seq 86
+PBUS write 0012:102C bytes=00 00 00 80 
+tinyptp[113.409]: master offset -16 s3 freq +0 path delay 38 sample 85 seq 87
+PBUS write 0012:102C bytes=00 00 00 80 
+tinyptp[114.409]: master offset -16 s3 freq +0 path delay 38 sample 86 seq 88
+PBUS write 0012:102C bytes=00 00 00 80 
+tinyptp[115.409]: master offset -16 s3 freq +0 path delay 38 sample 87 seq 89
+tinyptp[116.348]: FOLLOWER samples 87 timeouts 0 missing_rx 0 discarded 0
+PBUS write 0012:102C bytes=00 00 00 80 
+tinyptp[116.410]: master offset -16 s3 freq +0 path delay 38 sample 88 seq 90
+PBUS write 0012:102C bytes=00 00 00 80 
+tinyptp[117.410]: master offset -16 s3 freq +0 path delay 38 sample 89 seq 91
+PBUS write 0012:102C bytes=00 00 00 80 
+tinyptp[118.411]: master offset -16 s3 freq +0 path delay 38 sample 90 seq 92
+PBUS write 0012:102C bytes=00 00 00 80 
+tinyptp[119.411]: master offset -16 s3 freq +0 path delay 38 sample 91 seq 93
+PBUS write 0012:102C bytes=00 00 00 80 
+tinyptp[120.412]: master offset -16 s3 freq +0 path delay 38 sample 92 seq 94
+PBUS write 0012:102C bytes=00 00 00 80 
+tinyptp[121.412]: master offset -16 s3 freq +0 path delay 38 sample 93 seq 95
+PBUS write 0012:102C bytes=00 00 00 80 
+tinyptp[122.413]: master offset -16 s3 freq +0 path delay 38 sample 94 seq 96
+PBUS write 0012:102C bytes=00 00 00 80 
+tinyptp[123.413]: master offset -16 s3 freq +0 path delay 38 sample 95 seq 97
+PBUS write 0012:102C bytes=00 00 00 80 
+tinyptp[124.413]: master offset -16 s3 freq +0 path delay 38 sample 96 seq 98
+PBUS write 0012:102C bytes=00 00 00 80 
+tinyptp[125.415]: master offset -16 s3 freq +0 path delay 38 sample 97 seq 99
+tinyptp[126.348]: FOLLOWER samples 97 timeouts 0 missing_rx 0 discarded 0
+PBUS write 0012:102C bytes=00 00 00 80 
+tinyptp[126.414]: master offset -16 s3 freq +0 path delay 38 sample 98 seq 100
+PBUS write 0012:102C bytes=00 00 00 80 
+tinyptp[127.415]: master offset -16 s3 freq +0 path delay 38 sample 99 seq 101
+PBUS write 0012:102C bytes=00 00 00 80 
+tinyptp[128.416]: master offset -16 s3 freq +0 path delay 38 sample 100 seq 102
+PBUS write 0012:102C bytes=00 00 00 80 
+tinyptp[129.416]: master offset -16 s3 freq +0 path delay 38 sample 101 seq 103
+PBUS write 0012:102C bytes=00 00 00 80 
+tinyptp[130.417]: master offset -16 s3 freq +0 path delay 38 sample 102 seq 104
+PBUS write 0012:102C bytes=00 00 00 80 
+tinyptp[131.417]: master offset -16 s3 freq +0 path delay 38 sample 103 seq 105
+PBUS write 0012:102C bytes=00 00 00 80 
+tinyptp[132.417]: master offset -16 s3 freq +0 path delay 38 sample 104 seq 106
+PBUS write 0012:102C bytes=00 00 00 80 
+tinyptp[133.417]: master offset -16 s3 freq +0 path delay 38 sample 105 seq 107
+PBUS write 0012:102C bytes=00 00 00 80 
+tinyptp[134.419]: master offset -16 s3 freq +0 path delay 38 sample 106 seq 108
+PBUS write 0012:102C bytes=00 00 00 80 
+tinyptp[135.418]: master offset -16 s3 freq +0 path delay 38 sample 107 seq 109
+tinyptp[136.348]: FOLLOWER samples 107 timeouts 0 missing_rx 0 discarded 0
+PBUS write 0012:102C bytes=00 00 00 80 
+tinyptp[136.420]: master offset -16 s3 freq +0 path delay 38 sample 108 seq 110
+PBUS write 0012:102C bytes=00 00 00 80 
+tinyptp[137.420]: master offset -16 s3 freq +0 path delay 38 sample 109 seq 111
+PBUS write 0012:102C bytes=00 00 00 80 
+tinyptp[138.420]: master offset -16 s3 freq +0 path delay 38 sample 110 seq 112
+PBUS write 0012:102C bytes=00 00 00 80 
+tinyptp[139.421]: master offset -16 s3 freq +0 path delay 38 sample 111 seq 113
+PBUS write 0012:102C bytes=00 00 00 80 
+tinyptp[140.421]: master offset -16 s3 freq +0 path delay 38 sample 112 seq 114
+PBUS write 0012:102C bytes=00 00 00 80 
+tinyptp[141.422]: master offset -16 s3 freq +0 path delay 38 sample 113 seq 115
+PBUS write 0012:102C bytes=00 00 00 80 
+tinyptp[142.422]: master offset -16 s3 freq +0 path delay 38 sample 114 seq 116
+PBUS write 0012:102C bytes=00 00 00 80 
+tinyptp[143.423]: master offset -16 s3 freq +0 path delay 38 sample 115 seq 117
+PBUS write 0012:102C bytes=00 00 00 80 
+tinyptp[144.423]: master offset -16 s3 freq +0 path delay 38 sample 116 seq 118
+PBUS write 0012:102C bytes=00 00 00 80 
+tinyptp[145.424]: master offset -16 s3 freq +0 path delay 38 sample 117 seq 119
+tinyptp[146.348]: FOLLOWER samples 117 timeouts 0 missing_rx 0 discarded 0
+PBUS write 0012:102C bytes=00 00 00 80 
+tinyptp[146.424]: master offset -16 s3 freq +0 path delay 38 sample 118 seq 120
+PBUS write 0012:102C bytes=00 00 00 80 
+tinyptp[147.424]: master offset -16 s3 freq +0 path delay 38 sample 119 seq 121
+PBUS write 0012:102C bytes=00 00 00 80 
+tinyptp[148.424]: master offset -16 s3 freq +0 path delay 38 sample 120 seq 122

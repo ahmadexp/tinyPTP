@@ -1,5 +1,6 @@
 #include <cassert>
 #include <cstdint>
+#include "../src/detail/AsixChip.h"
 #define F(x) x
 #define HEX 16
 struct SerialStub {
@@ -10,7 +11,7 @@ struct SerialStub {
 } Serial;
 void ptpLogPrefix() {}
 uint8_t verifiedAsixAddress = 1;
-uint32_t gate = 0x12340001, clockControl = 0x5f, width = 500000000;
+uint32_t gate = 0x12340001, clockControl = AsixChip::ppsEnable | 0x0f, width = 500000000;
 bool readOk = true, writeOk = true, latchWrite = true;
 unsigned writes = 0;
 uint32_t readLe32(const uint8_t *p) {
@@ -21,7 +22,7 @@ bool asixRead(uint8_t address, uint8_t request, uint16_t reg,
               uint16_t bank, uint8_t length, uint8_t *data) {
   assert(address == 1 && request == 0x11 && length == 4);
   assert((bank == 0x0c && reg == 0xf8c8) ||
-         (bank == 0x12 && (reg == 0x1000 || reg == 0x1040)));
+         (bank == 0x12 && (reg == 0x1000 || reg == AsixChip::pulseWidthRegister)));
   uint32_t value = bank == 0x0c ? gate : (reg == 0x1000 ? clockControl : width);
   for (int i = 0; i < 4; ++i) data[i] = value >> (8 * i);
   return readOk;
@@ -38,7 +39,7 @@ int main() {
   assert(!reportPpsState());
   assert(enablePpsOutput() && gate == 0x12344001 && writes == 1);
   assert(enablePpsOutput() && writes == 1); // Already enabled, no write.
-  clockControl &= ~0x10; assert(!reportPpsState()); clockControl |= 0x10;
+  clockControl &= ~AsixChip::ppsEnable; assert(!reportPpsState()); clockControl |= AsixChip::ppsEnable;
   width = 0; assert(!reportPpsState()); width = 500000000;
   gate &= ~0x4000; writeOk = false; assert(!enablePpsOutput());
   writeOk = true; latchWrite = false; assert(!enablePpsOutput());

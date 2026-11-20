@@ -709,3 +709,11 @@ No upstream implementation is vendored here. The ASIX driver source contains
 GPL notices, while the TimeStick repository has a
 separate hardware/project license. Preserve the applicable notices and review
 the relevant file licenses when incorporating upstream code.
+
+## License
+
+[MIT](LICENSE). Copyright (c) 2026 Ahmad Byagowi.
+
+The license covers this project's original source and documentation. External
+libraries, reference drivers, hardware designs, and toolchains retain their
+respective licenses; see the source references above.
